@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="ico/hacker256.png"> 
+  <title>Curs Hacking Ètic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: linear-gradient(to bottom, #1f2937, #111827);
+      color: white;
+      padding: 2rem;
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    nav {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #60a5fa;
+      font-weight: 600;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    p.description {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      text-align: center;
+      font-size: 1.125rem;
+      color: #d1d5db;
+    }
+    .button {
+      display: block;
+      margin: 1.5rem auto;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .button:hover {
+      background-color: #2563eb;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background-color: #374151;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    }
+    .card h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+    .card p {
+      color: #d1d5db;
+      margin-top: 0.5rem;
+    }
+    a  {
+      text-decoration: none; /* Elimina l'efecte subratllat de dins de les targetes */
+      color: inherit; /* Manté el color del text original */
+
+    }
+    .icon {
+      font-size: 2rem;
+      color: #60a5fa;
+    }
+    .faq {
+      max-width: 800px;
+      margin: 4rem auto;
+    }
+    .faq h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .faq-item {
+      background-color: #374151;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .faq-item:hover {
+      background-color: #4b5563;
+    }
+    .faq-question {
+      font-weight: 600;
+      color: #60a5fa;
+    }
+    .faq-answer {
+      margin-top: 0.5rem;
+      display: none;
+      color: #d1d5db;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    footer {
+      background-color: #1f2937;
+      padding: 2rem;
+      margin-top: 4rem;
+      border-top: 1px solid #374151;
+      text-align: center;
+    }
+    footer h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: #60a5fa;
+    }
+    footer p {
+      font-size: 0.875rem;
+      color: #9ca3af;
+    }
+    footer a {
+      color: #60a5fa;
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @font-face {
+      font-family: 'CCSymbols';
+      src: url('fonts/CCSymbols.woff2') format('woff2'),
+          url('fonts/CCSymbols.woff') format('woff');
+      font-display: swap;
+      unicode-range: U+00A9, U+229C, U+1F10D-1F10F, U+1F16D-1F16F;
+    }
+
+
+  </style>
+</head>
+<body>
+  <!-- <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#temario">Temario</a>
+    <a href="#faq">FAQ</a>
+  </nav>  -->
+
+  <section id="inicio">
+    <h1>Curs de Hacking Ètic</h1>
+    <p class="description">
+      Forma part del Curs d'Especialització de CETI
+    </p>
+  </section>
+
+  <section id="temario" class="grid">
+    <a href="ud_001.html">
+    <div class="card"><div class="icon">🐞</div><h2>UD 1: Monitoratge de vulnerabilitats</h2><p>Apren a utilitzar eines per a reconexier vulnerabilitats.</p></div>
+  </a>
+  <a href="ud_002.html">
+    <div class="card"><div class="icon"><img src="ico/proxy2.svg" height="40"  alt="Icono de Firewall">
+
+    </div><h2>UD 2: HE a Xarxes i Sistemes</h2><p>Descobreix com accedir a sistemes de tercers mitjantsant el hacking a xarxes i sistemes</p></div>
+  </a>  
+  <a href="ud_003.html">
+    <div class="card"><div class="icon">🌐</div><h2>UD 3: HE a llocs Web</h2><p>Domina les eines per accedir vulnerant llocs web</p></div>
+  </a>  
+  <a href="ud_004.html">
+    <div class="card"><div class="icon"> <img src="ico/firewall.svg" height="40"  alt="Icono de Firewall">
+    </div><h2>UD 4: Consolidació de sistemes compromesos</h2><p>Implementa tècniques per consolidar i utilitzar sistemes compromesos</p></div>
+  </a>
+  <a href="ud_005.html">
+    <div class="card"><div class="icon"> <img src="ico/computer-remote.svg" height="40"  alt="Icono de Proxy">
+    </div><h2>UD 5: HE a comunicacions sense fil</h2><p>Apren a vulnerar xarxes sense fils per accedir a sistemes de tercers</p></div>
+  </a>
+  
+  </section>
+  
+  <section id="faq" class="faq">
+    <h2>Preguntas Frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-question">Quin tipus d'apunts trobaré ací?</div>
+      <div class="faq-answer">Podràs accedir a resums, esquemes, presentacions i exercicis pràctics organitzats per unitat didàctica.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Puc descarregar els apunts?</div>
+      <div class="faq-answer">Sí, tots els apunts estan disponibles per a descàrrega gratuïta en format PDF o altres formats accessibles</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Qui ha elaborat aquests apunts?</div>
+      <div class="faq-answer">Els apunts han sigut elaborats pel professor Enrique Iborra i revisats periòdicament per a mantindre'ls actualitzats.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Puc col·laborar amb nous apunts o correccions?</div>
+      <div class="faq-answer">Clar! Pots enviar els teus materials o suggeriments per correu al mail del professor.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Hi ha algun cost per utilitzar aquest lloc?</div>
+      <div class="faq-answer">No. Tot el contingut està disponible sota una llicència *Creative *Commons i és completament gratuït.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Amb quina freqüència s'actualitzen els continguts?</div>
+      <div class="faq-answer">El repositori s'actualitza cada curs escolar amb els últims canvis i millores.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Puc usar aquests apunts per a preparar exàmens oficials?</div>
+      <div class="faq-answer">Sí, el contingut està alineat amb el currículum del CE - CETI i és ideal per a repassar abans d'avaluacions.</div>
+    </div>
+  
+  </section>
+
+
+  <footer>
+    <h3>Mòdul Hacking Ètic - CE - CETI</h3>
+    <p style="font-family: 'CCSymbols', sans-serif; font-size:larger;" >
+      Llicència: &#x1F16D; &#x1F16F; &#x1F10E; &#x1F10F;
+    </p>
+    
+    <p>2025 - Autor: Enrique Iborra</p>
+    <p>
+      <a href="#inicio">Inicio</a> | 
+      <a href="#faq">FAQ</a> | 
+    </p>
+  </footer>
+
+  <script>
+    // Animación al hacer scroll
+    const cards = document.querySelectorAll('.card');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    cards.forEach(card => {
+      observer.observe(card);
+    });
+
+    // Preguntas frecuentes interactivas
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
