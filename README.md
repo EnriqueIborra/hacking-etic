@@ -1,6 +1,6 @@
 # Hacking Ètic
 
-Visita pàgina principal de continguts en:  https://enriqueiborra.github.io/he/ 
+Visita pàgina principal de continguts en:  https://enriqueiborra.github.io/hacking-etic/
 
 Fes servir ![traductor](docs/imgs/icono-trad-google.png) per visualitzar en altres llengües.  
 
@@ -62,6 +62,5 @@ e) S'han usat eines de cerques i explotació de vulnerabilitats web.
 f) S'ha realitzat la cerca i explotació de vulnerabilitats web mitjançant eines programari.  
 
 
-Pàgina principal :  https://enriqueiborra.github.io/he/ 
-
+Pàgina principal :  https://enriqueiborra.github.io/hacking-etic/
 
