@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.5, user-scalable=yes">
+
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <title>UD1 - Introducció al Hacking Ètic</title>
+  <link rel="stylesheet" href="estilsunitats.css">
+  
+</head>
+<body>
+  <!--<button class="theme-toggle" onclick="toggleTheme()"></button> -->
+  <button class="theme-toggle" onclick="toggleTheme()">
+    <i class="hgi hgi-stroke hgi-sun-01" id="theme-icon"></i>
+  </button>
+
+  <!-- boto menu hamburguesa  +  javascript -->
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Abrir menú de navegación">
+    <span id="menu-icon">☰</span>
+  </button>
+  
+  <div class="sidebar">
+  
+  
+    <a href="#he">Hacking - Hacking Ètic</a>
+    <a href="#elements">Elements de HE</a>
+    <a href="#vuln">Vulnerabilitats - Atacs</a>
+    <a href="#auditoria">Auditories</a>
+    <a href="#estandars">Estandars en HE</a>
+    <a href="#deepweb">DeepWeb</a>
+    <a href="#labs">Laboratoris</a>
+
+  </div>
+
+  <div style="width: 100%;">
+    <header>
+      <a href="index.html"><img src="imgs/HEcap.png" alt="HE" width="80%"></a>
+      <!--<h2>🅷🅰🅲🅺🅸🅽🅶 È🆃🅸🅲</h2> -->
+      <h1>Unitat Didàctica 1: Introducció al Hacking Ètic</h1>
+      <h1>.</h1>
+    </header>
+    
+    <main>
+
+
+<!--   **************************   Hacking   ***************************-->
+<section id="he">
+  <h1>Hacking Ètic</h1>
+  <h2>Aspectes relacionats amb el hacking</h2>
+    <p>L'evolució de les TICs ha proporcionat el marc per al desenvolupament de noves i diverses tècniques de hacking, fomentant d'aquesta manera un entorn que engloba diversos aspectes relacionats amb el hacking.</p>
+
+  <h2>Què és el hacking?</h2>
+  <p>El hacking es pot definir com:</p>
+  <ul>
+    <li>L'art de fer que les coses funcionen de manera diferent a com el seu creador inicialment va poder pensar.</li>
+    <li>La recerca i explotació de vulnerabilitats de seguretat en sistemes o xarxes.</li>
+    <li>La detecció i explotació de vulnerabilitats de seguretat.</li>
+    <li>El conjunt de tècniques per accedir a sistemes informàtics vulnerant mesures de seguretat.</li>
+  </ul>
+
+  <h2>Què és un hacker?</h2>
+  <ul>
+    <li><strong>Hacker:</strong> Persona que vol conèixer, descobrir o aprendre coses noves i entendre com funcionen.</li>
+    <li><strong>Cracker:</strong> Utilitza el coneixement amb fins maliciosos o il·legals (intrusió, robatori d'informació, etc.).</li>
+    <li><strong>Phreaker:</strong> Interessat en el món de les telecomunicacions, orientat a reptes de seguretat.</li>
+    <li><strong>Lammer:</strong> Presumeix de coneixements però només usa eines automàtiques sense comprendre el funcionament intern.</li>
+  </ul>
+  <p><strong>Nota:</strong> Hacker ètic ≠ Pirata informàtic = Cibercriminal = Cracker</p>
+  <p>El <strong> hacker ètic</strong> és aquell que utilitza tècniques i eines pròpies d’un hacker per accedir a un sistema informàtic, però en aquest cas sense finalitats malicioses ni delictius. I a més, amb dos matisos importants:</p>
+
+   <li> Ho fa amb el consentiment de l’empresa o organització propietària d’aquest sistema informàtic.</li>
+   <li> Rep una contraprestació econòmica per això.</li>
+   <p>Es tracta d’un informàtic expert en Ciberseguretat que, a instàncies d’una empresa o organització, s’encarrega de trobar les vulnerabilitats en els seus sistemes. I d’aquesta manera, ajudar a reparar aquests errors puntuals i desenvolupar una estratègia global robusta, lliure de faltes i punts febles.</p>
+
+  <h2>Per què es produeixen ciberatacs?</h2>
+  <p><strong>Motivacions premeditades:</strong></p>
+  <ul>
+    <li>Danyar la imatge d'una organització.</li>
+    <li>Benefici econòmic.</li>
+    <li>Espionatge polític o industrial.</li>
+    <li>Empleats descontents.</li>
+    <li>Necessitat de poder de còmput.</li>
+  </ul>
+  <p><strong>Motivacions casuals:</strong></p>
+  <ul>
+    <li>Emmascarament dels responsables reals.</li>
+    <li>Repte personal.</li>
+    <li>Entreteniment.</li>
+  </ul>
+
+  <h2>Seguretat</h2>
+  <p>La seguretat és allò exempt de perill, dany o risc. En l’àmbit digital, cal diferenciar:</p>
+  <ul>
+    <li><strong>Seguretat de la informació:</strong> Protecció de dades contra qualsevol amenaça.</li>
+    <li><strong>Seguretat informàtica:</strong> Subconjunt de la seguretat de la informació, centrada en sistemes informàtics.</li>
+  </ul>
+  <h4> Seguretat de la informació  ≠ Seguretat informàtica </h4>
+
+  <h2>Informació</h2>
+  <p>La informació és un actiu crític per a qualsevol organització. Cal protegir-la per:</p>
+  <ul>
+    <li>Assegurar la continuïtat del negoci.</li>
+    <li>Minimitzar els riscos.</li>
+    <li>Maximitzar el retorn de la inversió (ROI).</li>
+  </ul>
+
+    <h2>Què és el hacking ètic?</h2>
+  <p>Pràctica que consisteix a utilitzar coneixements per ajudar a detectar vulnerabilitats amb el consentiment de l’organització. Inclou:</p>
+  <ul>
+    <li>Proves conegudes pels administradors.</li>
+    <li>No causen danys.</li>
+    <li>Resultats documentats per millorar la seguretat.</li>
+  </ul>
+  <p><strong>Projectes:</strong> S'ha de respectar el contracte amb el client. Aquest defineix els límits d’actuació.</p>
+
+  <h2>Llei del hacking del Codi Penal</h2>
+  <ul>
+    <li>Les empreses poden ser responsables de delictes informàtics dels seus empleats.</li>
+    <li>La responsabilitat es transfereix en casos de fusió empresarial.</li>
+    <li>Les sancions poden ser des de multes fins a la dissolució de l’empresa.</li>
+    <li>El sector públic està exempt.</li>
+    <li>Penes per accés no autoritzat: entre 6 mesos i 2 anys de presó.</li>
+  </ul>
+
+  <h3>Article 197 del Codi Penal</h3>
+  <p>Revela dades que afecten la intimitat o la privacitat. També és delicte difondre informació obtinguda amb consentiment però divulgada contra la voluntat.</p>
+
+  <h3>Article 197 bis</h3>
+  <p>Tipifica el ciberespionatge, cracking, black hacking. Penalitza l’accés no autoritzat i la intercepció de transmissions informàtiques privades.</p>
+
+  <h3>Article 197 ter</h3>
+  <p>Penalitza produir, adquirir, importar o facilitar eines per cometre delictes tipificats als articles 197 i 197 bis.</p>
+
+  <p><strong>Conclusió:</strong> Els professionals de la seguretat informàtica han de conèixer el marc legal. El Codi Penal pot equiparar un investigador de seguretat a un delinqüent si no actua segons la llei.</p>
+
+</section>
+
+<!--   *********************Elements del hacking  *********************************-->
+<section id="elements">
+      <h1>Elements del Hacking Ètic</h1>
+      <p>Els elements del hacking ètic són els components clau que defineixen l'activitat de provar i protegir 
+        sistemes informàtics de manera legal i ètica. Aquests elements són essencials per garantir la seguretat 
+        i la integritat de xarxes, aplicacions i dades</p>
+    
+      <h2>1. Permís i autorització</h2>
+      <p><strong>El més important.</strong> El hacker ètic <strong>necessita permís explícit</strong> dels propietaris del sistema abans de realitzar qualsevol prova.</p>
+      <p>Sense autorització, qualsevol activitat es consideraria <strong>il·legal</strong>.</p>
+    
+      <h2>2. Recollida d’informació (Reconnaissance)</h2>
+      <p>Identificar i recopilar dades sobre el sistema objectiu.</p>
+      <p>Pot ser:</p>
+      <ul>
+        <li><strong>Passiva</strong> (sense interactuar directament amb el sistema)</li>
+        <li><strong>Activa</strong> (amb escanejos o contactes amb el sistema)</li>
+      </ul>
+    
+      <h2>3. Anàlisi de vulnerabilitats</h2>
+      <p>Identificar debilitats del sistema (versions de software obsoletes, ports oberts, configuracions insegures).</p>
+          
+      <h2><span class="emoji">🧪</span>4. Proves d’explotació (Exploitation)</h2>
+      <p>Simular atacs per veure si les vulnerabilitats poden ser explotades.</p>
+      <p>Es fa amb cura per <strong>no danyar</strong> el sistema ni perdre dades.</p>
+    
+      <h2><span class="emoji">📋</span>5. Redacció d’informes</h2>
+      <p>Descriure les vulnerabilitats trobades, l’impacte potencial i com solucionar-les.</p>
+      <p>L’informe ha de ser clar, detallat i <strong>entenedor per a tècnics i directius</strong>.</p>
+    
+      <h2>6. Proposta de solucions i mitigació</h2>
+      <p>Recomanar <strong>mesures correctives</strong> per solucionar els problemes detectats.</p>
+      <p>Pot incloure: actualitzacions, canvis de configuració, formació de personal, etc.</p>
+    
+      <h2>7. Proves de seguiment (Re-test)</h2>
+      <p>Tornar a fer proves per verificar que les vulnerabilitats s’han corregit.</p>
+
+      <h2>8. Compliment legal i ètic</h2>
+      <p>Seguir codis deontològics, com el de l’<strong>EC-Council</strong> o la <strong>(ISC)²</strong>.</p>
+      <p>Respectar la <strong>confidencialitat</strong> de les dades.</p>
+    
+  
+  </section>
+
+
+<!--    *******************  Vulnerabilitats *****************************-->
+<section id="vuln">
+  <h1>Vulnerabilitats</h1>
+
+  <p>En el context de la seguretat informàtica, una <strong>vulnerabilitat</strong> és una feblesa o error en un sistema que pot ser aprofitat per un atacant per comprometre la confidencialitat, la integritat o la disponibilitat de les dades i serveis. Les vulnerabilitats poden existir tant en programari com en maquinari, i poden ser resultat d’errors de programació, configuracions incorrectes o fins i tot factors humans. Hi ha diferents tipus de vulnerabilitats que s’han d’identificar i mitigar per tal d’assegurar la protecció dels sistemes.</p>
+
+  <p>Elements a protegir</p>
+  <ul>
+    <li>Maquinari</li>
+    <li>Programari</li>
+    <li>Dades ← El més important i difícil de recuperar</li>
+    <li>Comunicacions</li>
+    <li>Factor humà ← El més difícil de controlar</li>
+  </ul>
+
+  <h3>Nivells de profunditat</h3>
+  <ul>
+    <li>Legals: LOPDGDD RGPD</li>
+    <li>Comunicacions: protocols segurs</li>
+    <li>Organitzatius: nivells d’accés, contrasenyes</li>
+    <li>Físiques: ubicació d’equips, subministrament elèctric</li>
+  </ul>
+
+  <h3>Tipus de Vulnerabilitats</h3>
+  <ul>
+    <li><strong>Vulnerabilitats de programari:</strong> Aquestes vulnerabilitats es troben en el codi del programari o de les aplicacions i són causades per errors de programació, com desbordaments de memòria, fallades en la validació d’entrades o manca de comprovació d’accessos. Un atacant pot aprofitar aquests errors per executar codi maliciós o accedir a dades sensibles.</li>
+
+    <li><strong>Vulnerabilitats de configuració:</strong> Es produeixen quan els sistemes o aplicacions estan mal configurats, permetent que usuaris no autoritzats accedisquen a recursos sensibles. Açò pot incloure contrasenyes predeterminades, ports oberts innecessaris o permisos d’accés incorrectes.</li>
+
+    <li><strong>Vulnerabilitats en el maquinari:</strong> Algunes fallades de seguretat poden derivar-se de febleses físiques en els dispositius, com la manca de protecció en les interfícies de maquinari o l'accés físic no restringit a servidors i altres equips crítics.</li>
+
+    <li><strong>Vulnerabilitats en la xarxa:</strong> Fan referència a febleses en la infraestructura de xarxa que poden permetre als atacants interceptar, modificar o redirigir el trànsit de dades. Inclou configuracions incorrectes en routers, firewalls mal configurats o ús de protocols insegurs (com HTTP en lloc d’HTTPS).</li>
+
+    <li><strong>Vulnerabilitats humanes:</strong> Són causades per errors o males pràctiques dels usuaris, com l’ús de contrasenyes febles, la falta de formació en seguretat, o caure en atacs d’enginyeria social (per exemple, phishing). Encara que no són tècniques, poden ser igual de perilloses.</li>
+  </ul>
+
+  <h3>Causes Comunes de les Vulnerabilitats</h3>
+  <ul>
+    <li><strong>Errors en el desenvolupament de programari:</strong> Moltes fallades de seguretat són resultat de males pràctiques de codificació, com la falta de validació d’entrades o la no implementació de controls de seguretat.</li>
+    <li><strong>Actualitzacions insuficients:</strong> Les vulnerabilitats conegudes es poden solucionar amb actualitzacions regulars. No mantindre els sistemes actualitzats pot exposar els usuaris a riscos innecessaris.</li>
+    <li><strong>Manca de proves de seguretat:</strong> No realitzar proves de seguretat o auditories regulars pot deixar vulnerabilitats sense detectar.</li>
+    <li><strong>Configuracions predeterminades insegures:</strong> Molts dispositius i aplicacions venen amb configuracions que no són segures. Els atacants poden aprofitar-les si no s’ajusten adequadament.</li>
+  </ul>
+
+  <h3>Mitigació de Vulnerabilitats</h3>
+  <p>Per a reduir el risc d’explotació de vulnerabilitats, és essencial implementar pràctiques com:</p>
+  <ul>
+    <li><strong>Actualitzacions periòdiques:</strong> Assegurar-se que tots els sistemes, aplicacions i programari estiguen actualitzats amb els últims pegats de seguretat.</li>
+    <li><strong>Escanejos i auditories de seguretat:</strong> Realitzar escanejos i auditories per detectar i verificar vulnerabilitats i configuracions.</li>
+    <li><strong>Formació en seguretat:</strong> Educar els usuaris en bones pràctiques, com utilitzar contrasenyes fortes, no fer clic en enllaços sospitosos i no compartir informació sensible.</li>
+    <li><strong>Xifrat:</strong> Utilitzar xifrat per protegir la confidencialitat de les dades tant en trànsit com en repòs.</li>
+    <li><strong>Seguretat en capes:</strong> Implementar diverses estratègies de defensa per protegir els sistemes de diferents tipus d’atacs.</li>
+  </ul>
+
+  <p>En resum, les vulnerabilitats són punts febles que poden ser explotats per atacants. Identificar-les, mitigar-les i gestionar-les adequadament és clau per protegir la informació.</p>
+
+  <h2>Vulnerabilitat "Zero-Day"</h2>
+  <p>Una <strong>vulnerabilitat zero-day</strong> és una vulnerabilitat desconeguda pel desenvolupador en el moment que és descoberta per un atacant. El terme <strong>"zero-day"</strong> fa referència al fet que els desenvolupadors tenen <strong>"zero dies"</strong> per solucionar-la abans que siga explotada.</p>
+
+  <h3>Característiques d’una Zero-Day</h3>
+  <ul>
+    <li><strong>Desconeixement inicial:</strong> Tant el desenvolupador com els usuaris no saben de la seua existència.</li>
+    <li><strong>Explotació per part d’atacants:</strong> Pot permetre accés no autoritzat, execució de codi maliciós o altres accions nocius.</li>
+    <li><strong>Sense pegat disponible:</strong> Com que és desconeguda, no hi ha cap solució publicada en el moment.</li>
+    <li><strong>Gravetat:</strong> Són molt perilloses perquè els atacants tenen avantatge fins que es publica una solució.</li>
+  </ul>
+
+  <h3>Exemple d’atac Zero-Day</h3>
+  <p>Un atacant pot descobrir una vulnerabilitat en un sistema operatiu com Windows o macOS i controlar una màquina sense que l’usuari ho sàpiga, per exemple obrint un arxiu adjunt. Mentre siga desconeguda, l’atacant pot explotar-la lliurement.</p>
+
+  <h3>Com es gestionen les Zero-Day?</h3>
+  <ul>
+    <li><strong>Investigació i pegats:</strong> Els desenvolupadors treballen per corregir el problema. També poden avisar empreses de seguretat o investigadors.</li>
+    <li><strong>Exploits i mercats:</strong> Algunes són venudes en mercats il·legals, encara que també poden ser comprades per governs per a operacions de ciberseguretat o ciberespionatge.</li>
+  </ul>
+
+  <h2>Prevenció d’una Zero-Day</h2>
+  <p>Per protegir-se d’una <strong>zero-day</strong>, es poden seguir estratègies com:</p>
+  <ul>
+    <li><strong>Mantindre sistemes actualitzats:</strong> Encara que siga desconeguda, mantindre tot actualitzat ajuda a aplicar pegats ràpidament.</li>
+    <li><strong>Utilitzar programes de seguretat:</strong> Antivirus, firewalls i sistemes de detecció poden ajudar a mitigar els danys.</li>
+    <li><strong>Autenticació multifactor:</strong> Redueix l’impacte d’un atac encara que la vulnerabilitat siga explotada.</li>
+  </ul>
+
+  <h2>Amenaces</h2>
+  <p>En ciberseguretat, una <strong>amenaça</strong> és qualsevol situació que pot tindre conseqüències negatives per a l’empresa: operacions, funcions, marca, reputació o imatge.</p>
+  <p>Les amenaces poden manifestar-se com virus, malware, ransomware, phishing, atacs de denegació de servei (DoS), etc.</p>
+  <p>Podem classificar-les segons:</p>
+  <hr>
+  <p>Lloc de procedència:</p>
+  <ul>
+    <li>Internes
+      <ul>
+        <li>Insider</li>
+        <li>Desconeixement / Manca de formació</li>
+      </ul>
+    </li>
+    <li>Externes
+      <ul>
+        <li>Campanyes de hackeig</li>
+        <li>Atac dirigit</li>
+      </ul>
+    </li>
+  </ul>
+  <hr>
+  <p>A què poden afectar:</p>
+  <ul>
+    <li>Físiques
+      <ul>
+        <li>Robatoris, sabotatges, destrucció de sistemes</li>
+        <li>Interrupcions de subministrament elèctric</li>
+        <li>Condicions atmosfèriques: humitat, altes o baixes temperatures</li>
+        <li>Interferències electromagnètiques</li>
+      </ul>
+    </li>
+    <li>Lògiques
+      <ul>
+        <li>Rogueware o falsos programes de seguretat</li>
+        <li>Backdoors o portes del darrere</li>
+        <li>Virus</li>
+        <li>Gusans o worms</li>
+        <li>Troians</li>
+        <li>Keylogger</li>
+        <li>Rootkit</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>Atacs</h2>
+  <p>Un atac informàtic és un intent de comprometre la seguretat d’un sistema informàtic per causar danys intencionats al seu funcionament.</p>
+
+  <h3>Tècniques d’atac</h3>
+  <img src="imgs/top-attaccks.png" alt="tipus d'atacs" width="90%">
+
+  <h3>Vectors d’atac</h3>
+  <p>Els vectors d’atac són les vies que s’utilitzen per aprofitar vulnerabilitats en ordinadors, aplicacions, servidors de correu, programari, webs, navegadors, xarxes, etc.</p>
+
+  <hr> 
+  <h2>Classificació de Vulnerabilitats</h2>
+  <h3>Quan es descobreix una vulnerabilitat, es detalla en un "paper"</h3>
+  <p>Quan s’informa d’una vulnerabilitat en un “paper”, aquesta es valora i classifica.</p>
+  <p>Existeixen bases de dades de vulnerabilitats i calculadores de risc per a cadascuna.</p>
+
+  <h3>NVE - FIRST</h3>
+  <p>Calculadora de perillositat d’una vulnerabilitat</p>
+  <a href="https://www.first.org/cvss/">https://www.first.org/cvss/</a>
+
+  <p>BBDD de vulnerabilitats</p>
+  <a href="https://nvd.nist.gov/">https://nvd.nist.gov/</a>
+
+  <h3>CSIRT</h3>
+  <p>L’evolució del malware i altres amenaces, així com l’aparició de normatives per protegir la informació, han fet que els equips de resposta a incidents (CSIRT - Computer Security Incident Response Team) siguen vitals per a les organitzacions.</p>
+
+  <img src="imgs/nvd.png" alt="nvd" class="imatge-dreta" width="30%">
+
+  <p>INCIBE</p><a href="https://www.incibe-cert.es/">https://www.incibe-cert.es/</a>
+  <p>Cert CV</p><a href="http://www.csirtcv.gva.es/">http://www.csirtcv.gva.es/</a>
+
+  <img src="imgs/first.png" alt="nvd" class="imatge-dreta" width="30%">
+
+  <p>CCN-CERT</p><a href="https://www.ccn-cert.cni.es/">https://www.ccn-cert.cni.es/</a>
+  <p>ENISA (altres països europeus)</p><a href="https://www.enisa.europa.eu">https://www.enisa.europa.eu</a>
+
+
+</section>  
+
+
+
+<!-- ****************************************   Auditoria *****************************  -->
+<section id="auditoria">
+  <h1>Auditories</h1>
+    <h2>Metodologia en el procés d'auditoria</h2>
+
+      <h2>Introducció</h2>
+      <p>Una auditoria és una revisió pràctica que es realitza sobre els recursos informàtics que disposa una entitat amb la finalitat
+        d'emetre un informe o dictamen sobre la situació en què es desenvolupen i s'utilitzen. </p>
+      <p>Un procés d'auditoria recorre certes pràctiques enfocades a les diferents proves que s'hauran de realitzar per satisfer la demanda de client, utilitzant el Hacking Ètic en algunes de les fases d'aquest procés.</p>
+
+      <h2>Equip d'auditoria</h2>
+      <p>En tota proposta per realitzar un procés de Hacking Ètic s'ha d'explicar la composició de l'equip d'auditoria. És important reflectir per escrit les característiques, estudis i especialitats de cada un dels integrants (com si fora un currículum).     </p>
+      <p>Sempre hi haurà un responsable al càrrec del projecte, que farà d'interlocutor amb l'empresa contractant.</p>
+
+      <h2>Abast del projecte</h2>
+      <p>S'ha d'estudiar l'abast del projecte global, especificant les tasques compreses, i els diferents abastos de projecte dels diferents processos d'auditoria.</p>
+      <p>En l'abast del projecte s'especifica davant quina situació l'empresa que realitza el procés ha de notificar vulnerabilitats detectades, i quina és la via per dur a terme les notificacions,
+        per exemple utilitzant el correu electrònic, mitjançant l'ús de claus PGP, per protegir la confidencialitat dels documents.</p>
+      <p>També es pot indicar els contactes que es realitzaran per informar de les proves realitzades, per notificar possibles perills de qualitat de servei en certes proves crítiques, com denegacions de servei.</p>  
+
+      <h2>Selecció i informació de l'objectiu</h2>
+      <p>En tot procés de Hacking Ètic, hi ha una etapa on l'auditor dedica temps a la selecció i informació de l'objectiu:
+        És totalment necessari conèixer l'entorn a què s'enfronta l'auditor per exposar les proves d'avaluació de seguretat.</p>
+      <p>En aquesta primera etapa, dependrà de l'objecte de l'auditoria o procés agregat a què s'enfronte l'auditor. Depén de l'objectiu, es necessita un tipus d'informació.</p>
+
+      <h2>Confecció de l'atac i intrusió controlada</h2>
+      <p>En totes les proves del Hacking Ètic, hi ha una fase en què l'auditor realitzarà diferents atacs amb diferents enfocaments o objectius. 
+        Tots ells tenen una característica comuna i és que totes aquestes proves han d'estar sota control de l'empresa i grup d'auditors que realitzen els atacs.</p>
+      <p>L'experiència de l'auditor i el coneixement de les diferents tecnologies a les que l'auditor es pot enfrontar és una cosa vital 
+        per completar el ventall de proves, com són: verificació i validació de les comunicacions, validació d'entrades, manipulació de paràmetres, 
+        autenticació i gestió de sessions, coneixement i descobriment de la implementació de la xarxa...</p>
+      
+
+      <h2>Revisió del procés</h2>
+      <p> Un cop els atacs han anat desvetllant els errors de seguretat en les diferents auditories, l'auditor ha d'informar 
+        i recopilar unes mesures correctores que solucionen els problemes de seguretat descoberts. 
+        No serà l'auditor qui solvente aquests errors de seguretat, però sí que serà el que recomane l'aplicació de 
+        diferents tasques per mitigar o solucionar-los.    </p>
+
+      <h2>Documentació</h2>
+      <p>Tota prova haurà d'estar correctament documentada, en dos tipus d'informes, el primer a manera executiu informant 
+        de les observacions més destacades, i el segon a manera tècnica detallant tot el procés efectuat en l'organització i 
+        les proves realitzades.</p>
+      <p>És altament recomanable que l'auditor documente des del primer dia les proves i resultats que es van obtenint, 
+        tant perquè puga realitzar el seu treball correctament, així després l'informe es realitza en un període de temps menor.</p>
+
+
+      <h2>Interlocutors i emmagatzematge de la informació</h2>
+      <p>És important que la comunicació amb el client sempre vaja protegida, en funció de l'àmbit en què aquesta 
+        comunicació es produisca. Per exemple, mitjançant la utilització de claus PGP i ús de certificats digitals.</p>
+      <p>Un altre aspecte serà l'emmagatzematge de la informació rebuda per l'empresa contractant que ha de ser 
+        emmagatzemada de forma segura, a través d'un sistema d'autenticació i control d'accessos, protegint la 
+        confidencialitat d'aquesta informació mitjançant l'ús de xifrat robust. Emmagatzemar durant una vigència màxima, 
+        la qual serà acordada amb el client, però és comú destruir-la de manera segura al finalitzar el treball.</p>
+
+
+      <h2>Tipus d'auditories</h2>
+      <p>Al hacking ètic es parteix de 3 grans tipus d'auditoria. S'identifiquen per colors, com es pot visualitzar 
+        en la imatge inferior i cadascuna té unes propietats. Quan es parla auditoria interna, auditoria externa o 
+        auditoria de caixa blanca, per exemple, es poden classificar dins d'alguna d'aquestes 3 caixes:</p>
+      <ul>
+        <li><strong>Caixa blanca:</strong> l'auditor té tot el coneixement i privilegi (ex. auditoria de codi).</li>
+        <li><strong>Caixa grisa:</strong> l'auditor actua com un empleat sense privilegis, des de dins.</li>
+        <li><strong>Caixa negra:</strong> l'auditor actua com un atacant extern, sense coneixement previ.</li>
+      </ul>
+    <img src="imgs/caixes.png" alt="caixes" width="45%"></a>
+
+
+    <h4>Caixa blanca</h4>
+    <img src="imgs/cblanca.png" alt="caixes" width="15%" class="imatge-dreta"></a>  
+    <p>Caixa blanca és en la que l'auditor té tot el coneixement i el privilegi. En altres paraules, l'auditor 
+        té tot el necessari per avaluar la seguretat d'un sistema o aplicació. </p>
+    <p>Per exemple, una auditoria de codi seria de caixa blanca, ja que es té accés a el codi i es pot avaluar. 
+        Un altre exemple seria la comprovació de la seguretat de la configuració d'un servidor de correu electrònic, 
+        ja que de nou es té accés i privilegi per poder avaluar-lo.</p>
+      
+
+    <h4>Caixa gris</h4>
+    <img src="imgs/cgris.png" alt="caixes" width="15%" class="imatge-dreta"></a>   
+    <p>Caixa gris és la que situa l'auditor en un paper d'empleat sense privilegi o convidat a l'organització. 
+        A més, l'auditor, generalment, executarà el treball des de l'interior de l'organització. L'auditor estarà 
+        en el dia a dia de l'empresa. </p>
+    <p>L'auditoria de caixa grisa permet a l'auditor conèixer una mica de l'interior de l'organització, 
+        per exemple tenir connectivitat amb alguns equips interns, però no té cap tipus de privilegi a la xarxa. 
+        Comunament, un dels objectius de l'auditor en aquest tipus d'auditoria és obtenir privilegi a la xarxa per 
+        poder treure un benefici.</p>
+
+
+    <h4>Caixa negra</h4> 
+    <img src="imgs/cnegra.png" alt="caixes" width="15%" class="imatge-dreta"></a>       
+    <p>Caixa negra és la que situa a l'auditor en un paper de atacant extern. L'auditor no té cap coneixement sobre 
+        què hi ha dins de l'organització o la seva estructura de xarxa. L'objectiu és avaluar fins on podria arribar 
+        un atacant extern i el dany es podria realitzar a l'organització.</p>
+
+
+      <h2>Fases del procés en una auditoria de seguretat</h2>
+      <ol>
+        <li><strong>Footprinting:</strong> recopilació d'informació pública.</li>
+        <li><strong>Fingerprinting i enumeració:</strong> identificació de serveis i versions exposades.</li>
+        <li><strong>Anàlisi de vulnerabilitats:</strong> identificació de vulnerabilitats conegudes.</li>
+        <li><strong>Explotació de vulnerabilitats:</strong> prova pràctica de les vulnerabilitats.</li>
+        <li><strong>Generació d'informes:</strong> resultats presentats en format executiu i tècnic.</li>
+      </ol>
+
+    <h4>Footprinting</h4>   
+    <p>Aquesta primera fase proposa recol·lectar informació pública. També és coneguda com a part de l'Information Gathering. 
+        És una fase menys important quan l'entorn és intern, per exemple, en una auditoria interna a una empresa. 
+        En el cas d'una auditoria web (caixa negra) és una fase inicial important.</p>
+    <h4>Fingerprinting i enumeració</h4>
+    <p>Aquesta fase permet a l'auditor analitzar els serveis localitzats en la fase de footprint. 
+        L'objectiu és clar: aconseguir informació detallada dels serveis que ofereix l'organització. 
+        L'anàlisi de ports oberts, l'anàlisi de mecanismes de protecció i l'obtenció de versions d'aplicacions 
+        exposades és una cosa molt útil en una auditoria i s'obté en aquesta fase.</p>   
+
+    <h4>Analisi de vulnerabilitats</h4> 
+    <p>En aquesta fase s'analitzen les vulnerabilitats conegudes sobre els serveis analitzats en la fase de fingerprinting. 
+        Se solen utilitzar eines automàtiques que tenen bases de dades de vulnerabilitats i es pot contrastar el trobat en 
+        el fingerprinting amb l'existència de vulnerabilitats.</p>  
+
+    <h4>Explotació de vulnerabilitats</h4> 
+    <p>En aquesta fase es porta a terme l'explotació de vulnerabilitats en la fase d'anàlisi de vulnerabilitats.</p>  
+
+    <h4>Generació d'informes</h4>
+    <p>En aquesta fase es presenta el treball, en forma d'informe, dut a terme per l'auditor a l'empresa que va contractar el servei. 
+        Hi ha dos tipus d'informes: executiu i tècnic.</p>   
+
+
+      <h2>Auditoria vs Test d'intrusió</h2>
+      <p>Un procés d'Auditoria de Seguretat se centra a analitzar TOTES les vulnerabilitats que puga patir una organització.
+    <br>Un Test d'Intrusió té com a objectiu ACONSEGUIR VULNERAR el sistema de una organització. És a dir, amb localitzar una única vulnerabilitat és suficient per finalitzar el treball.
+    <br>En resum, l'única diferència és que en un Test d'Intrusió només necessitarem localitzar una vulnerabilitat per prendre el control de sistema i en el procés de Auditoria de Seguretat intentarem identificar totes les possibles falles de seguretat.</p>
+    <h3>Test d'intrusió   <strong>⊆ </strong>  Auditoria </h3>
+
+</section>  
+
+<!--   ************************   standars  en hacking etic   ************************-->
+  <section id="estandars">
+<h1>Estàndards, models i llistes de seguretat</h1>
+
+    <h2>Estàndards i models - Definicions</h2>
+    <p>Els <strong>estàndards</strong> són especificacions sobre com s'ha de desenvolupar una tasca o funció determinada, basats en acords entre entitats o grups.</p>
+    <p>Un <strong>model</strong> és una representació ideal d’un sistema real. És una abstracció selectiva que defineix una funció objectiu amb restriccions.</p>
+    <p>Els estàndards serveixen com a patró o punt de referència per:</p>
+    <ul>
+        <li>Homogeneïtzar processos</li>
+        <li>Comparar amb mètriques</li>
+        <li>Definir proves i actuacions</li>
+    </ul>
+
+    <h2>OWASP – Open Web Application Security Project</h2>
+    <p>Projecte de codi obert per a la seguretat del software. Format per organitzacions, educadors i particulars.</p>
+    <ul>
+        <li><strong>Guia OWASP:</strong> document extens amb guia detallada</li>
+        <li><strong>OWASP Top 10:</strong> llista de vulnerabilitats més crítiques, actualitzada cada 3 anys</li>
+    </ul>
+    <p><a href="https://owasp.org/Top10/">https://owasp.org/Top10/</a></p>
+
+    <h3>Top 10 OWASP 2021</h3>
+    <ol>
+        <li><strong>A01:</strong> Trencament del control d'accés</li>
+        <li><strong>A02:</strong> Errades criptogràfiques</li>
+        <li><strong>A03:</strong> Injecció</li>
+        <li><strong>A04:</strong> Disseny insegur</li>
+        <li><strong>A05:</strong> Desconfiguració de la seguretat</li>
+        <li><strong>A06:</strong> Components vulnerables i obsolets</li>
+        <li><strong>A07:</strong> Errors d'identificació i autenticació</li>
+        <li><strong>A08:</strong> Errades d'integritat del software i les dades</li>
+        <li><strong>A09:</strong> Errades en registre i supervisió de la seguretat</li>
+        <li><strong>A10:</strong> Falsificació de sol·licituds del servidor</li>
+    </ol>
+
+    <h2>OSSTMM - Open Source Security Testing Methodology Manual</h2>
+    <p>Estàndard complet per a auditories de seguretat. Composta per 15 capítols i revisada per experts internacionals.</p>
+    <ul>
+        <li>Secció A - Seguretat de la Informació</li>
+        <li>Secció B - Seguretat dels Processos</li>
+        <li>Secció C - Tecnologies d'Internet</li>
+        <li>Secció D - Comunicacions</li>
+        <li>Secció I - Xarxes sense fil</li>
+        <li>Secció F - Seguretat Física</li>
+    </ul>
+    <p>Defineix QUÈ provar, COM fer-ho i QUAN executar-ho.</p>
+
+    <h2>FIRST - Forum of Incident Response and Security Teams</h2>
+    <p>Organització líder en resposta a incidents de ciberseguretat.</p>
+    <p>Assigna una puntuació (<em>score</em>) de 0 a 10 segons la severitat de la vulnerabilitat.</p>
+    <p><a href="https://nvd.nist.gov/CVSS/v3-calculator">CVSS Calculator</a></p>
+
+    <h2>MITRE Corporation</h2>
+    <p>Organització sense ànim de lucre que dona suport a agències dels EUA.</p>
+    <ul>
+        <li><strong>CWE:</strong> Common Weakness Enumeration – Categories d’errors en el software (<a href="https://cwe.mitre.org/">cwe.mitre.org</a>)</li>
+        <li><strong>CVE:</strong> Common Vulnerabilities and Exposures – Registre de vulnerabilitats (<a href="https://cve.mitre.org/cve/">cve.mitre.org</a>)</li>
+    </ul>
+
+    <h2>Llistes de seguretat</h2>
+    <p>Llistes d'informació sobre vulnerabilitats conegudes. Assignen un identificador únic a cada nova vulnerabilitat.</p>
+
+     <h3>CERTs</h3>
+    <p>Equips de resposta a emergències informàtiques. Proporcionen serveis i avisen de vulnerabilitats.</p>
+    <ul>
+        <li>IRIS-CERT: <a href="http://www.rediris.es/cert/">rediris.es/cert</a></li>
+        <li>INCIBE: <a href="https://www.certsi.es/alerta-temprana/vulnerabilidades?postAction=getVulnsHome">certsi.es</a></li>
+        <li>CCN-CERT: <a href="https://www.ccn-cert.cni.es/">ccn-cert.cni.es</a></li>
+        <li>CSIRT-CV: <a href="https://www.csirtcv.gva.es/">csirtcv.gva.es</a></li>
+    </ul>
+    
+  </section>      
+
+    <section id="deepweb">
+
+  <h1>Deep Web i Dark Web</h1>
+
+  <div class="section">
+    <h2><span class="emoji">🌐</span> Què és la Deep Web?</h2>
+    <p>La <strong>Deep Web</strong> és la part d’Internet que <strong>no està indexada</strong> pels motors de cerca convencionals.</p>
+
+    <h3>Inclou:</h3>
+    <ul>
+      <li>Bases de dades acadèmiques</li>
+      <li>Intranets (corporatives, escolars)</li>
+      <li>Contingut protegit amb contrasenya (bancs, correus privats)</li>
+      <li>Pàgines amb accés restringit (formularis, portals de salut, administració electrònica...)</li>
+    </ul>
+
+    <p>🔐 <strong>Exemple:</strong> el teu correu de Gmail, el compte bancari online, o un expedient acadèmic són Deep Web.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">🌑</span> Què és la Dark Web?</h2>
+    <p>La <strong>Dark Web</strong> és una petita part de la Deep Web que <strong>requereix eines específiques per accedir-hi</strong>, com el navegador <strong>Tor</strong> o xarxes com <strong>I2P</strong>.</p>
+
+    <h3>Característiques:</h3>
+    <ul>
+      <li>No s’hi pot accedir amb navegadors normals (Chrome, Firefox...)</li>
+      <li>Utilitza dominis com <code>.onion</code></li>
+      <li>Garanteix l’anonimat mitjançant xifrat i redirecció de tràfic</li>
+    </ul>
+
+    <h3>Contingut:</h3>
+    <ul>
+      <li>📚 <strong>Positiu:</strong> fòrums de llibertat d’expressió, periodisme anònim, accés lliure en països amb censura</li>
+      <li>🧨 <strong>Negatiu:</strong> mercats il·legals (drogues, armes, dades robades), serveis criminals, pornografia il·legal</li>
+    </ul>
+
+    <p>⚠️ <strong>Important:</strong> La Dark Web no és il·legal en si, però <strong>molta de l’activitat que s’hi fa sí que ho és</strong>.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">🧱</span> Parts d’Internet (model iceberg)</h2>
+
+    <pre>
+          ☁️ Internet superficial (Surface Web)
+          └─ Google, Wikipedia, YouTube, notícies...
+
+          🌊 Deep Web
+          └─ Correu electrònic, bancs, intranets, dades no indexades
+
+          🕸️ Dark Web
+          └─ Web anònima, accés amb Tor, contingut ocult
+    </pre>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">🔑</span> Resum ràpid</h2>
+
+    <table border="1" cellpadding="8" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Aspecte</th>
+          <th>Surface Web</th>
+          <th>Deep Web</th>
+          <th>Dark Web</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Accessible via Google</td>
+          <td>✅ Sí</td>
+          <td>❌ No</td>
+          <td>❌ No</td>
+        </tr>
+        <tr>
+          <td>Exemples</td>
+          <td>Google, YouTube</td>
+          <td>Gmail, bancs, portals escolars</td>
+          <td>Mercats <code>.onion</code>, fòrums Tor</td>
+        </tr>
+        <tr>
+          <td>Requereix eines especials</td>
+          <td>❌ No</td>
+          <td>❌ Normalment no</td>
+          <td>✅ Sí (Tor, I2P, etc.)</td>
+        </tr>
+        <tr>
+          <td>Anonimat</td>
+          <td>❌ Baix</td>
+          <td>⚠️ Mitjà</td>
+          <td>✅ Alt</td>
+        </tr>
+        <tr>
+          <td>Legalitat</td>
+          <td>✅ Legal</td>
+          <td>✅ Legal</td>
+          <td>⚠️ Depèn de l’ús</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<hr>
+
+<h1>Ferramentes i Eines per Accedir a la Dark Web</h1>
+
+  <div class="section">
+    <h2><span class="emoji">🛠️</span> Eines i ferramentes per accedir a la Dark Web</h2>
+    <p>La Dark Web no es pot visitar amb navegadors convencionals. Calen eines específiques que permeten accedir a llocs web anònims i xifrats, com ara els dominis <code>.onion</code>.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">📌</span> 1. Navegador Tor (The Onion Router)</h2>
+    <ul>
+      <li>🔑 <strong>Eina principal i més segura</strong> per accedir a llocs <code>.onion</code>.</li>
+      <li><strong>Funciona redirigint el trànsit a través de nodes anònims.</strong></li>
+      <li>Disponible per a Windows, Linux, Mac i Android.</li>
+      <li>Inclou motor de cerca com <strong>DuckDuckGo for Tor</strong>.</li>
+      <li>Web oficial: <a href="https://www.torproject.org">https://www.torproject.org</a></li>
+    </ul>
+    <p>⚠️ No cal configurar res manualment. Només cal descarregar i començar a navegar per enllaços <code>.onion</code>.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">🔎</span> 2. Navegadors alternatius (basats en Tor)</h2>
+    <ul>
+      <li><strong>Brave (amb mode Tor):</strong> navegador privat que permet obrir pestanyes amb Tor, tot i que no tan segur com el navegador Tor original.</li>
+      <li><strong>Whonix:</strong> sistema operatiu orientat a la seguretat i privacitat, integrat amb Tor.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">🕵️</span> 3. Sistemes operatius segurs</h2>
+    <p>Són entorns preparats per accedir a la Dark Web amb més anonimat.</p>
+
+    <h3>✅ Tails OS</h3>
+    <ul>
+      <li>Sistema operatiu portàtil (s’engega des d’un USB)</li>
+      <li>Tot el trànsit passa per Tor automàticament</li>
+      <li>No deixa rastres a l’ordinador</li>
+    </ul>
+
+    <h3>🧱 Qubes OS</h3>
+    <ul>
+      <li>Sistema operatiu per a usuaris avançats</li>
+      <li>Utilitza màquines virtuals separades per compartiments de seguretat</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">🌐</span> 4. Cercadors per la Dark Web</h2>
+    <p>Encara que no són com Google, existeixen cercadors especials:</p>
+    <ul>
+      <li><strong>Ahmia:</strong> <a href="https://ahmia.fi">https://ahmia.fi</a> (funciona dins i fora de Tor)</li>
+      <li><strong>DuckDuckGo (versió .onion):</strong> <a href="http://3g2upl4pq6kufc4m.onion">http://3g2upl4pq6kufc4m.onion</a></li>
+      <li><strong>Torch:</strong> un dels primers cercadors per Tor</li>
+    </ul>
+    <p>⚠️ Molts cercadors <code>.onion</code> poden mostrar enllaços obsolets o perillosos. Ves amb compte.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">🔒</span> 5. Altres eines útils</h2>
+    <ul>
+      <li><strong>VPN (xarxa privada virtual):</strong> afegeix una capa extra d'anonimat abans de connectar-te a Tor.</li>
+      <li><strong>PGP (Pretty Good Privacy):</strong> per xifrar missatges entre usuaris.</li>
+      <li><strong>OnionShare:</strong> eina per compartir fitxers de forma segura a través de la xarxa Tor.</li>
+      <li><strong>Torify:</strong> per redirigir altres aplicacions a través de la xarxa Tor.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">⚠️</span> Recomanacions de seguretat</h2>
+    <ul>
+      <li><strong>No facis clic a enllaços aleatoris</strong> <code>.onion</code> sense verificar-ne la font.</li>
+      <li><strong>No iniciïs sessió en serveis reals</strong> (com el teu correu personal) des del navegador Tor.</li>
+      <li><strong>No descarreguis arxius</strong> desconeguts o executables.</li>
+      <li><strong>Evita Javascript i complements (plugins):</strong> poden trencar l'anonimat.</li>
+      <li>Millor accedir-hi des de sistemes com <strong>Tails</strong> o màquines virtuals.</li>
+    </ul>
+  </div>
+
+  <hr>
+   <h1>Altres Dark Web que no són Tor</h1>
+
+  <div class="section">
+    <h2><span class="emoji">🕸️</span> Altres Dark Webs que no són Tor</h2>
+    <p>A més de Tor, existeixen altres xarxes que formen part de la Dark Web. Aquestes tecnologies permeten l'accés anònim i xifrat a contingut no indexat i sovint censurat.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">🌀</span> 1. I2P (Invisible Internet Project)</h2>
+    <ul>
+      <li>Xarxa anònima que permet comunicacions <strong>xifrades punt a punt</strong>.</li>
+      <li>Els llocs dins I2P es diuen <strong>"eepsites"</strong> i acaben amb <code>.i2p</code>.</li>
+      <li>No està pensat per accedir a la web oberta (com Tor), sinó per crear una Internet paral·lela i segura.</li>
+      <li>S’utilitza per:
+        <ul>
+          <li>Xats privats</li>
+          <li>Blogs, fòrums, mercats anònims</li>
+          <li>Correu electrònic xifrat</li>
+        </ul>
+      </li>
+    </ul>
+    <p>🔒 <strong>Molt més descentralitzat i privat que Tor</strong>, però més difícil d’utilitzar.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">🧅</span> 2. Freenet</h2>
+    <ul>
+      <li>Plataforma <strong>descentralitzada i anònima</strong> per publicar i accedir a informació.</li>
+      <li>Utilitza un sistema de <strong>fitxers xifrats</strong> que es distribueixen entre usuaris.</li>
+      <li>Pensat per:
+        <ul>
+          <li>Publicació de contingut resistent a la censura</li>
+          <li>Missatges anònims</li>
+          <li>Fòrums privats</li>
+        </ul>
+      </li>
+      <li><strong>No hi ha dominis .onion ni .i2p</strong>, tot el contingut es distribueix dins la mateixa xarxa.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">🌐</span> 3. ZeroNet</h2>
+    <ul>
+      <li>Xarxa basada en <strong>tecnologia P2P (peer-to-peer)</strong> amb arxius xifrats i identificació per clau pública.</li>
+      <li>Es poden crear pàgines web que es distribueixen entre usuaris.</li>
+      <li>Funciona amb <strong>BitTorrent i criptografia Bitcoin</strong> per autenticar contingut.</li>
+      <li>Els llocs acaben en <code>.bit</code>.</li>
+    </ul>
+    <p>⚙️ <strong>No requereix servidors centrals</strong>; el contingut és persistent i replicat.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">⚫</span> 4. GNUnet</h2>
+    <ul>
+      <li>Xarxa descentralitzada <strong>focalitzada en privacitat, resistència i llibertat digital</strong>.</li>
+      <li>Permet serveis com:
+        <ul>
+          <li>Compartició de fitxers</li>
+          <li>DNS alternatius</li>
+          <li>Xarxa de xats i correu privat</li>
+        </ul>
+      </li>
+    </ul>
+    <p>🔧 Projecte avançat i universitari, encara en desenvolupament actiu.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">💬</span> 5. RetroShare</h2>
+    <ul>
+      <li>Aplicació que crea una <strong>xarxa social xifrada entre contactes de confiança</strong>.</li>
+      <li>Permet:
+        <ul>
+          <li>Missatgeria privada</li>
+          <li>Fòrums, blogs, canals</li>
+          <li>Compartir fitxers</li>
+        </ul>
+      </li>
+    </ul>
+    <p>🌐 <strong>No és una web pròpiament dita</strong>, sinó una xarxa d'intercanvi segur entre usuaris coneguts.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">🧱</span> Resum comparatiu</h2>
+
+    <table border="1" cellpadding="8" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Xarxa</th>
+          <th>Tipus de domini / accés</th>
+          <th>Propòsit principal</th>
+          <th>Privacitat</th>
+          <th>Fàcil d’usar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Tor</strong></td>
+          <td><code>.onion</code></td>
+          <td>Accés a la web oculta, navegació anònima</td>
+          <td>Alta</td>
+          <td>✅ Sí</td>
+        </tr>
+        <tr>
+          <td><strong>I2P</strong></td>
+          <td><code>.i2p</code></td>
+          <td>Comunicacions segures, serveis ocults</td>
+          <td>Molt alta</td>
+          <td>❌ Més complex</td>
+        </tr>
+        <tr>
+          <td><strong>Freenet</strong></td>
+          <td>Contingut intern</td>
+          <td>Publicació descentralitzada i anònima</td>
+          <td>Molt alta</td>
+          <td>❌ Difícil</td>
+        </tr>
+        <tr>
+          <td><strong>ZeroNet</strong></td>
+          <td><code>.bit</code></td>
+          <td>Pàgines web P2P resistents a la censura</td>
+          <td>Alta</td>
+          <td>⚠️ Mitjana</td>
+        </tr>
+        <tr>
+          <td><strong>GNUnet</strong></td>
+          <td>Protocol propi</td>
+          <td>Xarxa anònima descentralitzada</td>
+          <td>Molt alta</td>
+          <td>❌ Difícil</td>
+        </tr>
+        <tr>
+          <td><strong>RetroShare</strong></td>
+          <td>Xarxa privada</td>
+          <td>Xarxa social entre amics</td>
+          <td>Molt alta</td>
+          <td>⚠️ Mitjana</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+ </section>
+
+  <section id="labs">
+   <h1>Laboratoris</h1>
+<h1>Plataformes i laboratoris per practicar hacking ètic</h1>
+
+<p>perque son útils estes plataformes ?</p>
+<ul>
+    <li><strong>Entorn segur i legal:</strong> Permeten practicar tècniques de hacking en entorns controlats, evitant riscos legals o danys a tercers.</li>
+    <li><strong>Aprenentatge pràctic:</strong> Faciliten l'aprenentatge a través de la pràctica directa amb màquines i reptes reals o simulats, que augmenten la comprensió i les habilitats.</li>
+    <li><strong>Varietat de reptes i nivells:</strong> Ofereixen des de reptes bàsics fins a escenaris molt complexos, adequats per a diferents graus d’experiència.</li>
+    <li><strong>Exposició a diferents tècniques i vulnerabilitats:</strong> Permeten conèixer i practicar amb vulnerabilitats reals, com ara SQL injection, XSS, desbordaments de memòria, i més.</li>
+    <li><strong>Fomenten la mentalitat de seguretat:</strong> Enfrontar-se a problemes de seguretat ajuda a desenvolupar una manera de pensar crítica i preventiva, essencial per a un hacker ètic.</li>
+    <li><strong>Comunitat i recursos:</strong> Moltes plataformes compten amb fòrums, tutorials i suport de la comunitat que ajuden a resoldre dubtes i aprendre més.</li>
+    <li><strong>Simulació de situacions reals:</strong> Algunes plataformes ofereixen escenaris molt similars als entorns professionals, millorant la preparació per a la feina.</li>
+    <li><strong>Actualització constant:</strong> Les plataformes solen actualitzar els reptes i tecnologies per estar al dia amb les noves amenaces i tècniques.</li>
+  </ul>
+
+
+
+
+  <div class="section">
+    <h2>1. Hack The Box (HTB)</h2>
+    <ul>
+      <li>Plataforma amb molts <strong>reptes de penetració</strong> i màquines virtuals vulnerables.</li>
+      <li>Nivells des de principiant fins a expert.</li>
+      <li>Comunitat activa i tutorials.</li>
+      <li>URL: <a href="https://www.hackthebox.eu">https://www.hackthebox.eu</a></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>2. TryHackMe</h2>
+    <ul>
+      <li>Aprenentatge guiada amb <strong>labs pràctics i exercicis pas a pas</strong>.</li>
+      <li>Ideal per a principiants.</li>
+      <li>Té cursos sobre pentesting, seguretat web, etc.</li>
+      <li>URL: <a href="https://tryhackme.com">https://tryhackme.com</a></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>3. VulnHub</h2>
+    <ul>
+      <li>Repositori gratuït de màquines virtuals vulnerables per descarregar i executar localment.</li>
+      <li>Permet practicar en entorns controlats.</li>
+      <li>URL: <a href="https://www.vulnhub.com">https://www.vulnhub.com</a></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>4. PentesterLab</h2>
+    <ul>
+      <li>Plataforma amb <strong>exercicis sobre vulnerabilitats web</strong> i de sistemes.</li>
+      <li>Inclou documentació i casos reals.</li>
+      <li>URL: <a href="https://pentesterlab.com">https://pentesterlab.com</a></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>5. OverTheWire</h2>
+    <ul>
+      <li>Jocs de guerra ("war games") de seguretat per aprendre conceptes bàsics i avançats.</li>
+      <li>Reptes per a diferents nivells.</li>
+      <li>URL: <a href="https://overthewire.org">https://overthewire.org</a></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>6. Root Me</h2>
+    <ul>
+      <li>Plataforma francòfona amb més de 300 reptes de seguretat.</li>
+      <li>Àmbit molt ampli: xarxes, web, criptografia, etc.</li>
+      <li>URL: <a href="https://www.root-me.org">https://www.root-me.org</a></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>7. CyberSecLabs</h2>
+    <ul>
+      <li>Laboratori amb entorns de pentesting realistes.</li>
+      <li>Plataforma de pagament amb opció gratuïta limitada.</li>
+      <li>URL: <a href="https://cyberseclabs.co.uk">https://cyberseclabs.co.uk</a></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>8. HackThisSite</h2>
+    <ul>
+      <li>Plataforma educativa amb reptes i tutorials per a hacking ètic.</li>
+      <li>URL: <a href="https://www.hackthissite.org">https://www.hackthissite.org</a></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>9. TryHackMe CTFs i competicions</h2>
+    <ul>
+      <li>Participa en competicions temporals per posar a prova les teves habilitats en situacions reals.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>10. Labs de Metasploit</h2>
+    <ul>
+      <li>Amb Metasploit pots configurar el teu propi entorn de pràctica.</li>
+      <li>Disponible com a eina de prova i atac.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Consells per practicar hacking ètic</h2>
+    <ul>
+      <li>Sempre utilitza plataformes legals i ètiques.</li>
+      <li>No facis mai atacs fora d’un entorn de prova o sense permís explícit.</li>
+      <li>Practica la tècnica, no el dany.</li>
+      <li>Complementa la pràctica amb teoria i formació constant.</li>
+    </ul>
+  </div>
+
+
+
+  </section>
+
+
+    </main>
+
+    <footer>
+      <p style="font-family: 'CCSymbols', sans-serif; font-size:larger;" >
+        2025 - Llicència: &#x1F16D; &#x1F16F; &#x1F10E; &#x1F10F; - UD1 - Introducció al Hacking Ètic 
+      </p>
+    </footer>
+  </div>
+  
+  
+</body>
+    <script src="scriptsunitats.js"></script>
+</html>
