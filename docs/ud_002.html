@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.5, user-scalable=yes">
+
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <title>UD2 - HE a xarxes i sistemes</title>
+  <link rel="stylesheet" href="estilsunitats.css">
+  
+</head>
+<body>
+  <!--<button class="theme-toggle" onclick="toggleTheme()"></button> -->
+  <button class="theme-toggle" onclick="toggleTheme()">
+    <i class="hgi hgi-stroke hgi-sun-01" id="theme-icon"></i>
+  </button>
+
+  <!-- boto menu hamburguesa  +  javascript -->
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Abrir menú de navegación">
+    <span id="menu-icon">☰</span>
+  </button>
+  
+  <div class="sidebar">
+    <a href="#foot">Footprinting</a>
+    <a href="#finger">Fingerprinting</a>
+    <a href="#monitor">Monitorització trànsit</a>
+    <a href="#intercepcio">Intercepció</a>
+    <a href="#injeccio">Injecció</a>
+    <a href="#explotacio">Explotació vulnerabilitats</a>
+    <a href="#phishing">Phishing</a>
+    <a href="#escalada">Escalada de privilegis</a>
+    <a href="#iauditoria">Informes d'auditoria</a>
+
+  </div>
+
+  <div style="width: 100%;">
+
+<header>
+  <a href="index.html"><img src="imgs/HEcap.png" alt="HE" width="80%"></a>
+  <!--<h2>🅷🅰🅲🅺🅸🅽🅶 È🆃🅸🅲</h2> -->
+  <h1>Unitat Didàctica 2: HE a xarxes i sistemes</h1>
+  <h1>.</h1>
+</header>
+
+<main>
+   <section id="foot">
+    <h1>Footprinting</h1>
+    <h3>Footprinting: Recollida d'informació pública o “information gathering” (menys important en un procés d'auditoria interna).</h3>
+    <p>La fase de footprinting és la primera etapa en un procés d’auditoria de seguretat informàtica o hacking, 
+      i consisteix en recollir informació sobre un sistema, xarxa o organització abans d’intentar accedir-hi o atacar-lo</p>
+    <p>Aquest procés es centra en la recollida d'informació pública d'Internet, pel que el seu ús no comporta la 
+      vulneració de cap llei, i per tant no és considerada delicte. El delicte és utilitzar aquesta informació per
+       a algun benefici.
+      <br>Aquesta fase no sol realitzar-se en un procés d'auditoria interna o auditoria de xarxa, o si es realitza, és de manera superficial, ja que no és habitual que es filtre informació interna de l'organisme que puga ser d'utilitat en aquest àmbit.
+      <br>Per fer un Footprint d'un organisme necessitarem conèixer un llistat d'eines d'auditoria de seguretat que veurem a continuació.</p>
+
+
+<ul>
+  <li>Footprinting utilitzant fonts obertes (OSINT)</li>
+  <li>Footprinting utilitzant "Leaks"</li>
+  <li>Footprinting utilitzant "DNS Reconnaissance"</li>
+  <li>Footprinting utilitzant "Phishing"</li>
+  <li>Footprinting utilitzant Enginyeria social</li>
+  <li>Footprinting utilitzant Vishing, SMiShing</li>
+  <li>Footprinting utilitzant Dumpster diving</li>
+  <li>Footprinting utilitzant Shoulder surfing</li>
+  <li>Footprinting utilitzant Tailgating</li>
+ 
+</ul>
+<h3>  !!  Sempre en consentiment del organisme o empresa a ser testada  !!</h3>
+
+ <h2>Metadades</h2>
+ <p>Les metadades de documents tenen un paper molt important dins del footprinting, especialment en la seva variant passiva, ja que poden revelar molta informació sensible sense accedir directament a cap sistema</p>
+ <p>Les metadades són dades que descriuen altres dades. En el cas de documents com PDF, Word, Excel, imatges, etc., les metadades poden contenir informació oculta (però fàcil d’extreure) que pot ser molt valuosa per un analista o atacant en la fase de footprinting</p>
+
+<h2>Per què això és útil en el footprinting?</h2>
+<ul>
+  <li>Identificació de persones clau dins l’organització (autor del document).</li>
+  <li>Coneixement de la infraestructura interna, com ara noms de màquines o rutes.</li>
+  <li>Revelació de software utilitzat, útil per a detectar vulnerabilitats.</li>
+  <li>Anàlisi de patrons temporals, per saber quan es generen fitxers o si l’empresa segueix hàbits regulars.</li>
+</ul>
+
+<h3>🛠️ Eines per extreure metadades (OSINT):</h3>
+<ul>
+  <li>exiftool</li>
+  <li>FOCA</li>
+  <li>metagoofil (específic per descarregar i analitzar documents des d’un domini)</li>
+  <li>Visualització directa a Microsoft Word / Adobe Reader</li>
+  <li>Online tools com https://www.metadata2go.com/</li>
+</ul>
+<p>Les metadades són una font valuosa i sovint infravalorada en el footprinting passiu. A partir de documents 
+  aparentment inofensius, es pot obtenir informació crítica sobre persones, sistemes i estructures internes d’una organització, tot sense aixecar sospites</p>
+
+  <h2>Motors de cerca que usen els hackers</h2>
+  <a href="https://www.hackplayers.com/2025/06/motores-de-busqueda-hackers.html">https://www.hackplayers.com/2025/06/motores-de-busqueda-hackers.html</a>
+
+    <h2>Footprinting amb google</h2>
+    <p>Google (Hacking): El cercador Google es pot utilitzar per fer cerques avançades les quals poden proporcionar informació sensible i interessant d'una organització que no estigui ben configurada o fortificada.</p>
+    <p>A més de revelar els errors en les aplicacions web, Google Hacking permet trobar les dades sensibles, útils per a l'etapa de reconeixement d'un atac.</p>
+    <p>Els cercadors, com Google o Bing, tenen una sèrie de paràmetres que permeten fer cerques avançades. Aquests paràmetres són denominats com Dorks. 
+       <br>Els Dorks són combinacions d'operadors especials que tenen els cercadors per “afinar” les cerques que fem, i si bé són molt útils per actuar de filtre de la informació que ens tornen, també són una eina molt útil per trobar informació sensible que la gent deixa en alguns servidors, o fins i tot dispositius o pàgines web vulnerables.</p>
+     <p>Aquesta situació ocorre degut a que els robots de Google (aranyes) que indexen contingut (és el que fa que un lloc siga posicionat d’acord a les paraules clau que es troben) són capaços d’interpretar tot tipus de fitxers, no només pàgines web. Per tant, si una persona, que no té constància ni coneixements d’açò, deixa un fitxer amb informació sensible en un directori web que permet ser llistat, serà accedit i indexat pels robots de Google. 
+       <br>La qüestió de fons és, per què algú voldria deixar un fitxer amb informació sensible dins d'un directori que és accessible públicament a través del protocol HTTP?</p>
+     <p>Aleshores, què podem trobar realitzant aquests búsquedes? </p>
+     <li>Fitxers que contenen noms d'usuari.</li>
+     <li>Directoris sensibles.</li>
+     <li>Detecció de versió de servidor web.</li>
+     <li>Arxius i servidors vulnerables.</li>
+     <li>Arxius que contenen contrasenyes.</li>
+     <li>Dades de reds i vulnerabilitats.</li>
+    <li>Formularis d’accés (login).</li>
+     <p>Hi han més de 45 Dorks que ens permeten realitzar búsquedes indexades mitjançant el buscador Google.
+       <br>A partir d’ací, anem a veure una sèrie de Google Dorks, que ens seran de gran utilitat a l’hora de realitzar búsquedes d’informació sensible.</p>
+
+    <ul>
+      <li>site: permet llistar tota la informació d'un domini concret.</li>
+      <li>filetype o ext: permet cercar fitxers d'un format determinat, per exemple pdfs, rdp (d'escriptori remot), imatges png, jpg, etc. per obtenir informació EXIF i un llarg etcètera.</li>
+      <li>intitle: permet buscar pàgines amb certes paraules en el camp title.</li>
+      <li>inurl: permet buscar pàgines amb paraules concretes a la URL.</li>
+      <li>Interessant buscar frases tipus "index of" per trobar llistats d'arxius de FTPs, "mysql server has gone away" per buscar llocs web vulnerables a injeccions SQL en Mysql, etc.</li>
+    </ul>
+
+    <h2>Footprinting amb bing</h2>
+    <p>Bing (Hacking): De la mateixa manera que amb Google hacking, es pot utilitzar el cercador de Microsoft per treure
+       informació sensible i interessant.</p>
+    <h2>Footprinting amb Shodan</h2>
+    <p>Shodan: És un cercador d'actius o dispositius online. És molt interessant per identificar càmeres web, impressores,
+       scada, i altres recursos exposats a Internet.</p>
+    <h2>Footprinting amb Anubis</h2>
+    <p>Anubis: Eina que conté un gran set d’utilitats per recol·lectar informació. Automatitzarem diverses recerques
+       amb aquesta eina.</p>
+    
+    <h2>Footprinting amb Maltego</h2>
+    <p>Maltego és una eina molt potent per fer footprinting i OSINT, ja que permet visualitzar les connexions
+       entre diferents elements com dominis, persones, adreces IP, servidors, xarxes socials, etc.</p>
+
+    <h2>FOCA Final Version</h2>
+    <p> Eina privativa similar a Anubis que compta, a més, amb funcionalitats avançades d'anàlisi de metadades.
+       <br>Serveis online: Diferents serveis online que podran ser de gran utilitat en un procés d'auditoria, com, per exemple, Cuwhois, Robtex, Netcraft, Chatox, etc.</p>
+
+    <h2>⚖️ Aspectes legals i ètics</h2>
+    <ol>
+      <li>Estes eines treballen amb fonts obertes, per tant, la major part de les consultes són legals.</li>
+      <li>Tot i això, l’ús malintencionat (per fer doxing, espionatge, etc.) pot ser il·legal.</li>
+      <li>En contextos professionals, cal autorització prèvia si s’analitzen entitats reals.</li>
+    </ol>
+
+   </section>
+
+   <section id="finger">
+    <h1>Fingerprinting</h1>
+<p>
+    El <strong>fingerprinting</strong> (o empremtament digital) és una tècnica utilitzada en ciberseguretat per <strong>identificar amb detall característiques específiques</strong> d’un sistema, dispositiu, aplicació o xarxa. És una etapa posterior (o més específica) que el <em>footprinting</em>, i té un enfocament més <strong>tècnic i actiu</strong>.
+  </p>
+
+  <h2> Tipus de Fingerprinting</h2>
+
+  <h3> 1. Fingerprinting del sistema operatiu (OS Fingerprinting)</h3>
+  <p>
+    Permet identificar quin sistema operatiu utilitza una màquina (Windows, Linux, macOS…).
+  </p>
+    <p><strong>Aplicació:</strong> Permet saber quines vulnerabilitats pot tenir el sistema segons el seu OS i versió.</p>
+
+  <h3> 2. Fingerprinting de serveis</h3>
+  <p>
+    Detecta <strong>quins serveis</strong> (web, correu, FTP, etc.) hi ha actius en un servidor i <strong>quina versió</strong> fan servir.
+  </p>
+  
+  <h3> 3. Fingerprinting d’aplicacions web</h3>
+  <p>
+    Identifica plataformes i frameworks utilitzats en una web: WordPress, Joomla, Laravel, PHP, etc.
+  </p>
+  
+  <h3> 4. Fingerprinting de dispositius o navegadors</h3>
+  <p>
+    S’identifiquen els navegadors o dispositius per rastrejar usuaris únics (a nivell web).
+  </p>
+  <ul>
+    <li>Resolució de pantalla</li>
+    <li>Sistema operatiu</li>
+    <li>Fonts instal·lades</li>
+    <li>Extensions del navegador</li>
+  </ul>
+
+  <h2>🔄 Diferència entre Footprinting i Fingerprinting</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Característica</th>
+        <th>Footprinting</th>
+        <th>Fingerprinting</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Objectiu</strong></td>
+        <td>Recollir informació general</td>
+        <td>Identificar detalls tècnics específics</td>
+      </tr>
+      <tr>
+        <td><strong>Tipus</strong></td>
+        <td>Sovint passiu (OSINT)</td>
+        <td>Normalment actiu</td>
+      </tr>
+      <tr>
+        <td><strong>Exemples</strong></td>
+        <td>WHOIS, DNS, xarxes socials</td>
+        <td>Nmap,hping3, ..</td>
+      </tr>
+      <tr>
+        <td><strong>Etapa</strong></td>
+        <td>Primer pas en el reconeixement</td>
+        <td>Fase posterior i més detallada</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>⚖️ És legal fer Fingerprinting?</h2>
+  <ul>
+    <li><strong>Sense permís:</strong> pot ser considerat <strong>intrusiu o il·legal</strong>, especialment si implica escaneigs actius.</li>
+    <li>En <strong>auditories autoritzades</strong> (pentesting), és una tècnica habitual i necessària.</li>
+    <li><strong>A escala web:</strong> el fingerprinting de navegadors pot plantejar problemes de <strong>privacitat</strong> segons la normativa (ex: RGPD).</li>
+  </ul>
+
+    <h2>Fingerprinting amb Nmap i Zenmap</h2>
+   <h2> Fingerprinting amb Nmap</h2>
+
+  <p>El <strong>fingerprinting amb Nmap</strong> és el procés de determinar informació específica sobre un sistema remot (hosts, sistemes operatius, serveis i versions de serveis) mitjançant l’eina <strong>Nmap (Network Mapper)</strong>.</p>
+
+  <h3> Què és el Fingerprinting?</h3>
+  <ul>
+    <li><strong>OS Fingerprinting:</strong> Identificar el sistema operatiu del dispositiu remot.</li>
+    <li><strong>Service Fingerprinting:</strong> Detectar quins serveis i versions exactes estan corrent en els ports oberts.</li>
+    <li><strong>Application Fingerprinting:</strong> Identificar aplicacions o serveis específics a nivell de detall.</li>
+  </ul>
+
+  <h3> Com fer Fingerprinting amb Nmap</h3>
+
+  <h4>1. Escaneig de ports bàsic</h4>
+  <pre><code>nmap &lt;IP&gt;</code></pre>
+  <p>Detecta els ports oberts (per defecte els 1000 més comuns).</p>
+
+  <h4>2. Detectar serveis i versions</h4>
+  <pre><code>nmap -sV &lt;IP&gt;</code></pre>
+  <ul>
+    <li><code>-sV</code>: Intenta identificar els serveis i les seves versions en els ports oberts.</li>
+  </ul>
+  <pre><code>nmap -sV 192.168.1.10</code></pre>
+
+  <h4>3. Detectar sistema operatiu (OS Fingerprinting)</h4>
+  <pre><code>nmap -O &lt;IP&gt;</code></pre>
+  <ul>
+    <li><code>-O</code>: Activa la detecció del sistema operatiu.</li>
+    <li>Necessita privilegis d’administrador (root o sudo).</li>
+  </ul>
+
+  <h4>4. Fingerprinting complet i detallat</h4>
+  <pre><code>nmap -A &lt;IP&gt;</code></pre>
+  <ul>
+    <li><code>-A</code>: Activa detecció d’OS (<code>-O</code>), detecció de versions (<code>-sV</code>), escaneig amb scripts (<code>-sC</code>), i traceroute.</li>
+    <li>És una exploració agressiva.</li>
+  </ul>
+  <pre><code>sudo nmap -A 192.168.1.10</code></pre>
+
+  <h4>5. Utilitzar scripts de detecció avançada (NSE - Nmap Scripting Engine)</h4>
+  <pre><code>nmap --script=banner &lt;IP&gt;</code></pre>
+  <p>Mostra banners de serveis, útil per fingerprinting.</p>
+  <p>Hi ha molts scripts útils per fingerprinting: <code>http-title</code>, <code>ftp-anon</code>, <code>ssl-cert</code>, etc.</p>
+  <pre><code>nmap -p 80 --script=http-title 192.168.1.10</code></pre>
+
+  <h3>🛠 Exemples pràctics</h3>
+  <pre><code># Escaneig bàsic
+nmap 192.168.1.10
+
+# Detecció de serveis
+nmap -sV 192.168.1.10
+
+# Detecció d'OS
+sudo nmap -O 192.168.1.10
+
+# Escaneig agressiu
+sudo nmap -A 192.168.1.10
+
+# Obtenir banners dels serveis
+nmap -sV --script=banner 192.168.1.10</code></pre>
+
+  <h3>📌 Notes importants</h3>
+  <ul>
+    <li><strong>Privilegis:</strong> Algunes opcions com <code>-O</code> i <code>-A</code> necessiten permisos de root.</li>
+    <li><strong>Legalitat:</strong> Sempre assegura’t que tens permís per escanejar la IP o xarxa. Escanejar sistemes sense autorització pot ser il·legal.</li>
+  </ul>
+  <h3>Zenmap és una manera d'utilizar nmap amb gui</h3>
+   <a href="https://nmap.org/zenmap/">https://nmap.org/zenmap/</a>
+
+
+   <hr>
+    <h2>Fingerprinting amb hping3</h2>
+ <p><strong>Fingerprinting amb hping3</strong> és una tècnica per identificar sistemes operatius, serveis, tallafocs i altres característiques de la xarxa mitjançant l’eina <strong>hping3</strong>. Aquesta eina permet enviar paquets personalitzats i observar com responen els sistemes objectiu.</p>
+
+  <h3>🔧 Què és hping3?</h3>
+  <p><code>hping3</code> és una eina en línia de comandes que permet generar paquets TCP/IP/UDP/ICMP personalitzats. S’utilitza habitualment per:</p>
+  <ul>
+    <li>Fer escaneigs de ports</li>
+    <li>Fer <strong>OS fingerprinting</strong></li>
+    <li>Detectar tallafocs</li>
+    <li>Fer proves de rendiment de xarxa</li>
+    <li>Simular atacs (per a proves controlades)</li>
+  </ul>
+
+  <h3> Tècniques de fingerprinting amb hping3</h3>
+
+  <h3>1. Fingerprinting passiu (OS detection)</h3>
+  <p>La manera com un sistema operatiu respon a paquets específics pot revelar quin OS és.</p>
+
+  <h4>Exemple: enviar un paquet SYN al port obert</h4>
+  <pre><code>hping3 -S -p 80 -c 1 &lt;IP_destinació&gt;</code></pre>
+
+  <p><strong>Paràmetres:</strong></p>
+  <ul>
+    <li><code>-S</code>: envia un paquet TCP amb flag SYN</li>
+    <li><code>-p 80</code>: port 80 (pots provar altres com 443, 22, etc.)</li>
+    <li><code>-c 1</code>: només un paquet</li>
+  </ul>
+
+  <p><strong>Resposta esperada:</strong></p>
+  <ul>
+    <li>Si reps un <strong>SYN-ACK</strong>, el port està obert.</li>
+    <li>Si reps un <strong>RST</strong>, el port està tancat.</li>
+  </ul>
+
+  <p>El TTL, la mida del paquet, i els flags poden variar segons l'OS (Linux, Windows, BSD...).</p>
+
+  <h3>2. Detectar tallafocs (firewall/packet filtering)</h3>
+  <pre><code>hping3 -S -p 22 --tcp-timestamp &lt;IP&gt;</code></pre>
+  <p>Els tallafocs poden bloquejar certs paquets. Si no reps resposta o reps un RST, pot indicar filtratge.</p>
+
+  <h3>3. TCP ACK scan per detectar tallafocs estatful</h3>
+  <pre><code>hping3 -A -p 80 &lt;IP&gt;</code></pre>
+  <p>Això envia un paquet amb flag ACK. Alguns sistemes només responen si hi ha estat TCP establert.</p>
+
+  <h3>4. Enviar paquets amb flags estranys (XMAS scan)</h3>
+  <pre><code>hping3 -F -P -U -p 80 &lt;IP&gt;</code></pre>
+  <p>Aquest tipus de paquet (amb flags FIN, PSH, URG) pot ser ignorat per sistemes Unix (res no és retornat), però sistemes Windows poden respondre amb RST.</p>
+
+  <h3>5. Flood per veure comportament sota càrrega</h3>
+  <pre><code>hping3 -S --flood -p 80 &lt;IP&gt;</code></pre>
+  <p>Aquest ataca per inundació envia paquets ràpidament (només per a proves autoritzades!).</p>
+
+  <h3>🕵️‍♂️ Interpretació de resultats</h3>
+  <p>Cada OS té una <strong>"fingerprint TCP/IP"</strong> única (TTL, resposta a flags, mida del window size, etc.). Per exemple:</p>
+  <ul>
+    <li><strong>Windows</strong>: TTL sol ser 128</li>
+    <li><strong>Linux</strong>: TTL habitual és 64</li>
+    <li><strong>FreeBSD</strong>: TTL pot ser 64, però window size diferent</li>
+  </ul>
+  <p>Combinar diversos tests t’ajuda a inferir quin sistema operatiu fa servir la màquina objectiu.</p>
+
+  <h3>⚠️ Notes legals i ètiques</h3>
+  <p>L’ús d’<strong>hping3</strong> per fer fingerprinting s’ha de fer <strong>només amb permís explícit</strong>. Està prohibit escanejar o atacar xarxes que no gestionis o no t’autoritzi el propietari.</p>
+
+  <p>Si vols, et puc ajudar a automatitzar un script per fer fingerprinting bàsic amb hping3 o interpretar resultats. Vols un exemple més complet o un script?</p>
+
+
+
+    <h2>Fingerprinting anb Wireshark</h2>
+<p><strong>Fingerprinting amb Wireshark</strong> significa identificar dispositius, sistemes operatius, aplicacions o serveis en una xarxa mitjançant l’anàlisi de dades capturades amb Wireshark. Es tracta d’una forma de <strong>reconeixement passiu</strong>, útil en ciberseguretat, monitoratge de xarxa o proves d’intrusió.</p>
+
+  <h2> 1. Captura de trànsit</h2>
+  <p>Obri Wireshark i captura paquets en la interfície de xarxa adequada:</p>
+  <ul>
+    <li>Selecciona la interfície (Wi-Fi, Ethernet, etc.)</li>
+    <li>Pots aplicar filtres de captura si ho desitges (opcional), com ara <code>tcp</code>, <code>udp</code>, o <code>port 80</code></li>
+  </ul>
+
+  <h2> 2. Fingerprinting del Sistema Operatiu (OS)</h2>
+  <p>Wireshark no et mostra directament quin sistema operatiu té un dispositiu, però pots deduir-lo observant:</p>
+  <ul>
+    <li><strong>Comportament de la pila TCP/IP</strong>:
+      <ul>
+        <li>Observa els valors TTL (<em>Time to Live</em>) i la <em>Window Size</em> en els encapçalaments IP/TCP.</li>
+        <li>Linux sol usar TTL = 64</li>
+        <li>Windows sol usar TTL = 128</li>
+        <li>Dispositius Cisco sovint TTL = 255</li>
+      </ul>
+    </li>
+    <li>Obri un paquet TCP i mira:
+      <ul>
+        <li><code>IP &gt; Time to live</code></li>
+        <li><code>TCP &gt; Window size value</code></li>
+      </ul>
+    </li>
+    <li><strong>Opcions TCP</strong> (MSS, SACK, Window Scale, etc.) poden ajudar a identificar el sistema operatiu. Eines com <em>p0f</em> es basen en això.</li>
+  </ul>
+
+  <h2> 3. Fingerprinting de Serveis o Aplicacions</h2>
+  <p>Pots identificar aplicacions o serveis observant:</p>
+  <ul>
+    <li><strong>Capçaleres HTTP</strong>: sovint revelen el tipus de servidor (Apache, Nginx, etc.)
+      <ul>
+        <li>Filtre: <code>http</code></li>
+        <li>Observa camps com <code>Server:</code> o <code>User-Agent:</code></li>
+      </ul>
+    </li>
+    <li><strong>Intercanvi TLS</strong>: busca paquets <code>Client Hello</code> i <code>Server Hello</code>
+      <ul>
+        <li>Analitza les suites de xifrat, la versió TLS i les extensions</li>
+        <li>Filtre: <code>ssl.handshake.type == 1</code> (Client Hello)</li>
+        <li>Eines com <em>JA3</em> permeten identificar clients/servidors mitjançant aquests camps</li>
+      </ul>
+    </li>
+    <li><strong>Consultes DNS</strong>: poden indicar quines aplicacions o dispositius estan actius
+      <ul>
+        <li>Filtre: <code>dns</code></li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>📱 4. Fingerprinting de Dispositius</h2>
+  <ul>
+    <li>Observa paquets <strong>DHCP</strong> (filtre: <code>bootp</code>):
+      <ul>
+        <li>Nom de l’amfitrió (hostname)</li>
+        <li>Identificadors de classe de venedor (Vendor Class ID)</li>
+        <li>Adreces MAC (pots deduir el fabricant mitjançant l’OUI)</li>
+      </ul>
+    </li>
+    <li>Per a MAC:
+      <ul>
+        <li>Clic dret &gt; <em>Resolve MAC Address</em></li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2> 5. Filtres de visualització útils</h2>
+  <table border="1" cellpadding="5">
+    <thead>
+      <tr>
+        <th>Propòsit</th>
+        <th>Filtre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Trànsit HTTP</td>
+        <td><code>http</code></td>
+      </tr>
+      <tr>
+        <td>TLS Client Hello</td>
+        <td><code>ssl.handshake.type == 1</code></td>
+      </tr>
+      <tr>
+        <td>Consultes DNS</td>
+        <td><code>dns</code></td>
+      </tr>
+      <tr>
+        <td>Trànsit DHCP</td>
+        <td><code>bootp</code></td>
+      </tr>
+      <tr>
+        <td>SYN TCP (inici de connexió)</td>
+        <td><code>tcp.flags.syn == 1 && tcp.flags.ack == 0</code></td>
+      </tr>
+      <tr>
+        <td>IP o MAC específica</td>
+        <td><code>ip.addr == 192.168.1.100</code> o <code>eth.addr == xx:xx:xx:xx:xx:xx</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>🔧 Eines opcionals per millorar el fingerprinting</h2>
+  <ul>
+    <li><strong>p0f</strong> — eina especialitzada en fingerprinting passiu de sistemes operatius</li>
+    <li><strong>NetworkMiner</strong> — eina gràfica per analitzar arxius PCAP</li>
+    <li><strong>JA3/JA3S</strong> — identificació de clients i servidors TLS mitjançant empremtes digitals</li>
+  </ul>
+
+
+
+   </section>
+
+   <section id="monitor">
+    <h2> Monitorització trànsit </h2>
+    
+
+   </section>
+
+  <section id="intercepcio">
+
+
+   </section>
+
+
+   <section id="injeccio">
+
+
+   </section>   
+
+   <section id="explotacio">
+    <h2>Cerca i explotació de vulnerabilitats</h2>
+    <h3>Analisi mitjantsant Nessus</h3>
+    <h2>Explotació</h2>
+    <h2>Metasploit</h2>
+
+
+   </section>
+
+   <section id="phishing">
+
+
+   </section>   
+
+   <section id="escalada">
+
+
+   </section>
+
+
+   <section id="iauditoria">
+
+
+   </section>
+
+
+</main>
+
+<footer>
+  <p style="font-family: 'CCSymbols', sans-serif; font-size:larger;" >
+    2025 - Llicència: &#x1F16D; &#x1F16F; &#x1F10E; &#x1F10F; - UD2 - HE a xarxes i sistemes 
+  </p>
+
+</footer>
+  </div>
+
+  
+    <script src="scriptsunitats.js"></script>
+</body>
+</html>
