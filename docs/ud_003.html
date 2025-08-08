@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.5, user-scalable=yes">
+
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <title>U3 - Fingerprinting</title>
+  <link rel="stylesheet" href="estilsunitats.css">
+  
+</head>
+<body>
+  <!--<button class="theme-toggle" onclick="toggleTheme()"></button> -->
+  <button class="theme-toggle" onclick="toggleTheme()">
+    <i class="hgi hgi-stroke hgi-sun-01" id="theme-icon"></i>
+  </button>
+
+  <!-- boto menu hamburguesa  +  javascript -->
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Abrir menú de navegación">
+    <span id="menu-icon">☰</span>
+  </button>
+  
+  <div class="sidebar">
+    <a href="#finger">Fingerprinting</a>
+    <a href="#tecni">Tècniques</a>
+    <a href="#nmap">Fingerprinting amb nmap</a>
+    <a href="#labs">Laboratoris</a>
+
+
+  </div>
+
+  <div style="width: 100%;">
+    <header>
+      <a href="index.html"><img src="imgs/HEcap.png" alt="HE" width="80%"></a>
+      <!--<h2>🅷🅰🅲🅺🅸🅽🅶 È🆃🅸🅲</h2> -->
+      <h1>Unitat 3: Fingerprinting</h1>
+      <h1>.</h1>
+    </header>
+    
+    <main>
+  <section id="finger">
+    <h1>Fingerprinting</h1>
+<p>   El <strong>fingerprinting</strong> (o empremtament digital) és una tècnica utilitzada en ciberseguretat per <strong>identificar amb detall característiques específiques</strong> d’un sistema, dispositiu, aplicació o xarxa. És una etapa posterior (o més específica) que el <em>footprinting</em>, i té un enfocament més <strong>tècnic i actiu</strong>.  </p>
+<p>  La <strong> enumeració </strong> també forma part del fingerprinting</p>
+<p>L’enumeració és el procés mitjançant el qual un atacant o auditor de seguretat recull informació detallada i activa d’un sistema o xarxa. Forma part de la fase de reconeixement actiu dins del hacking ètic o pentesting.</p>
+
+<h4>Amb l’enumeració es pot obtindre:</h4>
+<ol>
+  <li>Llista d’usuaris i grups</li>
+  <li>Recursos compartits</li>
+  <li>Serveis actius i els seus ports</li>
+  <li>Versions de serveis (com SSH, FTP, etc.)</li>
+  <li>Direccions IP internes</li>
+  <li>Sistema operatiu del dispositiu</li>
+</ol> 
+
+
+  <h2> Tipus de Fingerprinting</h2>
+
+  <h3> 1. Fingerprinting del sistema operatiu (OS Fingerprinting)</h3>
+  <p>
+    Permet identificar quin sistema operatiu utilitza una màquina (Windows, Linux, macOS…).
+  </p>
+    <p><strong>Aplicació:</strong> Permet saber quines vulnerabilitats pot tenir el sistema segons el seu OS i versió.</p>
+
+  <h3> 2. Fingerprinting de serveis</h3>
+  <p>
+    Detecta <strong>quins serveis</strong> (web, correu, FTP, etc.) hi ha actius en un servidor i <strong>quina versió</strong> fan servir.
+  </p>
+  
+  <h3> 3. Fingerprinting d’aplicacions web</h3>
+  <p>
+    Identifica plataformes i frameworks utilitzats en una web: WordPress, Joomla, Laravel, PHP, etc.
+  </p>
+  
+  <h3> 4. Fingerprinting de dispositius o navegadors</h3>
+  <p>
+    S’identifiquen els navegadors o dispositius per rastrejar usuaris únics (a nivell web).
+  </p>
+  <ul>
+    <li>Resolució de pantalla</li>
+    <li>Sistema operatiu</li>
+    <li>Fonts instal·lades</li>
+    <li>Extensions del navegador</li>
+  </ul>
+
+  <h2>🔄 Diferència entre Footprinting i Fingerprinting</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Característica</th>
+        <th>Footprinting</th>
+        <th>Fingerprinting</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Objectiu</strong></td>
+        <td>Recollir informació general</td>
+        <td>Identificar detalls tècnics específics</td>
+      </tr>
+      <tr>
+        <td><strong>Tipus</strong></td>
+        <td>Sovint passiu (OSINT)</td>
+        <td>Normalment actiu</td>
+      </tr>
+      <tr>
+        <td><strong>Exemples</strong></td>
+        <td>WHOIS, DNS, xarxes socials</td>
+        <td>Nmap,hping3, ..</td>
+      </tr>
+      <tr>
+        <td><strong>Etapa</strong></td>
+        <td>Primer pas en el reconeixement</td>
+        <td>Fase posterior i més detallada</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>⚖️ És legal fer Fingerprinting?</h2>
+  <ul>
+    <li><strong>Sense permís:</strong> pot ser considerat <strong>intrusiu o il·legal</strong>, especialment si implica escaneigs actius.</li>
+    <li>En <strong>auditories autoritzades</strong> (pentesting), és una tècnica habitual i necessària.</li>
+    <li><strong>A escala web:</strong> el fingerprinting de navegadors pot plantejar problemes de <strong>privacitat</strong> segons la normativa (ex: RGPD).</li>
+  </ul>
+
+</section>
+
+<section id="tecni">
+
+<h1>🖥️ Anàlisi de hosts i ports</h1>
+<p>L’anàlisi de hosts i ports és una part fonamental en el reconeixement actiu. Permet saber quins dispositius hi ha en una xarxa i quins ports i serveis tenen oberts, ajudant a identificar possibles vulnerabilitats.</p>
+<p>un port en un host actiu pot estar (vist des d'altre host) en un dels següents estilsunitats</p>
+<ul>
+  <li>Obert</li>
+  <li>Tancat</li>
+  <li>Filtrat</li>
+</ul>
+<p>Descobrir es estat d'un port és fonamental, no sols por catalogar els ports oberts d'un objectiu, sino  també per 
+  identificar si un host esta actiu o no  </p>
+
+<h2>Analisi de hosts</h2>
+ <ol>
+   <li>Ping Sweep (Exploració ICMP)</li>
+   <li>ARP Scan</li>
+   <li>Escaneig TCP ACK/SYN per identificar hosts actius</li>
+ </ol>
+
+<h2>Analisi de ports</h2>
+ <ol>
+   <li>TCP Connect Scan</li>
+   <li>SYN Scan (semi-connectat)</li>
+   <li>UDP Scan</li>
+   <li>XMAS Scan</li>
+   <li>FIN Scan</li>
+   <li>NULL Scan</li>
+ </ol>
+
+<h3>🔌 Anàlisi TCP de connexió completa (TCP Connect Scan)</h3>
+<p>L’escaneig de connexió completa (en anglès TCP Connect Scan) és una tècnica d’anàlisi de ports que estableix una connexió TCP completa amb cada port obert. És el mateix procés que seguiria una aplicació normal per comunicar-se amb un servei.</p>
+
+Implica realitzar el 3-way handshake:
+ <ol>
+   <li>El client envia un paquet SYN al port del servidor.</li>
+   <li>El servidor respon amb un SYN-ACK si el port està obert.</li>
+   <li>El client respon amb un ACK per completar la connexió.</li>
+ </ol>
+ exemple::  
+ <code>nmap -sT <adreça_ip>  </code>
+ <li>✅ No cal privilegis</li>
+ <li>✅ El tallafocs no bloqueja connexions TCP normals</li>
+ <li>❌ No és sigil·lós </li>
+ <a href="https://nmap.org/book/scan-methods-connect-scan.html">TCP Connect</a>
+
+ <br><h3>🔌 Anàlisi TCP de half-connect (SYN scan)</h3>
+<p>Un escaneig half-connect (mig connectat) és una tècnica d’anàlisi de ports que no completa la connexió TCP, sinó que només envia el primer paquet (SYN) i interpreta la resposta del servidor</p>
+<p>S'anomena "half-connect" perquè no es completa el "3-way handshake" típic del protocol TCP.</p>
+
+En el SYN Scan (half-connect):
+<ol>
+  <li>🔎 L’atacant envia un paquet SYN a un port.</li>
+  <li>📥 Si el port està:</li>
+  <ul>
+    <li>Obert, el sistema respon amb SYN-ACK.</li>
+    <li>Tancat, respon amb RST.</li>
+  </ul>
+  <li>🚫 En cas de SYN-ACK, l’atacant no envia l’ACK final, sinó un RST (per trencar la connexió abans de completar-la).</li>
+</ol>
+exemple::  
+ <code>nmap -sS <adreça_ip>  </code>
+ <li>✅ Sigil·lós</li>
+ <li>✅ Ràpid</li>
+ <li>✅ Eficient</li>
+ <li>❌ Necessita permisos d’administrador o root </li>
+ <li>❌ Pot ser bloquejat per tallafocs </li>
+ <li>❌Alguns sistemes poden detectar l’ús massiu de SYN sense ACK com a comportament sospitós</li>
+<a href="https://nmap.org/book/synscan.html">SYN scan</a>
+
+<br><h3>🔌 Anàlisi TCP ACK</h3>
+<p>L’escaneig ACK (o TCP ACK Scan) no té com a objectiu descobrir ports oberts, sinó identificar si un port està filtrat o no filtrat per un firewall o sistema de filtratge de paquets.</p>
+
+<p>Com funciona</p>
+<ol>
+  <li>Es envien paquets TCP amb el flag ACK activat.</li>
+  <li>S’observa la resposta del sistema:</li>
+  <ul>
+  <li>Si respon amb un paquet RST (Reset) → port no filtrat.</li>
+  <li>Si no hi ha resposta o es retorna un missatge ICMP (com "port unreachable") → port filtrat.</li>
+  </ul>
+</ol>
+
+<p> ⚠️ No es pot saber si el port està obert o tancat, només si està filtrat o no.</p>
+exemple::  <code>nmap -sA 192.168.1.1</code>
+Opcions útils:
+<pre><code>
+-p per especificar ports (ex: -p 22,80,443)
+-n per evitar resolució DNS (més ràpid)
+-Pn per ometre el ping previ  </code></pre>
+exemple::  <code>nmap -sA -p 22,80,443 -n -Pn 192.168.1.1 </code>
+<a href="https://nmap.org/book/scan-methods-ack-scan.html">ACK scan</a>
+
+</section>
+
+ <section id="nmap"> 
+  <h2> Fingerprinting amb Nmap</h2>
+
+  <p>El <strong>fingerprinting amb Nmap</strong> és el procés de determinar informació específica sobre un sistema remot (hosts, sistemes operatius, serveis i versions de serveis) mitjançant l’eina <strong>Nmap (Network Mapper)</strong>.</p>
+
+  <h3> Què és el Fingerprinting?</h3>
+  <ul>
+    <li><strong>OS Fingerprinting:</strong> Identificar el sistema operatiu del dispositiu remot.</li>
+    <li><strong>Service Fingerprinting:</strong> Detectar quins serveis i versions exactes estan corrent en els ports oberts.</li>
+    <li><strong>Application Fingerprinting:</strong> Identificar aplicacions o serveis específics a nivell de detall.</li>
+  </ul>
+
+  <h3> Com fer Fingerprinting amb Nmap</h3>
+
+  <h4>1. Escaneig de ports bàsic</h4>
+  <pre><code>nmap &lt;IP&gt;</code></pre>
+  <p>Detecta els ports oberts (per defecte els 1000 més comuns).</p>
+
+  <h4>2. Detectar serveis i versions</h4>
+  <pre><code>nmap -sV &lt;IP&gt;</code></pre>
+  <ul>
+    <li><code>-sV</code>: Intenta identificar els serveis i les seves versions en els ports oberts.</li>
+  </ul>
+  <pre><code>nmap -sV 192.168.1.10</code></pre>
+
+  <h4>3. Detectar sistema operatiu (OS Fingerprinting)</h4>
+  <pre><code>nmap -O &lt;IP&gt;</code></pre>
+  <ul>
+    <li><code>-O</code>: Activa la detecció del sistema operatiu.</li>
+    <li>Necessita privilegis d’administrador (root o sudo).</li>
+  </ul>
+
+  <h4>4. Fingerprinting complet i detallat</h4>
+  <pre><code>nmap -A &lt;IP&gt;</code></pre>
+  <ul>
+    <li><code>-A</code>: Activa detecció d’OS (<code>-O</code>), detecció de versions (<code>-sV</code>), escaneig amb scripts (<code>-sC</code>), i traceroute.</li>
+    <li>És una exploració agressiva.</li>
+  </ul>
+  <pre><code>sudo nmap -A 192.168.1.10</code></pre>
+
+  <h4>5. Utilitzar scripts de detecció avançada (NSE - Nmap Scripting Engine)</h4>
+  <pre><code>nmap --script=banner &lt;IP&gt;</code></pre>
+  <p>Mostra banners de serveis, útil per fingerprinting.</p>
+  <p>Hi ha molts scripts útils per fingerprinting: <code>http-title</code>, <code>ftp-anon</code>, <code>ssl-cert</code>, etc.</p>
+  <pre><code>nmap -p 80 --script=http-title 192.168.1.10</code></pre>
+
+  <h3>🛠 Exemples pràctics</h3>
+  <pre><code># Escaneig bàsic
+nmap 192.168.1.10
+
+# Detecció de serveis
+nmap -sV 192.168.1.10
+
+# Detecció d'OS
+sudo nmap -O 192.168.1.10
+
+# Escaneig agressiu
+sudo nmap -A 192.168.1.10
+
+# Obtenir banners dels serveis
+nmap -sV --script=banner 192.168.1.10</code></pre>
+
+  <h3>📌 Notes importants</h3>
+  <ul>
+    <li><strong>Privilegis:</strong> Algunes opcions com <code>-O</code> i <code>-A</code> necessiten permisos de root.</li>
+    <li><strong>Legalitat:</strong> Sempre assegura’t que tens permís per escanejar la IP o xarxa. Escanejar sistemes sense autorització pot ser il·legal.</li>
+  </ul>
+  <h3>Zenmap és una manera d'utilizar nmap amb gui</h3>
+   <a href="https://nmap.org/zenmap/">https://nmap.org/zenmap/</a>
+
+
+   <hr>
+    <h2>Fingerprinting amb hping3</h2>
+ <p><strong>Fingerprinting amb hping3</strong> és una tècnica per identificar sistemes operatius, serveis, tallafocs i altres característiques de la xarxa mitjançant l’eina <strong>hping3</strong>. Aquesta eina permet enviar paquets personalitzats i observar com responen els sistemes objectiu.</p>
+
+  <h3>🔧 Què és hping3?</h3>
+  <p><code>hping3</code> és una eina en línia de comandes que permet generar paquets TCP/IP/UDP/ICMP personalitzats. S’utilitza habitualment per:</p>
+  <ul>
+    <li>Fer escaneigs de ports</li>
+    <li>Fer <strong>OS fingerprinting</strong></li>
+    <li>Detectar tallafocs</li>
+    <li>Fer proves de rendiment de xarxa</li>
+    <li>Simular atacs (per a proves controlades)</li>
+  </ul>
+
+  <h3> Tècniques de fingerprinting amb hping3</h3>
+
+  <h3>1. Fingerprinting passiu (OS detection)</h3>
+  <p>La manera com un sistema operatiu respon a paquets específics pot revelar quin OS és.</p>
+
+  <h4>Exemple: enviar un paquet SYN al port obert</h4>
+  <pre><code>hping3 -S -p 80 -c 1 &lt;IP_destinació&gt;</code></pre>
+
+  <p><strong>Paràmetres:</strong></p>
+  <ul>
+    <li><code>-S</code>: envia un paquet TCP amb flag SYN</li>
+    <li><code>-p 80</code>: port 80 (pots provar altres com 443, 22, etc.)</li>
+    <li><code>-c 1</code>: només un paquet</li>
+  </ul>
+
+  <p><strong>Resposta esperada:</strong></p>
+  <ul>
+    <li>Si reps un <strong>SYN-ACK</strong>, el port està obert.</li>
+    <li>Si reps un <strong>RST</strong>, el port està tancat.</li>
+  </ul>
+
+  <p>El TTL, la mida del paquet, i els flags poden variar segons l'OS (Linux, Windows, BSD...).</p>
+
+  <h3>2. Detectar tallafocs (firewall/packet filtering)</h3>
+  <pre><code>hping3 -S -p 22 --tcp-timestamp &lt;IP&gt;</code></pre>
+  <p>Els tallafocs poden bloquejar certs paquets. Si no reps resposta o reps un RST, pot indicar filtratge.</p>
+
+  <h3>3. TCP ACK scan per detectar tallafocs estatful</h3>
+  <pre><code>hping3 -A -p 80 &lt;IP&gt;</code></pre>
+  <p>Això envia un paquet amb flag ACK. Alguns sistemes només responen si hi ha estat TCP establert.</p>
+
+  <h3>4. Enviar paquets amb flags estranys (XMAS scan)</h3>
+  <pre><code>hping3 -F -P -U -p 80 &lt;IP&gt;</code></pre>
+  <p>Aquest tipus de paquet (amb flags FIN, PSH, URG) pot ser ignorat per sistemes Unix (res no és retornat), però sistemes Windows poden respondre amb RST.</p>
+
+  <h3>5. Flood per veure comportament sota càrrega</h3>
+  <pre><code>hping3 -S --flood -p 80 &lt;IP&gt;</code></pre>
+  <p>Aquest ataca per inundació envia paquets ràpidament (només per a proves autoritzades!).</p>
+
+  <h3>🕵️‍♂️ Interpretació de resultats</h3>
+  <p>Cada OS té una <strong>"fingerprint TCP/IP"</strong> única (TTL, resposta a flags, mida del window size, etc.). Per exemple:</p>
+  <ul>
+    <li><strong>Windows</strong>: TTL sol ser 128</li>
+    <li><strong>Linux</strong>: TTL habitual és 64</li>
+    <li><strong>FreeBSD</strong>: TTL pot ser 64, però window size diferent</li>
+  </ul>
+  <p>Combinar diversos tests t’ajuda a inferir quin sistema operatiu fa servir la màquina objectiu.</p>
+
+  <h3>⚠️ Notes legals i ètiques</h3>
+  <p>L’ús d’<strong>hping3</strong> per fer fingerprinting s’ha de fer <strong>només amb permís explícit</strong>. Està prohibit escanejar o atacar xarxes que no gestionis o no t’autoritzi el propietari.</p>
+
+  <p>Si vols, et puc ajudar a automatitzar un script per fer fingerprinting bàsic amb hping3 o interpretar resultats. Vols un exemple més complet o un script?</p>
+
+
+
+    <h2>Fingerprinting anb Wireshark</h2>
+<p><strong>Fingerprinting amb Wireshark</strong> significa identificar dispositius, sistemes operatius, aplicacions o serveis en una xarxa mitjançant l’anàlisi de dades capturades amb Wireshark. Es tracta d’una forma de <strong>reconeixement passiu</strong>, útil en ciberseguretat, monitoratge de xarxa o proves d’intrusió.</p>
+
+  <h2> 1. Captura de trànsit</h2>
+  <p>Obri Wireshark i captura paquets en la interfície de xarxa adequada:</p>
+  <ul>
+    <li>Selecciona la interfície (Wi-Fi, Ethernet, etc.)</li>
+    <li>Pots aplicar filtres de captura si ho desitges (opcional), com ara <code>tcp</code>, <code>udp</code>, o <code>port 80</code></li>
+  </ul>
+
+  <h2> 2. Fingerprinting del Sistema Operatiu (OS)</h2>
+  <p>Wireshark no et mostra directament quin sistema operatiu té un dispositiu, però pots deduir-lo observant:</p>
+  <ul>
+    <li><strong>Comportament de la pila TCP/IP</strong>:
+      <ul>
+        <li>Observa els valors TTL (<em>Time to Live</em>) i la <em>Window Size</em> en els encapçalaments IP/TCP.</li>
+        <li>Linux sol usar TTL = 64</li>
+        <li>Windows sol usar TTL = 128</li>
+        <li>Dispositius Cisco sovint TTL = 255</li>
+      </ul>
+    </li>
+    <li>Obri un paquet TCP i mira:
+      <ul>
+        <li><code>IP &gt; Time to live</code></li>
+        <li><code>TCP &gt; Window size value</code></li>
+      </ul>
+    </li>
+    <li><strong>Opcions TCP</strong> (MSS, SACK, Window Scale, etc.) poden ajudar a identificar el sistema operatiu. Eines com <em>p0f</em> es basen en això.</li>
+  </ul>
+
+  <h2> 3. Fingerprinting de Serveis o Aplicacions</h2>
+  <p>Pots identificar aplicacions o serveis observant:</p>
+  <ul>
+    <li><strong>Capçaleres HTTP</strong>: sovint revelen el tipus de servidor (Apache, Nginx, etc.)
+      <ul>
+        <li>Filtre: <code>http</code></li>
+        <li>Observa camps com <code>Server:</code> o <code>User-Agent:</code></li>
+      </ul>
+    </li>
+    <li><strong>Intercanvi TLS</strong>: busca paquets <code>Client Hello</code> i <code>Server Hello</code>
+      <ul>
+        <li>Analitza les suites de xifrat, la versió TLS i les extensions</li>
+        <li>Filtre: <code>ssl.handshake.type == 1</code> (Client Hello)</li>
+        <li>Eines com <em>JA3</em> permeten identificar clients/servidors mitjançant aquests camps</li>
+      </ul>
+    </li>
+    <li><strong>Consultes DNS</strong>: poden indicar quines aplicacions o dispositius estan actius
+      <ul>
+        <li>Filtre: <code>dns</code></li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>📱 4. Fingerprinting de Dispositius</h2>
+  <ul>
+    <li>Observa paquets <strong>DHCP</strong> (filtre: <code>bootp</code>):
+      <ul>
+        <li>Nom de l’amfitrió (hostname)</li>
+        <li>Identificadors de classe de venedor (Vendor Class ID)</li>
+        <li>Adreces MAC (pots deduir el fabricant mitjançant l’OUI)</li>
+      </ul>
+    </li>
+    <li>Per a MAC:
+      <ul>
+        <li>Clic dret &gt; <em>Resolve MAC Address</em></li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2> 5. Filtres de visualització útils</h2>
+  <table border="1" cellpadding="5">
+    <thead>
+      <tr>
+        <th>Propòsit</th>
+        <th>Filtre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Trànsit HTTP</td>
+        <td><code>http</code></td>
+      </tr>
+      <tr>
+        <td>TLS Client Hello</td>
+        <td><code>ssl.handshake.type == 1</code></td>
+      </tr>
+      <tr>
+        <td>Consultes DNS</td>
+        <td><code>dns</code></td>
+      </tr>
+      <tr>
+        <td>Trànsit DHCP</td>
+        <td><code>bootp</code></td>
+      </tr>
+      <tr>
+        <td>SYN TCP (inici de connexió)</td>
+        <td><code>tcp.flags.syn == 1 && tcp.flags.ack == 0</code></td>
+      </tr>
+      <tr>
+        <td>IP o MAC específica</td>
+        <td><code>ip.addr == 192.168.1.100</code> o <code>eth.addr == xx:xx:xx:xx:xx:xx</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>🔧 Eines opcionals per millorar el fingerprinting</h2>
+  <ul>
+    <li><strong>p0f</strong> — eina especialitzada en fingerprinting passiu de sistemes operatius</li>
+    <li><strong>NetworkMiner</strong> — eina gràfica per analitzar arxius PCAP</li>
+    <li><strong>JA3/JA3S</strong> — identificació de clients i servidors TLS mitjançant empremtes digitals</li>
+  </ul>
+
+
+
+   </section>
+
+
+
+
+
+      <section id="negacio">
+
+
+      </section>         
+      <section id="recol">
+
+
+      </section>               
+      <section id="autom">
+
+
+      </section>         
+      <section id="analisi">
+
+
+      </section>         
+      <section id="labs">
+        <h1>Laboratoris</h1>
+
+      </section>         
+     
+      
+
+    </main>
+
+    <footer>
+      <p style="font-family: 'CCSymbols', sans-serif; font-size:larger;" >
+        2025 - Llicència: &#x1F16D; &#x1F16F; &#x1F10E; &#x1F10F; - U3 - Fingerprinting 
+      </p>
+    </footer>
+  </div>
+
+  
+    <script src="scriptsunitats.js"></script>
+</body>
+</html>
