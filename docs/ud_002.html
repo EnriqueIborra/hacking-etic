@@ -223,28 +223,154 @@ Provar múltiples noms per trobar subdominis com admin.example.com, mail.example
 
   <section id="identitats">
   <h1>Email (Reconnaissance) </h1>
+  <p>L’anàlisi d’informació personal i correus electrònics en hacking ètic és una pràctica habitual dins de les auditories 
+    de seguretat i proves de penetració (pentesting), sempre amb autorització prèvia i dins d’un marc legal. L’objectiu és 
+    detectar vulnerabilitats, exposicions de dades i punts febles en la gestió de la informació per tal de protegir una 
+    organització o un individu</p>
+    <p>Eines</p>
+    <ul>
+      <li>Hunter ( de pagament )</li>
+      <li>Infoga ( linia de comandes, de github)</li>
+    </ul>
+
+    <h3>I tota esta informació, combinada en "Have I Been Pwned" ..</h3>
+    <p>... permetrà trobar forats de seguretat </p>
+
   <h1>Xarxes socials (Reconnaissance)</h1>
+  <p>Eines</p>
+  <ul>
+    <li>Herlock</li>
+    <li>Osintgram</li>
+    <li>altres...</li>
+  </ul>
   <h1>Numero de telèfon (Reconnaissance)</h1>
+  <p>Eines</p>
+  <ul>
+    <li>Phoneinfoga</li>
+  </ul>
 
   </section>   
 
 
   <section id="inv">
   <h1>Cerca inversa</h1>
+    <p>La cerca inversa d’imatges és una tècnica que permet trobar informació sobre una imatge a partir de la pròpia imatge, en lloc de fer-ho amb paraules clau.</p>
+    Funciona així:
+<ol>
+  <li>Puges una imatge (o poses l’enllaç d’una imatge) a un cercador especialitzat, com Google Imatges, TinEye, Yandex o Bing Visual Search.</li>
+  <li>L’algoritme analitza el contingut visual de la imatge (colors, formes, patrons, objectes) i també pot extreure metadades (com la data de creació o el model de càmera, si no han estat esborrades).</li>
+  <li>Et mostra resultats relacionats, que poden ser:</li>
+  <ul>
+    <li>Altres llocs web on apareix la mateixa imatge.</li>
+    <li>Versions modificades o retallades.</li>
+    <li>Imatges similars visualment.</li>
+    <li>Informació contextual (per exemple, l’origen o l’autor).</li>
+  </ul>
+</ol>
 
+És útil per a:
+<ol>
+  <li>Verificar si una imatge és autèntica o té un origen diferent del que et diuen.</li>
+  <li>Trobar la versió original i de més qualitat d’una foto.</li>
+  <li>Identificar objectes, llocs, persones famoses o obres d’art.</li>
+  <li>Descobrir si una foto teva circula per internet sense permís.</li>
+</ol>
+<p>Els principals cercados generalistes disposen d'esta eina</p>
+<ul>
+  <li>Google</li>
+  <li>Bing</li>
+  <li>Yandex</li>
+</ul>
+
+<p>I d'altres més especialitzats</p>
+<li>TinEye</li>
 
   </section>
 
 
   <section id="analisi">
   <h1>Analisi d'arxius</h1>
+    <p>L'anàlisi d'arxius és el procés d'examinar un fitxer per comprendre la seva estructura, contingut i funcionalitat. En l'hacking ètic, això és crucial per descobrir vulnerabilitats o informació oculta. Però per començar, el primer que necessitem és saber de quin tipus d'arxiu estem parlant.</p>
+    <p>La identificació del format d'un arxiu consisteix a determinar el tipus de dades que conté (text, imatge, àudio, executable, etc.) i com s'organitzen. Pensa-ho com un detectiu que examina l'embolcall d'un paquet abans d'obrir-lo per veure què conté</p>
+    <p>Molta gent pensa que un arxiu és el que diu la seva extensió (.txt, .jpg, .exe), però en realitat, això és només una etiqueta que el sistema operatiu utilitza per a la seva comoditat. </p>
+    <p> El veritable secret del format d'un arxiu està en les seves dades internes. </p>
+     <p>Saps quina part d'un fitxer conté informació que el defineix, i com es diu aquesta part? </p>
+      <li>Pista: sol estar al principi de l'arxiu i serveix com una mena de "signatura" o "identificador"</p></li>
+         <h4>Estem parlant de la capçalera o header de l'arxiu.</h4>
+         <h2>Magic Number</h2>
+     <p>Pensa en la capçalera com la portada d'un llibre 📖. Abans d'obrir-lo i llegir-lo, la portada ja ens diu si és una novel·la, un llibre de ciència o un manual  </p>
+     <p>De la mateixa manera, la capçalera és una petita porció de dades, normalment al principi del fitxer, que conté informació clau sobre el seu format. Aquesta informació pot incloure un nombre màgic, que és una seqüència de bytes específica que identifica el tipus d'arxiu.  </p>
+     <p>Per exemple, si obres un arxiu amb un editor hexadecimal, veuràs els bytes en brut. La majoria dels arxius ZIP comencen amb la seqüència de bytes 50 4B 03 04, que en ASCII seria "PK" (en honor a Phil Katz, el creador del format ZIP).  </p>
+     <p>Això ens porta al cor de l'anàlisi d'arxius en l'hacking ètic: no podem confiar només en l'extensió. Un atacant podria simplement canviar l'extensió de virus.exe a imatge.jpg per enganyar-te. Però si un hacker ètic analitza la capçalera, descobrirà la veritat.  </p>
 
+   <p>Per veure aquesta capçalera i el contingut intern d'un fitxer a nivell de bytes, necessitaríem una eina que ens permeti "llegir" el fitxer sense interpretar-lo com ho faria un programa normal</p>
+   <p>Per veure aquests "bytes interns" de què parlàvem, la millor eina és un editor hexadecimal</p>
+
+   <p>Un editor hexadecimal et mostra el contingut d'un fitxer no com a text o una imatge, sinó com una seqüència de nombres hexadecimals.  Cada parell de dígits hexadecimals representa un byte de dades. És una manera de veure el "codi binari" del fitxer d'una forma més llegible.</p>
+  <p>Amb un d'aquests editors, podríem obrir, per exemple, un fitxer que s'anomena vacances.jpg i veurem la seva capçalera. Si realment és una imatge JPEG, trobarem al principi els bytes FF D8 FF E0. Si en canvi, trobem la seqüència 50 4B 03 04, sabríem que, malgrat l'extensió .jpg, en realitat és un fitxer ZIP disfressat.</p>
+   
+  <p>Però el mes pràctic i ràpid és utilitzar una eina.</p>
+  <li>En Linux =>  <code># <strong>file </strong> nom_del_fitxer</code></li>
+
+  <h2>Metadades</h2>
+  <p>l’anàlisi de metadades és una tècnica per obtenir informació oculta o complementària continguda en fitxers, imatges, documents o altres recursos digitals, amb l’objectiu de detectar possibles riscos de seguretat o fuites d’informació</p>
+  <li>En Linux =>  <code># <strong>exiftool </strong> nom_del_fitxer</code></li>
+  <p>Altres eines</p>
+    <ul>
+      <li>metagoofil  ( des de github ) </li>
+      <li>metaFinder  ( des de github) </li>
+      <li>FOCA  (Windows, molt usada per a OSINT d’empreses).</li>
+      <li>Mat2 (Linux, per analitzar i netejar metadades).</li>
+      <li>Serveis web com metapicz.com o get-metadata.com (amb precaució per la privacitat).</li>
+    </ul>
+
+    <h2>Informació textual</h2>
+    <p>l’anàlisi d’informació textual és una tècnica clau per extreure dades rellevants de grans quantitats de text, com logs, resultats d’escaneig o arxius obtinguts durant una auditoria. Eines com grep i altres utilitats de la línia de comandes són bàsiques per fer-ho ràpidament i de forma eficient.</p>
+    <h3>Grep: la base de la cerca</h3>
+     <p>(Global Regular Expression Print) serveix per buscar patrons de text dins de fitxers o fluxos de dades</p>
+     <p>Sintaxi bàsica</p>
+     <pre><code> grep "patró" fitxer.txt  </code></pre>
+
+     <p>Opcions útils en hacking ètic:</p>
+    <ul>
+      <li>-i → ignora majúscules/minúscules.</li>
+      <li>-r → cerca recursivament en carpetes.</li>
+      <li>-n → mostra el número de línia.</li>
+      <li>--color=always → ressalta coincidències.</li>
+      <li>-E → permet expressions regulars avançades.</li>
+      <li>-o → mostra només la part coincident.</li>
+    </ul>
+
+       <h3>Altres eines relacionades</h3>
+     <p>En entorns de pentesting, no tot és grep. Pots combinar-lo amb altres utilitats:</p>
+    <ul>
+      <li>cat, less, more → per veure arxius.</li>
+      <li>cut → per separar camps per delimitadors.</li>
+      <li>awk → per processar línies i columnes de text.</li>
+      <li>sed → per substitucions i edició en flux.</li>
+      <li>sort + uniq → per ordenar i eliminar duplicats.</li>
+      <li>strings → per extreure text llegible de fitxers binaris.</li>
+      <li>find → per localitzar fitxers que després pots passar a grep.</li>
+    </ul>
+
+    <h3>Fitxers no textuals</h3>
+    <p>De vegades interesa pre-processar un arxiu per extraure el text i després cercar dins..</p>
+    <pre><code> $ pdftotext  -layout secret.pdf  secret.txt
+   $ grep "contrasenya" secret.txt    </code></pre>
+
+      <h3>Fitxers d'imatge amb text</h3>
+      <p>En este cas, es pot passar primer un OCR</p>
+      <ul>
+        <li>Tesseract</li>
+        <li>EasyOCR</li>
+      </ul>
 
   </section>
 
 
   <section id="leaks">
   <h1>Leaks</h1>
+  <p>Un leak, o filtració, o fugida d'informació, és una publicaicó de dades confidencials d'una empresa o organisme</p>
 
   </section>
 
