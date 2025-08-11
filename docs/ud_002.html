@@ -24,8 +24,6 @@
   
   <div class="sidebar">
     <a href="#foot">Footprinting</a>
-    <a href="#finger">Fingerprinting</a>
-    <a href="#monitor">Monitorització trànsit</a>
     <a href="#web">WEB Reconnaissance</a>  
     <a href="#dns">DNS Reconnaissance</a>
     <a href="#identitats">Enumeració d'Identitats</a>
@@ -33,6 +31,7 @@
     <a href="#analisi">Analisi d'arxius</a>
     <a href="#leaks">Leaks Reconnaissance</a>    
     <a href="#osint">Frameworks per a OSINT</a>        
+    <a href="#labs">Laboratoris</a>        
     
   </div>
 
@@ -51,7 +50,7 @@
     <h3>Footprinting: Recollida d'informació pública o “information gathering” (menys important en un procés d'auditoria interna).</h3>
     <p>La fase de footprinting és la primera etapa en un procés d’auditoria de seguretat informàtica o hacking, 
       i consisteix en recollir informació sobre un sistema, xarxa o organització abans d’intentar accedir-hi o atacar-lo</p>
-    <p>Aquest procés es centra en la recollida d'informació pública d'Internet, pel que el seu ús no comporta la 
+    <p>Aquest procés es centra en la recollida d'informació pública ( d'Internet o altres fonts públiques), pel que el seu ús no comporta la 
       vulneració de cap llei, i per tant no és considerada delicte. El delicte és utilitzar aquesta informació per
        a algun benefici.
       <br>Aquesta fase no sol realitzar-se en un procés d'auditoria interna o auditoria de xarxa, o si es realitza, és de manera superficial, ja que no és habitual que es filtre informació interna de l'organisme que puga ser d'utilitat en aquest àmbit.
@@ -102,7 +101,7 @@
     <h2>Footprinting amb google</h2>
     <p>Google (Hacking): El cercador Google es pot utilitzar per fer cerques avançades les quals poden proporcionar informació sensible i interessant d'una organització que no estigui ben configurada o fortificada.</p>
     <p>A més de revelar els errors en les aplicacions web, Google Hacking permet trobar les dades sensibles, útils per a l'etapa de reconeixement d'un atac.</p>
-    <p>Els cercadors, com Google o Bing, tenen una sèrie de paràmetres que permeten fer cerques avançades. Aquests paràmetres són denominats com Dorks. 
+    <p>Els cercadors, com Google o Bing, tenen una sèrie de paràmetres que permeten fer cerques avançades. Aquests paràmetres són denominats com <strong>Dorks</strong>. 
        <br>Els Dorks són combinacions d'operadors especials que tenen els cercadors per “afinar” les cerques que fem, i si bé són molt útils per actuar de filtre de la informació que ens tornen, també són una eina molt útil per trobar informació sensible que la gent deixa en alguns servidors, o fins i tot dispositius o pàgines web vulnerables.</p>
      <p>Aquesta situació ocorre degut a que els robots de Google (aranyes) que indexen contingut (és el que fa que un lloc siga posicionat d’acord a les paraules clau que es troben) són capaços d’interpretar tot tipus de fitxers, no només pàgines web. Per tant, si una persona, que no té constància ni coneixements d’açò, deixa un fitxer amb informació sensible en un directori web que permet ser llistat, serà accedit i indexat pels robots de Google. 
        <br>La qüestió de fons és, per què algú voldria deixar un fitxer amb informació sensible dins d'un directori que és accessible públicament a través del protocol HTTP?</p>
@@ -153,16 +152,84 @@
    </section>
 
    <section id="web">
-      <h1>WEB Reconnaissance</h1>
+      <h1>WEB Reconnaissance (Enumeració WEB)</h1>
+      <p>La enumeració web és una fase de recollida d’informació en seguretat informàtica en què s’exploren i es cataloguen els recursos, directoris, fitxers, subdominis i funcionalitats disponibles en un lloc o aplicació web. </p>
+      <p>  L’objectiu principal és descobrir la superfície d’atac per tal d’identificar possibles punts febles abans d’un atac o d’una prova de penetració.</p>
+
+     <h3>Què inclou habitualment l’enumeració web</h3>
+  <ul>
+    <li>Descobriment de subdominis (blog.exemple.com, admin.exemple.com).</li>
+    <li>Enumeració de directoris i fitxers ocults (/admin/, /backup.zip).</li>
+    <li>Llistat d’endpoints i API (/api/v1/users).</li>
+    <li>Identificació de tecnologies (frameworks, CMS, versions del servidor).</li>
+    <li>Detecció de paràmetres i entrades (?id=123, ?search=abc).</li>
+    <li>Revisió de metadades en fitxers públics.</li>
+  </ul>
+
+    <p>Eines habituals</p>
+    <ul>
+      <li>dirb, dirbuster, gobuster → Per a cercar directoris i fitxers ocults.</li>
+      <li>whatweb, wappalyzer → Per a detectar tecnologies.</li>
+    </ul>
+
       <h2>Descarrega d'un lloc web</h2>
+      <p>és molt útil per descargar i inspeccionar contingut web de manera automatitzada, cosa que pot ajudar a descobrir recursos ocults o informació rellevant. <br>
+        Encara que wget no és específicament una eina d’enumeració com gobuster o dirb, sí que pot complementar aquesta fase.</p>
       <h3>wget</h3>
+      <h4>Descàrrega de pàgines o llocs sencers</h4>
+        <p>Pots baixar tot un lloc web per a analitzar-lo localment.</p>
+
+        <p>Exemple</p>
+        <pre><code>wget -r -np -k http://exemple.com</code></pre>
+        <p >   Açò descarrega tot el contingut navegable de <code>exemple.com</code> sense eixir del domini
+          (<code>-np</code>) i converteix els enllaços per a usar-los localment (<code>-k</code>).    </p>
+
+        <h4>Descàrrega de fitxers específics</h4>
+        <p>Si durant l’enumeració detectes un fitxer interessant (<code>.zip</code>, <code>.pdf</code>, <code>.xml</code>), <code>wget</code> permet baixar-lo ràpidament per analitzar-lo:</p>
+        <pre><code>wget http://exemple.com/backup.zip</code></pre>
+
+        <h4>Exploració de <code>robots.txt</code></h4>
+        <p><code>wget</code> pot recuperar el fitxer <code>robots.txt</code>, que sovint conté directoris que l’administrador no vol indexar però que poden ser interessants:</p>
+        <pre><code>wget http://exemple.com/robots.txt</code></pre>
+
+        <h4>Automatització amb llistes de rutes</h4>
+        <p>Amb un fitxer de rutes, pots fer peticions massives:</p>
+        <pre><code>wget -i llistat_urls.txt</code></pre>
+
+
       <h2>Versions anteriors d'un lloc web</h2>
+      <p>Es pot accedir a versions antigues d’un lloc web mitjançant Internet Archive - Wayback Machine, que guarda captures periòdiques de pàgines web.</p>
       <a href="https://web.archive.org/">INTERNET ARCHIVE</a>
+      <p>Pot ser útil per:</p>
+      <ul>
+        <li>Trobar contingut eliminat però encara accessible</li>
+        <li>Analitzar codi font antic</li>
+        <li>Reconstruir l’estructura del lloc</li>
+        <li>Detectar versions antigues de programari</li>
+        <li>Obtenir pistes per a enginyeria social</li>
+      </ul>
+
 
       <h2>Testimoni online d'un lloc web</h2>
+      <p>Ens referim a alguna forma d’evidència digital que permet demostrar l’estat o el contingut d’una pàgina web en un
+         moment concret. És molt útil per a temes legals, auditoria o per garantir la integritat d’informació en hacking ètic</p>
+            
+      <p>Què és un testimoni online</p>
+
+      <ol>
+        <li>Captura de pantalla amb marca de temps: una imatge que mostra la pàgina tal com era en un moment concret.</li>
+        <li>Captura completa del lloc: una còpia local amb tots els fitxers per a reproduir l’estat del lloc.</li>
+        <li>Hashing del contingut: generar un hash (SHA256, MD5) dels fitxers o pàgines per a verificar que no han canviat després.</li>
+        <li>Arxius de logs o registre d’activitats: que mostren quan i com s’ha accedit o modificat el contingut.</li>
+        <li>Captures des de serveis d’arxiu web: com Internet Archive, que emmagatzema versions anteriors amb marca temporal.</li>
+        <li>Signatures digitals: mitjançant certificats per garantir autenticitat.</li>
+      </ol>
+     
+      <a href="https://www.incibe.es/ciudadania/blog/testigos-online-y-obtencion-de-pruebas-te-explicamos-su-utilidad">‘Testigos online’</a>   
       <a href="https://www.egarante.com/">https://www.egarante.com/</a>  <br>
       <a href="https://www.savetheproof.com/">https://www.savetheproof.com/</a> <br>
-      <a href="https://www.incibe.es/ciudadania/blog/testigos-online-y-obtencion-de-pruebas-te-explicamos-su-utilidad">‘Testigos online’</a>
+            
+
 
    </section>
 
@@ -222,7 +289,8 @@ Provar múltiples noms per trobar subdominis com admin.example.com, mail.example
   </section>   
 
   <section id="identitats">
-  <h1>Email (Reconnaissance) </h1>
+    <h1>Enumeració d'entitats</h1>
+  <h2>Email (Reconnaissance) </h2>
   <p>L’anàlisi d’informació personal i correus electrònics en hacking ètic és una pràctica habitual dins de les auditories 
     de seguretat i proves de penetració (pentesting), sempre amb autorització prèvia i dins d’un marc legal. L’objectiu és 
     detectar vulnerabilitats, exposicions de dades i punts febles en la gestió de la informació per tal de protegir una 
@@ -236,14 +304,14 @@ Provar múltiples noms per trobar subdominis com admin.example.com, mail.example
     <h3>I tota esta informació, combinada en "Have I Been Pwned" ..</h3>
     <p>... permetrà trobar forats de seguretat </p>
 
-  <h1>Xarxes socials (Reconnaissance)</h1>
+  <h2>Xarxes socials (Reconnaissance)</h2>
   <p>Eines</p>
   <ul>
-    <li>Herlock</li>
+    <li>Sherlock</li>
     <li>Osintgram</li>
     <li>altres...</li>
   </ul>
-  <h1>Numero de telèfon (Reconnaissance)</h1>
+  <h2>Numero de telèfon (Reconnaissance)</h2>
   <p>Eines</p>
   <ul>
     <li>Phoneinfoga</li>
@@ -371,6 +439,30 @@ Provar múltiples noms per trobar subdominis com admin.example.com, mail.example
   <section id="leaks">
   <h1>Leaks</h1>
   <p>Un leak, o filtració, o fugida d'informació, és una publicació de dades confidencials d'una empresa o organisme</p>
+  <p>Els leaks es poden produir per dos motius principalment:</p>
+  <ul><li>Insider ( malintencionat)</li>
+    <li>Error humà en el tractament de la informació</li>
+  </ul>
+    <p>On es poden trobar leaks?     </p>
+     <p>En llocs web especialitzats, Com Wikileaks</p>
+     <h3>Serveis per comprovar filtracions</h3>
+     <li>Have I benn powned?</li>
+     <li>Dehashed</li>
+     <li>GhostProject</li>
+     <h3>Llocs anonims</h3>
+     <li>Pastebin</li>
+     <li>Anonpaste</li>
+     <li>pasteHTML</li>
+     <p>Ferramenta:  pastenum</p>
+
+     <h3>En repositoris de codi</h3>
+     <p>GitHub o GitLab, poden contridre claus en hardcode en versions anteriors</p>
+     <p>Ferramenta: Gitleaks, TruffleHog,  GitDump</p>
+
+     <h3>Des de linea de comandos</h3>
+     <li>H8Mail</li>
+     <li>WhatBreach</li>
+
 
   </section>
 
@@ -378,13 +470,37 @@ Provar múltiples noms per trobar subdominis com admin.example.com, mail.example
   <section id="osint">
   <h1>Frameworks per a OSINT</h1>
    <h2>OSR Framework</h2>
+   <p>OSR Framework (Open Source Reconnaissance Framework) és una eina i conjunt de scripts pensats per facilitar la 
+    reconstrucció i recopilació d’informació (recon) en activitats de hacking ètic i OSINT (Open Source Intelligence)</p>
+   <a href="https://www.osintux.org/documentacion/osrframework">https://www.osintux.org/documentacion/osrframework</a>
    <h2>theHarvester</h2>
+   <p>TheHarvester és una eina d’OSINT (Open Source Intelligence) molt popular utilitzada en hacking ètic i proves de
+     seguretat per a recollir informació pública sobre dominis, adreces de correu electrònic, noms de persones, subdominis
+      i altres dades relacionades amb un objectiu</p>
+   <p>repositori oficial: </p>  <a href="https://github.com/laramies/theHarvester">https://github.com/laramies/theHarvester</a>
+   <p>I en kali: </p> <a href="https://www.kali.org/tools/theharvester/">https://www.kali.org/tools/theharvester/</a>
+   <pre>Exemple d’ús bàsic  <code>
+$ theharvester -d exemple.com -b google</code></pre>
    <h2>recon-ng</h2>
+   <p>És un framework en Python que proporciona un entorn similar a una consola per executar diferents mòduls de recollida d’informació. <br>
+    Permet integrar múltiples fonts i API per obtenir dades sobre dominis, persones, IPs, correus electrònics, etc.</p>
+   <a href="https://www.osintux.org/documentacion/recon-ng">https://www.osintux.org/documentacion/recon-ng</a>
+   <p> De vegades, els llocs "oficials", tanquen, o canvien de lloc, o es fan forks, etc....</p>
    <h2>FOCA</h2>
+   <p>Eina gratuita de pentesting per a windows. Automatitza l'extracció i analisi de metadades ubicades en servidors o llocs web.</p>
+   <a href="https://es.wikipedia.org/wiki/FOCA_Tool">https://es.wikipedia.org/wiki/FOCA_Tool</a>
    <h2>Maltego</h2>
-
+   <p>Maltego és una plataforma per a recollir, correlacionar i representar dades d’origen públic (OSINT) i fonts privades. <br>
+      Permet connectar informació d’entitats diverses (persones, dominis, adreces IP, correus electrònics, xarxes socials...) i visualitzar aquestes relacions en gràfics interactius.</p>
+    <p>Automatitza tasques repetitives de recopilació de dades sobre dominis, IPs, persones, correus electrònics, etc</p>
+    <a href="https://www.maltego.com/">https://www.maltego.com/</a>
   </section>
 
+
+ <section id="labs">
+  <h1>Laboratoris</h1>
+
+ </section> 
 
 </main>
 
