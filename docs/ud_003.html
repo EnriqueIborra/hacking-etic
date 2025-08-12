@@ -161,6 +161,7 @@
  </ol>
 <hr>
 <h3>🔌 Anàlisi TCP de connexió completa (TCP Connect Scan)</h3>
+<img src="imgs/3way-tcp.png" alt="3way" width="40%" class="imatge-dreta">
 <p>L’escaneig de connexió completa (en anglès TCP Connect Scan) és una tècnica d’anàlisi de ports que estableix una connexió TCP completa amb cada port obert. És el mateix procés que seguiria una aplicació normal per comunicar-se amb un servei.</p>
 
 Implica realitzar el 3-way handshake:
@@ -174,9 +175,13 @@ Implica realitzar el 3-way handshake:
  <li>✅ No cal privilegis</li>
  <li>✅ El tallafocs no bloqueja connexions TCP normals</li>
  <li>❌ No és sigil·lós </li>
+ <P>El servidor pot contestar o no, i si contesta, pot contestar amb ACK (port obert) o amb RST (port tancant)</P>
+ <p>Tant si el port està obert com tancat, el host estarà <strong>actiu</strong></p>
+ <p>Si el servidor no contesta res, pot ser que: No estiga actiu, o tinga el port <strong>filtrat</strong></p>
  <a href="https://nmap.org/book/scan-methods-connect-scan.html">TCP Connect</a>
   <hr>
  <br><h3>🔌 Anàlisi TCP de half-connect (SYN scan)</h3>
+ <img src="imgs/half-tcp.png" alt="3way" width="40%" class="imatge-dreta">
 <p>Un escaneig half-connect (mig connectat) és una tècnica d’anàlisi de ports que no completa la connexió TCP, sinó que només envia el primer paquet (SYN) i interpreta la resposta del servidor</p>
 <p>S'anomena "half-connect" perquè no es completa el "3-way handshake" típic del protocol TCP.</p>
 
@@ -225,15 +230,24 @@ exemple::  <code>nmap -sA -p 22,80,443 -n -Pn 192.168.1.1 </code>
 
 <hr>
 <br><h3>🔌 Anàlisi UDP</h3>
-
+<p>L’anàlisi UDP és el procés d’examinar trànsit i serveis que utilitzen el protocol UDP (User Datagram Protocol) </p>
+exemple:
+<code>nmap -sU 192.168.1.10 </code>
 
 <hr>
 <br><h3>🔌 Altres tipus d'Anàlisi </h3>
+<p>També hi ha escanejos especials com Xmas, FIN i NULL, que són tècniques de TCP scanning utilitzades per detectar ports oberts de forma més “furtiva” que un escaneig TCP normal.</p>
 <ul>
   <li>FIN</li>
   <li>XMAS</li>
   <li>NULL</li>
 </ul>
+<pre><code>
+nmap -sX 192.168.1.10
+nmap -sF 192.168.1.10
+nmap -sN 192.168.1.10
+
+</code></pre>
 
 <hr><h2> nc (netcat) - La navalla suïssa</h2>
 <p>Ès una eina de xarxa avançada que forma part del paquet Nmap i que serveix per establir connexions i transferir 
@@ -263,7 +277,7 @@ exemple::  <code>nmap -sA -p 22,80,443 -n -Pn 192.168.1.1 </code>
 </section>
 
  <section id="nmap"> 
-  <h2> Fingerprinting amb Nmap</h2>
+  <h1> Fingerprinting amb Nmap</h1>
 
   <p>El <strong>fingerprinting amb Nmap</strong> és el procés de determinar informació específica sobre un sistema remot (hosts, sistemes operatius, serveis i versions de serveis) mitjançant l’eina <strong>Nmap (Network Mapper)</strong>.</p>
 
