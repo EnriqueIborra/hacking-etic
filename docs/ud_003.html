@@ -170,15 +170,14 @@ Implica realitzar el 3-way handshake:
    <li>El servidor respon amb un SYN-ACK si el port està obert.</li>
    <li>El client respon amb un ACK per completar la connexió.</li>
  </ol>
- exemple::  
- <code>nmap -sT <adreça_ip>  </code>
+  
  <li>✅ No cal privilegis</li>
  <li>✅ El tallafocs no bloqueja connexions TCP normals</li>
  <li>❌ No és sigil·lós </li>
  <P>El servidor pot contestar o no, i si contesta, pot contestar amb ACK (port obert) o amb RST (port tancant)</P>
  <p>Tant si el port està obert com tancat, el host estarà <strong>actiu</strong></p>
  <p>Si el servidor no contesta res, pot ser que: No estiga actiu, o tinga el port <strong>filtrat</strong></p>
- <a href="https://nmap.org/book/scan-methods-connect-scan.html">TCP Connect</a>
+ 
   <hr>
  <br><h3>🔌 Anàlisi TCP de half-connect (SYN scan)</h3>
  <img src="imgs/half-tcp.png" alt="3way" width="40%" class="imatge-dreta">
@@ -195,17 +194,16 @@ En el SYN Scan (half-connect):
   </ul>
   <li>🚫 En cas de SYN-ACK, l’atacant no envia l’ACK final, sinó un RST (per trencar la connexió abans de completar-la).</li>
 </ol>
-exemple::  
- <code>nmap -sS <adreça_ip>  </code>
  <li>✅ Sigil·lós</li>
  <li>✅ Ràpid</li>
  <li>✅ Eficient</li>
  <li>❌ Necessita permisos d’administrador o root </li>
  <li>❌ Pot ser bloquejat per tallafocs </li>
  <li>❌Alguns sistemes poden detectar l’ús massiu de SYN sense ACK com a comportament sospitós</li>
-<a href="https://nmap.org/book/synscan.html">SYN scan</a>
+
 <hr>
 <br><h3>🔌 Anàlisi TCP ACK</h3>
+<img src="imgs/ack-tcp.png" alt="3way" width="40%" class="imatge-dreta">
 <p>L’escaneig ACK (o TCP ACK Scan) no té com a objectiu descobrir ports oberts, sinó identificar si un port està filtrat o no filtrat per un firewall o sistema de filtratge de paquets.</p>
 
 <p>Com funciona</p>
@@ -219,20 +217,10 @@ exemple::
 </ol>
 
 <p> ⚠️ No es pot saber si el port està obert o tancat, només si està filtrat o no.</p>
-exemple::  <code>nmap -sA 192.168.1.1</code>
-Opcions útils:
-<pre><code>
--p per especificar ports (ex: -p 22,80,443)
--n per evitar resolució DNS (més ràpid)
--Pn per ometre el ping previ  </code></pre>
-exemple::  <code>nmap -sA -p 22,80,443 -n -Pn 192.168.1.1 </code>
-<a href="https://nmap.org/book/scan-methods-ack-scan.html">ACK scan</a>
 
 <hr>
 <br><h3>🔌 Anàlisi UDP</h3>
 <p>L’anàlisi UDP és el procés d’examinar trànsit i serveis que utilitzen el protocol UDP (User Datagram Protocol) </p>
-exemple:
-<code>nmap -sU 192.168.1.10 </code>
 
 <hr>
 <br><h3>🔌 Altres tipus d'Anàlisi </h3>
@@ -242,12 +230,6 @@ exemple:
   <li>XMAS</li>
   <li>NULL</li>
 </ul>
-<pre><code>
-nmap -sX 192.168.1.10
-nmap -sF 192.168.1.10
-nmap -sN 192.168.1.10
-
-</code></pre>
 
 <hr><h2> nc (netcat) - La navalla suïssa</h2>
 <p>Ès una eina de xarxa avançada que forma part del paquet Nmap i que serveix per establir connexions i transferir 
@@ -290,7 +272,23 @@ nmap -sN 192.168.1.10
   </ul>
 
   <h3> Com fer Fingerprinting amb Nmap</h3>
-
+   <pre><code>
+connexió completa: nmap -sT <adreça_ip>
+half connect:      nmap -sS <adreça_ip>
+ack:               nmap -sA -p 22,80,443 -n -Pn <adreça_ip>
+    -p per especificar ports (ex: -p 22,80,443)
+    -n per evitar resolució DNS (més ràpid)
+    -Pn per ometre el ping previ 
+UDP:      nmap -sU 192.168.1.10    
+Xmas:     nmap -sX 192.168.1.10
+FIN:      nmap -sF 192.168.1.10
+NULL:     nmap -sN 192.168.1.10
+   </code></pre>
+ <p>Es pot trovar més informació en la pàgina oficial de nmap</p>  
+<a href="https://nmap.org/book/scan-methods-connect-scan.html">TCP Connect</a> --
+<a href="https://nmap.org/book/synscan.html">SYN scan</a>  --
+<a href="https://nmap.org/book/scan-methods-ack-scan.html">ACK scan</a>
+<br>
   <h4>1. Escaneig de ports bàsic</h4>
   <pre><code>nmap &lt;IP&gt;</code></pre>
   <p>Detecta els ports oberts (per defecte els 1000 més comuns).</p>
@@ -347,6 +345,7 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
     <li><strong>Privilegis:</strong> Algunes opcions com <code>-O</code> i <code>-A</code> necessiten permisos de root.</li>
     <li><strong>Legalitat:</strong> Sempre assegura’t que tens permís per escanejar la IP o xarxa. Escanejar sistemes sense autorització pot ser il·legal.</li>
   </ul>
+  <hr><h2>Zenmap</h2>
   <h3>Zenmap és una manera d'utilizar nmap amb gui</h3>
    <a href="https://nmap.org/zenmap/">https://nmap.org/zenmap/</a>
 
@@ -556,22 +555,77 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
     <pre><code>$ curl ftp://usu:pass@servidor_ftp  </code></pre>
 
     <h2>Enumeració HTTP</h2>
+    <p>L'enumeració HTTP és un procés de recopilació d'informació sobre un servidor web i les seves aplicacions. Aquesta informació es pot 
+      utilitzar per identificar vulnerabilitats potencials que un hacker podria explotar. Essencialment, és com un explorador que fa un mapa 
+      detallat d'una ciutat (el servidor web) per trobar punts febles.</p>
     <h3>Inspecció visual</h3>
+      <p>Consisteix en connectar-se a un lloc web, navegar per ell i inspeccinar el codi, buscant informació rellevant, com 
+        comentaris, enllaços ocults, codi javascript, etc
+      </p>
     <h3>Detectar tecnologies</h3>
+    <p> Es interessant coneixer les tecnologies que hi ha darrere d'una aplicació, per buscar vulnerabilitats</p>
+     <p>Eines</p>
+     <ul>
+      <li>Wappalyzer</li>
+      <li>whatweb</li>
+      <li>Enumeració de CMS especifics  <strong>cmseek</strong></li>
+     </ul>
     <h3>Fuzzing WEB</h3>
-    <h3>Anàlisi automàtic de vulnerabilitats</h3>
+    <p>El fuzzing web consisteix en fer peticions automatitzades a un servidor web usant paraules d'un diccionari i vore 
+      quin estat HTTP torna en cada cas: 200 OK, 404 NOT FOUND, 301,302,403, etc.. El que permet detectar pàgines, arxius, directoris
+    que no estan enllaçats des de cap lloc, i que poden contenir informació rellevant</p>
+    <p>Algunes ferramentes son:</p>
+    <ul>
+      <li>wfuzz</li>
+      <li>script http-enum de namp</li>
+      <li>dirbuster</li>
+      <li>gobuster</li>
+      <li>dirb</li>
+      <li>dirsearch</li>
+      <li>ffuf</li>
+      <li>feroxbuster</li>
+    </ul>
+    <p>Tant important o més que la ferramenta, es el diccionari emprat </p>
+    <p><strong>kali</strong> inclou diversos diccionaris. En /usr/share/wordlists es troben enllaços a distintes carpetes</p>
+    <li>/usr/share/wfuzz/wordlist/general</li>
+    <li>/usr/share/dirb/wordlists</li>
+    <li>/usr/share/dirbuster/wordlists</li>
 
+   
     <h2>Enumeració SMB</h2>
+    <p>L'enumeració SMB (Server Message Block) és una tècnica de hacking ètic que consisteix a recopilar informació sobre un sistema objectiu que utilitza 
+      el protocol SMB. L'objectiu és identificar recursos compartits, usuaris, grups, polítiques de contrasenyes i altres detalls que podrien ser 
+      explotats per a un atac.</p>
+      <p>Eines:</p>
+      <ol>
+        <li>nbtscan</li>
+        <li>enum4Linux</li>
+        <li>nmap</li>
+        <li>smbmap</li>
+        <li>smbclient</li>
+        <li>rpcclient</li>
+      </ol>
 
   </section>         
 
             
   <section id="descvuln">
     <h1>Descobriment automatitzat de vulnerabilitats</h1>
+    <p>Existeixen moltes ferraments en el mercat, tant comercials, con de còdi obert.
+      Algunes de les més importants son:     </p>
+    <p><strong>Legion, Nessus, OpenVAS, Nexpose, Nikto, Nuclei, ....</strong></p>  
 
     <h2>nikto</h2>
+    <p>En kali està instal·lat. En altre sistema es podria instal·lar</p>
+    <pre><code>$ sudo apt install nikto</code></pre>
+    <p>Executar nikto</p>
+    <pre><code>$ ./nikto.pl -host http://10.0.10.7</code></pre>
 
     <h2>Nuclei</h2>
+    <p>Es troba en els repositoris de kali, així que es pot instal·lar amb</p>
+    <pre><code>$ sudo apt install nuclei</code></pre>
+    <p>I executar amb</p>
+    <pre><code>$ nuclei</code></pre>
   </section>     
   
     
