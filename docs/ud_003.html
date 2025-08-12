@@ -26,6 +26,8 @@
     <a href="#finger">Fingerprinting</a>
     <a href="#tecni">Tècniques</a>
     <a href="#nmap">Fingerprinting amb nmap</a>
+    <a href="#enum">Enumeració de serveis</a>    
+    <a href="#descvuln">Descobriment automatitzat de vulnerabilitats</a>    
     <a href="#labs">Laboratoris</a>
 
 
@@ -138,17 +140,17 @@
   <li>Tancat</li>
   <li>Filtrat</li>
 </ul>
-<p>Descobrir es estat d'un port és fonamental, no sols por catalogar els ports oberts d'un objectiu, sino  també per 
+<p>Descobrir l'estat d'un port és fonamental, no sols por catalogar els ports oberts d'un objectiu, sino  també per 
   identificar si un host esta actiu o no  </p>
 
-<h2>Analisi de hosts</h2>
+<h2>Anàlisi de hosts</h2>
  <ol>
    <li>Ping Sweep (Exploració ICMP)</li>
    <li>ARP Scan</li>
    <li>Escaneig TCP ACK/SYN per identificar hosts actius</li>
  </ol>
 
-<h2>Analisi de ports</h2>
+<h2>Anàlisi de ports</h2>
  <ol>
    <li>TCP Connect Scan</li>
    <li>SYN Scan (semi-connectat)</li>
@@ -157,7 +159,7 @@
    <li>FIN Scan</li>
    <li>NULL Scan</li>
  </ol>
-
+<hr>
 <h3>🔌 Anàlisi TCP de connexió completa (TCP Connect Scan)</h3>
 <p>L’escaneig de connexió completa (en anglès TCP Connect Scan) és una tècnica d’anàlisi de ports que estableix una connexió TCP completa amb cada port obert. És el mateix procés que seguiria una aplicació normal per comunicar-se amb un servei.</p>
 
@@ -173,7 +175,7 @@ Implica realitzar el 3-way handshake:
  <li>✅ El tallafocs no bloqueja connexions TCP normals</li>
  <li>❌ No és sigil·lós </li>
  <a href="https://nmap.org/book/scan-methods-connect-scan.html">TCP Connect</a>
-
+  <hr>
  <br><h3>🔌 Anàlisi TCP de half-connect (SYN scan)</h3>
 <p>Un escaneig half-connect (mig connectat) és una tècnica d’anàlisi de ports que no completa la connexió TCP, sinó que només envia el primer paquet (SYN) i interpreta la resposta del servidor</p>
 <p>S'anomena "half-connect" perquè no es completa el "3-way handshake" típic del protocol TCP.</p>
@@ -197,7 +199,7 @@ exemple::
  <li>❌ Pot ser bloquejat per tallafocs </li>
  <li>❌Alguns sistemes poden detectar l’ús massiu de SYN sense ACK com a comportament sospitós</li>
 <a href="https://nmap.org/book/synscan.html">SYN scan</a>
-
+<hr>
 <br><h3>🔌 Anàlisi TCP ACK</h3>
 <p>L’escaneig ACK (o TCP ACK Scan) no té com a objectiu descobrir ports oberts, sinó identificar si un port està filtrat o no filtrat per un firewall o sistema de filtratge de paquets.</p>
 
@@ -221,6 +223,43 @@ Opcions útils:
 exemple::  <code>nmap -sA -p 22,80,443 -n -Pn 192.168.1.1 </code>
 <a href="https://nmap.org/book/scan-methods-ack-scan.html">ACK scan</a>
 
+<hr>
+<br><h3>🔌 Anàlisi UDP</h3>
+
+
+<hr>
+<br><h3>🔌 Altres tipus d'Anàlisi </h3>
+<ul>
+  <li>FIN</li>
+  <li>XMAS</li>
+  <li>NULL</li>
+</ul>
+
+<hr><h2> nc (netcat) - La navalla suïssa</h2>
+<p>Ès una eina de xarxa avançada que forma part del paquet Nmap i que serveix per establir connexions i transferir 
+  dades entre equips de manera molt flexible.</p>
+
+<p>s’utilitza per:</p>
+
+<ul>
+  <li>Connectar-se a ports remots per provar serveis o protocols.</li>
+  <li>Crear servidors o clients improvisats per enviar i rebre dades.</li>
+  <li>Fer túnels i redireccions de ports.</li>
+  <li>Obrir shells remotes (control remot d’un sistema) durant proves controlades.</li>
+  <li>Xifrar la comunicació (cosa que netcat original no feia).</li>
+</ul>
+
+<p>Exemple</p>
+<h4>Des de lloc que escolta (server)</h4>
+<pre><code>nc -lvp 4444  </code></pre>
+<ul>
+  <li>-l → escoltar connexions entrants</li>
+  <li>-v → mode detallat (verbose)</li>
+  <li>-p 4444 → escoltar en el port 4444</li>
+</ul>
+<h4>Des del lloc que es connecta (client)</h4>
+<pre><code>nc 192.168.1.10 4444  </code></pre>
+
 </section>
 
  <section id="nmap"> 
@@ -230,6 +269,7 @@ exemple::  <code>nmap -sA -p 22,80,443 -n -Pn 192.168.1.1 </code>
 
   <h3> Què és el Fingerprinting?</h3>
   <ul>
+    <li><strong>HOST Fingerprinting:</strong> Identificar els hosts en una xarxa.</li>
     <li><strong>OS Fingerprinting:</strong> Identificar el sistema operatiu del dispositiu remot.</li>
     <li><strong>Service Fingerprinting:</strong> Detectar quins serveis i versions exactes estan corrent en els ports oberts.</li>
     <li><strong>Application Fingerprinting:</strong> Identificar aplicacions o serveis específics a nivell de detall.</li>
@@ -241,21 +281,24 @@ exemple::  <code>nmap -sA -p 22,80,443 -n -Pn 192.168.1.1 </code>
   <pre><code>nmap &lt;IP&gt;</code></pre>
   <p>Detecta els ports oberts (per defecte els 1000 més comuns).</p>
 
-  <h4>2. Detectar serveis i versions</h4>
+  <h4>2. Detectar hosts</h4>  
+   <pre><code>nmap -Pn &lt;IP_de_xarxa/24&gt;</code></pre>
+
+  <h4>3. Detectar serveis i versions</h4>
   <pre><code>nmap -sV &lt;IP&gt;</code></pre>
   <ul>
     <li><code>-sV</code>: Intenta identificar els serveis i les seves versions en els ports oberts.</li>
   </ul>
   <pre><code>nmap -sV 192.168.1.10</code></pre>
 
-  <h4>3. Detectar sistema operatiu (OS Fingerprinting)</h4>
+  <h4>4. Detectar sistema operatiu (OS Fingerprinting)</h4>
   <pre><code>nmap -O &lt;IP&gt;</code></pre>
   <ul>
     <li><code>-O</code>: Activa la detecció del sistema operatiu.</li>
     <li>Necessita privilegis d’administrador (root o sudo).</li>
   </ul>
 
-  <h4>4. Fingerprinting complet i detallat</h4>
+  <h4>5. Fingerprinting complet i detallat</h4>
   <pre><code>nmap -A &lt;IP&gt;</code></pre>
   <ul>
     <li><code>-A</code>: Activa detecció d’OS (<code>-O</code>), detecció de versions (<code>-sV</code>), escaneig amb scripts (<code>-sC</code>), i traceroute.</li>
@@ -263,7 +306,7 @@ exemple::  <code>nmap -sA -p 22,80,443 -n -Pn 192.168.1.1 </code>
   </ul>
   <pre><code>sudo nmap -A 192.168.1.10</code></pre>
 
-  <h4>5. Utilitzar scripts de detecció avançada (NSE - Nmap Scripting Engine)</h4>
+  <h4>6. Utilitzar scripts de detecció avançada (NSE - Nmap Scripting Engine)</h4>
   <pre><code>nmap --script=banner &lt;IP&gt;</code></pre>
   <p>Mostra banners de serveis, útil per fingerprinting.</p>
   <p>Hi ha molts scripts útils per fingerprinting: <code>http-title</code>, <code>ftp-anon</code>, <code>ssl-cert</code>, etc.</p>
@@ -476,30 +519,52 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
   </ul>
 
 
-
    </section>
 
 
-      <section id="negacio">
+  <section id="enum">
+    <h1>Enumeració de serveis</h1>
 
+    <h2>Enumeració  FTP</h2>
+    <p>La enumeració FTP és el procés mitjançant el qual s’intenta obtindre informació d’un servidor FTP 
+      (File Transfer Protocol) per conéixer quins arxius, directoris o fins i tot configuracions estan disponibles</p>
+    <pre><code># nmap -sV -p21,2121  <ip>> </code></pre>  
+    o provar el script banner
+    <pre><code># nmap -p21,2121 --script banner  <ip>> </code></pre>
+  o amb un netcat o telnet 
+     <pre><code>telnet <ip> </code></pre>
 
-      </section>         
-      <section id="recol">
+      es poden esbrinar més scripts d'nmap
+    <pre><code> # ls -l /usr/share/nmap/scripts | grep -e "ftp"</code>    </pre>
 
+    <h4>Descarrega de contingut</h4>
+    <strong> curl  i   wget</strong>
+    <pre><code>$ curl ftp://usu:pass@servidor_ftp  </code></pre>
 
-      </section>               
-      <section id="autom">
+    <h2>Enumeració HTTP</h2>
+    <h3>Inspecció visual</h3>
+    <h3>Detectar tecnologies</h3>
+    <h3>Fuzzing WEB</h3>
+    <h3>Anàlisi automàtic de vulnerabilitats</h3>
 
+    <h2>Enumeració SMB</h2>
 
-      </section>         
-      <section id="analisi">
+  </section>         
 
+            
+  <section id="descvuln">
+    <h1>Descobriment automatitzat de vulnerabilitats</h1>
 
-      </section>         
-      <section id="labs">
-        <h1>Laboratoris</h1>
+    <h2>nikto</h2>
 
-      </section>         
+    <h2>Nuclei</h2>
+  </section>     
+  
+    
+  <section id="labs">
+    <h1>Laboratoris</h1>
+
+  </section>         
      
       
 
