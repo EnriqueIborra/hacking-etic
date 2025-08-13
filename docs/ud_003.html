@@ -417,19 +417,17 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
 
   <p>Si vols, et puc ajudar a automatitzar un script per fer fingerprinting bàsic amb hping3 o interpretar resultats. Vols un exemple més complet o un script?</p>
 
-
-
-    <h2>Fingerprinting anb Wireshark</h2>
+  <hr>  <h2>Fingerprinting anb Wireshark</h2>
 <p><strong>Fingerprinting amb Wireshark</strong> significa identificar dispositius, sistemes operatius, aplicacions o serveis en una xarxa mitjançant l’anàlisi de dades capturades amb Wireshark. Es tracta d’una forma de <strong>reconeixement passiu</strong>, útil en ciberseguretat, monitoratge de xarxa o proves d’intrusió.</p>
 
-  <h2> 1. Captura de trànsit</h2>
+  <h3> 1. Captura de trànsit</h3>
   <p>Obri Wireshark i captura paquets en la interfície de xarxa adequada:</p>
   <ul>
     <li>Selecciona la interfície (Wi-Fi, Ethernet, etc.)</li>
     <li>Pots aplicar filtres de captura si ho desitges (opcional), com ara <code>tcp</code>, <code>udp</code>, o <code>port 80</code></li>
   </ul>
 
-  <h2> 2. Fingerprinting del Sistema Operatiu (OS)</h2>
+  <h3> 2. Fingerprinting del Sistema Operatiu (OS)</h3>
   <p>Wireshark no et mostra directament quin sistema operatiu té un dispositiu, però pots deduir-lo observant:</p>
   <ul>
     <li><strong>Comportament de la pila TCP/IP</strong>:
@@ -449,7 +447,7 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
     <li><strong>Opcions TCP</strong> (MSS, SACK, Window Scale, etc.) poden ajudar a identificar el sistema operatiu. Eines com <em>p0f</em> es basen en això.</li>
   </ul>
 
-  <h2> 3. Fingerprinting de Serveis o Aplicacions</h2>
+  <h3> 3. Fingerprinting de Serveis o Aplicacions</h3>
   <p>Pots identificar aplicacions o serveis observant:</p>
   <ul>
     <li><strong>Capçaleres HTTP</strong>: sovint revelen el tipus de servidor (Apache, Nginx, etc.)
@@ -472,7 +470,7 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
     </li>
   </ul>
 
-  <h2>📱 4. Fingerprinting de Dispositius</h2>
+  <h3>📱 4. Fingerprinting de Dispositius</h3>
   <ul>
     <li>Observa paquets <strong>DHCP</strong> (filtre: <code>bootp</code>):
       <ul>
@@ -488,7 +486,7 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
     </li>
   </ul>
 
-  <h2> 5. Filtres de visualització útils</h2>
+  <h3> 5. Filtres de visualització útils</h3>
   <table border="1" cellpadding="5">
     <thead>
       <tr>
@@ -524,17 +522,10 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
     </tbody>
   </table>
 
-  <h2>🔧 Eines opcionals per millorar el fingerprinting</h2>
-  <ul>
-    <li><strong>p0f</strong> — eina especialitzada en fingerprinting passiu de sistemes operatius</li>
-    <li><strong>NetworkMiner</strong> — eina gràfica per analitzar arxius PCAP</li>
-    <li><strong>JA3/JA3S</strong> — identificació de clients i servidors TLS mitjançant empremtes digitals</li>
-  </ul>
-
-
    </section>
 
 
+   
   <section id="enum">
     <h1>Enumeració de serveis</h1>
 
