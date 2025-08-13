@@ -532,11 +532,11 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
     <h2>Enumeració  FTP</h2>
     <p>La enumeració FTP és el procés mitjançant el qual s’intenta obtindre informació d’un servidor FTP 
       (File Transfer Protocol) per conéixer quins arxius, directoris o fins i tot configuracions estan disponibles</p>
-    <pre><code># nmap -sV -p21,2121  <ip>> </code></pre>  
+    <pre><code># nmap -sV -p21,2121  <ip> </code></pre>  
     o provar el script banner
-    <pre><code># nmap -p21,2121 --script banner  <ip>> </code></pre>
-  o amb un netcat o telnet 
-     <pre><code>telnet <ip> </code></pre>
+    <pre><code># nmap -p21,2121 --script banner  <ip> </code></pre>
+  o amb un <strong> netcat</strong>  o <strong> telnet </strong>
+     <pre><code>$ telnet <ip> </code></pre>
 
       es poden esbrinar més scripts d'nmap
     <pre><code> # ls -l /usr/share/nmap/scripts | grep -e "ftp"</code>    </pre>
