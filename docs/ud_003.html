@@ -585,6 +585,7 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
     <li>/usr/share/wfuzz/wordlist/general</li>
     <li>/usr/share/dirb/wordlists</li>
     <li>/usr/share/dirbuster/wordlists</li>
+    <p>i també ha ferramentes com <strong>crunch</strong> per fer diccionaris personalitzats</p>
 
    
     <h2>Enumeració SMB</h2>
@@ -606,21 +607,62 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
             
   <section id="descvuln">
     <h1>Descobriment automatitzat de vulnerabilitats</h1>
-    <p>Existeixen moltes ferraments en el mercat, tant comercials, con de còdi obert.
-      Algunes de les més importants son:     </p>
-    <p><strong>Legion, Nessus, OpenVAS, Nexpose, Nikto, Nuclei, ....</strong></p>  
+    <p>Aquest procés és un dels pilars de qualsevol Auditoria de Seguretat o Prova de Penetració, 
+      i es divideix en dues grans categories d'eines: els escàners de propòsit general i les eines 
+      especialitzades</p>
+    <p>El descobriment automatitzat de vulnerabilitats és la pràctica d'utilitzar programari especialitzat
+       per analitzar sistemes, xarxes i aplicacions a gran escala, identificant automàticament problemes 
+        seguretat coneguts sense la intervenció manual contínua de l'auditor</p>
 
-    <h2>nikto</h2>
+    <hr><h3>Escàners de Propòsit General (Nessus, OpenVAS, Nexpose)</h3>
+    <p>Aquestes eines estan dissenyades per oferir una visió global de l'estat de seguretat d'un entorn 
+      complet (servidors, estacions de treball, dispositius de xarxa, aplicacions).</p>
+      <ul>
+        <li>Nessus , Nexpose, ==>  Comercials, gran precisió</li>
+        <li>OpenVas ==> Codi obert . Ara es GVM (Greenbone Vulnerability Management)</li>
+      </ul>
+      <p>Aquestes eines comproven les versions de programari instal·lades i les comparen amb bases de dades
+         públiques (com el CVE) per identificar vulnerabilitats conegudes. 
+         També realitzen proves passives i actives per detectar configuracions errònies o protocols insegurs</p>
+
+     <hr> <h3>Eines Específiques per a Aplicacions Web (Nikto, Nuclei, Legion, ...)</h3>   
+
+    <h4>nikto</h4>
+    <p>Nikto (Web Server Scanner) Nikto és un escàner de web de codi obert que fa proves ràpides i superficials</p>
     <p>En kali està instal·lat. En altre sistema es podria instal·lar</p>
     <pre><code>$ sudo apt install nikto</code></pre>
     <p>Executar nikto</p>
-    <pre><code>$ ./nikto.pl -host http://10.0.10.7</code></pre>
+    <pre><code>$ ./nikto.pl -host http://[ip_objectiu]</code></pre>
 
-    <h2>Nuclei</h2>
+    <h4>Nuclei</h4>
+    <p>Nuclei és un motor d'escaneig modern i molt eficient que utilitza plantilles YAML per a definir els escanejos.</p>
     <p>Es troba en els repositoris de kali, així que es pot instal·lar amb</p>
     <pre><code>$ sudo apt install nuclei</code></pre>
     <p>I executar amb</p>
     <pre><code>$ nuclei</code></pre>
+    <p>Avantatge: És ideal per escanejar ràpidament un gran nombre d'objectius (mass scanning) buscant 
+      una vulnerabilitat que acaba de ser publicada (un 0-day recent o un n-day). La seva velocitat i 
+      flexibilitat són inigualables en aquest tipus d'escaneig dirigit.</p>
+
+     <h4>Legion</h4>
+     <p>Legion és una eina de reconeixement de xarxes i avaluació de vulnerabilitats de codi obert (open source) 
+      que es distingeix per utilitzar una Interfície Gràfica d'Usuari (GUI).</p> 
+      <p>No és un escàner que realitze les comprovacions des de zero, sinó que actua com un marc de treball
+         (framework) automatitzat que orquestra l'execució d'altres eines de seguretat conegudes per a
+          obtenir resultats de forma ràpida i centralitzada</p>
+
+      
+    <hr> <h2>Tipus d'Escàners segons l'Objectiu</h2>
+    <p>Més enllà dels escàners generals com Nessus, les eines s'especialitzen segons l'objectiu que analitzen:</p>
+  <ul>
+    <li>DAST (Dynamic Application Security Testing): Escaneja una aplicació web en execució des de fora (com un usuari). Nikto i Nuclei (amb plantilles HTTP) encaixen en aquesta categoria lleugera.
+       També <strong>Burp Suite</strong> o <strong>OWASP ZAP</strong></li>
+    <li>SAST (Static Application Security Testing): Analitza el codi font d'una aplicació sense executar-la, buscant patrons de codificació insegurs. És ideal per a cicles de desenvolupament (DevSecOps). <strong>SonarQube, bandit</strong> </li>
+    <li>Escàners de Xarxa: Se centren en sistemes operatius, protocols i ports (Ex: Nmap en la fase inicial, Nessus en profunditat, OpenVas).</li>
+    <li>Escàners de Bases de Dades i Cloud: Específics per a entorns de núvol (AWS, Azure) o sistemes de gestió de bases de dades (MySQL, Oracle). <strong>SQLmap, greenbone, ScoutSuite, Prowler</strong> totes de codi obert</li>
+  </ul>
+
+
   </section>     
   
     
