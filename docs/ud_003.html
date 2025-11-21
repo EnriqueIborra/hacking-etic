@@ -532,24 +532,53 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
    
   <section id="enum">
     <h1>Enumeració de serveis</h1>
+    <p>L'enumeració no només busca arxius, sinó que l'objectiu principal és trobar vulnerabilitats potencials</p>
 
     <h2>Enumeració  FTP</h2>
     <p>La enumeració FTP és el procés mitjançant el qual s’intenta obtindre informació d’un servidor FTP 
       (File Transfer Protocol) per conéixer quins arxius, directoris o fins i tot configuracions estan disponibles</p>
-    <pre><code># nmap -sV -p21,2121  <ip> </code></pre>  
-    o provar el script banner
-    <pre><code># nmap -p21,2121 --script banner  <ip> </code></pre>
-  o amb un <strong> netcat</strong>  o <strong> telnet </strong>
-     <pre><code>$ telnet <ip> </code></pre>
+    <ul>
+      <li>Identificació de programari: Conèixer la versió exacta del servidor FTP (p. ex., vsftpd 3.0.3, Pure-FTPd, Microsoft IIS FTP). Això és crucial perquè les versions antigues o 
+        específiques sovint tenen vulnerabilitats documentades (CVEs).</li>
+      <li>Accés Anònim: Verificar si el servidor permet l'accés amb l'usuari anonymous i la contrasenya (normalment) guest o l'adreça de correu electrònic. Aquesta és la comprovació més bàsica i sovint la primera.</li>
+      <li>Usuaris vàlids: De vegades, els missatges d'error del servidor (o els scripts d'Nmap) poden revelar noms d'usuari vàlids al sistema.</li>
+    </ul>
+    <p>Identificació de versions</p>
+    <pre><code># nmap -sV -p21,2121 &lt;ip> </code></pre>  
+    <p>o provar el script banner, obtenció del banner</p>
+    <pre><code># nmap -p21,2121 --script banner  &lt;ip> </code></pre>
+    <p>El banner és el missatge de text que envia el servidor tan bon punt s'estableix la connexió. Sovint conté el nom i la versió del programari</p>
+    <h3>Scripts d'Nmap Específics per a FTP</h3>
+     <code># ls -l /usr/share/nmap/scripts | grep -e "ftp"</code>
+    <p>Els més útils per a l'enumeració són:</p>
+    <ul>
+      <li>ftp-anon.nse: Comprova si es permet l'accés anònim.</li>
+      <li>ftp-vsftpd-backdoor.nse: Comprova una vulnerabilitat famosa en vsftpd.</li>
+      <li>ftp-syst.nse: Obté informació del sistema operatiu (SO).</li>
+    </ul>
+    <pre><code>Com s'executen:
+Bash
+# nmap -p21 --script ftp-anon,ftp-syst &lt;IP_servidor></code></pre>
+ 
+    <p>o amb un ús manual de <strong> netcat</strong>  o <strong> telnet </strong> </p>
+     <pre><code>$ telnet &lt;ip> </code></pre>
+     <p>Connectar-se manualment amb telnet o nc (netcat) permet interactuar directament amb el servidor. Un cop connectat, 
+      pots enviar ordres FTP (com USER anonymous i PASS guest) i veure les respostes del servidor codificades 
+      (codis de tres dígits, com 230 per a "Login successful" o 530 per a "Not logged in").</p>
 
-      es poden esbrinar més scripts d'nmap
+     <p> es poden esbrinar més scripts d'nmap </p>
     <pre><code> # ls -l /usr/share/nmap/scripts | grep -e "ftp"</code>    </pre>
 
-    <h4>Descarrega de contingut</h4>
+    <h3>Descarrega de contingut</h3>
     <strong> curl  i   wget</strong>
     <pre><code>$ curl ftp://usu:pass@servidor_ftp  </code></pre>
+    <ul>
+      <li>curl generalment mostra el contingut (com el d'un fitxer) directament a la terminal, o permet descarregar fitxers amb l'opció -O (majúscula) o -o.</li>
+      <li>wget descarrega el fitxer directament al directori local per defecte i és excel·lent per a descàrregues recursives (tota una carpeta):</li>
+    </ul>
+    <pre><code>$ wget -r ftp://usu:pass@servidor_ftp/carpeta/</code></pre>
 
-    <h2>Enumeració HTTP</h2>
+    <hr><h2>Enumeració HTTP</h2>
     <p>L'enumeració HTTP és un procés de recopilació d'informació sobre un servidor web i les seves aplicacions. Aquesta informació es pot 
       utilitzar per identificar vulnerabilitats potencials que un hacker podria explotar. Essencialment, és com un explorador que fa un mapa 
       detallat d'una ciutat (el servidor web) per trobar punts febles.</p>
@@ -580,15 +609,16 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
       <li>ffuf</li>
       <li>feroxbuster</li>
     </ul>
+    <img src="imgs/kali-crunch.png" alt="3way" width="15%" class="imatge-dreta">
     <p>Tant important o més que la ferramenta, es el diccionari emprat </p>
     <p><strong>kali</strong> inclou diversos diccionaris. En /usr/share/wordlists es troben enllaços a distintes carpetes</p>
     <li>/usr/share/wfuzz/wordlist/general</li>
     <li>/usr/share/dirb/wordlists</li>
     <li>/usr/share/dirbuster/wordlists</li>
     <p>i també ha ferramentes com <strong>crunch</strong> per fer diccionaris personalitzats</p>
+    
 
-   
-    <h2>Enumeració SMB</h2>
+    <hr><h2>Enumeració SMB</h2>
     <p>L'enumeració SMB (Server Message Block) és una tècnica de hacking ètic que consisteix a recopilar informació sobre un sistema objectiu que utilitza 
       el protocol SMB. L'objectiu és identificar recursos compartits, usuaris, grups, polítiques de contrasenyes i altres detalls que podrien ser 
       explotats per a un atac.</p>
@@ -615,6 +645,7 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
         seguretat coneguts sense la intervenció manual contínua de l'auditor</p>
 
     <hr><h3>Escàners de Propòsit General (Nessus, OpenVAS, Nexpose)</h3>
+    <img src="imgs/greenbone.png" alt="3way" width="12%" class="imatge-dreta">
     <p>Aquestes eines estan dissenyades per oferir una visió global de l'estat de seguretat d'un entorn 
       complet (servidors, estacions de treball, dispositius de xarxa, aplicacions).</p>
       <ul>
