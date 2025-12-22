@@ -304,3 +304,20 @@
     color: #b834c4;
     margin: 0;
   }
+
+  /* Estils per als elements de codi */
+pre {
+  background: #f7f9fc;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+}
+
+pre {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  overflow-x: auto;
+}
