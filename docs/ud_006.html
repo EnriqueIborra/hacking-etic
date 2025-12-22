@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.5, user-scalable=yes">
+
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <title>U6 - Persistència, escalada i pivotatge</title>
+  <link rel="stylesheet" href="estilsunitats.css">
+  
+</head>
+<body>
+  <!--<button class="theme-toggle" onclick="toggleTheme()"></button> -->
+  <button class="theme-toggle" onclick="toggleTheme()">
+    <i class="hgi hgi-stroke hgi-sun-01" id="theme-icon"></i>
+  </button>
+
+  <!-- boto menu hamburguesa  +  javascript -->
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Abrir menú de navegación">
+    <span id="menu-icon">☰</span>
+  </button>
+  
+  <div class="sidebar">
+    <a href="#tecniques">Tècniques persistència</a>
+    <a href="#creacio">Creació de malware</a>
+    <a href="#escalada">Escalada privilegis en Linux</a>
+    <a href="#escaladaw">Escalada privilegis en Windows</a>
+    <a href="#pivot">Tècniques de pivotatge</a>
+    <a href="#labs">Laboratoris</a>
+
+
+  </div>
+
+  <div style="width: 100%;">
+    <header>
+      <a href="index.html"><img src="imgs/HEcap.png" alt="HE" width="80%"></a>
+      <!--<h2>🅷🅰🅲🅺🅸🅽🅶 È🆃🅸🅲</h2> -->
+      <h1>Unitat 6: Persistència, escalada i pivotatge</h1>
+      <h1>.</h1>
+    </header>
+    
+    <main>
+  <section id="tecniques">
+        <h1>Tècniques persistència</h1>
+        <p>Les tècniques de persistència fan referència als mètodes que un atacant utilitza per mantenir l’accés a un sistema
+           durant el temps, fins i tot després de reinicis, canvis de credencials o intents de neteja. Tot açò, sense tindre que
+          realitzar tot el procés d'explotació inicial cada vegada.</p>
+
+
+        <h2>Eines C&C  (C2)</h2>
+        <p>MITRE defineix les accions de comanda i control (C2), com a tècniques per a comunicar-se amb els sistemes 
+          abans compromesos i evitar ser detectats.  </p>
+        <ul>
+          <li>Utilitzar protocols de comunicació habituals</li>
+          <li>Utilitzar / infectar mitjans extraibles</li>
+          <li>Emprar encriptació i ofuscació</li>
+        </ul>
+
+        <h3>Alguns frameworks C2 ..</h3>
+        <ol>
+          <li>Cobalt Strike</li>
+          <li>Covenant</li>
+          <li>Empire</li>
+          <li>Havoc</li>
+          <li>ibombshell</li>
+          <li>Silver</li>
+          <li>Villain</li>
+        </ol>
+
+        <h2>Mòduls postexplotació. Metasploit</h2>
+
+        <ol> <strong>Recopilació d'informació local</strong>
+          <li>post/multi/recon/local_exploit_suggester</li>
+          <li>post/multi/gather/env</li>
+          <li>post/multi/gather/firefox_creds</li>
+          <li>post/multi/gather/ssh_creds</li>
+          <li>post/multi/gather/checkvm</li>
+          <li>post/windows/gather/credentials/credential_collector</li>
+          <li>post/windows/gather/enum_applications</li>
+          <li>post/windows/gather/enum_shares</li>
+        </ol>        
+
+        <ol> <strong>Manteniment d'accés</strong>
+          <li>exploit/windows/local/persistence</li>
+          <li>Escalada de privilegis</li>
+          <li>pivotatge en la xarxa</li>
+        </ol>
+
+      </section>         
+
+    <section id="creacio">
+    <h1>Creació de malware</h1>
+    <h2>msfvenom</h2>
+    <p>Forma part del framework de metasploit, pero funciona de manera independent</p>
+    <h2>ZipExec</h2>
+    <p>Desenvolupat com a PoC de que es possible executar binaris emmagatzemats en fitxers ZIP comprimits amb contrasenya,
+       evitant així els antivirus, que no poden comprovar el contingut del fitxer</p>
+ 
+    </section>         
+
+    <section id="escalada">
+    <h1>Escalada privilegis en Linux</h1>
+    <h2>Enumeració local en Linux</h2>
+      <h3>Enumeració Manual</h3>
+      <pre>hostname
+uname -a 
+ifconfig   o  ip a 
+netstat -tpln
+/etc/hosts   i  sites-available 
+/proc 
+ps -ef --forest
+crontab -l    i   /etc/crontab 
+id    history   env    sudo -l   
+find / -type f -perm 0777 2>/dev/null
+find / -type f -name ".*"
+find / -type f -readable     find / -type d -readable
+find / -type f -writable     find / -type d -writable
+find / -perm a=x 
+find / -type f -perm -u=s 
+find / -type f -perm  -g=s     </pre>
+
+
+      <h3>Enumeració automàtica</h3>
+      <p>LinPEAS  (WinPEAS )</p>
+      <p>Linux Smart Enumeration</p>
+      <p>Linux Exploit Suggester</p>
+
+
+    <h2>Escalada amb el kernel</h2>
+    <ul>Algunes vulnerabilitats històriques del kernel de Linux
+      <li>Dirty COW</li>
+      <li>Dirty Pipe</li>
+      <li>Sudo Baron Samedit</li>
+      <li>OverlayFS</li>
+      <li>PwnKit</li>
+      <li>CVE-2022-47939 sobre ksmbd</li>
+      <li>i més....</li>
+    </ul>
+
+    <h2>Escalada amb sudo</h2>
+    <h3>Que és sudo</h3>
+    <p>sudo (superuser do) és una eina que permet a usuaris normals executar comandes amb privilegis elevats (normalment com a root),
+       de manera controlada i auditada.</p>
+    <p>És el mètode recomanat per a administració segura a Linux.</p>
+    <p>El fitxer <strong>sudoers</strong> defineix: Qui pot usar sudo, Quines comandes , Com (amb o sense contrasenya), Com a quin usuari</p>
+    <p>📍 Ubicació habitual: <code> /etc/sudoers </code></p>
+    <p>⚠️ No s’ha d’editar mai directament amb editors normals.</p>
+    <p> <code>visudo</code> és l’eina segura per editar el fitxer sudoers.</p>
+    <h3>Exemple de linea de sudoers</h3>
+    <code>usuari_o_grup  hosts = (usuari_execució:grup_execució) opcions  comandes </code> <br>
+    <pre>alice ALL=(ALL) ALL </pre>
+    
+    <p>Què vol dir? <br> alice → l’usuari <br> 
+      ALL → des de qualsevol host <br> 
+      (ALL) → pot executar com a qualsevol usuari (normalment root) . (root:root) especificant usuario i grup<br>
+      ALL → pot executar qualsevol comanda , o posar una comanda concreta</p>
+    <p>usuari <code>alice</code> o grup <code>%admin</code></p>
+
+      <h3>Com saber quins binaris estan autoritzats</h3>
+     <pre>sudo -l</pre>
+     <p>i a continuació , si hi ha algun comando permés, buscar la forma de explotar-lo, en GTFOBINS, per a linux</p>
+     <p>Per executar un comando amb un altre usuari</p>
+     <pre>sudo -u nomusu nomcomando</pre>
+    
+    <h2>Escalada amb SUID/SGID</h2>
+    <p>El bit SUID <strong>Set-User-ID</strong> és un mecanisme de permisos de Linux/Unix que permet 
+      que un programa s’execute amb els privilegis del propietari del fitxer, i no amb els de l’usuari que l’executa. </p>
+      <h4>Com identificar-lo</h4>
+       <pre>-rw<span style="color: darkgreen; font-weight: bold;">s</span>r-xr-x </pre>
+      <h4>Com trobar fitxers amb este bit</h4>
+      <pre>find / -perm -u=s -type f 2>/dev/null
+find / -perm -4000 2>/dev/null        
+find / -type f -perm -4000 2>/dev/null
+find / -user root -perm -4000 2>/dev/null
+find / -perm -4000 -exec ls -l {} \; 2>/dev/null     </pre>
+    
+     <br><p>El bit SGID <strong>Set Group ID</strong>  és un permís especial de Linux/Unix que fa que un fitxer o directori herete el grup,
+       en lloc d’utilitzar el grup de l’usuari que l’executa o crea fitxers. És molt semblant al setuid, però actua sobre el grup.</p>
+     <p>El SGID pot aplicar-se a: 1. Fitxers executables  2. Directoris.  I el seu comportament canvia segons el cas.</p>
+     <h4>SGID en fitxers executables</h4>
+     <p>Quan un executable té SGID activat: El programa s’executa amb els privilegis del grup propietari</p>
+      <h4>     SGID en directoris (ús molt habitual) </h4>
+      <p>Quan un directori té SGID: Tots els fitxers creats dins hereten el grup del directori  </p>
+     <h4>Com identificar-lo</h4>
+     <pre>-rwxr-<span style="color: darkgreen; font-weight: bold;">s</span>r-x  </pre> 
+      <h4>Com trobar fitxers amb este bit</h4>
+            <pre>find / -perm -g=s -type f 2>/dev/null
+find / -perm -2000 2>/dev/null
+find / -type f -perm -2000 2>/dev/null
+find / -user root -perm -2000 2>/dev/null
+find / -perm -2000 -exec ls -l {} \; 2>/dev/null     </pre>     
+
+    <p>🧷 El Sticky Bit és un permís especial de Linux/Unix que s’utilitza principalment en directoris per evitar que els
+       usuaris esborren o modifiquen fitxers que no són seus, encara que tinguin permisos d’escriptura al directori.
+        És un mecanisme clau de seguretat multiusuari.</p>
+    <p>Quan el Sticky Bit està activat en un directori: Només poden esborrar o renombrar un fitxer: 
+    1. el propietari del fitxer  2. el propietari del directori 3. o root</p>
+    <h4>Com identificar-lo</h4>
+     <pre>drwxrwxrw<span style="color: darkgreen; font-weight: bold;">t</span>  </pre> 
+     <p>🧮 Valor numèric del Sticky Bit: 1000</p>
+     <h3>Escalada</h3>
+     <p>Conieixent este mecanisme es podrà fer una escalada de privilegis local a través d'estos binaris, de forma
+      similar a la explicada en sudo. La web GTFOBins també te informació sobre com utilitzar els binaris mal configurats.      </p>
+
+    <h2>Escalada amb tasques programades</h2>
+    <p>Les tasques programades amb cron permeten executar comandes o scripts automàticament a Linux/Unix segons un 
+      horari definit. És una eina fonamental d’administració de sistemes, però també rellevant en seguretat i auditoria.</p>
+      <h3>⏰ Què és cron?</h3>
+      <p>cron és un dimoni del sistema que: S’executa en segon pla, Llegeix fitxers de configuració (crontabs),
+        Llança tasques a hores, dates o intervals concrets: 
+        👉 Ideal per a backups, manteniment, monitoratge i automatització.</p>
+      <h3>📄 Què és un crontab?</h3>
+      <p>Un crontab és un fitxer que conté les tasques programades. Cada usuari pot tenir el seu propi crontab, i també n’hi ha de sistema.</p>
+      <h4>Crontab d'usuari</h4>
+      <p>S'edita amb <code>crontab -e</code> </p>
+      <h4>Crontab de sistema</h4>
+      <pre>Ubicacions habituals:
+/etc/crontab
+/etc/cron.d/
+/etc/cron.hourly/
+/etc/cron.daily/
+/etc/cron.weekly/
+/etc/cron.monthly/        </pre>
+        <p>Alguns problemes comuns que permeteixen l'explotació:</p>
+        <ul>
+          <li>Permisos d'escriptura en l'scrip </li>
+          <li>Variable d'entorn PATH</li>
+          Si el PATH conté la ruta al <code>home</code> primer que la ruta dels binaris, es podrà colocar en home un script maliciós 
+          amb el mateix nom del comando que s'execute en la tasca programada
+          <li>Ús de comodins o "wildcards"</li>
+        </ul>
+
+    <h2>Escalada amb serveis</h2>
+    <p>Si s'identifica un servei (com per exemple MySql) executant-se com a <code>root</code>, es podrien crear 
+    comandes des de dins de MySql, llançar-les, i estes seran executades amb permisos de root</p>
+
+
+    <h2>Escalada amb NFS (Network File System)</h2>
+    <p>NFS permet compartir directoris entre sistemes Unix/Linux a través de la xarxa, de manera que un client pot muntar 
+      un directori remot com si fos local. És molt útil, però perillós si està mal configurat.</p>
+      <h3>⚠️ Per què NFS pot provocar escalada de privilegis?</h3>
+      <p>NFS confia en els UID i GID del sistema client. Això vol dir que: Si el client diu “sóc root”, 
+        el servidor pot creure-s’ho si no s’apliquen restriccions adequades. Aquí és on apareix el risc.</p>
+
+    <h3>Què s’avalua en una auditoria o pentest ?</h3>
+      <ol>
+        <li>Quins directoris s’exporten</li>
+        <li>Qui hi pot accedir</li>
+        <li>Si existeixen restriccions d’usuari</li>
+        <li>Si els directoris són utilitzats pel sistema</li>
+        <li>Si hi ha controls addicionals</li>
+      </ol>
+
+     <h3>🛡️ Bones pràctiques de seguretat amb NFS</h3> 
+      <ol>
+        <li>Activar sempre <strong>root squashing</strong></li>
+        <li>Exportar només el necessari</li>
+        <li>Limitar per IP o xarxa</li>
+        <li>Evitar exportar directoris crítics</li>
+        <li>Usar permisos estrictes</li>
+        <li>Monitorar l’ús del servei</li>
+        <li>Considerar alternatives més segures si cal</li>
+      </ol>
+
+    </section>         
+
+   <section id="escaladaw">
+    <h1>Escalada de privilegis en Windows</h1>
+    <h2>Enumeració local</h2>
+    <p>Manualment es torna prou complicat, però hi ha moltes eines que faciliten el procés.</p>
+    <ol>
+      <li>WinPEAS</li>
+      <li>JAWS</li>
+      <li>SeatBelt</li>
+      <li>SharpUP</li>
+      <li>Metasploit Local Exploit Suggester</li>
+      <li>Windows Exploit Suggester - Next Generation</li>
+    </ol>
+    <p>Existeix també una pàgina similar a GTFOBins, però per a sistems Windows, anomenada  LOLBAS.</p>
+
+
+    <h2>Escalada amb el kernel</h2>
+    <p>Hi ha molts exploits per al kernel de windows, molts dels quals es poden practicar en la màquina Metasploitable3, que es 
+      la versió Windows de Metasploitable.     </p>
+    <p>Una de les vulnerabilitats més greus és la HiveNightmare o SeriusSAM (CVE-2021-36934) que permet llegir les claus 
+      de windows sense privilegis    </p>
+
+      <p>Algunes ferramentes automatitzen el procés de bypass UAC</p>
+      <ul>
+        <li>UACMe</li>
+        <li>UAC-a-mola</li>
+      </ul>
+
+    <h2>Escalada amb serveis</h2>
+      <p>Es poden aprofitar serveis mal configurats que corren en permisos de SYSTEM per escalar privilegis</p>
+      <p>Principals problemes</p>
+      <ol>
+        <li>Permisos insegurs</li>
+        <li>DLL Hijacking</li>
+        <li>Path de servei sense cometes</li>
+        <li>Permisos dèbils en registres</li>
+        <li>Serveis executables insegurs</li>
+      </ol>
+      <p>Uns dels serveis de windows on s'han trobat vulnerabilitats greus és el <code>Print Spooler</code></p>
+      <ul>
+        <li>PrintNighMare</li>
+        <li>SpoolFool</li>
+        <li>Potato Attacks</li>
+      </ul>
+
+
+    <h2>Escalada amb registres</h2>
+      <p>Si la politica de seguretat <code>AllwaysInstallElevated</code> esta habilitada, qualsevol paquet .MSI s'executarà amb
+      privilegis administratius</p>
+      <p>També s'ha de posar especial atenció als programes que s'executen en l'autoarranc, (autorun), que també s'executen amb 
+        privilegis administratius
+      </p>
+
+
+    <h2>Escalada amb tasques programades</h2>
+    <p>Esta via d'escalat és similar a la explicada en entorns Linux</p>
+    <p>Servei <code>Task Scheduler</code></p>
+    <p>Comando: <code>schtasks</code>, obte llista de les tasques programades</p>
+    <p>En Power Shell està <code>Get-ScheduledTask</code></p>
+
+   </section>
+
+    <section id="pivot">
+    <h1>Tècniques de pivotatge</h1>
+    <p>El pivotatge (pivoting) és una tècnica utilitzada quan: Ja tens accés a un sistema dins d’una xarxa, però vols arribar a altres sistemes que no són accessibles directament.</p>
+    <p>Aquest primer sistema compromès actua com a: pont o salt intermedi  o  pivot</p>
+    <p>📌 El pivotatge no és l’atac inicial, és post-explotació.</p>
+
+      <h2>amb tunels SSH</h2>
+      <p>Es crea un canal de comunicació encapsulat a través del sistema pivot.</p>
+      <p>El trànsit “viatja dins” d’un altre protocol, Permet evitar restriccions de xarxa, Molt comú en xarxes corporatives</p>
+      
+      <h3>Local Port Forwarding</h3>
+        <p>El local port forwarding permet: Obrir un port a la teva màquina local que redirigeix el trànsit a un servei remot, a través d’un servidor intermedi (pivot).</p>
+        <p>És molt útil quan: Un servei no és accessible directament, però sí que és accessible des del servidor pivot</p>
+
+      <ul> Escenari d’exemple 
+        <li>(atacant / administrador): 127.0.0.1</li>
+        <li>Servidor pivot: pivot.company.local</li>
+        <li>Servei intern: Base de dades a 10.0.0.50:3306</li>
+        <li>El servei només és accessible des del pivot</li>
+      </ul>
+      <pre>Exemple de local port Forwarding
+ssh -L 13306:10.0.0.50:3306 user@pivot.company.local </pre>
+
+      <ul>
+        <li>-L  : Indica local port forwarding</li>
+        <li>13306  :  Port local que s’obrirà a la teva màquina (tu et connectaràs a aquest port)</li>
+        <li>10.0.0.50:3306 :   Destí final intern ( IP interna,  Port del servei (ex. MySQL))</li>
+        <li>user@pivot.company.local :  Servidor intermedi (pivot) . És qui té accés a la xarxa interna</li>
+      </ul>
+
+      <h3>Remote Port Forwarding</h3>
+      <p>El remote port forwarding permet: Obrir un port en el servidor remot que redirigeix el trànsit cap a un servei accessible des de la teva màquina local (o una altra màquina).
+        És l’opció inversa del local port forwarding.</p>
+
+      <ul>Escenari d’exemple
+        <li>La teva màquina local: té un servei web a 127.0.0.1:8080</li>
+        <li>Servidor remot: pivot.company.local</li>
+        <li>El servidor remot no pot accedir directament al teu servei local</li>
+        <li>Objectiu: exposar el teu servei local a través del servidor remot</li>
+      </ul>
+            <pre>Exemple de remote port Forwarding
+ssh -R 9000:127.0.0.1:8080 user@pivot.company.local  </pre>
+
+      <ul>
+        <li>-R :  Indica remote port forwarding</li>
+        <li>9000 : Port que s’obrirà al servidor remot</li>
+        <li>127.0.0.1:8080  :  Destí local (127.0.0.1 → la teva màquina )  (8080 → el servei que ja està escoltant localment)</li>
+        <li>user@pivot.company.local :   Servidor remot on es crea el port</li>
+      </ul>
+      <p>👉 Qualsevol que accedeixi a pivot.company.local:9000 , estarà accedint indirectament al teu servei local.</p>
+
+
+      <h2>amb chisel</h2>
+      <p>En la màquina kali es pot llançar en mode servidor</p>
+      <pre>chisel server -p 9000 --reverse</pre>
+      <p>En la màquina client</p>
+      <pre>chisel client 10.0.1.7:9000 R:8000:127.0.0.1:8000</pre>
+    </section>         
+
+
+
+    <section id="labs">
+    <h1>Laboratoris</h1>
+
+    </section>         
+   
+      
+
+    </main>
+
+    <footer>
+      <p style="font-family: 'CCSymbols', sans-serif; font-size:larger;" >
+        2025 - Llicència: &#x1F16D; &#x1F16F; &#x1F10E; &#x1F10F; - U6 - Persistència, escalada i pivotatge 
+      </p>
+    </footer>
+  </div>
+
+  
+    <script src="scriptsunitats.js"></script>
+</body>
+</html>

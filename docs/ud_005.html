@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.5, user-scalable=yes">
+
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <title>U5 - HE a xarxes i sistemes</title>
+  <link rel="stylesheet" href="estilsunitats.css">
+  
+</head>
+<body>
+  <!--<button class="theme-toggle" onclick="toggleTheme()"></button> -->
+  <button class="theme-toggle" onclick="toggleTheme()">
+    <i class="hgi hgi-stroke hgi-sun-01" id="theme-icon"></i>
+  </button>
+
+  <!-- boto menu hamburguesa  +  javascript -->
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Abrir menú de navegación">
+    <span id="menu-icon">☰</span>
+  </button>
+  
+  <div class="sidebar">
+    <a href="#primer">Primer accés</a>
+    <a href="#cripto">Atacs Criptografics</a>
+    <a href="#tcp">Atacs a TCP/IP</a>
+    <a href="#metasploit">Metasploit</a>
+    <a href="#ad">Atacs a Active Directory</a>    
+    <a href="#expl">Accions en la màquina explotada</a>    
+    <a href="#labs">Laboratoris</a>
+
+
+  </div>
+
+  <div style="width: 100%;">
+    <header>
+      <a href="index.html"><img src="imgs/HEcap.png" alt="HE" width="80%"></a>
+      <!--<h2>🅷🅰🅲🅺🅸🅽🅶 È🆃🅸🅲</h2> -->
+      <h1>Unitat 5: HE a xarxes i sistemes</h1>
+      <h1>.</h1>
+    </header>
+    
+    <main>
+  <section id="primer">
+      <h1>Primer accés</h1>
+        <h2>Obtenció del primer accés en un Pentest</h2>
+
+          <p> En un <strong>pentest d’una xarxa empresarial</strong>, el primer accés  (initial access) és el moment en què l’auditor aconsegueix
+            <strong>entrar al perímetre de l’organització</strong> amb algun tipus de  control real.           </p>
+
+          <h3>Què es considera primer accés?</h3>
+          <ul>
+            <li>Credencials vàlides d’un usuari corporatiu</li>
+            <li>Accés a una aplicació interna o portal empresarial</li>
+            <li>Execució de comandes en un servidor o endpoint</li>
+            <li>Connexió a la xarxa interna (VPN, RDP, SSH, etc.)</li>
+          </ul>
+
+          <h3>Vectors més habituals</h3>
+          <ol>
+            <li><strong>Factor humà</strong>: phishing, reutilització de contrasenyes</li>
+            <li><strong>Aplicacions web</strong>: vulnerabilitats o errors d’autenticació</li>
+            <li><strong>Infraestructura exposada</strong>: serveis mal configurats</li>
+            <li><strong>Dispositius d’usuari</strong>: endpoints amb controls febles</li>
+          </ol>
+        
+        <h2>Enginyeria Social</h2>
+        <p>La <strong>enginyeria social</strong> és un conjunt de tècniques utilitzades   per manipular persones amb l’objectiu d’obtenir informació, accés o accions
+          que comprometen la seguretat d’una organització.  A diferència dels atacs purament tècnics, se centra en el  <strong>factor humà</strong>.  </p>
+
+        <h3>Per què funciona la enginyeria social?</h3>
+        <p>Les persones prenen decisions basades en emocions, hàbits i confiança.Els atacants exploten aquestes característiques per evitar controls  tècnics i de seguretat.   </p>
+
+        <h3>Principis psicològics fonamentals</h3>
+
+        <ul>
+          <li><strong>Autoritat</strong><br>Les persones tendeixen a obeir figures d’autoritat (directius, personal tècnic, responsables).        </li>
+
+          <li><strong>Urgència</strong><br>Crear una situació de pressa o emergència redueix la capacitat de
+            verificació racional.          </li>
+
+          <li><strong>Confiança</strong><br>L’ús d’un llenguatge professional o familiar genera credibilitat
+            i disminueix les sospites.</li>
+
+          <li><strong>Por</strong><br>Amenaces de conseqüències negatives si no s’actua immediatament.
+          </li>
+
+          <li><strong>Reciprocitat</strong><br>Quan algú ofereix ajuda o un benefici, es genera una obligació implícita             de correspondre.</li>
+
+          <li>             <strong>Curiositat</strong><br>Missatges atractius o misteriosos que incentiven l’acció impulsiva.           </li>
+        </ul>
+
+        <h3>Tècniques habituals d’enginyeria social</h3>
+
+        <ul>
+          <li>Phishing (correus electrònics fraudulents)</li>
+          <li>Vishing (trucades telefòniques)</li>
+          <li>Smishing (SMS o missatges instantanis)</li>
+          <li>Pretexting (creació d’un escenari fals)</li>
+          <li>Baiting (oferir un incentiu o recompensa)</li>
+          <li>Tailgating (accés físic no autoritzat)</li>
+        </ul>
+
+      <h3>Impacte en una organització</h3>
+        <p>           Un atac d’enginyeria social reeixit pot provocar:         </p>
+
+        <ul>
+          <li>Roba de credencials</li>
+          <li>Accés no autoritzat a sistemes interns</li>
+          <li>Pèrdua de dades sensibles</li>
+          <li>Dany reputacional</li>
+          <li>Impacte econòmic</li>
+        </ul>
+
+        <h2>Phishing</h2>
+          <p>   El <strong>phishing</strong> és una tècnica d’enginyeria social que té com a
+            objectiu enganyar les víctimes perquè revelin informació sensible    (credencials, dades personals, informació financera) o perquè executin
+            accions malicioses, com clicar en enllaços o descarregar arxius.       </p>
+
+          <p>  Aquest tipus d’atac se centra principalment en el <strong>factor humà</strong>
+            i acostuma a simular comunicacions legítimes d’empreses, institucions o   persones de confiança.          </p>
+
+          <h3>Com funciona el phishing</h3>
+          <ol>
+            <li>L’atacant crea un missatge que sembla legítim</li>
+            <li>La víctima rep el missatge (correu, SMS, trucada, etc.)</li>
+            <li>Es genera una situació d’urgència o confiança</li>
+            <li>La víctima realitza l’acció sol·licitada</li>
+            <li>L’atacant obté accés o informació sensible</li>
+          </ol>
+
+          <h3>Tipus principals de phishing</h3>
+
+          <ul>
+            <li>  <strong>Email Phishing</strong><br>  El més comú. Correus electrònics massius que suplanten bancs, serveis 
+              online o departaments interns d’una empresa.       </li>
+            <li>  <strong>Spear Phishing</strong><br>   Atacs dirigits a una persona o grup concret, amb informació personalitzada           per augmentar la credibilitat.  </li>
+            <li>  <strong>Whaling</strong><br>   Variant del spear phishing orientada a alts càrrecs    (directius, gerència, CFO, CEO).   </li>
+            <li>  <strong>Smishing</strong><br>   Phishing mitjançant missatges SMS o aplicacions de missatgeria instantània.             </li>
+            <li>  <strong>Vishing</strong><br>   Atacs realitzats a través de trucades telefòniques, sovint simulant
+              serveis tècnics o entitats oficials.  </li>
+            <li>  <strong>Clone Phishing</strong><br>  Es copia un correu legítim prèviament rebut i se’n modifica el contingut
+              per introduir un enllaç o arxiu maliciós.   </li>
+            <li>  <strong>Business Email Compromise (BEC)</strong><br> Compromís de comptes corporatius per ordenar pagaments fraudulents o
+              sol·licitar informació confidencial.   </li>
+          </ul>
+
+          <h3>Impacte del phishing en una organització</h3>
+          <ul>
+            <li>Roba de credencials corporatives</li>
+            <li>Accés no autoritzat a sistemes interns</li>
+            <li>Pèrdues econòmiques</li>
+            <li>Fuites de dades sensibles</li>
+            <li>Dany reputacional</li>
+          </ul>
+
+          <h3>Com protegir-se del phishing</h3>
+          <ul>
+            <li>Formació i conscienciació del personal</li>
+            <li>Verificar sempre l’origen dels missatges</li>
+            <li>No clicar en enllaços sospitosos</li>
+            <li>Ús d’autenticació multifactor (MFA)</li>
+            <li>Filtres antispam i controls de correu</li>
+          </ul>
+
+       <h2>Eines de phishing    </h2>
+          <p>  En l’àmbit de la <strong>ciberseguretat</strong>, les eines de phishing  s’utilitzen principalment en <strong>pentests autoritzats</strong>,
+            auditories de seguretat i campanyes de <strong>conscienciació</strong>   per avaluar la resistència de les organitzacions davant atacs
+            basats en enginyeria social.   </p>
+
+          <p> L’objectiu no és comprometre usuaris, sinó  <strong>identificar debilitats humanes i de procés</strong>
+            per millorar la seguretat global.  </p>
+
+          <h3>Per què s’utilitzen en pentesting?</h3>
+          <ul>
+            <li>Avaluar el nivell de conscienciació dels empleats</li>
+            <li>Mesurar la capacitat de detecció d’atacs</li>
+            <li>Validar procediments interns de resposta</li>
+            <li>Reduir riscos abans d’un atac real</li>
+          </ul>
+        <h3>SET (Social-Engineer Toolkit)</h3>
+
+        <p>  <strong>SET (Social-Engineer Toolkit)</strong> és una eina de codi obert  dissenyada per a <strong>auditories de seguretat i proves d’enginyeria social
+          autoritzades</strong>. El seu objectiu principal és avaluar el  <strong>factor humà</strong> dins d’una organització, un dels vectors
+          d’atac més explotats en incidents reals de seguretat.  </p>
+
+        <h3>Objectiu principal de SET</h3>
+        <p>  SET permet simular atacs d’enginyeria social per comprovar si els empleats, procediments i controls de seguretat són capaços de detectar
+          i resistir intents de manipulació.  </p>
+
+        <h3>Relació amb el phishing</h3>
+        <p>   Una de les funcionalitats més conegudes de SET és la  <strong>simulació de campanyes de phishing</strong>, utilitzades en
+          pentests amb autorització contractual per:   </p>
+
+        <ul>
+          <li>Avaluar la conscienciació dels usuaris</li>
+          <li>Detectar debilitats en processos interns</li>
+          <li>Mesurar el temps de resposta davant incidents</li>
+          <li>Comprovar controls de seguretat existents</li>
+        </ul>
+
+        <h3>Tipus de simulacions que permet SET</h3>
+        <ul>
+          <li>Enginyeria social basada en correu electrònic</li>
+          <li>Portals web falsos per a proves de credencials</li>
+          <li>Escenaris de manipulació psicològica</li>
+          <li>Proves de confiança i autoritat simulada</li>
+        </ul>
+        <h4>Altres eines habituals són: MaxPhisher i  Gophish</h4>
+
+      <h2>Evitar la protecció de doble factor 2FA</h2>
+        <p>Una vegada s'obtenen credencials d'un usuari, es procedirà a provarles en diferents serveis, VPN, mail, access a sistema operatiu, accés a aplicacions ..
+          Este atac de reutilització de credencials s'anomena   <strong>password spraying</strong> </p>
+          <p>   El <strong>Doble Factor d’Autenticació (2FA)</strong> és una de les mesures     de seguretat més eficaces per protegir comptes i sistemes. 
+          Tot i això, <strong>no és infal·lible</strong> si s’implementa o s’utilitza     incorrectament.   </p>
+          <p>Si el pentester es troba amb un 2FA, pot intentar botar-lo amb eines com  <strong>evilginx2 o modlishka</strong></p>
+          <p>També es pot practicar com botar-se esta protecció en diversos laboratoris de la academia de <strong>PortSwigger</strong></p>
+
+      <h2>Tècniques de Red Team</h2>
+        <p> En un <strong>exercici de red team autoritzat</strong>, les tècniques d’atac     no es limiten a l’àmbit digital. Molts atacs reals combinen
+          <strong>factors físics, humans i tecnològics</strong>.
+          L’objectiu no és “trencar sistemes”, sinó     <strong>avaluar la seguretat real d’una organització</strong>.   </p>
+
+        <h3>Red Team vs Pentesting tradicional</h3>
+        <p>
+          A diferència d’un pentest clàssic, el red team:
+        </p>
+        <ul>
+          <li>Simula atacants reals</li>
+          <li>Combina múltiples vectors</li>
+          <li>Avalua detecció i resposta</li>
+          <li>Inclou seguretat física i humana</li>
+        </ul>
+
+        <h3>1. Lock Picking (Seguretat física)</h3>
+        <p>
+          El <strong>lock picking</strong> representa l’avaluació de
+          <strong>controls d’accés físics</strong>.
+          No se centra en forçar portes, sinó en comprovar si
+          els mecanismes físics ofereixen una protecció real.
+        </p>
+
+        <strong>Què avalua?</strong>
+        <ul>
+          <li>Qualitat dels panys</li>
+          <li>Dependència excessiva del control físic</li>
+          <li>Absència de capes addicionals de seguretat</li>
+        </ul>
+
+        <strong>Riscos associats:</strong>
+        <ul>
+          <li>Accés físic no autoritzat</li>
+          <li>Connexió directa a la xarxa interna</li>
+          <li>Manipulació de dispositius</li>
+        </ul>
+
+        <strong>Mesures defensives:</strong>
+        <ul>
+          <li>Panys certificats i de qualitat</li>
+          <li>Controls d’accés electrònics</li>
+          <li>Càmeres i monitoratge</li>
+          <li>Seguretat per capes</li>
+        </ul>
+
+        <h3>2. Rubber Ducky / BadUSB</h3>
+        <p>  Els dispositius <strong>Rubber Ducky</strong> o     <strong>BadUSB</strong> simulen ser perifèrics legítims
+        (com teclats o adaptadors), però representen  <strong>un risc quan els dispositius USB són confiats automàticament</strong>. </p>
+        <p>Hi ha altres dispositius com Flipper Zero, KeyCroc, Evil Crow RF, etc. <br> 
+        Este tipus d'atac va ser emprat per primera vegada amb el virus <strong>Stuxnet</strong> </p>
+
+        <strong>Mesures defensives:</strong>
+        <ul>
+          <li>Desactivar USB no necessaris</li>
+          <li>Control de dispositius (Device Control)</li>
+          <li>EDR i protecció d’endpoint</li>
+          <li>Formació dels usuaris</li>
+        </ul>
+
+        <h3>Factor humà: el denominador comú</h3>
+        <p>
+          Tant el lock picking com el BadUSB demostren que
+          <strong>el factor humà és clau</strong>:
+        </p>
+        <ul>
+          <li>Confiança excessiva</li>
+          <li>Manca de consciència de seguretat</li>
+          <li>Rutines previsibles</li>
+        </ul>
+
+      </section>         
+
+    <section id="cripto">
+    <h1>Atacs criptografics</h1>
+
+    <p> Els <strong>atacs criptogràfics</strong> són tècniques utilitzades per       comprometre la confidencialitat, integritat o autenticitat de la
+      informació protegida mitjançant mecanismes criptogràfics.      Sovint no ataquen l’algoritme en si, sinó
+      <strong>errors d’implementació, configuració o ús</strong>.     </p>
+
+    <h3>Per què són crítics?</h3>
+    <p>       La criptografia és la base de la seguretat moderna: comunicacions xifrades,  autenticació, signatures digitals i protecció de dades.
+      Quan falla, l’impacte pot ser total.     </p>
+      <p>Segons la guia CCN-STIC 807, els errors més comuns</p>
+      <ol>
+        <li>Crear el nostre propi algorisme criptografic</li>
+        <li>Implementar un algorisme existent</li>
+        <li>Mal ús de llibreries i algorismes existents</li>
+        <li>Predictibilitat (oracle attacks)</li>
+        <li>Evitació de la criptografia (canal lateral)</li>
+        <li>Criptografia no aillada</li>
+      </ol>
+
+    <h3>Principals categories d’atacs criptogràfics</h3>
+
+    <h4>1. Atacs contra xifratge feble o obsolet</h4>
+    <ul>
+      <li>Ús d’algoritmes antics o insegurs</li>
+      <li>Claus massa curtes</li>
+      <li>Xifratge simètric o asimètric mal seleccionat</li>
+    </ul>
+
+    <h4>2. Atacs contra la gestió de claus</h4>
+    <ul>
+      <li>Claus emmagatzemades en text pla</li>
+      <li>Reutilització de claus</li>
+      <li>Distribució insegura de claus</li>
+      <li>Rotació inexistent o incorrecta</li>
+    </ul>
+
+    <h4>3. Atacs contra funcions hash</h4>
+    <ul>
+      <li>Col·lisions (dos valors amb el mateix hash)</li>
+      <li>Hashes sense salt</li>
+      <li>Algoritmes hash trencats o obsolets</li>
+    </ul>
+
+    <h4>4. Atacs de canal lateral (Side-Channel)</h4>
+    <ul>
+      <li>Anàlisi de temps d’execució</li>
+      <li>Consum d’energia</li>
+      <li>Errors o missatges retornats</li>
+    </ul>
+
+    <h4>5. Atacs a protocols criptogràfics</h4>
+    <ul>
+      <li>Configuracions TLS incorrectes</li>
+      <li>Protocols antics habilitats</li>
+      <li>Negociació insegura de xifratge</li>
+    </ul>
+
+    <ul> Recursos per ampliar coneixements sobre criptografia
+      <li>Class4crypt</li>
+      <li>criptografiayseguridad.blogspot.com</li>
+      <li>Criptored</li>
+      <li>Proyecto CLCript</li>
+      <li>Blog de Mikel Garcia Larragan</li>
+      <li>cryptopals.com - challenges</li>
+    </ul>
+
+
+    <h2>Password hashing</h2>
+      <p>
+        El <strong>password hashing</strong> és un mecanisme de seguretat utilitzat per protegir les contrasenyes dels usuaris. En lloc de desar la contrasenya        en text pla, el sistema emmagatzema una <strong>empremta criptogràfica
+        (hash)</strong> generada a partir d’aquesta.      </p>
+
+      <h3>Per què no s’han d’emmagatzemar contrasenyes en text pla?</h3>
+      <p>  Si una base de dades és compromesa i les contrasenyes estan en text pla,        totes les credencials queden exposades immediatament. El password hashing        redueix dràsticament l’impacte d’aquest tipus d’incidents.      </p>
+
+      <h3>Què és un hash?</h3>
+      <p>
+        Un <strong>hash</strong> és el resultat d’una funció matemàtica que:
+      </p>
+      <ul>
+        <li>Converteix dades d’entrada en una sortida de longitud fixa</li>
+        <li>No es pot revertir (funció unidireccional)</li>
+        <li>Canvia completament amb una mínima variació de l’entrada</li>
+      </ul>
+
+      <h3>Procés bàsic de password hashing</h3>
+      <ol>
+        <li>L’usuari introdueix una contrasenya</li>
+        <li>El sistema aplica una funció hash segura</li>
+        <li>El resultat s’emmagatzema a la base de dades</li>
+        <li>En el login, es calcula el hash de la contrasenya introduïda</li>
+        <li>Es comparen els hashes, no les contrasenyes</li>
+      </ol>
+
+      <h3>El concepte de salt</h3>
+      <p> Un <strong>salt</strong> és un valor aleatori afegit a la contrasenya abans  de calcular el hash. El seu objectiu és evitar:       </p>
+      <ul>
+        <li>Atacs amb taules rainbow</li>
+        <li>Que dues contrasenyes iguals tinguin el mateix hash</li>
+      </ul>
+      <p> Un <strong>pepper</strong> és similar al salt però no s'emmagatzema junt al hash   </p>
+      <p>  ** Afegir un nombre gran d'iteracions per generar la clau, fa més robust el hash</p>
+      <p> ** Afegir requeriments de memòria grans, augmenta el cost computacinal de força bruta</p>
+
+      <h3>Algorismes recomanats per a contrasenyes</h3>
+      <ul>
+        <li><strong>bcrypt</strong></li>
+        <li><strong>Argon2</strong> (recomanat actualment)</li>
+        <li><strong>scrypt</strong></li>
+        <li><strong>PBKDF2</strong></li>
+      </ul>
+
+      <h3>Algorismes NO recomanats</h3>
+      <ul>
+        <li>MD5</li>
+        <li>SHA-1</li>
+        <li>SHA-256 (sense iteracions ni salt)</li>
+      </ul>
+
+    <h2>Emmagatzemament de passwords(hash) en SO</h2>
+     <h3>Linux      </h3>
+      <p>  En sistemes <strong>Linux</strong>, les contrasenyes dels usuaris    <strong>no s’emmagatzemen en text pla</strong>. En el seu lloc, el sistema
+    guarda un <strong>hash criptogràfic</strong> de la contrasenya, la qual cosa     permet verificar-la sense revelar el seu valor original.   </p>
+   <h4>On s’emmagatzemen els hashos en Linux?</h4>
+  <h5>/etc/passwd</h5>
+  <p>    Antigament contenia les contrasenyes, però actualment només guarda    informació bàsica de l’usuari. El camp de contrasenya sol contenir una    <code>x</code> indicant que el hash real està en un altre fitxer.  </p>
+
+  <h4>/etc/shadow</h4>
+  <p>    El fitxer <strong>/etc/shadow</strong> conté els hashos reals de les    contrasenyes i només és accessible per l’usuari <strong>root</strong>.  </p>
+
+  <p>Cada entrada inclou:  </p>
+  <ul>
+    <li>Nom d’usuari</li>
+    <li>Hash de la contrasenya</li>
+    <li>Informació de caducitat</li>
+    <li>Polítiques de canvi</li>
+  </ul>
+  <pre>Exemple
+diego:$6$PmLE1Jrk9oLnacKL$aSRMmaxrkCMvxfK2I9Y80:18118:0:99999:7:::
+username: diego
+contrasenya: $6$PmLE1Jrk9oLnacKL$aSRMmaxrkCMvxfK2I9Y80
+Data de lúltim canvi : 18124 (*)
+Edad mínima de la password: 0
+Edad máxima de la password: 99999
+Període d'avis de caducitat: 7 días.
+Els tres últims tres camps no tenen dades. 
+  (Dies de gràcia després de caducar, Data de bloqueig del compte, Reservat)    
+  </pre>
+  <pre>$6$PmLE1Jrk9oLnacKL$aSRMmaxrkCMvxfK2I9Y80
+$6$ → Algoritme de hash
+PmLE1Jrk9oLnacKL → Salt  (Valor aleatori per evitar rainbow tables.)
+aSRMmaxrkCMvxfK2I9Y80 → Resultat del hash (És el resultat criptogràfic final del hash)
+  </pre>
+
+  <pre>
+Codi        Algorisme        Estat de seguretat   Notes
+$1$         MD5               ❌ Obsolet         Trencable ràpidament
+$2a$        Blowfish          ⚠️ Antic           Poc habitual avui
+$2y$        Blowfish (bcrypt) ✅ Segur           Usat en alguns sistemes
+$5$         SHA-256           ⚠️ Acceptable      Millor que MD5
+$6$         SHA-512           ✅ Segur           Molt comú en Linux
+$y$         yescrypt          ✅ Molt segur      Recomanat actualment
+$7$         scrypt            ✅ Molt segur      Resistent a GPU
+$argon2i$   Argon2i           ✅ Molt segur      Memòria-intensiu
+$argon2id$  Argon2id          ✅ Molt segur      Estàndard modern</pre>
+
+     <h3>Windows</h3>
+      <h4>On emmagatzema Windows els hashes?</h4>
+        <p>
+          Windows utilitza principalment dos components:
+        </p>
+
+        <ul>
+          <li><strong>SAM (Security Account Manager)</strong><br> Conté els hashes de les contrasenyes dels comptes locals.
+          </li>
+          <li><strong>Active Directory (NTDS.dit)</strong><br>En entorns de domini, emmagatzema els hashes dels usuaris del domini.
+          </li>
+        </ul>
+
+        <h4>Tipus de hashes utilitzats a Windows</h4>
+
+        <ul>
+          <li><strong>LM (LAN Manager)</strong><br>Antic i insegur. Avui dia està deshabilitat per defecte.
+          </li>
+          <li><strong>NTLM</strong><br>Més robust que LM, però considerat obsolet davant atacs moderns.
+          </li>
+          <li><strong>NTLMv2</strong><br>Versió millorada utilitzada en protocols d’autenticació de xarxa.
+          </li>
+        </ul>
+        <p>📍 Ubicació de la SAM  (Fitxer principal)</p>
+        <pre>C:\Windows\System32\config\SAM</pre>
+        <ul>Aquest fitxer:
+          <li>Conté els hashes dels comptes locals</li>
+          <li>Està bloquejat pel sistema quan Windows està en execució</li>
+          <li>Només és accessible amb privilegis elevats i en determinades condicions</li>
+        </ul>
+        <p>🔐 Fitxers relacionats (molt importants)</p>
+        <p>La SAM no funciona sola. Necessita altres fitxers del mateix directori:</p>
+<pre>C:\Windows\System32\config\
+├─ SAM      → comptes locals
+├─ SYSTEM   → clau per desencriptar la SAM
+├─ SECURITY → polítiques locals
+</pre>
+      <p>⚠️ No es pot llegir en calent !!</p>
+      <p>Peeeero, Si hi ha imatges de recuperació creades, SAM i SYSTEM també poden estar en <code>C:\windows\repair</code> o en 
+        <code>C:\windows\System32\config\RegBack</code>     </p>
+     <p>A més a més, hi ha eines específiques per obtindre els hash, com , <strong>pwdump7</strong> v.ant a W10
+    , o <strong>pwdump8</strong> més actualitzat, <strong>samdump2</strong> de kali, o <strong>mimikatz</strong>
+  que permet extraure contrasenyes de memòria, o fer atacs de <code>pass-the-hash</code> o <code>pass-the-ticket</code>
+ o <code>Golden tickets</code>, etc..</p>
+
+    <hr><h2>Us i creació de diccionaris</h2>
+     <p>En cas d'obtindre hashes en el test d'intrussió, es disposa de tres formes de descobrir les contrasenyes que han generat eixos hashes  </p>
+    <ol>
+      <li>Atacs de força bruta</li>
+      <li>Atacs mitjantçant <code>rainbow tables</code></li>
+      <li>Atacs mitjantçant diccionari</li>
+    </ol>
+
+      <h3>Què és un diccionari en seguretat?</h3>
+    <p>Un diccionari és una llista estructurada que pot contenir:   </p>
+    <ul>
+      <li>Contrasenyes habituals</li>
+      <li>Paraules comunes</li>
+      <li>Combinacions previsibles</li>
+      <li>Variants amb números o símbols</li>
+      <li>Patrons basats en el context de l’objectiu</li>
+    </ul>
+
+  <h3>Diccionaris genèrics vs diccionaris personalitzats</h3>
+
+  <h4>Diccionaris genèrics</h4>
+  <ul>
+    <li>Contenen contrasenyes comunes</li>
+    <li>Són fàcils d’obtenir</li>
+    <li>Serveixen com a primera prova</li>
+  </ul>
+
+     <p> Les <strong>llistes de contrasenyes</strong> són col·leccions de passwords
+    utilitzades en auditories de seguretat per avaluar la    <strong>robustesa de les polítiques d’autenticació</strong>.
+    En un context professional, s’utilitzen únicament    <strong>amb autorització i dins l’abast definit</strong>.  </p>
+  <p>És un conjunt de contrasenyes recopilades a partir de patrons comuns    d’ús humà, filtracions públiques o anàlisi estadística.
+     Aquestes llistes reflecteixen <strong>com creen contrasenyes les persones    en la pràctica real</strong>.  </p>
+
+
+  <p>En kali, per defecte hi ha instalat alguns en el directori <code>/usr/share/wordlists</code> i es poden 
+  instalar més, com per exemple la lista <strong>Seclist</strong> amb <code>apt install seclists</code> situant 
+els fitxers nous en <code>/usr/share/seclists</code></p>
+<p>La llista més famosa de totes es la llista <code>Rockyou</code></p>
+<p>Hi ha un projecte anomenat <strong>Kaonashi</strong> que es pot descarregar de github <code>github.com/kaonashi/kaonashi-passwords/Kaonashi</code></p>
+ <p>Altre element important són les <strong>contrasenyes predeterminades</strong> que posen els fabricants en alguns porductes i 
+que després no es canvien quan es posen en producció. </p>
+
+   <h4>Diccionaris personalitzats</h4>
+  <ul>
+    <li>Es basen en informació de l’organització</li>
+    <li>Inclouen noms, marques, ubicacions, anys</li>
+    <li>Són molt més efectius en entorns reals</li>
+  </ul>  
+
+ <h4>Fonts habituals per a diccionaris personalitzats</h4>
+  <ul>
+    <li>Pàgina web corporativa</li>
+    <li>Xarxes socials i perfils públics</li>
+    <li>Documents interns (quan està permès)</li>
+    <li>Convencions internes de noms</li>
+    <li>Errors humans previsibles</li>
+  </ul>
+
+  <h4>Eines per crear diccionaris personalitzats </h4>
+  <ul>
+    <li>cewl</li>
+    <li>crunch</li>
+  </ul>
+    <h3>cewl</h3>
+    <p>cewl es una eina que genera diccionaris a partir del contingut d'un lloc web</p>
+
+    <hr><h3>Password cracking</h3>
+      <p>    El <strong>password cracking</strong> és el procés mitjançant el qual es prova    de recuperar una contrasenya a partir 
+        del seu <strong>hash</strong>, amb l’objectiu d’<strong>avaluar la robustesa    de les polítiques de seguretat</strong> en auditories autoritzades.  </p>
+  <ul>En un <strong>pentest professional</strong>, el password cracking no busca “trencar per trencar”, sinó:
+    <li>Mesurar la fortalesa real de les contrasenyes</li>
+    <li>Detectar riscos associats al factor humà</li>
+    <li>Validar polítiques de seguretat existents</li>
+    <li>Justificar millores com MFA o canvis de política</li>
+  </ul>
+   <h3>Visió general del procés</h3>
+   <ol>
+    <li>      <strong>Obtenció del material d’autenticació</strong><br>      Es treballa amb <em>hashes</em> o respostes d’autenticació, mai amb      contrasenyes en text clar.    </li>
+    <li>      <strong>Identificació del tipus de hash</strong><br>      Conèixer l’algoritme utilitzat (per exemple, si incorpora sal, iteracions,      etc.) és clau per entendre la resistència del sistema.    </li>
+    <li>      <strong>Selecció d’estratègia</strong><br>      Es tria un enfocament realista basat en patrons humans i context      (no força bruta indiscriminada).    </li>
+    <li>      <strong>Prova controlada</strong><br>      Les proves es fan de manera limitada i documentada, respectant      l’abast i evitant impactes operatius.    </li>
+    <li>      <strong>Anàlisi de resultats</strong><br>      S’avalua què s’ha pogut recuperar i per què, identificant debilitats.    </li>
+  </ol>
+
+<h2>Comparació d’Eines: John the Ripper vs Hashcat</h2>
+
+  <p>
+    <strong>John the Ripper</strong> i <strong>Hashcat</strong> són dues eines
+    àmpliament utilitzades en <strong>auditories de seguretat i pentesting
+    autoritzat</strong> per avaluar la fortalesa de les contrasenyes.
+    Tot i que comparteixen objectiu, el seu enfocament i característiques
+    són diferents.
+  </p>
+
+  <h3>Visió general</h3>
+
+  <table border="1" cellpadding="8" cellspacing="0" width="100%">
+    <thead style="background:#f2f2f2;">
+      <tr>
+        <th>Característica</th>
+        <th>John the Ripper</th>
+        <th>Hashcat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Enfocament principal</td>
+        <td>Flexibilitat i facilitat d’ús</td>
+        <td>Rendiment i velocitat</td>
+      </tr>
+      <tr>
+        <td>Ús de GPU</td>
+        <td>Limitat / opcional</td>
+        <td>Central (GPU-first)</td>
+      </tr>
+      <tr>
+        <td>Facilitat per a principiants</td>
+        <td>Alta</td>
+        <td>Mitjana</td>
+      </tr>
+      <tr>
+        <td>Rendiment en grans volums</td>
+        <td>Moderat</td>
+        <td>Molt alt</td>
+      </tr>
+      <tr>
+        <td>Formats de hash</td>
+        <td>Molt ampli</td>
+        <td>Molt ampli</td>
+      </tr>
+      <tr>
+        <td>Configuració inicial</td>
+        <td>Senzilla</td>
+        <td>Més complexa</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>John the Ripper</h3>
+  <p>    John the Ripper és conegut per la seva    <strong>versatilitat i simplicitat</strong>. És especialment útil    en entorns on es vol fer una primera avaluació ràpida    o quan es treballa amb formats de hash diversos.  </p>
+
+  <strong>Avantatges:</strong>
+  <ul>
+    <li>Fàcil d’utilitzar i d’interpretar</li>
+    <li>Bona gestió de diccionaris i regles</li>
+    <li>Ideal per a proves inicials</li>
+    <li>Funciona bé en entorns sense GPU</li>
+  </ul>
+
+  <strong>Limitacions:</strong>
+  <ul>
+    <li>Menor rendiment comparat amb GPU</li>
+    <li>Escala pitjor en grans volums</li>
+  </ul>
+
+  <h3>Hashcat</h3>
+  <p>    Hashcat està orientat al    <strong>màxim rendiment possible</strong>, especialment amb GPU.    És l’eina preferida quan es necessita    analitzar grans conjunts de hashes de manera eficient.  </p>
+
+  <strong>Avantatges:</strong>
+  <ul>
+    <li>Extremadament ràpid amb GPU</li>
+    <li>Escala molt bé en entorns grans</li>
+    <li>Gran control sobre estratègies avançades</li>
+    <li>Ideal per a proves de resistència</li>
+  </ul>
+
+  <strong>Limitacions:</strong>
+  <ul>
+    <li>Corba d’aprenentatge més pronunciada</li>
+    <li>Dependència de maquinari potent</li>
+  </ul>
+
+  <h3>Quina eina triar en un pentest?</h3>
+  <ul>
+    <li>      <strong>John the Ripper</strong> és ideal per a      proves ràpides, entorns petits o formació.    </li>
+    <li>      <strong>Hashcat</strong> és més adequat per a      auditories exhaustives i entorns amb GPU.    </li>
+    <li>
+      En molts pentests professionals,      <strong>s’utilitzen de manera complementària</strong>.
+    </li>
+  </ul>
+  <hr><h3>Eines de cracking online</h3>
+  <ol>
+    <li>Hydra: Suporta gran quantiat de protocols</li>
+    <li>Medusa: Igual que Hydra, però amb suport multifil</li>
+    <li>Ncrack:  Del creador de nmap. Es pot trobar en la pàgina de nmap</li>
+  </ol>
+
+    </section>         
+
+    <section id="tcp">
+    <h1>Atacs tcp/ip</h1>
+ <h2>Paràmetres i Vectors d’Atac a TCP/IP</h2>
+
+  <p>    El conjunt de protocols <strong>TCP/IP</strong> és la base de les comunicacions    en xarxa. La seva flexibilitat i antiguitat fan que determinats    <strong>paràmetres i camps de protocol</strong> puguin ser objecte d’abusos    si no s’apliquen controls adequats.  </p>
+
+  <h3>Què s’entén per “paràmetres” en atacs TCP/IP?</h3>
+  <p>    Són camps, valors o comportaments dels protocols de xarxa    (IP, TCP, UDP, ICMP) que poden ser manipulats per    provocar <strong>interrupció del servei, evasió de controls    o degradació de la seguretat</strong>.  </p>
+
+  <h3>Paràmetres rellevants a nivell IP</h3>
+  <ul>
+    <li>      <strong>Adreça IP origen/destí</strong><br>      Pot ser objecte de suplantació (spoofing) si no hi ha filtratge.    </li>
+    <li>      <strong>TTL (Time To Live)</strong><br>      El seu valor pot influir en la detecció de rutes i dispositius.    </li>
+    <li>      <strong>Fragmentació</strong><br>      Paquets fragmentats poden dificultar la inspecció del trànsit.    </li>
+  </ul>
+
+  <h3>Paràmetres rellevants a nivell TCP</h3>
+  <ul>
+    <li>      <strong>Ports origen i destí</strong><br>      Utilitzats per identificar serveis i canals de comunicació.    </li>
+    <li>      <strong>Flags TCP (SYN, ACK, FIN, RST)</strong><br>      El seu ús indegut pot provocar esgotament de recursos o      confusió d’estat.    </li>
+    <li>      <strong>Número de seqüència</strong><br>      Clau per al control de sessió i la integritat de la connexió.    </li>
+    <li>      <strong>Window Size</strong><br>      Pot afectar el rendiment i la gestió del flux.    </li>
+  </ul>
+
+  <h3>Paràmetres rellevants a UDP</h3>
+  <ul>
+    <li>      <strong>Absència d’estat</strong><br>      UDP no valida sessions, fet que pot facilitar abusos      si no hi ha controls addicionals.    </li>
+    <li>      <strong>Ports i serveis</strong><br>      Sovint utilitzats en serveis crítics o de temps real.    </li>
+  </ul>
+
+  <h3>Paràmetres rellevants a ICMP</h3>
+  <ul>
+    <li>      <strong>Tipus i codi</strong><br>      Determinen la funció del missatge (errors, eco, redireccions).    </li>
+    <li>      <strong>Freqüència de missatges</strong><br>      Un ús excessiu pot degradar el servei.    </li>
+  </ul>
+
+  <h3>Impactes potencials</h3>
+  <ul>
+    <li>Denegació de servei (DoS)</li>
+    <li>Evasió de mecanismes de seguretat</li>
+    <li>Interrupció de comunicacions</li>
+    <li>Degradació del rendiment de xarxa</li>
+  </ul>
+
+
+    <h2>MITM</h2>
+<p>Un atac <strong>Man-in-the-Middle (MitM)</strong> es produeix quan un atacant s’interposa entre dues parts que es 
+  comuniquen, fent-se passar per cadascuna    d’elles sense que ho sàpiguen. L’objectiu principal és <strong>interceptar, modificar o espiar la comunicació</strong>.  </p>
+
+  <ul><strong>On poden produir-se els atacs MitM?</strong>
+    <li>Xarxes Wi-Fi obertes o mal configurades</li>
+    <li>Xarxes locals (LAN)</li>
+    <li>Comunicacions no xifrades</li>
+    <li>Entorns amb manca de validació d’identitat</li>
+  </ul>  
+  <ul> <strong>Objectius habituals d’un MitM</strong>
+    <li>Captura de credencials</li>
+    <li>Espionatge de dades sensibles</li>
+    <li>Manipulació de la informació transmesa</li>
+    <li>Segrest de sessions</li>
+  </ul>
+
+  <ul> <strong>Mecanismes d'atac</strong>
+    <li>ARP Cache poisoning</li>
+    <li>DNS Spoofing</li>
+    <li>Session Hijacking</li>
+    <li>SSL Hijacking</li>
+  </ul>
+  <ul><strong>Eines:</strong>
+    <li>ettercap</li>
+    <li>Bettercap</li>
+    <li>dsniff</li>
+  </ul>
+
+    <h2>MAC flooding</h2>
+   <p> El <strong>MAC Flooding</strong> és un atac a nivell de    <strong>xarxa local (Layer 2 – Ethernet)</strong> que té com a objectiu    saturar la taula d’adreces MAC d’un <strong>switch</strong>.
+    Quan això passa, el dispositiu pot començar a comportar-se    com un hub, reenviant trànsit per tots els ports.  </p>
+
+  <h3>Com funciona un switch normalment?</h3>
+  <p>    Un switch manté una <strong>taula MAC (CAM table)</strong> que associa:  </p>
+  <ul>
+    <li>Adreça MAC</li>
+    <li>Port físic</li>
+  </ul>
+  <p>    Això permet enviar cada paquet només al destinatari correcte,    millorant el rendiment i la seguretat.  </p>
+
+  <h3>Què passa en un atac de MAC Flooding?</h3>
+  <ul><strong>   Durant un MAC Flooding: </strong>
+    <li>El switch rep un gran nombre d’adreces MAC diferents</li>
+    <li>La taula MAC s’omple fins al límit</li>
+    <li>El switch no pot aprendre noves associacions</li>
+    <li>El trànsit es reenvia per múltiples ports</li>
+  </ul>
+
+  <ul> <strong>Objectius de l’atac</strong>
+    <li>Interceptar trànsit d’altres dispositius</li>
+    <li>Facilitar atacs de tipus MitM</li>
+    <li>Degradar el rendiment de la xarxa</li>
+    <li>Explotar una configuració insegura de la LAN</li>
+  </ul>
+  <ul><strong>Eines:</strong>
+    <li>macof</li>
+    <li>ettercap</li>
+    <li>yersinia</li>
+  </ul>
+  <p> ****  TryHackMe disposa d'un laboratori per practicar estos atacs</p>
+
+    </section>         
+
+
+    <section id="metasploit">
+    <h1>METASPLOIT</h1>
+  <p> <strong>Metasploit</strong> és un <strong>framework de seguretat</strong> utilitzat principalment en <strong>pentesting
+     i red team</strong> per identificar, validar i demostrar vulnerabilitats en sistemes informàtics de manera controlada i autoritzada.  </p>
+     <p>desenvolupat per la empresa Rapid7, te una versió de codi font obert i una versió <strong>pro</strong> comercial de pagament</p>
+     <p>Per aprofundir en l'us i funcionament existeixen diversos recursos. </p>
+     <li>Documentació oficial de Rapid7</li>
+     <li>Curs online gratuit <strong>Metaspoloit Unleashed</strong> de Offensive Security</li>
+     <li>Sistemes vulnerables <strong>metasploitable</strong>: Hi ha tres</li>
+
+  <h3>Què és un framework?</h3>
+  <p> A diferència d’una eina simple, Metasploit proporciona una  <strong>plataforma modular</strong> que permet integrar
+     exploits, càrregues, auxiliars i eines posteriors a l’explotació  dins d’un mateix entorn de treball.  </p>
+
+  <h3>Objectiu principal</h3>
+  <ul> Metasploit no està pensat només per “explotar sistemes”, sinó per:
+    <li>Validar vulnerabilitats reals</li>
+    <li>Mesurar l’impacte de fallades de seguretat</li>
+    <li>Reproduir escenaris d’atac realistes</li>
+    <li>Ajudar a millorar les defenses</li>
+  </ul>
+
+  <h3>Components principals</h3>
+  <ul>
+    <li>      <strong>Exploits</strong><br>
+      Codi que aprofita una vulnerabilitat concreta.    </li>
+    <li>      <strong>Payloads</strong><br>
+      Accions que s’executen després d’una explotació amb èxit.    </li>
+    <li>      <strong>Auxiliars</strong><br>
+      Mòduls de suport per escaneig, enumeració i validació.    </li>
+    <li>      <strong>Post-explotació</strong><br>
+      Funcionalitats per analitzar l’impacte un cop obtingut accés.    </li>
+  </ul>
+
+  <h3>Avantatges de Metasploit</h3>
+  <ul>
+    <li>Gran comunitat i actualitzacions constants</li>
+    <li>Estandardització del procés de pentesting</li>
+    <li>Permet demostrar impactes reals a nivell executiu</li>
+    <li>Integració amb altres eines de seguretat</li>
+  </ul>
+
+  <h3>Limitacions</h3>
+  <ul>
+    <li>No substitueix l’anàlisi manual</li>
+    <li>Algunes vulnerabilitats no tenen exploit públic</li>
+    <li>Pot generar fals sentiment de seguretat si s’usa malament</li>
+  </ul>
+
+<h2>Arquitectura de metasploit</h2>
+  <p><strong>Metasploit Framework</strong> està dissenyat com una <strong>arquitectura modular</strong> que permet desenvolupar, 
+    integrar i executar diferents components de seguretat dins d’un mateix entorn. Aquesta arquitectura facilita la reutilització
+     de codi, l’escalabilitat i l’extensibilitat.  </p>
+
+  <h3>Principi clau: Arquitectura modular</h3>
+  <p>  Metasploit separa clarament les funcionalitats en mòduls    independents. Cada mòdul compleix una funció concreta    i pot combinar-se amb altres sense modificar el nucli.  </p>
+
+  <h3>Components principals de l’arquitectura</h3>
+
+  <h4>1. Core (Nucli de Metasploit)</h4>
+  <p>    El <strong>Metasploit Core</strong> és el motor del framework.    Gestiona:  </p>
+  <ul>
+    <li>La càrrega i execució de mòduls</li>
+    <li>La comunicació entre components</li>
+    <li>La gestió de sessions</li>
+    <li>La interfície amb l’usuari</li>
+  </ul>
+
+  <h4>2. Mòduls</h4>
+  <p>    Els mòduls són peces funcionals que s’executen sobre el core.  Es divideixen en diferents categories:  </p>
+  <ul>
+    <li>      <strong>Exploits</strong>: representen vulnerabilitats específiques    </li>
+    <li>      <strong>Payloads</strong>: accions que s’executen després de l’explotació    </li>
+    <li>      <strong>Auxiliary</strong>: escaneig, enumeració i validació    </li>
+    <li>      <strong>Post</strong>: accions de post-explotació i anàlisi d’impacte    </li>
+    <li>      <strong>Encoders</strong>: transformació de dades    </li>
+    <li>      <strong>NOPs</strong>: suport per a l’estabilitat del codi    </li>
+  </ul>
+
+  <h4>3. Payload Architecture</h4>
+  <p>  Els payloads tenen una arquitectura pròpia i es poden combinar:  </p>
+  <ul>
+    <li>Payloads individuals (single)</li>
+    <li>Payloads en etapes (staged)</li>
+    <li>Payloads adaptats al sistema objectiu</li>
+  </ul>
+  <p>    Aquesta separació permet reutilitzar payloads amb diferents exploits.  </p>
+
+  <h4>4. Gestió de sessions</h4>
+  <p>    Metasploit manté una <strong>capa de gestió de sessions</strong> que    permet interactuar amb sistemes compromesos de forma controlada:  </p>
+  <ul>
+    <li>Seguiment de connexions actives</li>
+    <li>Persistència de context</li>
+    <li>Execució de mòduls posteriors</li>
+  </ul>
+
+    <h2>Ús bàsic</h2>
+     <p>Metasploit disposa d'una base de dades PostGreSQL, i una comanda per manipular: <strong>msfdb</strong></p>
+    <pre>msfdb init | reinit | delete | start | stop |status | run      </pre>
+    <p>La primera vegada, init i start, i després sols start</p>
+    <p>Una comanda  <strong>msfconsole</strong>  , per entrar, i es mostrarà..</p>
+    <pre>msf6 ></pre>
+    <p>altres comandes inicials</p>
+   <pre>db_status  banner  color   history  version  tips   exit o quit </pre>
+
+    <h3>Gestio de workspaces</h3>
+    <p>Es un area de treball on guardar la informació de manera comú. L'habitual es crear un per cada projecte</p>
+    <pre>workspace   -- llista els workspaces
+workspace name    -- cambia al workspace name
+opcions: -a --add name  -d --delete name   -r --rename old new    -v 
+    </pre>
+
+    <h2>Gestió de mòduls</h2>
+    <p>La gestió de mòduls es fonamental per conduir metasploit</p>
+    <pre>search   o    help search 
+msf6 > search smb
+msf6 > search type:auxiliary smb
+msf6 > search type:exploit smb
+msf6 > search cve:2014-3791
+msf6 > search type:exploit arch:x86 platform:Windows     </pre>
+    <h3>Càrrega i configuració de mòduls </h3>
+    <p>Una vegada es fa la cerca, es mostren resultats, numerats. Es pot fer un <code>info</code> i a continuació 
+    el num, o un <code>use</code> i a continuació el num</p>
+    <p>Si es fa un <code>info</code>, ens mostra l'autor, i si soporta un <code>check</code></p>
+    <p>La secció més important es <code>Basic options</code> on es mostren les opcions o variables que te el mòdul</p>
+    <p>També diu els <code>Current setting</code> i si es <code>Required</code> o no, i una columna de <code>Description</code></p>
+    <p>Els valors es podran establir en usar el mòdul <code>use</code></p>
+    <p>Una vegada fem un <code>use</code> del mòdul, cambia el prompt, i es podrà executar <code>info</code> o <code>options</code> </p>
+    <p>La comanda <code>set</code> per a posar valors a les variables i la comanda <code>unset</code> per llevar valors</p>
+    <p>Existeix la comanda <code>setg i unsetg</code> per posar o llevar valors de forma global</p>
+    <p>I una vegada amb tots els valors establits, es pot llançar amb <code>run</code> o <code>exploit</code></p>
+  
+
+    </section>             
+
+    <section id="ad">
+    <h1>Atacs empresarials (Active Directory)</h1>
+
+
+    <h2>Introducció a AD</h2>
+  <p>    <strong>Active Directory (AD)</strong> és el servei de    <strong>directori de Microsoft</strong> utilitzat per gestionar    identitats, recursos i polítiques dins d’una xarxa empresarial.    És un component clau en la majoria d’entorns Windows corporatius.  </p>
+
+  <h3>Què és un servei de directori?</h3>
+  <p>    Un servei de directori és una base de dades centralitzada que    emmagatzema informació sobre objectes de la xarxa i permet    <strong>autenticació, autorització i administració centralitzada</strong>.  </p>
+
+<h3>Per què Active Directory és tan important?</h3>
+  <ul>
+    <li>Centralitza la gestió d’usuaris i equips</li>
+    <li>Controla l’accés als recursos</li>
+    <li>Aplica polítiques de seguretat</li>
+    <li>Escala fàcilment en entorns grans</li>
+  </ul>
+
+  <h3>Conceptes bàsics d’Active Directory</h3>
+
+  <h4>Domini</h4>
+  <p>    Un <strong>domini</strong> és una unitat administrativa lògica    que agrupa usuaris, equips i recursos sota una mateixa    política de seguretat.  </p>
+
+  <h4>Controlador de Domini (Domain Controller)</h4>
+  <p>    El <strong>Domain Controller (DC)</strong> és el servidor que    allotja Active Directory i s’encarrega de:  </p>
+  <ul>
+    <li>Autenticar usuaris</li>
+    <li>Aplicar polítiques</li>
+    <li>Replicar informació amb altres DC</li>
+  </ul>
+
+  <h4>Objectes</h4>
+  <p>    AD gestiona diferents tipus d’objectes:  </p>
+  <ul>
+    <li>Usuaris</li>
+    <li>Equips</li>
+    <li>Grups</li>
+    <li>Impressores</li>
+    <li>Serveis</li>
+  </ul>
+
+  <h4>Unitats Organitzatives (OU)</h4>
+  <p>    Les <strong>OU</strong> permeten organitzar objectes    de manera jeràrquica i aplicar polítiques específiques.  </p>
+
+  <h3>Autenticació a Active Directory</h3>
+  <p>    AD utilitza principalment:  </p>
+  <ul>
+    <li>Kerberos (protocol principal)</li>
+    <li>NTLM (per compatibilitat)</li>
+  </ul>
+
+  <h3>Group Policy (GPO)</h3>
+  <p>    Les <strong>Group Policies</strong> permeten definir i aplicar    configuracions de seguretat i sistema de manera centralitzada:  </p>
+  <ul>
+    <li>Polítiques de contrasenyes</li>
+    <li>Configuració de sistemes</li>
+    <li>Restriccions d’ús</li>
+    <li>Execució de scripts</li>
+  </ul>  
+
+
+    <h2>Configurar laboratori</h2>
+    <p>Es necessita un Controlador de domini (windows server 2016, per exemple) i varios equips clients, W7 i W10 pro</p>
+    <p>Posar ip fixa en el servidor, i desactivar el firewall i Windows Defender en tots els equips.</p>
+    <p>Crear usuaris en el server, perque els clients puguen unir-se al domini. Posteriorment, unir els equips clients al domini</p>
+
+    <h2>Atacs NTLM Relay</h2>
+    <p>En un atac NTLM Relay, un atacant s'interposa en una conversa d'autenticació entre dos sistemes i retransmet 
+      les sol·licituds d'autenticació a través d'un atac d'intermediari (relay). L'objectiu principal d'aquest atac 
+      és obtindre accés no autoritzat a sistemes o recursos als quals l'atacant no té permís directe.</p>
+    <p>Es pot fer una demostració des d'una maquina kali, amb l'eina <code>responder</code></p>
+    <pre>$ sudo responder -I eth0</pre>
+    <p>Es posa en marxa la ferramenta i des d'un client s'intenta accedir a un recurs compartit, per exemple, una carpeta</p>
+    <p>Al cap d'una estona, <code>responder</code> captura un HASH</p>
+    <p> ** Una altra opció es utilitzar <code>responder</code> com a un servidor WPAD i forçar l'autenticació bàsica d'usuaris per obtenir les credencials en text pla</p>
+
+    <h2>Password spraying</h2>
+     <p>Una vegada es tenen unes credencials, es pot fer un <code>password spraying</code> intentant fer servir 
+    estes credencials en altres serveis, recursos o màquines assolibles</p>
+    <p>Una eina per fer este atac es <strong>crackmapexec</strong></p>
+
+    <h2>Atac Pass the Hash</h2>
+    <p>Un atac pass-the-hash (PtH) es produeix quan un atacant captura les credencials d'inici de sessió d'un compte
+       (concretament els valors hash en lloc de les contrasenyes en text pla), des d'un dispositiu i utilitza els 
+       valors hash capturats per a autenticar-se en altres dispositius o serveis dins d'una xarxa</p>
+    <p>L'eina  <strong>crackmapexec</strong>, es pot fer servir per a recuperar hashes de SAM, amb l'opció --sam 
+    i també per fer l'atac, amb l'opciò -H </p>
+
+    <!--     <h2>Atac a kerberos</h2>-->
+
+
+    </section>             
+ 
+    <section id="expl">
+    <h1>Accions en la màquina explotada</h1>
+    <h2>Reverse Shell </h2>
+    <p>S'ha vist en el tema anterior com fer shell inversa en linux , aprofitant les vulnerabilitats web</p>
+     <p>Es vora en este punt com fer el mateix amb Windows</p>
+     <p>Una vegada connectats a una màquina Windows, utilitzarem Powershell per obrir connexions.</p>
+     <p>En la web <code>PayloadsAllTheThings</code> hi ha diferents payloads per obtenir reverseShell. Copiem-peguem i executem</p>
+     <p>Previament en la màquina kali hem d'escoltar amb <code>nc -lnvp 9000</code>, per exemple, encara que esta shell no estarà estabilitzada</p>
+     <pre>Per estabilitzar, es pot substituir la comanda anterior per:
+rlwrap nc -lnvp 9000       </pre>
+    <p>I si no esta en el nostre kali, la baixem amb apt install</p>
+    <ol>Altres alternatives en Windows
+      <li>ConPtyShell</li>
+      <li>Nishang</li>
+      <li>HoaxShell</li>
+    </ol>
+ 
+
+    <h2>Transferència d'arxius</h2>
+    <p>Amb netcat o amb un servidor HTTP</p>
+    <h3>Amb nc</h3>
+     <pre>En la màquina que envia el document
+nc ip port < fitxer    </pre>
+     <pre>En la màquina que rep el document
+nc -lnvp port > fitxer    </pre>
+
+    <h3>Amb HTTP</h3>
+     <pre>En la màquina server. En una carpeta que tinga el fitxer/s 
+sudo python3 -m http.server 80  </pre>
+     <pre>En la màquina client
+wget http://ip:port/recurs
+o 
+curl http://ip:puerto/recurs -o fitxer
+</pre>
+
+
+    </section>       
+    
+
+    <section id="labs">
+    <h1>Laboratoris</h1>
+
+    </section>         
+   
+      
+
+    </main>
+
+    <footer>
+      <p style="font-family: 'CCSymbols', sans-serif; font-size:larger;" >
+        2025 - Llicència: &#x1F16D; &#x1F16F; &#x1F10E; &#x1F10F; - U5 - HE a xarxes i sistemes 
+      </p>
+    </footer>
+  </div>
+
+  
+    <script src="scriptsunitats.js"></script>
+</body>
+</html>
