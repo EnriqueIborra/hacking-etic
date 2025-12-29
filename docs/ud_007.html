@@ -40,8 +40,9 @@
 
     <section id="comwifi">
     <h1>Introducció a les comunicacions sense fil</h1>
-    <p>Totes les pràctiques d'este curs es realitzaran baix un marc legal i ètic.     </p>
+    <p>Totes les pràctiques d'este curs es realitzaran baix:     </p>
         <ul>
+            <li>⚖️ Un marc legal i ètic</li>
             <li>🔒 Entorn aïllat</li>
             <li>🧪 Controlat</li>
             <li>📜 Amb permís</li>
@@ -120,6 +121,17 @@
     <ol>
         <li>Open</li>
         <li>SKA : Shared Key Authentication</li>
+    </ol>
+    <ol> OPEN
+        <li>No comprova la clau WEP durant l’autenticació </li>
+        <li>Qualsevol dispositiu pot autenticar-se amb el punt d’accés </li>
+        <li>La clau WEP només s’usa després, per xifrar les dades    </li>
+        <li>Si el client no té la clau correcta, no podrà comunicar-se després</li>
+    </ol>
+    <ol> SKA
+        <li>Utilitza la clau WEP durant l’autenticació </li>
+        <li>Es fa un repte-resposta (challenge–response)</li>
+        <li>Si no es coneix la clau, no es pot connectar(associar) al AP </li>
     </ol>
     <p>En 2004, va ser retirat per la WiFi Alliance, i va ser declarat "obsolet"</p>
 
@@ -241,7 +253,7 @@
                 </tr>
             </tbody>
         </table>
-    <p>Per poder realitzar atacs a xarxes sense fil és necessari que la tarjeta de xarxa puga pasar a <strong>mode monitor</strong>
+    <p>Per poder realitzar atacs (ètics) a xarxes sense fil és necessari que la tarjeta de xarxa puga pasar a <strong>mode monitor</strong>
     per llegir tot el trànsit i injectar paquets. No totes les tarjetes de xarxa permetes això, per el que s'ha de comprovar si 
     la tarjeta te estes capacitats. </p>
 
@@ -263,6 +275,7 @@
 
     <h3>Establir targeta en mode monitor</h3>
     <pre>airmon-ng  start|stop|check  interficie  [channel or frequency]</pre>
+    <p>Compte, quan es canvia a mode monitor, la interficie canvia de nom !</p>
 
     <h3>Descobriment de xarxes sense fil</h3>
     <pre>airodump interficie</pre>
@@ -289,7 +302,7 @@
     <pre>airodump-ng --bssid aa:aa:aa:bb:00:01 --channel 1 --write captura wlan1</pre>
     <p>Si no s'indica la extensió del fitxer, es guardaran les captures en els diferents formats possibles (.cap .csv .kismet.csv .kismet.netxml)</p>
 
-  <h2>Atacs a els protocols de seguretat</h2>
+  <hr><h2>Atacs als protocols de seguretat</h2>
   <p>Es importat coneixer els principals investigacions sobre vulnerabilitats en el protocol 802.11 que han permés dissenyar atacs
     per poder obtindre claus utilitzades en les comunicacions. </p>
     <ul>
@@ -299,7 +312,7 @@
         <li>WPA3: DragonBlood bugs, FragAttaks</li>
     </ul>
 
-    <hr><h3>Atacs a WEP</h3>
+    <hr><h2>Atacs a WEP</h2>
     <p>Existeixen diverses debilitats en el protocol WEP</p>
     <p>  <strong>La vulnerabilitat del IV (Initialization Vector)</strong> en WEP és el motiu principal pel qual aquest protocol es considera 
          trencat i obsolet.  </p>
@@ -382,11 +395,13 @@ aireplay-ng --arpreplay -b BSSID -h la_teua_mac  wlan1      </pre>
     (Pseudo Random Generation Algorithm). El keystream s'utilitzarà per construir paquets vàlids que seran acceptats per l'AP</p>
     <p>En la documentació de aircrack-ng es detalla com executar este atac</p>
 
-    <hr><h3>Atacs a WPA i WPA2</h3>
+    <hr><h2>Atacs a WPA i WPA2</h2>
     <p>A diferència de les xarxes amb seguretat WEP, l'atac a xarxes amb segureta WPA o WPA2 no requereix de capturar molts paquets, 
         la informació important està en el <strong>handshake</strong> , conegut con 4-way-handshake     </p>
+        <pre>aireplay-ng --deauth 5 -a BSSID -c mac_client  wlan1</pre>
     <p>   Una vegada capturat el handshake, es realitza un atac de força bruta o diccionari per obtindre la clau o passowrd. Per tant, la seguretat 
         d'este tipus de xarxes resideix en la fortalesa de la clau.      </p> 
+    <pre>aircrack-ng fitxer -w rockyou.txt</pre>
         
         <hr><h2>Atacs a WPS    </h2>
     <p>El WPS (Wi-Fi Protected Setup) és un mecanisme dissenyat per facilitar la connexió de dispositius Wi-Fi a un router 
@@ -405,6 +420,11 @@ aireplay-ng --arpreplay -b BSSID -h la_teua_mac  wlan1      </pre>
     <pre># Provar si les xarxes sense fil assolibles tenen activat WPS
 wash --interface wlan1     </pre>
     <p>L'eixida del comando mostra la versió de WPS, el fabricant, i si està bloquejat o no</p>
+    <p>Despres es pot vore quins mètodes/modes accepta cada AP</p>
+    <pre>sudo airodump-ng --wps wlan0mon</pre>
+    <p>PBC: Indica que el router té WPS per botó. / LAB:  Indica que el punt d’accés accepta WPS mitjançant PIN.  /
+        DISP: Indica que el router pot mostrar un PIN WPS dinàmic a la seua interfície   </p>
+    <p>En una auditoria Wi-Fi: LAB / DISP actius → risc clar per disseny de WPS. / PBC actiu → risc depenent del context </p>
     <p>Una vegada localitzat un WPS actiu, es pot provar el pin per defecte i conegut (eina WPS Pin Generator)</p>
     <p>Si no funciona, es pot continuar amb un atac de força bruta amb la ferramenta <strong>reaver</strong></p>
     <pre>reaver -i wlan1 -b b0:4h:00:0A:E0:78 -c 4 -vv
@@ -425,7 +445,7 @@ wash --interface wlan1     </pre>
 
     <h3>Evil Twin</h3>
     <p> És una còpia d'un punt d'accés legítim que no te perquè donar accés a un xarxa legítima o a internet. La victima accedeix 
-        a la xarxa propia de l'atacant, (que pot redirigir les peticions a internet o alatra xarxa). Es pot fer una MitM    </p>
+        a la xarxa propia de l'atacant, (que pot redirigir les peticions a internet o a altra xarxa). Es pot fer una MitM    </p>
 
 
     </section>         
@@ -433,6 +453,30 @@ wash --interface wlan1     </pre>
  
    <section id="labs">
     <h1>Laboratoris</h1>
+    <p>Primer es prepararà un AP baix el nostre control, amb una configuració WEP amb clau de 8 caracters. També s'activarà el mecanisme WPS</p>
+    <p>Tot seguit es realitzarà un atac WEP i un atac WPS</p>
+    <p>Una bona pràctica abans de començar o fer qualsevol atac wifi, és fer un <strong>spoofing a la MAC</strong> de la nostra 
+    interficie de xarxa sense fil, per no deixar traces de l'atac.</p>
+    <pre>ip link set dev wlan1 down
+ip link set dev wlan1 adress 11:22:33:44:55:66
+ip link set dev wlan1  up     </pre>
+    <p>Una vegada acabats els atacs anteriors, configurarem l'AP amb seguretat WPA/WPS2, amb una clau de diccionari (rockyou). Una 
+        vegada configurat el router AP, procedirem a realitzar l'atac.      </p>    
+
+    <h3>Desxifrat i anàlisi del trànsit capturat</h3>
+    <p>Els atacs WiFi, no sols permeten obtindre la password de connexió a la xarxa sense fil, també permeten capturar el trànsit 
+        dels clients connectats legitimament, i vore si s'ha utilitzat algun protocol insegur , com HTTP, i així analitzar el contingut 
+        en busca d'informació valuosa per al hacker.     </p>
+    <p>Per desxifrar el trànsit, s'usa la comanda <strong>airdecap-ng</strong> </p>
+    <pre>airdecap-ng -b BSSID -w clau_wep_en_hexadecimal -o fitxer.cap fitxercapturat.cap 
+    # la clau wep obtinguda amb aircrack-ng
+    </pre>
+
+    <h3>Atac Evil Twin</h3>
+    <p>Amb un atac Evil Twin es pot obtindre la clau en connectar (intentar) un client..</p>
+    <p>Per fer això s'utilitza la suite <strong>airgeddon</strong>, que no ve instal·lada en kali, però es pot posar</p>
+    <pre>apt update && apt install -y airgeddon
+airgeddon      </pre>
 
     </section>         
      
