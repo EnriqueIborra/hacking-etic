@@ -268,11 +268,49 @@
     <li><strong>Autenticació multifactor:</strong> Redueix l’impacte d’un atac encara que la vulnerabilitat siga explotada.</li>
   </ul>
 
-  <h2>Amenaces</h2>
+ 
+  <hr> 
+  <h2>Classificació de Vulnerabilitats</h2>
+  <h3>Quan es descobreix una vulnerabilitat, es detalla en un "paper"</h3>
+  <p>Quan s’informa d’una vulnerabilitat en un “paper”, aquesta es valora i classifica.</p>
+   <img src="imgs/nvd.png" alt="nvd" class="imatge-dreta" width="25%">
+<p><strong>CVE (Common Vulnerabilities and Exposures)</strong> és un sistema que dona un identificador numèric que s'assigna a les
+vulnerabilitats de seguretat quan s'informen públicament. L'identificador es composa de tres elements: CVE-XXXX-YYYY, on els quatre
+primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i els següents corresponene a l'identificador de la vulnerabilitat d'exie any</p>
+<p>Esta llista es pot consultar en la web de la corporació MITRE en www.cve.org</p>
+<p>També - BBDD de vulnerabilitats -  <a href="https://nvd.nist.gov/">https://nvd.nist.gov/</a></p>
+
+  <p>Existeixen bases de dades de vulnerabilitats i calculadores de risc per a cadascuna.</p>
+
+  <img src="imgs/first.png" alt="nvd" class="imatge-dreta" width="25%">
+  <p><strong>CVSS (Common Vulnerabilities Score System)</strong> és el sistema que s'emplea per realitzar una valoració de la Gravetat
+  de cada vulnerabilitat. La seua última versió es la 4. El sistema empra una serie de mètriques en diferents categories. </p>
+  <p>En funció de la puntuació, una vulnerabilitat tindrà una gravetat. Baixa, Mitja, Alta o Crítica.</p>
+
+  <h3>NVE - FIRST</h3>
+  <p>Calculadora de perillositat d’una vulnerabilitat  <a href="https://www.first.org/cvss/">https://www.first.org/cvss/</a></p>
+  
+  <p><strong>CWE (Common Weakness Enumeration)</strong> es una classificació de vulnerabilitats en categories que es pot trovar en: 
+  <a href="https://cwe.mitre.org/">CWE Mitre</a>, així com un top-25</p>
+   
+  <h3>CSIRT</h3>
+  <p>L’evolució del malware i altres amenaces, així com l’aparició de normatives per protegir la informació, han fet que els equips de resposta a incidents (CSIRT - Computer Security Incident Response Team) siguen vitals per a les organitzacions.</p>
+  <p>Un CSIRT és un equip especialitzat en seguretat informàtica que s’encarrega de
+     prevenir, detectar, gestionar i respondre a incidents de ciberseguretat.</p>
+  <p>Un CSIRT pot treballar per a una empresa, una administració pública, una universitat o fins i tot a nivell nacional. Tipus:
+    Corporatius (empreses), Nacionals (per a un país, com el CERT o INCIBE a Espanya), Sectorials (sanitat, educació, finances), Acadèmics    </p>
+
+  <p>INCIBE - <a href="https://www.incibe-cert.es/">https://www.incibe-cert.es/</a></p>
+  <p>Cert CV - <a href="http://www.csirtcv.gva.es/">http://www.csirtcv.gva.es/</a></p>
+  <p>CCN-CERT - <a href="https://www.ccn-cert.cni.es/">https://www.ccn-cert.cni.es/</a></p>
+  <p>IRIS-CERT: <a href="http://www.rediris.es/cert/">rediris.es/cert</a></p>
+  <p>ENISA (altres països europeus) - <a href="https://www.enisa.europa.eu">https://www.enisa.europa.eu</a></p>
+
+ <hr><h2>Amenaces</h2>
   <p>En ciberseguretat, una <strong>amenaça</strong> és qualsevol situació que pot tindre conseqüències negatives per a l’empresa: operacions, funcions, marca, reputació o imatge.</p>
   <p>Les amenaces poden manifestar-se com virus, malware, ransomware, phishing, atacs de denegació de servei (DoS), etc.</p>
   <p>Podem classificar-les segons:</p>
-  <hr>
+  
   <p>Lloc de procedència:</p>
   <ul>
     <li>Internes
@@ -320,39 +358,6 @@
 
   <h3>Vectors d’atac</h3>
   <p>Els vectors d’atac són les vies que s’utilitzen per aprofitar vulnerabilitats en ordinadors, aplicacions, servidors de correu, programari, webs, navegadors, xarxes, etc.</p>
-
-  <hr> 
-  <h2>Classificació de Vulnerabilitats</h2>
-  <h3>Quan es descobreix una vulnerabilitat, es detalla en un "paper"</h3>
-  <p>Quan s’informa d’una vulnerabilitat en un “paper”, aquesta es valora i classifica.</p>
-   <img src="imgs/nvd.png" alt="nvd" class="imatge-dreta" width="25%">
-<p><strong>CVE (Common Vulnerabilities and Exposures)</strong> és un sistema que dona un identificador numèric que s'assigna a les
-vulnerabilitats de seguretat quan s'informen públicament. L'identificador es composa de tres elements: CVE-XXXX-YYYY, on els quatre
-primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i els següents corresponene a l'identificador de la vulnerabilitat d'exie any</p>
-<p>Esta llista es pot consultar en la web de la corporació MITRE en www.cve.org</p>
-<p>També - BBDD de vulnerabilitats -  <a href="https://nvd.nist.gov/">https://nvd.nist.gov/</a></p>
-
-  <p>Existeixen bases de dades de vulnerabilitats i calculadores de risc per a cadascuna.</p>
-
-  <img src="imgs/first.png" alt="nvd" class="imatge-dreta" width="25%">
-  <p><strong>CVSS (Common Vulnerabilities Score System)</strong> és el sistema que s'emplea per realitzar una valoració de la Gravetat
-  de cada vulnerabilitat. La seua última versió es la 4. El sistema empra una serie de mètriques en diferents categories. </p>
-  <p>En funció de la puntuació, una vulnerabilitat tindrà una gravetat. Baixa, Mitja, Alta o Crítica.</p>
-
-  <h3>NVE - FIRST</h3>
-  <p>Calculadora de perillositat d’una vulnerabilitat  <a href="https://www.first.org/cvss/">https://www.first.org/cvss/</a></p>
-  
-  <p><strong>CWE (Common Weakness Enumeration)</strong> es una classificació de vulnerabilitats en categories que es pot trovar en: 
-  <a href="https://cwe.mitre.org/">CWE Mitre</a></p>
-   
-  <h3>CSIRT</h3>
-  <p>L’evolució del malware i altres amenaces, així com l’aparició de normatives per protegir la informació, han fet que els equips de resposta a incidents (CSIRT - Computer Security Incident Response Team) siguen vitals per a les organitzacions.</p>
-
-  <p>INCIBE</p><a href="https://www.incibe-cert.es/">https://www.incibe-cert.es/</a>
-  <p>Cert CV</p><a href="http://www.csirtcv.gva.es/">http://www.csirtcv.gva.es/</a>
-
-  <p>CCN-CERT</p><a href="https://www.ccn-cert.cni.es/">https://www.ccn-cert.cni.es/</a>
-  <p>ENISA (altres països europeus)</p><a href="https://www.enisa.europa.eu">https://www.enisa.europa.eu</a>
 
 
 </section>  
@@ -516,19 +521,25 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
     </ul>
     <p><a href="https://owasp.org/Top10/">https://owasp.org/Top10/</a></p>
 
-    <h3>Top 10 OWASP 2021</h3>
-    <ol>
-        <li><strong>A01:</strong> Trencament del control d'accés</li>
-        <li><strong>A02:</strong> Errades criptogràfiques</li>
-        <li><strong>A03:</strong> Injecció</li>
-        <li><strong>A04:</strong> Disseny insegur</li>
-        <li><strong>A05:</strong> Desconfiguració de la seguretat</li>
-        <li><strong>A06:</strong> Components vulnerables i obsolets</li>
-        <li><strong>A07:</strong> Errors d'identificació i autenticació</li>
-        <li><strong>A08:</strong> Errades d'integritat del software i les dades</li>
-        <li><strong>A09:</strong> Errades en registre i supervisió de la seguretat</li>
-        <li><strong>A10:</strong> Falsificació de sol·licituds del servidor</li>
-    </ol>
+    <h3>Top 10 OWASP </h3>
+    <p>L'OWASP Top 10 és un document estàndard de conscienciació per a desenvolupadors i seguretat d'aplicacions web. 
+      Representa un ampli consens sobre els riscos de seguretat més crítics per a les aplicacions web.</p>
+    <p>Aquesta és la versió 2025 de l'OWASP Top 10. Aquesta versió inclou actualitzacions basades en les darreres tendències 
+      en dades i seguretat.</p>
+
+    <ul>
+      <li>A01:2025 - Control d'accés trencat</li>
+      <li>A02:2025 - Configuració incorrecta de seguretat</li>
+      <li>A03:2025 - Errors de la cadena de subministrament de programari</li>
+      <li>A04:2025 - Errors criptogràfics</li>
+      <li>A05:2025 - Injecció</li>
+      <li>A06:2025 - Disseny insegur</li>
+      <li>A07:2025 - Errors d'autenticació</li>
+      <li>A08:2025 - Errors de programari o d'integritat de dades</li>
+      <li>A09:2025 - Errors de registre i alerta de seguretat</li>
+      <li>A10:2025 - Mala gestió de condicions excepcionals</li>
+    </ul>
+    
 
     <h2>OSSTMM - Open Source Security Testing Methodology Manual</h2>
     <p>Estàndard complet per a auditories de seguretat. Composta per 15 capítols i revisada per experts internacionals.</p>
@@ -544,8 +555,8 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
 
     <h2>FIRST - Forum of Incident Response and Security Teams</h2>
     <p>Organització líder en resposta a incidents de ciberseguretat.</p>
-    <p>Assigna una puntuació (<em>score</em>) de 0 a 10 segons la severitat de la vulnerabilitat.</p>
-    <p><a href="https://nvd.nist.gov/CVSS/v3-calculator">CVSS Calculator</a></p>
+    <p><a href="https://nvd.nist.gov/vuln-metrics/cvss"> -> CVSS Calculators</a> - Assigna una puntuació (<em>score</em>) de 0 a 10 segons la severitat de la vulnerabilitat.</p>
+  
 
     <h2>MITRE Corporation</h2>
     <p>Organització sense ànim de lucre que dona suport a agències dels EUA.</p>
@@ -554,17 +565,32 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
         <li><strong>CVE:</strong> Common Vulnerabilities and Exposures – Registre de vulnerabilitats (<a href="https://cve.mitre.org/cve/">cve.mitre.org</a>)</li>
     </ul>
 
-    <h2>Llistes de seguretat</h2>
-    <p>Llistes d'informació sobre vulnerabilitats conegudes. Assignen un identificador únic a cada nova vulnerabilitat.</p>
+    <h2>MITRE ATT&CK</h2>
+    <p>MITRE ATT&CK ® és una base de coneixement d'accés global sobre tàctiques i tècniques adverses basades en observacions 
+      del món real. La base de coneixement d'ATT&CK s'utilitza com a base per al desenvolupament de models i metodologies
+       d'amenaces específiques en el sector privat, el govern i la comunitat de productes i serveis de ciberseguretat.</p>
+     <p><a href="https://attack.mitre.org/"></a></p>
+       
 
-     <h3>CERTs</h3>
-    <p>Equips de resposta a emergències informàtiques. Proporcionen serveis i avisen de vulnerabilitats.</p>
-    <ul>
-        <li>IRIS-CERT: <a href="http://www.rediris.es/cert/">rediris.es/cert</a></li>
-        <li>INCIBE: <a href="https://www.certsi.es/alerta-temprana/vulnerabilidades?postAction=getVulnsHome">certsi.es</a></li>
-        <li>CCN-CERT: <a href="https://www.ccn-cert.cni.es/">ccn-cert.cni.es</a></li>
-        <li>CSIRT-CV: <a href="https://www.csirtcv.gva.es/">csirtcv.gva.es</a></li>
-    </ul>
+    <h2>Llistes de seguretat</h2>
+    <p>Llistes d'informació sobre vulnerabilitats conegudes. Assignen un identificador únic a cada nova vulnerabilitat. CVE, CVSS, ..</p>
+
+     <h2>CERT i CSIRT</h2>
+    <p>CERT (Computer Emergency Response Team)E quips de resposta a emergències informàtiques i CSIRT (Computer Security Incident Response Team).       </p>
+<ul>
+  <li>CERT és un tipus específic de CSIRT</li>
+  <li>CERT és el terme tradicional</li>
+  <li>CSIRT és el terme estàndard actual (utilitzat per ENISA i la UE)</li>
+</ul>
+
+<ol> Funcions
+  <li>Previndre incidents</li>
+  <li>Respondre a incidents de seguretat</li>
+  <li>Recuperar sistemes afectats</li>
+  <li>Gestió de vulnerabilitats</li>
+  <li>Anàlisi de riscos i amenaces</li>
+  <li>Formació i conscienciació en ciberseguretat</li>
+</ol>
     
   </section>      
 
@@ -738,22 +764,18 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
   
     <h2><span class="emoji">⚠️</span> Recomanacions de seguretat</h2>
     <ul>
-      <li><strong>No facis clic a enllaços aleatoris</strong> <code>.onion</code> sense verificar-ne la font.</li>
-      <li><strong>No iniciïs sessió en serveis reals</strong> (com el teu correu personal) des del navegador Tor.</li>
-      <li><strong>No descarreguis arxius</strong> desconeguts o executables.</li>
+      <li><strong>No faces clic a enllaços aleatoris</strong> <code>.onion</code> sense verificar-ne la font.</li>
+      <li><strong>No inicies sessió en serveis reals</strong> (com el teu correu personal) des del navegador Tor.</li>
+      <li><strong>No descarregues arxius</strong> desconeguts o executables.</li>
       <li><strong>Evita Javascript i complements (plugins):</strong> poden trencar l'anonimat.</li>
-      <li>Millor accedir-hi des de sistemes com <strong>Tails</strong> o màquines virtuals.</li>
+      <li>Millor accedir des de sistemes com <strong>Tails</strong> o màquines virtuals.</li>
     </ul>
  
-
   <hr>
    <h1>Altres Dark Web que no són Tor</h1>
 
- 
     <h2><span class="emoji">🕸️</span> Altres Dark Webs que no són Tor</h2>
     <p>A més de Tor, existeixen altres xarxes que formen part de la Dark Web. Aquestes tecnologies permeten l'accés anònim i xifrat a contingut no indexat i sovint censurat.</p>
- 
-
   
     <h2><span class="emoji">🌀</span> 1. I2P (Invisible Internet Project)</h2>
     <ul>
@@ -770,8 +792,6 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
     </ul>
     <p>🔒 <strong>Molt més descentralitzat i privat que Tor</strong>, però més difícil d’utilitzar.</p>
 
-
-
     <h2><span class="emoji">🧅</span> 2. Freenet</h2>
     <ul>
       <li>Plataforma <strong>descentralitzada i anònima</strong> per publicar i accedir a informació.</li>
@@ -785,9 +805,7 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
       </li>
       <li><strong>No hi ha dominis .onion ni .i2p</strong>, tot el contingut es distribueix dins la mateixa xarxa.</li>
     </ul>
-  
-
-  
+    
     <h2><span class="emoji">🌐</span> 3. ZeroNet</h2>
     <ul>
       <li>Xarxa basada en <strong>tecnologia P2P (peer-to-peer)</strong> amb arxius xifrats i identificació per clau pública.</li>
@@ -796,9 +814,7 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
       <li>Els llocs acaben en <code>.bit</code>.</li>
     </ul>
     <p>⚙️ <strong>No requereix servidors centrals</strong>; el contingut és persistent i replicat.</p>
- 
-
- 
+  
     <h2><span class="emoji">⚫</span> 4. GNUnet</h2>
     <ul>
       <li>Xarxa descentralitzada <strong>focalitzada en privacitat, resistència i llibertat digital</strong>.</li>
@@ -811,9 +827,7 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
       </li>
     </ul>
     <p>🔧 Projecte avançat i universitari, encara en desenvolupament actiu.</p>
- 
-
-  
+   
     <h2><span class="emoji">💬</span> 5. RetroShare</h2>
     <ul>
       <li>Aplicació que crea una <strong>xarxa social xifrada entre contactes de confiança</strong>.</li>
@@ -826,11 +840,8 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
       </li>
     </ul>
     <p>🌐 <strong>No és una web pròpiament dita</strong>, sinó una xarxa d'intercanvi segur entre usuaris coneguts.</p>
- 
-
- 
+  
     <h2><span class="emoji">🧱</span> Resum comparatiu</h2>
-
     <table border="1" cellpadding="8" cellspacing="0">
       <thead>
         <tr>
