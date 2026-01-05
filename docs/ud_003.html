@@ -41,23 +41,22 @@
       <h1>.</h1>
     </header>
     
-    <main>
+  <main>
   <section id="finger">
     <h1>Fingerprinting</h1>
-<p>   El <strong>fingerprinting</strong> (o empremtament digital) és una tècnica utilitzada en ciberseguretat per <strong>identificar amb detall característiques específiques</strong> d’un sistema, dispositiu, aplicació o xarxa. És una etapa posterior (o més específica) que el <em>footprinting</em>, i té un enfocament més <strong>tècnic i actiu</strong>.  </p>
-<p>  La <strong> enumeració </strong> també forma part del fingerprinting</p>
-<p>L’enumeració és el procés mitjançant el qual un atacant o auditor de seguretat recull informació detallada i activa d’un sistema o xarxa. Forma part de la fase de reconeixement actiu dins del hacking ètic o pentesting.</p>
+  <p>   El <strong>fingerprinting</strong> (o empremtament digital) és una tècnica utilitzada en ciberseguretat per <strong>identificar amb detall característiques específiques</strong> d’un sistema, dispositiu, aplicació o xarxa. És una etapa posterior (o més específica) que el <em>footprinting</em>, i té un enfocament més <strong>tècnic i actiu</strong>.  </p>
+  <p>  La <strong> enumeració </strong> també forma part del fingerprinting</p>
+  <p>L’enumeració és el procés mitjançant el qual un atacant o auditor de seguretat recull informació detallada i activa d’un sistema o xarxa. Forma part de la fase de reconeixement actiu dins del hacking ètic o pentesting.</p>
 
-<h4>Amb l’enumeració es pot obtindre:</h4>
-<ol>
-  <li>Llista d’usuaris i grups</li>
-  <li>Recursos compartits</li>
-  <li>Serveis actius i els seus ports</li>
-  <li>Versions de serveis (com SSH, FTP, etc.)</li>
-  <li>Direccions IP internes</li>
-  <li>Sistema operatiu del dispositiu</li>
-</ol> 
-
+  <h4>Amb l’enumeració es pot obtindre:</h4>
+  <ol>
+    <li>Llista d’usuaris i grups</li>
+    <li>Recursos compartits</li>
+    <li>Serveis actius i els seus ports</li>
+    <li>Versions de serveis (com SSH, FTP, etc.)</li>
+    <li>Direccions IP internes</li>
+    <li>Sistema operatiu del dispositiu</li>
+  </ol> 
 
   <h2> Tipus de Fingerprinting</h2>
 
@@ -611,17 +610,56 @@ Bash
       <li>ffuf</li>
       <li>feroxbuster</li>
     </ul>
+
+    <p>Endpoint (definició senzilla) = lloc on pots fer una petició i obtenir una resposta. La petició pot portar o no <strong>paràmetres</strong></p>
+    <ul> Tipus de Fuzzing més comuns
+     <li>endpoints</li> es proven Rutes, URLs o serveis d’una aplicació (sobretot web o API)
+    <li>parametres</li> es proven Paràmetres GET, POST, dins d'un enpoint vàlid..
+    <li>fitxers</li>
+    <li>headers</li>
+    <li>cookies</li>
+    <li>formats (Json, xml,..)</li>
+    <li>inputs d'usuari</li>
+    <li>binaris / protocols</li>
+    </ul>
+
+
     <img src="imgs/kali-crunch.png" alt="3way" width="15%" class="imatge-dreta">
     <p>Tant important o més que la ferramenta, es el diccionari emprat </p>
-    <p><strong>kali</strong> inclou diversos diccionaris. En /usr/share/wordlists es troben enllaços a distintes carpetes</p>
+    
+    <ul> <p><strong>kali</strong> inclou diversos diccionaris. En /usr/share/wordlists es troben enllaços a distintes carpetes</p>
     <li>/usr/share/wfuzz/wordlist/general</li>
     <li>/usr/share/dirb/wordlists</li>
-    <li>/usr/share/dirbuster/wordlists</li>
-    <p>i també ha ferramentes com <strong>crunch</strong> per fer diccionaris personalitzats</p>
-    
+    <li>/usr/share/dirbuster/wordlists</li> </ul>
+    <p>i també hi ha ferramentes com <strong>crunch</strong> per fer diccionaris personalitzats.
+       (També CEWL i CUPP, mutator tool, o alguna AI pot fer la feina....)</p>
+     
+     <h4>fuzziong amb nmap</h4>
+     <pre>nmap -p80 --script http-enum -v 10.1.1.85</pre>
+     <pre>nmap -p80 --script http-enum --script-args http-enum.basepath=/ona 10.1.1.85</pre>
+
+     <h4>fuzzing amb wfuzz</h4>
+     <pre>wfuzz -c -t 400 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://10.0.1.85/FUZZ</pre>
+     <p>La paraula FUZZ serà substituida per les paraules del diccionari</p>
+     <p>Els resultats mostren el codis de resposta del server. Si es vol omitir algun codi, per exemple , el 404 (que és not found), es posa 
+      el parametre --hc=404 quan es crida a wfuzz        </p>
+      <p>Es pot fer un doble fuzz pe provar extensins, per exemple.</p>
+      <pre>wfuzz -c -t 400 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+         -w /tmp/extensions --hc=404 http://10.0.1.85/FUZZ.FUZ2Z</pre>
+      <p>S'utilitzarà el paràmetre  -L per a llocs "moved"</p>
+      <p>En ocasions pot ser necessari fer FUZZING d'un lloc on s'ha d'estar logejat amb un usuari. Per incloure cookies o qualsevol capçalera
+      HTTP, s'usarà el paràmetre -H seguit del valor de la capçalera.       </p>
+      <pre>wfuzz -c -t 400 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+         -w /tmp/extensions --hc=404 -H "Cookie: security=impossible; PHPSESSID=09khga4jaoqdivvenfr"  
+         http://10.0.1.85/FUZZ.FUZ2Z</pre>
 
     <hr><h2>Enumeració SMB</h2>
-    <p>L'enumeració SMB (Server Message Block) és una tècnica de hacking ètic que consisteix a recopilar informació sobre un sistema objectiu que utilitza 
+    <p>SMB fa referència a Server Message Block, que és un protocol de xarxa que permet compartir fitxers, carpetes, impressores 
+      i altres recursos entre ordinadors dins d’una mateixa xarxa, especialment amb sistemes Windows. En Linux ,per fer-lo funcionar 
+      és necessari instal·lar un servei <strong>SAMBA</strong>. Els components principals de Samba:
+    smbd → Servei que comparteix fitxers i impressores. nmbd → Resolució de noms NetBIOS.  winbindd → Integració amb dominis Windows </p>
+
+    <p>L'enumeració SMB és una tècnica de hacking ètic que consisteix a recopilar informació sobre un sistema objectiu que utilitza 
       el protocol SMB. L'objectiu és identificar recursos compartits, usuaris, grups, polítiques de contrasenyes i altres detalls que podrien ser 
       explotats per a un atac.</p>
       <p>Eines:</p>
@@ -633,6 +671,21 @@ Bash
         <li>smbclient</li>
         <li>rpcclient</li>
       </ol>
+
+      <pre>nbtscan 10.0.1.0/24
+# Busca màquines amb SMB/SAMBA en la xarxa Objectiu
+nmap -sC -p 139,445 -sV 10.0.1.26 10.0.1.30
+      </pre>
+    <ul> Entre els scripts que inclou nmap per a smb:
+      <li>smb-protocols</li>
+      <li>smb-os-discovery</li>
+      <li>smb-enum-shares</li>
+      <li>smb-enum-users</li>
+      <li>smb-vuln*</li>
+    </ul>
+    <p>** Les versions SMBv1 i SMBv2 son vulnerables</p>
+   <p class="tips"> 🧪 Executa els scripts de nmap sobre les màquines Metasploitable2 i Metasploitable3</p>
+
 
   </section>         
 
@@ -666,8 +719,9 @@ Bash
     <pre><code>$ sudo apt install nikto</code></pre>
     <p>Executar nikto</p>
     <pre><code>$ ./nikto.pl -host http://[ip_objectiu]</code></pre>
+    <p class="tips">🧪 Descarrega la maquina Five86-1 de vulnhub (<a href="https://www.vulnhub.com/entry/five86-1,417/">link</a> ) i prova nikto sobre ella.</p>
 
-    <h4>Nuclei</h4>
+     <h4>Nuclei</h4>
     <p>Nuclei és un motor d'escaneig modern i molt eficient que utilitza plantilles YAML per a definir els escanejos.</p>
     <p>Es troba en els repositoris de kali, així que es pot instal·lar amb</p>
     <pre><code>$ sudo apt install nuclei</code></pre>
@@ -676,6 +730,10 @@ Bash
     <p>Avantatge: És ideal per escanejar ràpidament un gran nombre d'objectius (mass scanning) buscant 
       una vulnerabilitat que acaba de ser publicada (un 0-day recent o un n-day). La seva velocitat i 
       flexibilitat són inigualables en aquest tipus d'escaneig dirigit.</p>
+
+    <p class="tips">🧪 Executa nuclei sobre  Five86-1 i compara els resultats amb els resultats de nikto.</p>  
+    <p>Les plantilles de nuclei s'emmagatzemen en <strong>~/.local/nuclei-templates</strong> i es poden crear noves i personalitzar els escanejos</p>
+
 
      <h4>Legion</h4>
      <p>Legion és una eina de reconeixement de xarxes i avaluació de vulnerabilitats de codi obert (open source) 
@@ -701,6 +759,19 @@ Bash
     
   <section id="labs">
     <h1>Laboratoris</h1>
+    <p>Muntatge d'un laboratori per posar en pràctica els continguts anteriors.</p>
+    <h2>Cyberlab V1.0</h2>
+    <p>Consta de dos xarxes: Cyberlab-net-1 (10.0.1.0/24) i Cyberlab-net-2 (10.0.2.0/24) connectades puer un ubuntu-router</p>
+    <p>Cyberlab-net-1 contindrà: una maquina kali, una maquina Metasploitable2, una maquina Metasploitable3, una màquina five86-1, 
+      un router a internet, un ubuntu-router (per connectar amb la xarxa Cyberlab-net-2)</p> 
+    <p>Cyberlab-net-2 contindrà: un ubuntu-router, una maquina Q4os. Es una xarxa interna.</p>  
+    <p>Tot en virtualBox, Crear 1 Xarxa Nat i una Xarxa interna. Connectar cada maquina a la xarxa NAT/interna adecuada</p>
+    <p>La màquina ubuntu-router tindrà dos interficies de xarxa. S'instal·larà un openssh-server i un apache2</p>
+    <p>En ubuntu-router, crear un script en iptables (/etc) per fer forwarding, provar script i crear un .service per que arranque en iniciar el SO</p>
+
+    <p>Per fer proves de vulnerabilitats en WordPress, descarreguem la màquina Recon-1 de vulnhub i la incloguem en el nostre laboratori.
+      <a href="https://www.vulnhub.com/entry/recon-1,438/">link a recon-1</a>      </p>
+      <p>Per utilitzar wpscan, s'ha d'instal·lar. Registrar-se i obtindre una API-token</p>
 
   </section>         
      

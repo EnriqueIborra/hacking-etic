@@ -210,13 +210,9 @@
   <h3>Tipus de Vulnerabilitats</h3>
   <ul>
     <li><strong>Vulnerabilitats de programari:</strong> Aquestes vulnerabilitats es troben en el codi del programari o de les aplicacions i són causades per errors de programació, com desbordaments de memòria, fallades en la validació d’entrades o manca de comprovació d’accessos. Un atacant pot aprofitar aquests errors per executar codi maliciós o accedir a dades sensibles.</li>
-
     <li><strong>Vulnerabilitats de configuració:</strong> Es produeixen quan els sistemes o aplicacions estan mal configurats, permetent que usuaris no autoritzats accedisquen a recursos sensibles. Açò pot incloure contrasenyes predeterminades, ports oberts innecessaris o permisos d’accés incorrectes.</li>
-
     <li><strong>Vulnerabilitats en el maquinari:</strong> Algunes fallades de seguretat poden derivar-se de febleses físiques en els dispositius, com la manca de protecció en les interfícies de maquinari o l'accés físic no restringit a servidors i altres equips crítics.</li>
-
     <li><strong>Vulnerabilitats en la xarxa:</strong> Fan referència a febleses en la infraestructura de xarxa que poden permetre als atacants interceptar, modificar o redirigir el trànsit de dades. Inclou configuracions incorrectes en routers, firewalls mal configurats o ús de protocols insegurs (com HTTP en lloc d’HTTPS).</li>
-
     <li><strong>Vulnerabilitats humanes:</strong> Són causades per errors o males pràctiques dels usuaris, com l’ús de contrasenyes febles, la falta de formació en seguretat, o caure en atacs d’enginyeria social (per exemple, phishing). Encara que no són tècniques, poden ser igual de perilloses.</li>
   </ul>
 
@@ -268,7 +264,6 @@
     <li><strong>Autenticació multifactor:</strong> Redueix l’impacte d’un atac encara que la vulnerabilitat siga explotada.</li>
   </ul>
 
- 
   <hr> 
   <h2>Classificació de Vulnerabilitats</h2>
   <h3>Quan es descobreix una vulnerabilitat, es detalla en un "paper"</h3>
@@ -354,7 +349,8 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
   <p>Un atac informàtic és un intent de comprometre la seguretat d’un sistema informàtic per causar danys intencionats al seu funcionament.</p>
 
   <h3>Tècniques d’atac</h3>
-  <img src="imgs/top-attaccks.png" alt="tipus d'atacs" width="90%">
+  <p>(Esta classificació pot variar en el temps i segons quina entitat la publique)</p>
+  <img src="imgs/top-attaccks.png" alt="tipus d'atacs" width="60%">
 
   <h3>Vectors d’atac</h3>
   <p>Els vectors d’atac són les vies que s’utilitzen per aprofitar vulnerabilitats en ordinadors, aplicacions, servidors de correu, programari, webs, navegadors, xarxes, etc.</p>
@@ -396,7 +392,6 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
         per completar el ventall de proves, com són: verificació i validació de les comunicacions, validació d'entrades, manipulació de paràmetres, 
         autenticació i gestió de sessions, coneixement i descobriment de la implementació de la xarxa...</p>
       
-
       <h2>Revisió del procés</h2>
       <p> Un cop els atacs han anat desvetllant els errors de seguretat en les diferents auditories, l'auditor ha d'informar 
         i recopilar unes mesures correctores que solucionen els problemes de seguretat descoberts. 
@@ -410,7 +405,6 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
       <p>És altament recomanable que l'auditor documente des del primer dia les proves i resultats que es van obtenint, 
         tant perquè puga realitzar el seu treball correctament, així després l'informe es realitza en un període de temps menor.</p>
 
-
       <h2>Interlocutors i emmagatzematge de la informació</h2>
       <p>És important que la comunicació amb el client sempre vaja protegida, en funció de l'àmbit en què aquesta 
         comunicació es produisca. Per exemple, mitjançant la utilització de claus PGP i ús de certificats digitals.</p>
@@ -418,7 +412,6 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
         emmagatzemada de forma segura, a través d'un sistema d'autenticació i control d'accessos, protegint la 
         confidencialitat d'aquesta informació mitjançant l'ús de xifrat robust. Emmagatzemar durant una vigència màxima, 
         la qual serà acordada amb el client, però és comú destruir-la de manera segura al finalitzar el treball.</p>
-
 
       <h2>Tipus d'auditories</h2>
       <p>Al hacking ètic es parteix de 3 grans tipus d'auditoria. S'identifiquen per colors, com es pot visualitzar 
@@ -431,7 +424,6 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
       </ul>
     <img src="imgs/caixes.png" alt="caixes" width="45%"></a>
 
-
     <h4>Caixa blanca</h4>
     <img src="imgs/cblanca.png" alt="caixes" width="15%" class="imatge-dreta"></a>  
     <p>Caixa blanca és en la que l'auditor té tot el coneixement i el privilegi. En altres paraules, l'auditor 
@@ -440,7 +432,6 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
         Un altre exemple seria la comprovació de la seguretat de la configuració d'un servidor de correu electrònic, 
         ja que de nou es té accés i privilegi per poder avaluar-lo.</p>
       
-
     <h4>Caixa gris</h4>
     <img src="imgs/cgris.png" alt="caixes" width="15%" class="imatge-dreta"></a>   
     <p>Caixa gris és la que situa l'auditor en un paper d'empleat sense privilegi o convidat a l'organització. 
@@ -451,13 +442,11 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
         Comunament, un dels objectius de l'auditor en aquest tipus d'auditoria és obtenir privilegi a la xarxa per 
         poder treure un benefici.</p>
 
-
     <h4>Caixa negra</h4> 
     <img src="imgs/cnegra.png" alt="caixes" width="15%" class="imatge-dreta"></a>       
     <p>Caixa negra és la que situa a l'auditor en un paper de atacant extern. L'auditor no té cap coneixement sobre 
         què hi ha dins de l'organització o la seva estructura de xarxa. L'objectiu és avaluar fins on podria arribar 
         un atacant extern i el dany es podria realitzar a l'organització.</p>
-
 
       <h2>Fases del procés en una auditoria de seguretat</h2>
       <ol>
@@ -490,7 +479,6 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
     <p>En aquesta fase es presenta el treball, en forma d'informe, dut a terme per l'auditor a l'empresa que va contractar el servei. 
         Hi ha dos tipus d'informes: executiu i tècnic.</p>   
 
-
       <h2>Auditoria vs Test d'intrusió</h2>
       <p>Un procés d'Auditoria de Seguretat se centra a analitzar TOTES les vulnerabilitats que puga patir una organització.
     <br>Un Test d'Intrusió té com a objectiu ACONSEGUIR VULNERAR el sistema de una organització. És a dir, amb localitzar una única vulnerabilitat és suficient per finalitzar el treball.
@@ -502,7 +490,6 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
 <!--   ************************   standars  en hacking etic   ************************-->
   <section id="estandars">
 <h1>Estàndards, models i llistes de seguretat</h1>
-
     <h2>Estàndards i models - Definicions</h2>
     <p>Els <strong>estàndards</strong> són especificacions sobre com s'ha de desenvolupar una tasca o funció determinada, basats en acords entre entitats o grups.</p>
     <p>Un <strong>model</strong> és una representació ideal d’un sistema real. És una abstracció selectiva que defineix una funció objectiu amb restriccions.</p>
@@ -517,7 +504,7 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
     <p>Projecte de codi obert per a la seguretat del software. Format per organitzacions, educadors i particulars.</p>
     <ul>
         <li><strong>Guia OWASP:</strong> document extens amb guia detallada</li>
-        <li><strong>OWASP Top 10:</strong> llista de vulnerabilitats més crítiques, actualitzada cada 3 anys</li>
+        <li><strong>OWASP Top 10:</strong> llista de vulnerabilitats més crítiques, actualitzada cada 3 anys (aprox)</li>
     </ul>
     <p><a href="https://owasp.org/Top10/">https://owasp.org/Top10/</a></p>
 
@@ -539,7 +526,6 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
       <li>A09:2025 - Errors de registre i alerta de seguretat</li>
       <li>A10:2025 - Mala gestió de condicions excepcionals</li>
     </ul>
-    
 
     <h2>OSSTMM - Open Source Security Testing Methodology Manual</h2>
     <p>Estàndard complet per a auditories de seguretat. Composta per 15 capítols i revisada per experts internacionals.</p>
@@ -562,7 +548,7 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
     <p>Organització sense ànim de lucre que dona suport a agències dels EUA.</p>
     <ul>
         <li><strong>CWE:</strong> Common Weakness Enumeration – Categories d’errors en el software (<a href="https://cwe.mitre.org/">cwe.mitre.org</a>)</li>
-        <li><strong>CVE:</strong> Common Vulnerabilities and Exposures – Registre de vulnerabilitats (<a href="https://cve.mitre.org/cve/">cve.mitre.org</a>)</li>
+        <li><strong>CVE:</strong> Common Vulnerabilities and Exposures – Registre de vulnerabilitats (<a href="https://www.cve.org/">cve.org</a>)</li>
     </ul>
 
     <h2>MITRE ATT&CK</h2>
@@ -589,7 +575,7 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
     <img src="imgs/Mitre-Mustang Panda TTPs.png" alt="caixes" width="45%" class="imatge-esquerra"></a>  
     <p>Una matriu MITRE ATT&CK per a un atac concret és una representació visual i estructurada de com s’ha desenvolupat
       aquell atac, mapant les accions de l’atacant sobre la matriu ATT&CK. Permet veure tot el recorregut de l’atac dins la matriu.</p>
-      <pre>.</pre>
+      <pre>Matriu Mitre Att&ck d'un atac</pre>
 
     <h2>Llistes de seguretat</h2>
     <p>Llistes d'informació sobre vulnerabilitats conegudes. Assignen un identificador únic a cada nova vulnerabilitat. CVE, CVSS, ..</p>
@@ -989,14 +975,13 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
       <li>URL: <a href="https://hackmyvm.eu/">https://hackmyvm.eu/</a></li>
     </ul>
 
-     <h2>Academia Hacker</h2>
-     <li><a href="https://www.incibe.es/ed2026/talento-hacker/academia-hacker">https://www.incibe.es/ed2026/talento-hacker/academia-hacker</a></li>
+     <h2>Academia Hacker : <a href="https://www.incibe.es/ed2026/talento-hacker/academia-hacker">talento-hacker/academia-hacker</a></h2>
+          
+     <!--<h2>Una al mes</h2> Ja no esta operativa-->
      
-     <h2>Una al mes</h2>
-     <li><a href="https://unaalmes.hispasec.com/">https://unaalmes.hispasec.com/</a></li>
-     <h2>PicoCTF</h2>  <li>https://picoctf.org/</li>
-     <h2>CTF Time</h2>
-     <ul><li>URL: <a href="https://ctftime.org/">https://ctftime.org/</a></li></ul>
+     <h2>PicoCTF : <a href="https://picoctf.org/">https://picoctf.org/</a></h2>  
+     <h2>CTF Time : <a href="https://ctftime.org/">https://ctftime.org/</a></h2>
+     
     <h2> Hack The Box (HTB)</h2>
     <ul>
       <li>Plataforma amb molts <strong>reptes de penetració</strong> i màquines virtuals vulnerables.</li>
@@ -1034,12 +1019,7 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
       <li>URL: <a href="https://www.root-me.org">https://www.root-me.org</a></li>
     </ul>
 
-    <h2> CyberSecLabs</h2>
-    <ul>
-      <li>Laboratori amb entorns de pentesting realistes.</li>
-      <li>Plataforma de pagament amb opció gratuïta limitada.</li>
-      <li>URL: <a href="https://cyberseclabs.co.uk">https://cyberseclabs.co.uk</a></li>
-    </ul>
+    <!--<h2> CyberSecLabs</h2> No actiu -->
 
     <h2> HackThisSite</h2>
     <ul>
@@ -1122,9 +1102,10 @@ un hacker necessita estar al dia d'estos avanços i descobriments.  </p>
 <h3>Altres CON que se solen repetir...</h3>
 <li>RootedCON Valencia 2025 - 25‑26 de septiembre en Valencia (ADEIT, Universitat de València)</li>
 <li>ENISE ( Octubre, lloc canviant) </li>
+<li>Xerrades ISACA Valencia</li>
+<li>MorterueloCon (febrer, Cuenca) free !!!</li>
 <li>CyberCAMP, INCIBE ( lloc canviant )</li>
 <li>JNIC (maig-juny , lloc canviant)</li>
-<li>MorterueloCon (febrer, Cuenca) free !!!</li>
 <li>RootedCON (març, Madrid)</li>
 <li>No cON Name (NcN) (juliol, Barcelona)</li>
   </section>
