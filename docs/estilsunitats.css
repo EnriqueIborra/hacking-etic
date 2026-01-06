@@ -321,3 +321,13 @@ pre {
   width: 100%;
   overflow-x: auto;
 }
+
+body.dark-mode pre {
+  background-color: #343451;
+  color: #7cacca;
+}
+
+body.dark-mode th {
+  background-color: #343451;
+  color: #7cacca;
+}
