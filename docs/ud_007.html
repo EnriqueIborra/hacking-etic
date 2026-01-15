@@ -86,12 +86,16 @@
     <ul>
         <li>1999: 802.11a i  802.11b, utilitza bandes (a)5GHz i (b)2,4GHz , amb velocitats de 54 i 11 Mbps respectivament</li>
         <li>2003: 802.11g, utilitza 2,4GHz a 54Mbps</li>
-        <li>2009: 802.11n, conegut com WiFi4, per la Wi-Fi Alliance, amb velocitat teorica de 600 Mbps</li>
+        <li>2009: 802.11n, conegut com WiFi4, per la <strong>Wi-Fi Alliance</strong>, amb velocitat teorica de 600 Mbps</li>
         Combina tècniques noves com MIMO (dos antenes, 2 canals a la vegada) i unió de canals en uno.
         <li>2013: WiFi5 o 802.11ac. Utilitza banda de 5 GHz, amb velocitat teorica de 7 Gbps</li>
         <li>2021: WiFi6 o 802.11ax. Velocitat teorica de 10 Gbps. Pot utilitzar la banda de 6 GHz. Gestió de més dispositius connectats al mateix temps</li>
         <li>2024: WiFi7 o 802.11be. Velocitat teorica de 46 Gbps. Menor latència. Més eficiència en entorns congestionats</li>
     </ul>
+    <p>La <strong>Wi-Fi Alliance</strong> és una organització internacional sense ànim de lucre que s’encarrega de garantir que els dispositius Wi-Fi 
+        funcionen correctament entre ells, encara que siguin de fabricants diferents. També dona noms comercials als estàndards, com: WiFi5, WiFi6,
+    i certifica dispositius (routers, mòbils, ordinadors, IoT, etc.) perquè compleixin aquests estàndards. Quan veus el logotip “Wi-Fi CERTIFIED” 
+    en un producte, vol dir que ha passat proves oficials de la Wi-Fi Alliance.</p>
 
 
     <h2>Bandes de freqüència</h2>
@@ -107,11 +111,11 @@
         <li>Alta compatibiitat</li>
     </ol>
     <ol>Desavantatges
-        <li>Meny velocitat que 5 GHz</li>
-        <li>Sol estar proy saturada</li>
+        <li>Menys velocitat que 5 GHz</li>
+        <li>Sol estar prou saturada</li>
     </ol>
 
-    <h2>5 GHz</h2> 
+    <h3>5 GHz</h3> 
     <p>Es troba entre 5180 MHz i 5825 MHz. Segons el ample de canal, s'obtenen més o menys canals. L'amplada de canal possibles són 
         20, 40, 80 i 160 MHz  </p>
     <p>Avantatges: major velocitat i més canals per utilitzar</p>    
@@ -142,7 +146,7 @@
         <li>Es fa un repte-resposta (challenge–response)</li>
         <li>Si no es coneix la clau, no es pot connectar(associar) al AP </li>
     </ol>
-    <p>En 2004, va ser retirat per la WiFi Alliance, i va ser declarat "obsolet"</p>
+    <p class="alert"> ⚠️ En 2004, va ser retirat per la <strong>WiFi Alliance</strong>, i va ser declarat "obsolet"</p>
 
     <hr><h3>WPA i WPA2</h3>
     <p><strong>WPA </strong> (Wifi Protected Access)</p>
@@ -157,16 +161,20 @@
   
     </section>         
  
-       <section id="AtacsaWiFi">
+
+    
+    <section id="AtacsaWiFi">
     <h1>Atacs a WiFi</h1>
     <p>L'auditoria de xarxes sense fil es una part important de la labor del pentesting. Estes comunicacions poden ser interceptades 
         per qualsevol que estiga dins del rang de la senyal de radio, i per aixó, la seua correcta protecció és de vital importància.     </p>
     
-
     <h2>Metodologia OWISAM per auditoria de xarxes sense fil</h2>
     <p>    OWISAM (Open Wireless Security Assessment Methodology) és una metodologia pensada per avaluar la seguretat de 
         xarxes sense fils d’una manera ordenada, professional i repetible. El seu objectiu no és “trencar el Wi-Fi”, sinó 
         mesurar fins a quin punt una xarxa wireless és segura en un entorn real i quin risc representa per a l’organització. </p>
+    <p>(En un context d'aplicacions web, l'equivalent seria L’OWASP Testing Guide)</p>
+    <p>No depèn d’una entitat oficial centralitzada com OWASP, però s’associa sovint amb empreses o grups de professionals que
+      la fan servir o promocionen (p. ex., Tarlogic)</p>
 
     <p>La metodologia estableix una serie de riscos de seguretat. Estos riscos es classifiquen en deu categories.     </p>
 
@@ -264,7 +272,7 @@
         </table>
     <p>Per poder realitzar atacs (ètics) a xarxes sense fil és necessari que la tarjeta de xarxa puga pasar a <strong>mode monitor</strong>
     per llegir tot el trànsit i injectar paquets. No totes les tarjetes de xarxa permeten això, pel que s'ha de comprovar si 
-    la tarjeta te estes capacitats. </p>
+    la tarjeta té estes capacitats. </p>
 
     <hr><h2>Suite aircrack-ng</h2>
     <p>La suite aircrack-ng consta d'un conjunt de ferramentes per realitzar les auditories de xarxes sense fil. Està disponible tant 
