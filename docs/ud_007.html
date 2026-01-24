@@ -276,17 +276,17 @@
 
     <hr><h2>Suite aircrack-ng</h2>
     <p>La suite aircrack-ng consta d'un conjunt de ferramentes per realitzar les auditories de xarxes sense fil. Està disponible tant 
-        per a Windows com per a Linux. A més a més, es trova instal·lada a Kali.</p>
+        per a Windows com per a Linux. A més a més, es troba instal·lada a Kali.</p>
     <ul> Consta de:
-        <li>airmon-ng:  Per canviar el mode de treball de la tarjeta</li>
+        <li>airmon-ng:  Per canviar el mode de treball de la targeta</li>
         <li>airodump-ng: Per escoltar trànsit</li>
         <li>aireplay-ng: Permet realitzar ataca sobre punts d'accés injectant <strong>frames</strong></li>
-        <li>aircrack-ng: Permet fer atacks de força bruta, diccionari o estadistic sobre captures de trànsit</li>
+        <li>aircrack-ng: Permet fer atacks de força bruta, diccionari o estadístic sobre captures de trànsit</li>
         <li>airdecap-ng: Permet desxifrar captures de trànsit xifrat amb WEP i WPA sempre que es dispose de la clau</li>
         <li>airbase-ng: Permet atacar a clients i crear punts d'accés falsos</li>
         <li>airdecloack-ng: Elimina paquets de tipus WEP cloacking</li>
         <li>airolib-ng: Permet emmagatzemar llistes de ESSID i claus, calcular PMK i usar-les per crackejar WPA/WPA2</li>
-        <li>airserv-ng: Permet crear un servidor wireless per permetre que múltiples aplicacions usen la tarjeta sense fil</li>
+        <li>airserv-ng: Permet crear un servidor wireless per permetre que múltiples aplicacions usen la targeta sense fil</li>
         <li>airtun-ng: Permet crear interficies virtuals anomenades (tunnels) per monitoritzar trànsit xifrat amb propòsit de WIDS (Wireless Intrusion Detection System)</li>
     </ul>
 
@@ -294,36 +294,36 @@
     <p>Totes estes comandes de la suite requeriran privilegis amb <code>sudo</code> o sent <code>root</code></p>
     <p>Primer s'ha de localitzar el nom de la targeta, amb <code>iwconfig, iw, ip, </code></p>
     <p>Si la targeta està connectada per USB, es pot usar la comanda <code>lsusb, lspci, lsblk</code></p>
-    <pre>airmon-ng  start|stop|check  interficie  [channel or frequency]</pre>
-    <p>Compte, quan es canvia a mode monitor, la interficie canvia de nom !</p>
+    <pre>airmon-ng  start|stop|check  interfície  [channel or frequency]</pre>
+    <p>Compte, quan es canvia a mode monitor, la interfície canvia de nom !</p>
 
     <h3>Descobriment de xarxes sense fil</h3>
-    <pre>airodump-ng interficie</pre>
+    <pre>airodump-ng interfície</pre>
     <p>L'eixida d'airodump-ng mostra en primer lloc, els <strong>punts d'accés (AP)</strong>. <br> 
         A continuació, es mostra informació sobre <strong>els equips</strong> (STATION)
         connectats a punts d'accés (BSSID) o que han intentat identificar una xarxa en concret (Probe).     </p>
 
     <ul> Dades dels punts d'accés
         <li>BSSID: Adreça MAC del punt d'accés (AP)</li>
-        <li>PWR: Potència de la senyal</li>
+        <li>PWR: Potència del senyal</li>
         <li>Beacons : Num de paquets anuncis enviats pel AP</li>
         <li>#Data: Num de paquets capturats (en WEP sols els IV)</li>
         <li>#/s : Num de paquets capturats cada 10 segons</li>
         <li>CH : Canal </li>
         <li>MB : Velocitat</li>
-        <li>ENC : Algorisme de xifrat usat pel AP ( <strong>OPN, WEP, WPA, WPA2</strong> )</li>
-        <li>CIPHER : Tipus de xifrat ( <strong>WEP,TKIP(WPA), CCMP(WPA2)</strong> )</li>
+        <li>ENC : Algorisme de xifratge usat pel AP ( <strong>OPN, WEP, WPA, WPA2</strong> )</li>
+        <li>CIPHER : Tipus de xifratge ( <strong>WEP,TKIP(WPA), CCMP(WPA2)</strong> )</li>
         <li>AUTH : Mètode d'autenticació (PSK generalment)</li>
         <li>ESSID : Nom de la xarxa sense fil</li>
     </ul>    
     <p>Una volta identificada la xarxa sobre la qual es desitja fer l'auditoria, es pot fer servir el comando <strong>airodump-ng </strong>
-    amb l'opció --bssid per indicar la MAC del punt d'accés, o la opció --channel per indicar el canal que es desitja escoltar. 
+    amb l'opció --bssid per indicar la MAC del punt d'accés, o l'opció --channel per indicar el canal que es desitja escoltar. 
     L'opció --write permet especificar el nom del fitxer on s'emmagatzemaran els paquets capturats</p>
     <pre>airodump-ng --bssid aa:aa:aa:bb:00:01 --channel 1 --write fitxer_captura wlan1</pre>
     <p>Si no s'indica la extensió del fitxer, es guardaran les captures en els diferents formats possibles (.cap .csv .kismet.csv .kismet.netxml)</p>
 
   <hr><h2>Atacs als protocols de seguretat</h2>
-  <p>Es importat coneixer els principals investigacions sobre vulnerabilitats en el protocol 802.11 que han permés dissenyar atacs
+  <p>És importat conéixer les principals investigacions sobre vulnerabilitats en el protocol 802.11 que han permés dissenyar atacs
     per poder obtindre claus utilitzades en les comunicacions. </p>
     <ul>
         <li>WEP: Korek ChopChop Attack, Fragmentation Attack, PTW Attack </li>
@@ -336,7 +336,7 @@
     <p>Existeixen diverses debilitats en el protocol WEP</p>
     <p>  <strong>La vulnerabilitat del IV (Initialization Vector)</strong> en WEP és el motiu principal pel qual aquest protocol es considera 
          trencat i obsolet.  </p>
-    <ul>WEP utilitza l’algorisme de xifrat RC4, que necessita dues coses per funcionar:
+    <ul>WEP utilitza l’algorisme de xifratge RC4, que necessita dos coses per funcionar:
         <li>una clau secreta (compartida per tots els usuaris) </li>
         <li>i un vector d’inicialització (IV).   </li>
     </ul>        
@@ -358,7 +358,7 @@
         o pentest, trobar WEP actiu no és una “vulnerabilitat menor”, sinó un risc crític, perquè implica que la confidencialitat del trànsit 
         no està garantida en absolut. Per això totes les normatives i metodologies modernes consideren WEP com a inacceptable.</p>
 
-    <p><strong>Altra vulnerabilitat WEP: </strong> La capcitat de generar paquets legitims sense coneixer la clau secreta.
+    <p><strong>Una altra vulnerabilitat WEP: </strong> La capacitat de generar paquets legítims sense conéixer la clau secreta.
         Açò permet que un atacant: </p>
     <ul>
         <li>capture un paquet legítim</li>
@@ -409,6 +409,9 @@ aireplay-ng --arpreplay -b BSSID -h la_teua_mac  wlan1      </pre>
         <pre>aircrack-ng fitxer</pre>
 
      <h4>Korek ChopChop</h4>   
+        <p>L’atac ChopChop: Agafa un paquet xifrat capturat, Va eliminant bytes del final del paquet, Envia versions manipulades del paquet al punt d’accés,
+        Observa si el punt d’accés accepta o rebutja el paquet. Amb aquestes respostes, l’atacant pot deduir byte a byte el contingut original.
+    Avui dia és més aviat educatiu o històric</p>
      <pre>aireplay-ng --chopchop -b BSSID -h MAC_client wlan1</pre>
 
      <h4>Atac de Fragmentació</h4>
@@ -417,7 +420,7 @@ aireplay-ng --arpreplay -b BSSID -h la_teua_mac  wlan1      </pre>
     <p>En la documentació de aircrack-ng es detalla com executar este atac</p>
 
     <hr><h2>Atacs a WPA i WPA2</h2>
-    <p>A diferència de les xarxes amb seguretat WEP, l'atac a xarxes amb segureta WPA o WPA2 no requereix de capturar molts paquets, 
+    <p>A diferència de les xarxes amb seguretat WEP, l'atac a xarxes amb seguretat WPA o WPA2 no requereix de capturar molts paquets, 
         la informació important està en el <strong>handshake</strong> , conegut con 4-way-handshake     </p>
         <pre>airodump-ng --channel canal --bssid BSSID --write fitxer  wlan1 
             ** Primer es posa a capturar en una finestra apart          </pre>
