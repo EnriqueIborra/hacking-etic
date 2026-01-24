@@ -43,62 +43,73 @@
     
     <main>
   <section id="tecniques">
-        <h1>Tècniques persistència</h1>
-        <p>Les tècniques de persistència fan referència als mètodes que un atacant utilitza per mantenir l’accés a un sistema
-           durant el temps, fins i tot després de reinicis, canvis de credencials o intents de neteja. Tot açò, sense tindre que
-          realitzar tot el procés d'explotació inicial cada vegada.</p>
-
-
-        <h2>Eines C&C  (C2)</h2>
-        <p>MITRE defineix les accions de comanda i control (C2), com a tècniques per a comunicar-se amb els sistemes 
-          abans compromesos i evitar ser detectats.  </p>
+    <h1>Persistència, escalada i pivotatge</h1>
+    <p>Totes les pràctiques d'este curs es realitzaran baix:     </p>
         <ul>
-          <li>Utilitzar protocols de comunicació habituals</li>
-          <li>Utilitzar / infectar mitjans extraibles</li>
-          <li>Emprar encriptació i ofuscació</li>
+            <li>⚖️ Un marc legal i ètic</li>
+            <li>🔒 Entorn aïllat</li>
+            <li>🧪 Controlat</li>
+            <li>📜 Amb permís</li>
+            <li>🎓 Fins educatius / professionals</li>
         </ul>
+  </section>
+  <section>
+    <h1>Tècniques persistència</h1>
+    <p>Les tècniques de persistència fan referència als mètodes que un atacant utilitza per mantenir l’accés a un sistema
+        durant el temps, fins i tot després de reinicis, canvis de credencials o intents de neteja. Tot açò, sense tindre que
+      realitzar tot el procés d'explotació inicial cada vegada.</p>
 
-        <h3>Alguns frameworks C2 ..</h3>
-        <ol>
-          <li>Cobalt Strike</li>
-          <li>Covenant</li>
-          <li>Empire</li>
-          <li>Havoc</li>
-          <li>ibombshell</li>
-          <li>Silver</li>
-          <li>Villain</li>
-        </ol>
 
-        <h2>Mòduls postexplotació. Metasploit</h2>
+    <h2>Eines C&C  (C2)</h2>
+    <p>MITRE defineix les accions de comanda i control (C2), com a tècniques per a comunicar-se amb els sistemes 
+      abans compromesos i evitar ser detectats.  </p>
+    <ul>
+      <li>Utilitzar protocols de comunicació habituals</li>
+      <li>Utilitzar / infectar mitjans extraibles</li>
+      <li>Emprar encriptació i ofuscació</li>
+    </ul>
 
-        <ol> <strong>Recopilació d'informació local</strong>
-          <li>post/multi/recon/local_exploit_suggester</li>
-          <li>post/multi/gather/env</li>
-          <li>post/multi/gather/firefox_creds</li>
-          <li>post/multi/gather/ssh_creds</li>
-          <li>post/multi/gather/checkvm</li>
-          <li>post/windows/gather/credentials/credential_collector</li>
-          <li>post/windows/gather/enum_applications</li>
-          <li>post/windows/gather/enum_shares</li>
-        </ol>        
+    <h3>Alguns frameworks C2 ..</h3>
+    <ol>
+      <li>Cobalt Strike</li>
+      <li>Covenant</li>
+      <li>Empire</li>
+      <li>Havoc</li>
+      <li>ibombshell</li>
+      <li>Silver</li>
+      <li>Villain</li>
+    </ol>
 
-        <ol> <strong>Manteniment d'accés</strong>
-          <li>exploit/windows/local/persistence</li>
-          <li>Escalada de privilegis</li>
-          <li>pivotatge en la xarxa</li>
-        </ol>
+    <h2>Mòduls postexplotació. Metasploit</h2>
 
-      </section>         
+    <ol> <strong>Recopilació d'informació local</strong>
+      <li>post/multi/recon/local_exploit_suggester</li>
+      <li>post/multi/gather/env</li>
+      <li>post/multi/gather/firefox_creds</li>
+      <li>post/multi/gather/ssh_creds</li>
+      <li>post/multi/gather/checkvm</li>
+      <li>post/windows/gather/credentials/credential_collector</li>
+      <li>post/windows/gather/enum_applications</li>
+      <li>post/windows/gather/enum_shares</li>
+    </ol>        
 
-    <section id="creacio">
-    <h1>Creació de malware</h1>
-    <h2>msfvenom</h2>
-    <p>Forma part del framework de metasploit, pero funciona de manera independent</p>
-    <h2>ZipExec</h2>
-    <p>Desenvolupat com a PoC de que es possible executar binaris emmagatzemats en fitxers ZIP comprimits amb contrasenya,
-       evitant així els antivirus, que no poden comprovar el contingut del fitxer</p>
+    <ol> <strong>Manteniment d'accés</strong>
+      <li>exploit/windows/local/persistence</li>
+      <li>Escalada de privilegis</li>
+      <li>pivotatge en la xarxa</li>
+    </ol>
+
+  </section>         
+
+<section id="creacio">
+<h1>Creació de malware</h1>
+<h2>msfvenom</h2>
+<p>Forma part del framework de metasploit, pero funciona de manera independent</p>
+<h2>ZipExec</h2>
+<p>Desenvolupat com a PoC de que es possible executar binaris emmagatzemats en fitxers ZIP comprimits amb contrasenya,
+    evitant així els antivirus, que no poden comprovar el contingut del fitxer</p>
  
-    </section>         
+  </section>         
 
     <section id="escalada">
     <h1>Escalada privilegis en Linux</h1>

