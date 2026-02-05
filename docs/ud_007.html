@@ -48,12 +48,10 @@
             <li>📜 Amb permís</li>
             <li>🎓 Fins educatius / professionals</li>
         </ul>
-
-
     </section>    
   
    <section>
-    <h1>Tecnologia sense fil</h1>
+    <h1>Tecnologia sense fil (Wireless)</h1>
     <p>La tecnologia sense fil permet la comunicació entre dispositius sense cables, usant ones 
         electromagnètiques (com a radiofreqüència) per a transmetre dades, oferint mobilitat,
          flexibilitat i comoditat en llars, empreses i telecomunicacions mitjançant protocols 
@@ -151,13 +149,23 @@
     <hr><h3>WPA i WPA2</h3>
     <p><strong>WPA </strong> (Wifi Protected Access)</p>
     <ul> Oferix dos models d'autenticació
-        <li>WPA Personal: amb PSK</li>
-        <li>WPA Enterprise: Utilitza servidor d'autenticació</li>
+        <li>WPA Personal: amb PSK (Pre Shared Key)</li>
+        <li>WPA Enterprise: Utilitza 802.1X, que fa servir un servidor d’autenticació, normalment RADIUS</li>
     </ul>
-    <p>En 2004, es publica <strong>WPA2</strong>, requisit de la WiFi Alliance, millorant algorismes de xifrat del protocol</p>
-    
+    <p>En 2004, es publica <strong>WPA2</strong>, requisit de la WiFi Alliance, millorant algorismes de xifrat del protocol. 
+    Substitueix TKIP per AES (CCMP) → més seguretat</p>
+
     <hr><h3>WPA3</h3>
     <p>Apareix en 2018 com a millora del WPA2, encara que hui en dia no està molt estés.</p>
+    <ul> Millores de WPA3
+        <li>Autenticació més segura. Substitueix el PSK de WPA2. Utilitza SAE (Simultaneous Authentication of Equals)</li>
+        Evita atacs de diccionari offline. Cada intent d’autenticació és independent
+        <li>Xifrat individual per dispositiu. Evita que un usuari pugui espiar un altre</li>
+        <li>Forward Secrecy. Si es compromet la contrasenya: no es poden desxifrar comunicacions antigues</li>
+        <li>Xifrat més fort obligatori. WPA3 obliga a: AES amb claus més llargues</li>
+        <li>Millores per a xarxes obertes (OWE).Opportunistic Wireless Encryption</li>
+        <li>Enterprise més robust. WPA3 Enterprise: mínim 192 bits de seguretat</li>
+    </ul>
   
     </section>         
  

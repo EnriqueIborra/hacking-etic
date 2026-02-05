@@ -115,10 +115,10 @@
         </ul>
 
       <h3>Impacte en una organització</h3>
-        <p>           Un atac d’enginyeria social reeixit pot provocar:         </p>
+        <p>           Un atac d’enginyeria social amb èxit pot provocar:         </p>
 
         <ul>
-          <li>Roba de credencials</li>
+          <li>Robatori de credencials</li>
           <li>Accés no autoritzat a sistemes interns</li>
           <li>Pèrdua de dades sensibles</li>
           <li>Dany reputacional</li>
@@ -127,7 +127,7 @@
 
         <h2>Phishing</h2>
           <p>   El <strong>phishing</strong> és una tècnica d’enginyeria social que té com a
-            objectiu enganyar les víctimes perquè revelin informació sensible    (credencials, dades personals, informació financera) o perquè executin
+            objectiu enganyar les víctimes perquè revelen informació sensible    (credencials, dades personals, informació financera) o perquè executen
             accions malicioses, com clicar en enllaços o descarregar arxius.       </p>
 
           <p>  Aquest tipus d’atac se centra principalment en el <strong>factor humà</strong>
@@ -160,7 +160,7 @@
 
           <h3>Impacte del phishing en una organització</h3>
           <ul>
-            <li>Roba de credencials corporatives</li>
+            <li>Robatori de credencials corporatives</li>
             <li>Accés no autoritzat a sistemes interns</li>
             <li>Pèrdues econòmiques</li>
             <li>Fuites de dades sensibles</li>
@@ -413,7 +413,7 @@
       <p> Un <strong>salt</strong> és un valor aleatori afegit a la contrasenya abans  de calcular el hash. El seu objectiu és evitar:       </p>
       <ul>
         <li>Atacs amb taules rainbow</li>
-        <li>Que dues contrasenyes iguals tinguin el mateix hash</li>
+        <li>Que dues contrasenyes iguals tinguen el mateix hash</li>
       </ul>
       <p> Un <strong>pepper</strong> és similar al salt però no s'emmagatzema junt al hash   </p>
       <p>  ** Afegir un nombre gran d'iteracions per generar la clau, fa més robust el hash</p>
@@ -438,12 +438,12 @@
      <h3>Linux      </h3>
       <p>  En sistemes <strong>Linux</strong>, les contrasenyes dels usuaris    <strong>no s’emmagatzemen en text pla</strong>. En el seu lloc, el sistema
     guarda un <strong>hash criptogràfic</strong> de la contrasenya, la qual cosa     permet verificar-la sense revelar el seu valor original.   </p>
-   <h4>On s’emmagatzemen els hashos en Linux?</h4>
+   <h4>On s’emmagatzemen els hash en Linux?</h4>
   <h5>/etc/passwd</h5>
   <p>    Antigament contenia les contrasenyes, però actualment només guarda    informació bàsica de l’usuari. El camp de contrasenya sol contenir una    <code>x</code> indicant que el hash real està en un altre fitxer.  </p>
 
   <h4>/etc/shadow</h4>
-  <p>    El fitxer <strong>/etc/shadow</strong> conté els hashos reals de les    contrasenyes i només és accessible per l’usuari <strong>root</strong>.  </p>
+  <p>    El fitxer <strong>/etc/shadow</strong> conté els hash reals de les    contrasenyes i només és accessible per l’usuari <strong>root</strong>.  </p>
 
   <p>Cada entrada inclou:  </p>
   <ul>
@@ -482,7 +482,7 @@ $argon2i$   Argon2i           ✅ Molt segur      Memòria-intensiu
 $argon2id$  Argon2id          ✅ Molt segur      Estàndard modern</pre>
 
      <h3>Windows</h3>
-      <h4>On emmagatzema Windows els hashes?</h4>
+      <h4>On emmagatzema Windows els hash?</h4>
         <p>
           Windows utilitza principalment dos components:
         </p>
@@ -565,8 +565,9 @@ $argon2id$  Argon2id          ✅ Molt segur      Estàndard modern</pre>
 els fitxers nous en <code>/usr/share/seclists</code></p>
 <p>La llista més famosa de totes es la llista <code>Rockyou</code></p>
 <p>Hi ha un projecte anomenat <strong>Kaonashi</strong> que es pot descarregar de github <code>github.com/kaonashi/kaonashi-passwords/Kaonashi</code></p>
+<p>Altres llistes més extenses son: <code>weakpass_4a.txt (>8mill)  realuniq.lst(>1200mill)</code></p>
  <p>Altre element important són les <strong>contrasenyes predeterminades</strong> que posen els fabricants en alguns porductes i 
-que després no es canvien quan es posen en producció. </p>
+que després no es canvien quan es posen en producció. Este error s'anomena " <code>Security Misconfiguration</code> "</p>
 
    <h4>Diccionaris personalitzats</h4>
   <ul>
@@ -719,7 +720,7 @@ que després no es canvien quan es posen en producció. </p>
     <h1>Atacs tcp/ip</h1>
  <h2>Paràmetres i Vectors d’Atac a TCP/IP</h2>
 
-  <p>    El conjunt de protocols <strong>TCP/IP</strong> és la base de les comunicacions    en xarxa. La seva flexibilitat i antiguitat fan que determinats    <strong>paràmetres i camps de protocol</strong> puguin ser objecte d’abusos    si no s’apliquen controls adequats.  </p>
+  <p>    El conjunt de protocols <strong>TCP/IP</strong> és la base de les comunicacions    en xarxa. La seva flexibilitat i antiguitat fan que determinats    <strong>paràmetres i camps de protocol</strong> puguen ser objecte d’abusos    si no s’apliquen controls adequats.  </p>
 
   <h3>Què s’entén per “paràmetres” en atacs TCP/IP?</h3>
   <p>    Són camps, valors o comportaments dels protocols de xarxa    (IP, TCP, UDP, ICMP) que poden ser manipulats per    provocar <strong>interrupció del servei, evasió de controls    o degradació de la seguretat</strong>.  </p>
@@ -831,10 +832,11 @@ que després no es canvien quan es posen en producció. </p>
      i red team</strong> per identificar, validar i demostrar vulnerabilitats en sistemes informàtics de manera controlada i autoritzada.  </p>
      <p>desenvolupat per la empresa Rapid7, te una versió de codi font obert i una versió <strong>pro</strong> comercial de pagament</p>
      <p>Per aprofundir en l'us i funcionament existeixen diversos recursos. </p>
+     <ul>
      <li>Documentació oficial de Rapid7</li>
      <li>Curs online gratuit <strong>Metaspoloit Unleashed</strong> de Offensive Security</li>
      <li>Sistemes vulnerables <strong>metasploitable</strong>: Hi ha tres</li>
-
+      </ul>
   <h3>Què és un framework?</h3>
   <p> A diferència d’una eina simple, Metasploit proporciona una  <strong>plataforma modular</strong> que permet integrar
      exploits, càrregues, auxiliars i eines posteriors a l’explotació  dins d’un mateix entorn de treball.  </p>
@@ -879,7 +881,7 @@ que després no es canvien quan es posen en producció. </p>
     integrar i executar diferents components de seguretat dins d’un mateix entorn. Aquesta arquitectura facilita la reutilització
      de codi, l’escalabilitat i l’extensibilitat.  </p>
 
-  <h3>Principi clau: Arquitectura modular</h3>
+  <h4>Arquitectura modular</h4>
   <p>  Metasploit separa clarament les funcionalitats en mòduls    independents. Cada mòdul compleix una funció concreta    i pot combinar-se amb altres sense modificar el nucli.  </p>
 
   <h3>Components principals de l’arquitectura</h3>
@@ -922,42 +924,124 @@ que després no es canvien quan es posen en producció. </p>
   </ul>
 
     <h2>Ús bàsic</h2>
+    <p>Kali porta metasploit instal·lat. En altres Distribucions s'haurà d'instal·lar amb ...</p>
+    <pre>sudo apt update
+sudo apt install metasploit-framework </pre>
      <p>Metasploit disposa d'una base de dades PostGreSQL, i una comanda per manipular: <strong>msfdb</strong></p>
     <pre>msfdb init | reinit | delete | start | stop |status | run      </pre>
     <p>La primera vegada, init i start, i després sols start</p>
-    <p>Una comanda  <strong>msfconsole</strong>  , per entrar, i es mostrarà..</p>
-    <pre>msf6 ></pre>
-    <p>altres comandes inicials</p>
-   <pre>db_status  banner  color   history  version  tips   exit o quit </pre>
+    <p>Una vegada iniciada la bbdd executarem la comanda  <strong>msfconsole</strong>  , per entrar, i es mostrarà..</p>
+    <pre>msf ></pre>
+    <p>Si no s’inicia <strong><code>msfdb</code></strong> abans d’executar <strong>msfconsole</strong>, poden passar diverses coses, depenent de com estiga configurat el sistema:</p>
+   <p><strong>msfconsole</strong> arranca igualment, però: </p>
 
-    <h3>Gestio de workspaces</h3>
-    <p>Es un area de treball on guardar la informació de manera comú. L'habitual es crear un per cada projecte</p>
+<ul>
+  <li>La base de dades no està connectada</li>
+  <li>No es guarden resultats com:</li>
+  <ul>
+    <li>hosts</li>
+    <li>serveis</li>
+    <li>vulnerabilitats</li>
+    <li>credencials</li>
+  </ul>
+  <li>Ordres com hosts, services, creds, etc. no funcionen o eixen buides</li>
+</ul>
+<p>Normalment veuràs un missatge tipus: <code>Database not connected</code> i 
+Metasploit funcionarà en mode “sense persistència”  </p>
+
+  
+    <p>Una vegada dins de msf> podras provar comandes inicials...</p>
+   <pre>banner  color   history  version  tips   exit o quit
+db_status   db_connect  (per connectar a la bbdd sense eixir de msf> ) </pre>
+
+    <h3>Gestió de workspaces</h3>
+    <p>Un workspace és un area de treball on guardar la informació de manera comú. L'habitual es crear un per cada projecte</p>
     <pre>workspace   -- llista els workspaces
 workspace name    -- cambia al workspace name
 opcions: -a --add name  -d --delete name   -r --rename old new    -v 
-    </pre>
+workspace default    -- ix d'un workspace / no hi ha exit workspace      </pre>
 
     <h2>Gestió de mòduls</h2>
     <p>La gestió de mòduls es fonamental per conduir metasploit</p>
     <pre>search   o    help search 
-msf6 > search smb
-msf6 > search type:auxiliary smb
-msf6 > search type:exploit smb
-msf6 > search cve:2014-3791
-msf6 > search type:exploit arch:x86 platform:Windows     </pre>
+msf > search smb
+msf > search type:auxiliary smb
+msf > search type:exploit smb
+msf > search cve:2014-3791
+msf > search type:exploit arch:x86 platform:Windows     </pre>
     <h3>Càrrega i configuració de mòduls </h3>
     <p>Una vegada es fa la cerca, es mostren resultats, numerats. Es pot fer un <code>info</code> i a continuació 
     el num, o un <code>use</code> i a continuació el num</p>
+    <pre>Matching Modules
+================
+  #      Name    
+  0
+  1 
+  2     .........
+  3     auxiliary/scanner/smb/smb_version  </pre>
+  <p>On # és un num per usar junt a <code>use</code>, o també es pot usar el Nom(Name)</p>
+  <pre>Es pot fer , use 3, info 3,  o use auxiliary/scanner/smb/smb_version </pre>
     <p>Si es fa un <code>info</code>, ens mostra l'autor, i si soporta un <code>check</code></p>
-    <p>La secció més important es <code>Basic options</code> on es mostren les opcions o variables que te el mòdul</p>
+    <pre>Una vegada es fa un use, cambia el prompt, i es podrà executar <code>info</code> o <code>options</code> o <code>show options</code>
+ use auxiliary/scanner/smb/smb_version   
+msf  exploit(<strong><span style="color: crimson;">auxiliary/scanner/smb/smb_version</span></strong>) > </pre>
+    <p>Es mostra una informació incial, de nom, autor, ruta, si suporta check, i la secció més important es <code>Basic options</code> 
+      on es mostren les opcions o variables que té el mòdul</p>
     <p>També diu els <code>Current setting</code> i si es <code>Required</code> o no, i una columna de <code>Description</code></p>
-    <p>Els valors es podran establir en usar el mòdul <code>use</code></p>
-    <p>Una vegada fem un <code>use</code> del mòdul, cambia el prompt, i es podrà executar <code>info</code> o <code>options</code> </p>
-    <p>La comanda <code>set</code> per a posar valors a les variables i la comanda <code>unset</code> per llevar valors</p>
-    <p>Existeix la comanda <code>setg i unsetg</code> per posar o llevar valors de forma global</p>
-    <p>I una vegada amb tots els valors establits, es pot llançar amb <code>run</code> o <code>exploit</code></p>
+    <p>Els valors es podran establir en usar el mòdul amb  <strong><code>SET</code></strong> i el nom de la opció </p>
+    <pre>Per exemple
+msf  exploit(<strong><span style="color: crimson;">auxiliary/scanner/smb/smb_version</span></strong>) > set RHOSTS 192.168.1.24
+   Per establir el valor de la opció (que és <code>Required</code>)   </pre>
+   <p>Després d'establir valors, es poden comprobar amb <code>show options</code> o options</p>
+   <pre>show options</pre>
+   <p>Per poder llançar exitosament un exploit, s'ha de donar valor a les opcions <code><strong>Required</strong></code></p>
+    <p>Està la comanda <code>SET</code> per a posar valors a les variables i la comanda <code>UNSET</code> per llevar valors</p>
+    <p>(Existeix la comanda <code>setg i unsetg</code> per posar o llevar valors de forma global)</p>
+    <p>I una vegada amb tots els valors establits, es pot llançar amb <pre><code>run</code> o <code>exploit</code></pre></p>
+    <p>De vegades es pot canviar el PAYLOAD d'un EXPLOIT , abans de llançar-lo</p>
+    <pre>msf  exploit(<strong><span style="color: crimson;">auxiliary/scanner/smb/smb_version</span></strong>) > SET PAYLOAD windows/x64/meterpreter/...</pre>
   
+   <p>Comprovar si és vulnerable (sense atacar). Molt important i sovint obligatori:</p>
+  <pre>check</pre>
 
+      <p>Metasploit NO substitueix Nmap ni un escàner de vulnerabilitats complet (com Nessus).
+         Metasploit pot detectar possibles vulnerabilitats, però ho fa amb mòduls concrets, no amb un escaneig global automàtic.</p>
+        <p>Exemple pràctic: escanejar SMB</p>
+        <pre>search type:auxiliary scanner
+use auxiliary/scanner/smb/smb_version
+set RHOSTS 192.168.1.10
+run </pre>
+          <p>Et diu: Versió de SMB, Sistema operatiu aproximat <br>
+          Després pots buscar exploits compatibles:</p>
+          <pre>search smb  </pre>
+
+      <p>Metasploit pot executar Nmap dins seu:</p>
+      <pre>db_nmap -sV 192.168.1.10
+i després
+services
+hosts    </pre>
+
+    <hr><h1>msfvenom</h1>
+   <p> msfvenom és una eina del Metasploit Framework que s’utilitza  en seguretat informàtica per a crear
+     payloads (càrregues útils). Un payload és un xicotet programa que fa alguna acció quan s’executa en un sistema.</p>
+   <p>Important: msfvenom no entra en cap sistema. Només genera el payload. L’explotació de la vulnerabilitat és una altra part diferent.</p>
+    <br>
+    <p>En entorns autoritzats (laboratoris, empreses, formació), s’usa per a:
+
+    <ul>
+      <li>Simular atacs reals en pentesting</li>
+      <li>Provar si un antivirus detecta payloads</li>
+      <li>Entrenar equips de seguretat (red team / blue team)</li>
+      <li>Analitzar com reaccionen els sistemes davant codi maliciós</p></li>
+    </ul>
+    <h3>Com funciona</h3>
+    <p>1. Payload  </p> Obrir una connexió remota, Executar ordres, Obtenir informació del sistema
+    <p>2. Plataforma i arquitectura</p> El sistema operatiu de destí (Windows, Linux, Android…), L’arquitectura (x86, x64, ARM…)
+    <p>3. Encoders (ofuscació)</p> Ofuscar el payload, Canviar la seua signatura
+    <p>4. Format d’eixida</p>  El payload pot generar-se com: Un executable, Un script, Una llibreria, Codi brut (shellcode)
+    <p>Tot i això, no s’executa sol: cal una vulnerabilitat o una execució manual.</p>
+    <hr><p>Una altra eina del framework de metasploit es <code>msfupdate</code>, que permet: Actualitzar Metasploit i Afegir nous mòduls i correccions</p>
+    <pre>msfupdate</pre>
     </section>             
 
     <section id="ad">
