@@ -66,10 +66,10 @@
     <p>Entre els avantatges es pot citar la facilitat d'instal·lació, la seua senzillesa i el seu menor cost,
         i entre els desavantatges, un rendiment menor que les xarxes cablejades i una seguretat menor en tant que no és necessari l'accés físic per a interceptar informació.</p>
     <ol> Es poden classificar segons la cobertura en:
-        <li>WPAN : Wireless Personal Area Network</li>
-        <li>WLAN : Wireless Local Area Network</li>
-        <li>WMAN : ..Metropolitan... Per exemple WiMAX</li>
-        <li>WWAN : Wireless Wide Area Network</li>
+        <li>WPAN : Wireless Personal Area Network..NFC, Bluetooth, ZigBee, IR</li>
+        <li>WLAN : Wireless Local Area Network..WiFi</li>
+        <li>WMAN : Metropolitan.. Per exemple WiMAX</li>
+        <li>WWAN : Wireless Wide Area Network.. 3G, 4G, 5G, Starlink, GPS, ..</li>
     </ol>
     <p>Altre concepte que cal recordar. La capa d'enllaç de dades es divideix en dos subcapes</p>
     <ul>
@@ -98,7 +98,7 @@
 
     <h2>Bandes de freqüència</h2>
     <p>WiFi pot funcionar en dos bandes, la 2,4 i la 5 GHz. Les bandes son rangs de freqüències que es divideixen en <strong>canals</strong>
-    d'una certa amplada, a travès de la qual es transment.</p>
+    d'una certa amplada, a travès de la qual es transmet.</p>
     <h3>2,4GHz</h3> <img src="imgs/B2-4GHz.jpg" alt="2400MHz" width="48%" class="imatge-dreta">   
     <p>És un rang de freqüències que va des de 2400 MHz a 2483 MHz. Este espai es divideix en <strong>tretze canals</strong>
     de 22 MHz d'amplada cadascu (20 per dades i 2 per evitar solapaments entre canals separats (1,6,11)) i més tard es va afegir el canal 14</p>
@@ -121,6 +121,18 @@
     <p>En esta banda, alguns canals tenen <strong>restricions d'ús</strong>. En europa hi ha canals reservats per radars, defensa 
     o meteorologia (DFS) , o canals amb restricció de potencia (TPC)</p>
     <img src="imgs/banda 5GHz.png" alt="5GHz" width="58%" >   
+
+    <!-- Bluetooth treballa també en 2,4Ghz, en banda ISM (Industrial, Scientific and Medical): 
+     Bluetooth utilitza salt de freqüència (FHSS – Frequency Hopping Spread Spectrum):
+     Bluetooth utilitza 79 canals, Bluetooth Low Energy (BLE):  Utilitza 40 canals dins de la mateixa banda de 2,4 GHz
+     Zigbee utilitza baixa potència i està pensat per a domòtica, IoT i sensors. 
+     utilitza 2,4 GHz: global i la més comuna,  868 MHz: Europa,  915 MHz: Amèrica,  Bandes ISM, sense llicència
+     Les xarxes NFC (Near Field Communication) treballen en la banda de freqüència de 13,56 MHz.(HF (High Frequency))
+     Utilitza inducció electromagnètica, no ones de ràdio com el Wi-Fi o el Bluetooth.
+     És una banda ISM, d’ús lliure sense llicència.
+     Les xarxes d’infraroigs (IR) treballen en bandes de freqüència molt altes, dins de l’espectre de la llum infraroja, no en radiofreqüència.
+     Freqüència aproximada: entre 300 GHz i 400 THz
+     -->
 
     <hr><h2>Protocols de seguretat</h2>
     <p>Un dels principals punts al moment d'implantar xarxes sense fil és la seguretat, donat que el mitjà de transmisió, al

