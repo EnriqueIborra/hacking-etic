@@ -256,7 +256,7 @@
     border-left: 6px solid #f39c12;
   }
   body.dark-mode .alert {
-    background: #c29473;
+    background: #c06e34;
   }
   .tips {
     background: #d2f8e1;
@@ -294,14 +294,14 @@
   }
 
    h2 {
-    color: #1f3c88;
+    color: #344d8c;
     font-size: 22px;
     margin-bottom: 10px;
   }
 
   h1 {
     font-size: 28px;
-    color: #b834c4;
+    color: #b940c4;
     margin: 0;
   }
 
@@ -330,4 +330,8 @@ body.dark-mode pre {
 body.dark-mode th {
   background-color: #343451;
   color: #7cacca;
+}
+
+body.dark-mode a {
+    color: #7cacca;
 }

