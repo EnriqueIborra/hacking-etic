@@ -108,12 +108,107 @@
   <li>2️⃣ Startup Folder</li>
   <li>3️⃣ Scheduled Tasks</li>
   <li>4️⃣ Windows Services</li>
-  <li>5️⃣ Crear usuari administrador</li>
+  <li>5️⃣ Crear usuari amb perfil d'administrador</li>
   <li> i més .....</li>  
 </ul>
+<hr>
+<h2>CRON</h2>
+<h3>Què és cron</h3>
+<p><code>cron</code>  és el sistema de planificació de tasques en sistemes Unix/Linux. Permet executar ordres o scripts 
+  automàticament en moments determinats. És molt utilitzat en administració de sistemes.
+El servei que gestiona això és Cron, que funciona com un daemon (procés que s’executa en segon pla).</p>
+<h3>Com funciona <strong>cron</strong></h3>
+<p>El procés cron està sempre executant-se en segon pla i fa aquest cicle:
+1️⃣ Llegeix les configuracions de tasques programades
+2️⃣ Comprova cada minut si alguna tasca s’ha d’executar
+3️⃣ Si coincideix el temps → executa la comanda
+És a dir, cron revisa el temps cada <strong>minut</strong></p>
+
+<h3>On es defineixen les tasques que executarà cron</h3>
+<p>segons...cron d'usuari o cron de sistema</p>
+<p>Cron de l’usuari: Cada usuari pot tenir el seu propi cron.
+<pre>       # es modificarà amb la comanda:
+crontab -e</pre>
+Aquest fitxer es guarda internament a:
+<pre>/var/spool/cron/crontabs</pre>  </p>
+<p><strong>Nota:</strong> El cron d’un usuari s’executa encara que l’usuari no faça login, 
+  sempre que el servei Cron estiga actiu en el sistema Linux.</p>
+
+<p>Cron del sistema: També hi ha cron globals:
+<pre>/etc/crontab
+/etc/cron.d/
+/etc/cron.hourly/
+/etc/cron.daily/
+/etc/cron.weekly/
+/etc/cron.monthly/  </pre></p>
+<h3>Format d’una línia de cron (d'usuari)</h3>
+<p>Cada tasca té 5 camps de temps + la comanda.
+<pre>* * * * * comanda
+│ │ │ │ │
+│ │ │ │ └── dia setmana
+│ │ │ └──── mes
+│ │ └────── dia mes
+│ └──────── hora
+└────────── minut  </pre> </p>
+<p>Existeix un cron especial anomenat @reboot que executa una tasca quan el sistema arranca. Exemple:
+<pre>
+@reboot /home/user/script.sh  </pre></p>
+<h3>Format d’una línia de cron (de sistema)</h3>
+<p>En els fitxers dels directoris: <code> /etc/crontab, /etc/cron.d/, /etc/cron.hourly/  </code> 
+    Cada tasca té 5 camps de temps + usuari + la comanda.
+<pre>* * * * * usuari comanda</pre>
 
 
-  </section>         
+<h3>Exemples de configuracions</h3>
+<pre>*/5 * * * * /usr/bin/backup.sh
+ └──── Significa:  executar cada 5 minuts
+</pre>
+
+<pre>0 2 * * * /usr/bin/backup.sh
+  └────  Significa: executar cada dia a les 02:00
+</pre>
+<pre>0 9 * * 1
+        └────  Significa: cada dilluns a les 09:00
+</pre>
+
+
+<h3>Veure cronjobs (d'usuari)</h3>
+<pre>crontab -l</pre>
+<h3>Editar cronjobs (d'usuari)</h3>
+<pre>crontab -e</pre>
+<h3>Eliminar (d'usuari)</h3>
+<pre>crontab -r</pre>
+<p> ==> Els cronjobs de sistema s'han d'editar a ma...</p>
+<h3>Comprovar que cron funciona</h3>
+<pre>systemctl status cron</pre>
+<h3>Logs de cron</h3>
+<pre>/var/log/syslog</pre>
+<h3>Coses a tindre en compte quan es programa <code>cron</code></h3>
+<p>cron necessita el path complet en la linea</p>
+<pre>
+* * * * * python script.py
+  ==>  falla:  Cron pot no trobar python.
+Solució
+* * * * * /usr/bin/python /home/user/script.py  
+</pre>
+<p>- Els scipts necessiten permís d'execució</p>
+<p>- No pot haver salts de linea en una ordre del fitxer</p>
+<p>- Dins dels scripts també s'han de posar les rutes completes</p>
+
+<!-- Altres exemples avançats
+0 0 1 2,4,6,8,10,12 * root /ruta/script.sh
+0 9 * * 1-5 /ruta/script.sh
+0 3 * * * /usr/bin/backup.sh || echo "Backup error" >> /var/log/backup.log
+0 3 * * * /usr/bin/backup.sh && echo "Backup OK"     
+*/5 * * * * flock -n /tmp/script.lock /usr/local/bin/script.sh
+      ==> flock crea un lockfile. si el script ja està executant-se → no s’executa
+*/15 9-17 * * 1-5 /usr/local/bin/report.sh   ==> cada 15 minuts, entre les 09:00 i les 17:59, de dilluns a divendres.
+0 0 1 * 0 /usr/local/bin/script.sh  ==>  dia del mes = 1  o  dia setmana = diumenge
+-->
+
+</section>         
+
+
 
 <section id="creacio">
 <h1>Creació de malware</h1>
