@@ -63,24 +63,68 @@
     <h2>Eines C&C  (C2)</h2>
     <p>MITRE defineix les accions de comanda i control (C2), com a tècniques per a comunicar-se amb els sistemes 
       abans compromesos i evitar ser detectats.  </p>
+      <p>Recordem <a href="https://attack.mitre.org/">MITRE </a> 
+         i <a href="https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html">Ciber Kill Chain</a> 
+         i en <a href="https://es.wikipedia.org/wiki/Cyber_kill_chain"> wikipedia </a> </p>
     <ul>
       <li>Utilitzar protocols de comunicació habituals</li>
       <li>Utilitzar / infectar mitjans extraibles</li>
       <li>Emprar encriptació i ofuscació</li>
     </ul>
+<p>Les ferramentes de C2 (Command & Control) són plataformes que permeten a un operador controlar màquines compromeses de forma centralitzada.
+   S’utilitzen en red teaming, pentesting i també en malware real.</p>
 
     <h3>Alguns frameworks C2 ..</h3>
     <ol>
-      <li>Cobalt Strike</li>
-      <li>Covenant</li>
-      <li>Empire</li>
-      <li>Havoc</li>
-      <li>ibombshell</li>
-      <li>Silver</li>
-      <li>Villain</li>
+      <li>Cobalt Strike (W)</li>
+      <li>Covenant (W)</li>
+      <li>Empire (W, powershell)</li>
+      <li>Havoc (W)</li>
+      <li>ibombshell (Linux)</li>
+      <li>Sliver (multi)</li>
+      <li>Mythic (multi)</li>
+      <li>Villain (framework de gestió de sessions)</li>
+      <li> i més .....</li>
     </ol>
+    Es pot consultar la matriu de C2 en <a href="https://c2matrix.webflow.io/matrix">https://c2matrix.webflow.io/matrix</a>
+    i en <a href="https://howto.thec2matrix.com/">https://howto.thec2matrix.com/</a>
 
-    <h2>Mòduls postexplotació. Metasploit</h2>
+    <ul> Components habituals d'una plataforma C2
+      <li>Servidor C2</li>
+      <li>stager (payload molt xicotet)</li>
+      <li>agents (beacon, implant)</li>
+      <li>listeners</li>
+      <li>payloads</li>
+    </ul>
+
+     <ol> Flux complet d’un atac amb C2
+      <li>Crear payload (amb stager)</li>
+      <li>Fer arribar el payload a la víctima i executar-lo</li>
+      <li>Stager connecta a C2 i descarrega el agent complet</li>
+      <li>agent comença el beaconing</li>
+      <li>Operador envia el tasking</li>
+      <li>agent executa ordres rebudes i envia resultats</li>
+     </ol>
+
+    <ul> Avantatges de C2
+      <li>Control centralitzat de múltiples víctimes</li>
+      <li>Automatització de tasques</li>
+      <li>Comunicació encoberta (amb diversos protocols estandards, http, https, dns, icmp, smb, ...)</li>
+      <li>Gestió de sessions</li>
+      <li>RCE . Execució remota de comandes</li>
+      <li>Moviment lateral, pivoting</li>
+      <li>Persistència integrada</li>
+      <li>Exfiltració de dades</li>
+      <li>Gestiló d'equips</li>
+    </ul>
+    <ul> Inconvenients de C2
+      <li>Com són conegudes, són més fàcil de detectar</li>
+      <li>Infraestructura més complexa</li>
+      <li>Possible rastreig del servidor C2</li>
+      <li>Consum de recursos en els agents i risc de detecció</li>
+    </ul>
+
+    <h2>Mòduls de postexplotació de Metasploit</h2>
 
     <ol> <strong>Recopilació d'informació local</strong>
       <li>post/multi/recon/local_exploit_suggester</li>
@@ -91,8 +135,25 @@
       <li>post/windows/gather/credentials/credential_collector</li>
       <li>post/windows/gather/enum_applications</li>
       <li>post/windows/gather/enum_shares</li>
-    </ol>        
-    <p>Formes de mantindre la persistència en <strong>Linux</strong></p>
+    </ol> 
+    <ol> Manteniment de l'accés
+      <li>Amb meterpreter</li>
+      <li>exploit/windows/local/persistence </li>
+      <li>keyscan_start</li>
+      <li>keyscan_dump</li>
+      <li>exploit/multi/handler  +  payload</li>
+    </ol>
+    <ol>Escalada de privilegis
+      <li>getsystem de Meterpreter</li>
+      <li>exploit/[windows|linux]/local</li>
+    </ol>
+    <ol>Pivotage en la xarxa
+      <li>autoroute</li>
+      <li>portfwd</li>
+    </ol>
+    
+ <hr>   
+    <h2>Formes de mantindre la persistència en <strong>Linux</strong></h2>
 <ul>
   <li>1️⃣ cron normal</li>
   <li>2️⃣ cron ocult (/etc/cron.d)</li>
@@ -102,7 +163,7 @@
   <li>6️⃣ systemd timer</li>
 </ul>
 
-    <p>Formes de mantindre la persistència en <strong>Windows</strong></p>
+    <h2>Formes de mantindre la persistència en <strong>Windows</strong></h2>
 <ul>
   <li>1️⃣ Registry Run Keys</li>
   <li>2️⃣ Startup Folder</li>
