@@ -92,15 +92,20 @@
     <ul> Components habituals d'una plataforma C2
       <li>Servidor C2</li>
       <li>stager (payload molt xicotet)</li>
-      <li>agents (beacon, implant)</li>
-      <li>listeners</li>
-      <li>payloads</li>
+      <li>agents ( implants )</li>
+      <li>listeners Jobs</li>
+      <li>channels (protocols soportats)</li>
+      <li>sessions / beacons</li>
+      <li>operators</li>
+      <li>ordres / tasques</li>
+      <li>feedback</li>
     </ul>
 
      <ol> Flux complet d’un atac amb C2
       <li>Crear payload (amb stager)</li>
       <li>Fer arribar el payload a la víctima i executar-lo</li>
       <li>Stager connecta a C2 i descarrega el agent complet</li>
+      <li>S'executa l'agent o "implant"</li>
       <li>agent comença el beaconing</li>
       <li>Operador envia el tasking</li>
       <li>agent executa ordres rebudes i envia resultats</li>
@@ -115,7 +120,7 @@
       <li>Moviment lateral, pivoting</li>
       <li>Persistència integrada</li>
       <li>Exfiltració de dades</li>
-      <li>Gestiló d'equips</li>
+      <li>Gestió d'equips</li>
     </ul>
     <ul> Inconvenients de C2
       <li>Com són conegudes, són més fàcil de detectar</li>
@@ -124,7 +129,7 @@
       <li>Consum de recursos en els agents i risc de detecció</li>
     </ul>
 
-    <h2>Mòduls de postexplotació de Metasploit</h2>
+   <hr> <h2>Mòduls de postexplotació de Metasploit</h2>
 
     <ol> <strong>Recopilació d'informació local</strong>
       <li>post/multi/recon/local_exploit_suggester</li>
