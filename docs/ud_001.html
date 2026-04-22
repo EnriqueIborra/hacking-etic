@@ -55,8 +55,8 @@
    <p>Un “hack” és un terme amb diversos significats segons el context, però en general fa referència a una solució creativa, 
     enginyosa o no convencional per resoldre un problema. Amb el temps, el significat s’ha associat sobretot amb la informàtica.</p>
     <p>En els anys 60–70, Un hack era una modificació o truc tècnic fet per curiositat o per millorar un sistema, sovint de manera elegant però no oficial.
-      El terme naix en entorns universitaris com el MIT, especialment al Tech Model Railroad Club.      </p>
-  <p>Els “hackers” eren estudiants que exploraven sistemes informàtics per curiositat. compartien coneixement lliurement. i no hi havia intenció maliciosa.</p>
+      El terme naix en entorns universitaris com el MIT.  </p>
+  <p>Els “hackers” eren estudiants que exploraven sistemes informàtics per curiositat, compartien coneixement lliurement, i no hi havia intenció maliciosa.</p>
   <p>En els anys 70–80: Expansió i “phreaking”. Apareix el phone phreaking (manipular xarxes telefòniques). Figura destacada: John Draper. Es comença a explorar la seguretat de sistemes reals.</p>
   <p>Anys 80–90: Criminalització i mediàtic. El hacking comença a associar-se amb activitats il·legals. Casos famosos: Kevin Mitnick. 
     Autor de diversos llibres de lectura recomanada, com "El arte de la intrusion"(2006) i "El arte de la invisibilidad"(2008). Altre cas famós, Lloyd Blankednship, 
@@ -991,6 +991,37 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
       <li>Màquines (boxes)</li>
       <li>Xarxes (labs)</li>
     </ul>
+<h2>Distribucions per fer pentesting</h2>
+<p>El <strong>pentesting</strong> (abreviatura de "penetration testing", en anglès), també conegut com a test d'intrusió o prova de penetració, 
+  és una pràctica de ciberseguretat que consisteix a atacar un sistema informàtic, una xarxa o una aplicació web de manera controlada per trobar
+   i explotar les seues vulnerabilitats.</p>  <p>L'objectiu principal és identificar els punts febles abans que ho facen els ciberdelinqüents,
+     per tal de poder corregir-los i reforçar la seguretat de l'organització.</p>
+  <p>Les distribucions de pentesting són sistemes operatius basats generalment en Linux que venen preinstal·lats amb una gran quantitat d'eines especialitzades
+     per a l'auditoria de seguretat, l'anàlisi de vulnerabilitats i la realització de proves d'intrusió. En lloc d'instal·lar cada eina per separat,
+      aquestes distribucions et proporcionen un entorn "tot en un" llest per a treballar. Entre les distribucions disponibles destaquen les següents:</p>   
+
+  <ul>
+    <li><strong>Kali Linux</strong> (La referència del sector). És la distribució més famosa i utilitzada a escala mundial. Basada en Debian, està mantinguda per Offensive Security.
+       Té la comunitat més gran, una documentació extensíssima i milers d'eines categoritzades (reconeixement, explotació, forense, etc.)</li>
+    <li><strong>Parrot Security OS</strong> Un fort competidor de Kali, basat també en Debian, però amb un enfocament una mica més lleuger i polivalent.
+        No només està pensada per al pentesting, sinó també per al desenvolupament segur, la privacitat (té eines per a l'anonimat com AnonSurf) i l'ús quotidià.</li>
+    <li><strong>BlackArch Linux</strong> A diferència de les dues anteriors, aquesta està basada en Arch Linux. Disposa d'un repositori massiu amb més de 3.000 eines d'hacking. És extremadament personalitzable.
+            Ideal per a usuaris avançats de Linux que volen un control total sobre el sistema</li>
+  </ul>    
+
+  <h2>Plataformes de recompensa (bug bounty)</h2>
+  <p>Les plataformes de bug bounty (o programes de recompensa per errors) actuen com a intermediàries entre les empreses que volen millorar 
+    la seguretat dels seus sistemes i els investigadors de seguretat (hackers ètics) que busquen vulnerabilitats.</p>
+  <p>Aquestes plataformes faciliten la comunicació, la gestió dels informes, la validació de les troballes (triage) i el pagament de les recompenses. 
+      Principals plataformes de Bug Bounty     </p>
+<ul>
+  <li><strong>HackerOne</strong>	La més gran i reconeguda a escala mundial. Molt bona per a principiants pel seu sistema de reputació i quantitat de programes.</li>
+  <li><strong>Bugcrowd</strong>	Una altra de les "grans". Destaca pel seu sistema CrowdMatch, que emparella hackers amb programes segons les seues habilitats.</li>
+  <li><strong>Intigriti</strong>	Plataforma europea amb seu a Bèlgica. Molt centrada en la qualitat i amb una comunitat molt activa a Europa.</li>
+  <li><strong>YesWeHack</strong>	Plataforma francesa, enfocada en la privacitat, el compliment normatiu i amb una forta presència al mercat europeu.</li>
+  <li><strong>HackenProof</strong>	Especialitzada principalment en l'ecosistema Web3 (cripto, DeFi, smart contracts).</li>
+  <li><strong>Open Bug Bounty</strong>	Sense ànim de lucre. Centrada en la divulgació coordinada; sovint no ofereix recompensa econòmica, però és ideal per a guanyar experiència.</li>
+</ul>
 
 <h1>Plataformes per practicar Hacking</h1>
 <p>Estes plataformes són útils perquè proporcionen:</p>
@@ -1036,9 +1067,10 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
 
    <h2> TryHackMe</h2>
     <ul>
-      <li>Aprenentatge guiada amb <strong>labs pràctics i exercicis pas a pas</strong>.</li>
-      <li>Ideal per a principiants.</li>
+      <li>Aprenentatge guiat amb <strong>labs pràctics i exercicis pas a pas</strong>.</li>
+      <li>Ideal per a principiants. Està en anglés, però es pot traduir</li>
       <li>Té cursos sobre pentesting, seguretat web, etc.</li>
+      <li>Les respostes dels reptes s'han de donar en anglés (encara que tingues la pag. traduïda)</li>
       <li>URL: <a href="https://tryhackme.com">https://tryhackme.com</a></li>
     </ul>     
 
@@ -1047,6 +1079,7 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
       <li>Plataforma amb molts <strong>reptes de penetració</strong> i màquines virtuals vulnerables.</li>
       <li>Nivells des de principiant fins a expert.</li>
       <li>Comunitat activa i tutorials.</li>
+      <li>Enfocada a nivells intermedi-alt. Qualitat Molt Alta. Dificultat Alta</li>
       <li>URL: <a href="https://www.hackthebox.eu">https://www.hackthebox.eu</a></li>
     </ul>
 
@@ -1057,29 +1090,41 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
       <li>URL: <a href="https://www.vulnhub.com">https://www.vulnhub.com</a></li>
     </ul>
 
-    <h2> PentesterLab</h2>
-    <ul>
-      <li>Plataforma amb <strong>exercicis sobre vulnerabilitats web</strong> i de sistemes.</li>
-      <li>Inclou documentació i casos reals.</li>
-      <li>URL: <a href="https://pentesterlab.com">https://pentesterlab.com</a></li>
-    </ul>
- 
     <h2> Root Me</h2>
     <ul>
       <li>Plataforma francòfona amb més de 300 reptes de seguretat.</li>
       <li>Àmbit molt ampli: xarxes, web, criptografia, etc.</li>
       <li>URL: <a href="https://www.root-me.org">https://www.root-me.org</a></li>
     </ul>
+    <h2> Portswigger</h2>
+    <ul>
+      <li>Plataforma amb exercicis sobre<strong> vulnerabilitats web</strong>. </li>
+      <li>Aprenentatge guiat de tècniques d'atac</li>
+      <li>És gratuït. </li>
+      <li>URL: <a href="https://pentesterlab.com">https://pentesterlab.com</a></li>
+    </ul>
 
-    <!--<h2> CyberSecLabs</h2> No actiu -->
+    <h2> PentesterLab</h2>
+    <ul>
+      <li>Plataforma amb exercicis sobre<strong> vulnerabilitats web</strong>. </li>
+      <li>Vulnerabilitats concretes (XSS, SQLi, OAuth, JWT, etc.)</li>
+      <li>Bon equilibri de dificultat (de fàcil a avançat).</li>
+      <li>Inclou documentació i casos reals.</li>
+      <li>Sols té una part gratuita. La major part es de pagament.</li>
+      <li>URL: <a href="https://pentesterlab.com">https://pentesterlab.com</a></li>
+    </ul>
+ 
+    <!--<h2> CyberSecLabs</h2> No actiu 
 
     <h2> HackThisSite</h2>
     <ul>
       <li>Plataforma educativa amb reptes i tutorials per a hacking ètic.</li>
       <li>URL: <a href="https://www.hackthissite.org">https://www.hackthissite.org</a></li>
-    </ul>
+    </ul> 
+    *** Comunidad comenta falta de mantenimiento reciente:    “looks like an abandoned building”
+    -->
 
-       <h2> Labs de Metasploit</h2>
+    <h2> Labs de Metasploit</h2>
     <ul>
       <li>Amb les MV Metasploitable's pots configurar el teu propi entorn de pràctica.</li>
       <li>Disponible com a eina de prova i atac.</li>
@@ -1134,7 +1179,7 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
 un hacker necessita estar al dia d'estos avanços i descobriments.  </p>
 <p>ON?</p>
 <ul>
-  <li>Llocs web especialitzats</li>
+  <li>Llocs web especialitzats (Una al dia (hispasec), elladodelmal (chema alonso), flu-project, hackplayers, Thehackerway, etc...)</li>
   <li>Canals de Telegram especifics</li>
   <li>En noticies d'Instagram</li>
   <li>Assistint a convencions (CON) diverses</li>
@@ -1173,7 +1218,8 @@ un hacker necessita estar al dia d'estos avanços i descobriments.  </p>
    <li>Sofisticació tècnica de ferramentes</li>
 
    <p>En un entorn real de treball, necessitarem una màquina ( o més) hardware dedicada, com per exemple un portàtil amb un OS de pentesting com Kali o Parrot</p>
-   <p>En el nostre cas, podrem fer servir una (o més ) maquina virtual del OS en qüestió. (kali)</p>
+   <p>En el nostre cas, podrem preparar laboratoris amb una màquina virtual de kali o parrot, per a la part ofensiva, i varies màquines virtuals amb vulnerabilitats per servir
+    de màquines "víctima", sobre les quals practicar el nostre pentestign</p>
 
     <ol>
       <li>Preparar MV de KALI en VirtualBox</li>
@@ -1187,11 +1233,15 @@ un hacker necessita estar al dia d'estos avanços i descobriments.  </p>
       Completa el nivell Bandit ( inicial ) d'esta plataforma.
       <li>Entrenament en : Atenea (cal registre)</li>
       Si no tens usuari, registra't. Completa els reptes de la categoria <strong>Bàsica</strong>  . Utilitza comandos de sistema operatiu preferentment
-      <li>Primera gran eina per una hacker... <a href="https://gchq.github.io/CyberChef/">CyberChef/</a></li>
-      Si no trobes solució en els comandos del SO, fes servir esta eina. 
-      <h3> Però <strong>sempre</strong> intenta primer en els comandos del sistema</h3>
-      <li>Descarrega la maquina DC-1 del <a href="https://www.vulnhub.com/entry/dc-1,292/">vulnhub</a> (no cal registre) , (una .OVA), importa a VirtualBox, configura en Xarxa NAT ( mateixa que Kali) </li>
+      <li>Primera gran eina per una hacker... <a href="https://gchq.github.io/CyberChef/">CyberChef/</a>  
+      Si no trobes solució en els comandos del SO, fes servir esta eina.  Però <strong>sempre</strong> intenta primer en els comandos del sistema.</li>
+      <li>Instal·la i prova la ferramenta <code>tmux</code> (terminal multiplexer), que permet treballar amb diferents sessions, finestres, i panells, Per poder
+        fer un ús eficient de la terminal de comandos de linux (kali) .</li>
+      <li>Prova l'editor <code>vi</code> de linux (en kali). <code>vi</code> sol estar en totes les distribucions de Linux i 
+      és molt útil saber com usar-lo</li>
+      <li>Descarrega la maquina DC-1 del <a href="https://www.vulnhub.com/entry/dc-1,292/">vulnhub</a> (no cal registre) , (una .OVA), importa a VirtualBox, configura en Xarxa NAT ( mateixa que la teua <strong>Kali</strong> de pentester) </li>
       Comprova des de kali que la maquina nova està en la xarxa NAT. (esbrina IP, esbrina MAC, esbrina Serveis exposats )
+      <!-- <li>Realitza la teua segon màquina <strong>boot2root</strong> amb el repte <strong>Simple CTF</strong> de <strong>TryHackMe</strong> (requereix registre)</li> -->
     </ol>
     <hr><hr>
     <h3>📜 📜 📜 Prepara un informe del treball realitzat 📜 📜 📜 </h3>
