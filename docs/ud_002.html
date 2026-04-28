@@ -80,11 +80,12 @@
   <li>Footprinting utilitzant Altres ferramentes (noves)</li>
  
 </ul>
-<h3>  !!  Sempre en consentiment del organisme o empresa a ser testada  !!</h3>
+<h3>  !!  Sempre en consentiment de l'organisme o empresa a ser testada  !!</h3>
 
  <h2>Metadades</h2>
  <p>Les metadades de documents tenen un paper molt important dins del footprinting, especialment en la seva variant passiva, ja que poden revelar molta informació sensible sense accedir directament a cap sistema</p>
- <p>Les metadades són dades que descriuen altres dades. En el cas de documents com PDF, Word, Excel, imatges, etc., les metadades poden contenir informació oculta (però fàcil d’extreure) que pot ser molt valuosa per un analista o atacant en la fase de footprinting</p>
+ <p>Les metadades són dades que descriuen altres dades. En el cas de documents com PDF, Word, Excel, imatges, etc., les metadades poden contenir informació oculta (però fàcil d’extreure) 
+  que pot ser molt valuosa per un analista / auditor o atacant en la fase de footprinting</p>
 
 <h2>Per què això és útil en el footprinting?</h2>
 <ul>
@@ -104,6 +105,7 @@
 </ul>
 <p>Les metadades són una font valuosa i sovint infravalorada en el footprinting passiu. A partir de documents 
   aparentment inofensius, es pot obtenir informació crítica sobre persones, sistemes i estructures internes d’una organització, tot sense aixecar sospites</p>
+ 
 
   <h2>Motors de cerca que usen els hackers</h2>
   <a href="https://www.hackplayers.com/2025/06/motores-de-busqueda-hackers.html">https://www.hackplayers.com/2025/06/motores-de-busqueda-hackers.html</a>
@@ -389,18 +391,29 @@ Provar múltiples noms per trobar subdominis com admin.example.com, mail.example
    
   <p>Però el mes pràctic i ràpid és utilitzar una eina.</p>
   <li>En Linux =>  <code># <strong>file </strong> nom_del_fitxer</code></li>
+  <li>En Windows => Altres eines. <code>certutil -dump fitxer</code> ./  <code>Get-Content fitxer -Encoding Byte -TotalCount 16</code> ./ 
+  <code>trid fitxer</code> ./ <code>exiftool fitxer</code> ./ usar <code>WSL + file</code></li>
 
   <h2>Metadades</h2>
   <p>l’anàlisi de metadades és una tècnica per obtenir informació oculta o complementària continguda en fitxers, imatges, documents o altres recursos digitals, amb l’objectiu de detectar possibles riscos de seguretat o fuites d’informació</p>
   <li>En Linux =>  <code># <strong>exiftool </strong> nom_del_fitxer</code></li>
   <p>Altres eines</p>
     <ul>
-      <li>metagoofil  ( des de github ) </li>
-      <li>metaFinder  ( des de github) </li>
+      <li>metagoofil  ( des de github , actualment obsolet, funciona mal) </li>
       <li>FOCA  (Windows, molt usada per a OSINT d’empreses).</li>
       <li>Mat2 (Linux, per analitzar i netejar metadades).</li>
       <li>Serveis web com metapicz.com o get-metadata.com (amb precaució per la privacitat).</li>
     </ul>
+
+     <p>Les alternatives modernes a FOCA / Metagoofil han evolucionat molt cap a dos enfocaments:
+👉 eines d’OSINT automatitzat + eines especialitzades de metadades.</p>
+  <ul>
+    <li>SpiderFoot</li>
+    <li>Maltego</li>
+    <li>theHarvester</li>
+    <li>recon-ng</li>
+    <li>exiftool + automatització amb <code>python</code></li>
+  </ul>
 
     <h2>Informació textual</h2>
     <p>l’anàlisi d’informació textual és una tècnica clau per extreure dades rellevants de grans quantitats de text, com logs, resultats d’escaneig o arxius obtinguts durant una auditoria. Eines com grep i altres utilitats de la línia de comandes són bàsiques per fer-ho ràpidament i de forma eficient.</p>

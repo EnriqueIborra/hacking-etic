@@ -522,9 +522,15 @@ $argon2id$  Argon2id          ✅ Molt segur      Estàndard modern</pre>
       <p>Peeeero, Si hi ha imatges de recuperació creades, SAM i SYSTEM també poden estar en <code>C:\windows\repair</code> o en 
         <code>C:\windows\System32\config\RegBack</code>     </p>
      <p>A més a més, hi ha eines específiques per obtindre els hash, com , <strong>pwdump7</strong> v.ant a W10
-    , o <strong>pwdump8</strong> més actualitzat, <strong>samdump2</strong> de kali, o <strong>mimikatz</strong>
+    , o <strong>pwdump8</strong> més actualitzat, <strong>samdump2</strong> de kali, o <strong>mimikatz (en windows)</strong>
   que permet extraure contrasenyes de memòria, o fer atacs de <code>pass-the-hash</code> o <code>pass-the-ticket</code>
  o <code>Golden tickets</code>, etc..</p>
+
+ <img src="imgs/mimi.jpeg" alt="mimikatz" width="20%" class="imatge-dreta">
+ <h4>mimikatz</h4>
+ <p>És una eina de codi obert per a Windows, desenvolupada per Benjamin Delpy , dissenyada per extreure credencials (contrasenyes en text pla,
+   hashes NTLM, tiquets Kerberos) directament de la memòria LSASS (Local Security Authority Subsystem Service). És àmpliament utilitzada
+    per pentesters per a auditories, però també per atacants per escalar privilegis i moure's lateralment en xarxes</p>
 
     <hr><h2>Us i creació de diccionaris</h2>
      <p>En cas d'obtindre hashes en el test d'intrussió, es disposa de tres formes de descobrir les contrasenyes que han generat eixos hashes  </p>
@@ -761,7 +767,7 @@ que després no es canvien quan es posen en producció. Este error s'anomena " <
   </ul>
 
 
-    <h2>MITM</h2>
+    <h2>MitM</h2>
 <p>Un atac <strong>Man-in-the-Middle (MitM)</strong> es produeix quan un atacant s’interposa entre dues parts que es 
   comuniquen, fent-se passar per cadascuna    d’elles sense que ho sàpiguen. L’objectiu principal és <strong>interceptar, modificar o espiar la comunicació</strong>.  </p>
 
