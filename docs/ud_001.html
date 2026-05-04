@@ -1262,23 +1262,45 @@ un hacker necessita estar al dia d'estos avanços i descobriments.  </p>
   </section>
 
   <section id="labs">
-   <h1>Laboratoris</h1>
+   <h1>Crear un laboratori</h1>
+   <h3>Què és un laboratori de HE</h3>
+   <p>Un laboratori de hacking ètic és un entorn controlat —normalment virtual o aïllat de sistemes reals— on es practiquen tècniques de seguretat informàtica amb finalitats legals i educatives.</p>
+   <p>En el camp de la ciberseguretat, el “hacking ètic” (també anomenat pentesting) consistix a provar sistemes, xarxes o aplicacions per detectar vulnerabilitats abans que ho facen atacants maliciosos.</p>
+
+   <p>Opcions per crear laboratoris: VirtualBox, VMware, docker, podman, GNS3, Proxmox VE, etc...</p>
+  <p>   🧪 Recomanacions segons nivell: Principiant → VirtualBox o VMware,  Intermedi (xarxes) → GNS3 + VirtualBox/VMware, 
+Avançat / entorn realista → Proxmox o KVM,  Laboratoris ràpids → Docker.</p>
+
+<ul>  Un laboratori típic pot incloure:
+  <li>Una màquina atacant (per exemple, Kali Linux)</li>
+  <li>Diverses màquines vulnerables</li>
+  <li>Una xarxa interna aïllada</li>
+</ul>
+
+   <p>💊  Píndola formativa. <a href="https://www.youtube.com/watch?v=sh_4rfHD1D0">VirtualBox(1)</a> o esta: <a href="https://www.youtube.com/watch?v=CWNWpB12KVg&list=PLS4_tRqavOWKS381qaMLf3OC00HfZUNNa">VirtualBox(2)</a></p>
+   <p>Tutorial creació <a href="https://community.cisco.com/t5/videos-seguridad/armando-un-laboratorio-b%C3%A1sico-de-hacking/ba-p/4046307"> laboratori bàsic </a></p>
+   <p>Tutorial creació <a href="https://openwebinars.net/blog/creacion-de-laboratorio-para-pentesting/"> laboratori bàsic (2) </a></p>
+   
+
+    <h1>Laboratoris</h1>
    <p>Un hacker ètic ha de decidir quines ferramentes utilitzarà.</p>
-   <p>Es important decidir en funció de:</p>
+   <p></p>
+   <ul> Es important decidir en funció de:
    <li>Grau d'anonimat desitjat</li>
    <li>Objectiu de l’atac o l’anàlisi</li>
    <li>Coneixements i experiència de l’usuari</li>
-   <li>Sofisticació tècnica de ferramentes</li>
+   <li>Sofisticació tècnica de ferramentes</li>  </ul>
 
    <p>En un entorn real de treball, necessitarem una màquina ( o més) hardware dedicada, com per exemple un portàtil amb un OS de pentesting com Kali o Parrot</p>
    <p>En el nostre cas, podrem preparar laboratoris amb una màquina virtual de kali o parrot, per a la part ofensiva, i varies màquines virtuals amb vulnerabilitats per servir
     de màquines "víctima", sobre les quals practicar el nostre pentestign</p>
+    
 
     <ol>
       <li>Preparar MV de KALI en VirtualBox</li>
-      <li>Instal·lar i provar TOR</li>
-      <li>Instal·lar i provar I2P  <a href="https://geti2p.net/es/">https://geti2p.net/es/</a></li>
-      <li>Instal·lar i provar Freenet <a href="http://freenetproject.org/">http://freenetproject.org/</a></li>
+      <li>Dins de la MV Kali: Instal·lar i provar TOR</li>
+      <li>Dins de la MV Kali: Instal·lar i provar I2P  <a href="https://geti2p.net/es/">https://geti2p.net/es/</a></li>
+      <li>Dins de la MV Kali: Instal·lar i provar Freenet <a href="http://freenetproject.org/">http://freenetproject.org/</a></li>
 
 
       <li>Entrenament en : Over The Wire (no cal registre)</li>
