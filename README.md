@@ -4,8 +4,8 @@ Visita pàgina principal de continguts en:  https://enriqueiborra.github.io/hack
 
 Fes servir ![traductor](docs/imgs/icono-trad-google.png) per visualitzar en altres llengües.  
 
-Per al Mòdul: 5025 - Hacking Ètic  
-DOCÈNCIA 65 HORES -  ECTS 7  
+Mòdul: Hacking Ètic .  Codi: 5025 
+DOCÈNCIA 120 HORES -  4h/set x 30 setmanes.   ECTS 7  
 
 Curs d'Especialització  CE - CETI  
 
