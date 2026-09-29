@@ -27,7 +27,8 @@
   
     <a href="#he">Hacking - Hacking Ètic</a>
     <a href="#elements">Elements de HE</a>
-    <a href="#vuln">Vulnerabilitats - Atacs</a>
+    <a href="#vuln">Vulnerabilitats</a>
+    <a href="#atacs">Atacs</a>
     <a href="#auditoria">Auditories</a>
     <a href="#estandars">Estandars en HE</a>
     <a href="#deepweb">DeepWeb</a>
@@ -50,6 +51,7 @@
 
 <!--   **************************   Hacking   ***************************-->
 <section id="he">
+  <div class="ras">&lt;RA 1> Determina eines de monitoratge per a detectar vulnerabilitats aplicant tècniques de hacking ètic.</div>
   <h1>Hacking Ètic</h1>
    <h2>Un poc d'Historia del hacking</h2>
    <p>Un “hack” és un terme amb diversos significats segons el context, però en general fa referència a una solució creativa, 
@@ -340,7 +342,14 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
   <p>IRIS-CERT: <a href="http://www.rediris.es/cert/">rediris.es/cert</a></p>
   <p>ENISA (altres països europeus) - <a href="https://www.enisa.europa.eu">https://www.enisa.europa.eu</a></p>
 
- <hr><h2>Amenaces</h2>
+</section>
+
+
+
+<section id="atacs">
+  <h1>Amenaces i atacs</h1>
+
+  <h2>Amenaces</h2>
   <p>En ciberseguretat, una <strong>amenaça</strong> és qualsevol situació que pot tindre conseqüències negatives per a l’empresa: operacions, funcions, marca, reputació o imatge.</p>
   <p>Les amenaces poden manifestar-se com virus, malware, ransomware, phishing, atacs de denegació de servei (DoS), etc.</p>
   <p>Podem classificar-les segons:</p>
@@ -384,7 +393,7 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
     </li>
   </ul>
 
-  <h2>Atacs</h2>
+  <hr><h2>Atacs</h2>
   <p>Un atac informàtic és un intent de comprometre la seguretat d’un sistema informàtic per causar danys intencionats al seu funcionament.</p>
 
   <h3>Tècniques d’atac</h3>
@@ -393,6 +402,56 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
 
   <h3>Vectors d’atac</h3>
   <p>Els vectors d’atac són les vies que s’utilitzen per aprofitar vulnerabilitats en ordinadors, aplicacions, servidors de correu, programari, webs, navegadors, xarxes, etc.</p>
+<hr>
+   <h2>MITRE ATT&CK</h2>
+    <p>MITRE ATT&CK ® és una base de coneixement d'accés global sobre tàctiques i tècniques adverses basades en observacions 
+      del món real. La base de coneixement d'ATT&CK s'utilitza com a base per al desenvolupament de models i metodologies
+       d'amenaces específiques en el sector privat, el govern i la comunitat de productes i serveis de ciberseguretat.</p>
+     <p><a href="https://attack.mitre.org/"> WEB de Mitre att&ck</a></p>
+     
+     <img src="imgs/Mitre-schema.png" alt="caixes" width="45%" class="imatge-dreta"></a>  
+     <p>MITRE ATT&CK serveix per entendre, detectar i defensar-se dels atacs cibernètics de manera estructurada.</p>
+
+    <ul> Organitza els atacs en:
+      <li>Tàctiques → l’objectiu de l’atacant (ex: persistència, exfiltració)</li>
+      <li>Tècniques → com ho fa (ex: phishing, PowerShell, credential dumping)</li>
+    </ul>
+    <p>Permet parlar un llenguatge comú entre equips de seguretat</p>
+
+    <ul> En Red Team, permet:
+      <li>Dissenyar exercicis de penetration testing</li>
+      <li>Fer emulació d’adversaris reals</li>
+      <li>Validar la resposta a incidents</li>
+    </ul>
+
+    <img src="imgs/Mitre-Mustang Panda TTPs.png" alt="caixes" width="45%" class="imatge-esquerra"></a>  
+    <p>Una matriu MITRE ATT&CK per a un atac concret és una representació visual i estructurada de com s’ha desenvolupat
+      aquell atac, mapant les accions de l’atacant sobre la matriu ATT&CK. Permet veure tot el recorregut de l’atac dins la matriu.</p>
+      <pre>Matriu Mitre Att&ck d'un atac</pre>
+    <p>** Existeix una correspondència del menu de Kali amb la matriu Mitre</p>
+    <hr><h2>Llistes de seguretat</h2>
+    <p>Llistes d'informació sobre vulnerabilitats conegudes. Assignen un identificador únic a cada nova vulnerabilitat. CVE, CVSS, ..</p>
+
+    <h2>Ciber Kill Chain</h2> 
+    <p>La Cyber Kill Chain és un model de seguretat informàtica que descriu les fases que segueix un atac cibernètic, des del primer moment 
+      fins que l’atacant aconsegueix el seu objectiu. Serveix sobretot per entendre, detectar i parar atacs abans que arriben al final.</p>
+      <a href="https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html">punxa👆per accés a pàg oficial</a>
+    <p>El model original el va crear Lockheed Martin i té 7 fases: </p> 
+    <p style="text-align:right">A la dreta es pot vore el menú principal de kali.🤔 😮 </p>
+    <img src="imgs/menu-kali.png" alt="menu-kali" width="25%" class="imatge-dreta">
+  <ul>
+    <li>Reconeixement (Reconnaissance) : L’atacant recopila informació de la víctima: webs, correus, IPs, empleats, xarxes socials…</li>
+    <li>Armatge (Weaponization): Prepara l’atac: combina malware amb un exploit (per exemple, un document Word infectat).</li>
+    <li>Lliurament (Delivery): Envia l’atac a la víctima: phishing per correu, web maliciosa, USB, descàrrega falsa…</li>
+    <li>Explotació (Exploitation) : La víctima obre el fitxer o visita la web i s’explota una vulnerabilitat.</li>
+    <li>Instal·lació (Installation) : El malware s’instal·la al sistema de la víctima.</li>
+    <li>Comandament i control (C2) : El malware es connecta amb el servidor de l’atacant per rebre ordres.</li>
+    <li>Accions sobre l’objectiu (Actions on Objectives): Robatori de dades, xifrat (ransomware), espionatge, sabotatge, etc.</li>
+  </ul>
+
+    <p>👉 La idea clau: Si aconsegueixes trencar la cadena en qualsevol fase, l’atac falla. Per això és tan útil per a la defensa.</p>
+
+
 
 
 </section>  
@@ -590,54 +649,7 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
         <li><strong>CVE:</strong> Common Vulnerabilities and Exposures – Registre de vulnerabilitats (<a href="https://www.cve.org/">cve.org</a>)</li>
     </ul>
 
-    <h2>MITRE ATT&CK</h2>
-    <p>MITRE ATT&CK ® és una base de coneixement d'accés global sobre tàctiques i tècniques adverses basades en observacions 
-      del món real. La base de coneixement d'ATT&CK s'utilitza com a base per al desenvolupament de models i metodologies
-       d'amenaces específiques en el sector privat, el govern i la comunitat de productes i serveis de ciberseguretat.</p>
-     <p><a href="https://attack.mitre.org/"> WEB de Mitre att&ck</a></p>
-     
-     <img src="imgs/Mitre-schema.png" alt="caixes" width="45%" class="imatge-dreta"></a>  
-     <p>MITRE ATT&CK serveix per entendre, detectar i defensar-se dels atacs cibernètics de manera estructurada.</p>
-
-    <ul> Organitza els atacs en:
-      <li>Tàctiques → l’objectiu de l’atacant (ex: persistència, exfiltració)</li>
-      <li>Tècniques → com ho fa (ex: phishing, PowerShell, credential dumping)</li>
-    </ul>
-    <p>Permet parlar un llenguatge comú entre equips de seguretat</p>
-
-    <ul> En Red Team, permet:
-      <li>Dissenyar exercicis de penetration testing</li>
-      <li>Fer emulació d’adversaris reals</li>
-      <li>Validar la resposta a incidents</li>
-    </ul>
-
-    <img src="imgs/Mitre-Mustang Panda TTPs.png" alt="caixes" width="45%" class="imatge-esquerra"></a>  
-    <p>Una matriu MITRE ATT&CK per a un atac concret és una representació visual i estructurada de com s’ha desenvolupat
-      aquell atac, mapant les accions de l’atacant sobre la matriu ATT&CK. Permet veure tot el recorregut de l’atac dins la matriu.</p>
-      <pre>Matriu Mitre Att&ck d'un atac</pre>
-    <p>** Existeix una correspondència del menu de Kali amb la matriu Mitre</p>
-    <hr><h2>Llistes de seguretat</h2>
-    <p>Llistes d'informació sobre vulnerabilitats conegudes. Assignen un identificador únic a cada nova vulnerabilitat. CVE, CVSS, ..</p>
-
-    <h2>Ciber Kill Chain</h2> 
-    <p>La Cyber Kill Chain és un model de seguretat informàtica que descriu les fases que segueix un atac cibernètic, des del primer moment 
-      fins que l’atacant aconsegueix el seu objectiu. Serveix sobretot per entendre, detectar i parar atacs abans que arriben al final.</p>
-      <a href="https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html">punxa👆per accés a pàg oficial</a>
-    <p>El model original el va crear Lockheed Martin i té 7 fases: </p> 
-    <p style="text-align:right">A la dreta es pot vore el menú principal de kali.🤔 😮 </p>
-    <img src="imgs/menu-kali.png" alt="menu-kali" width="25%" class="imatge-dreta">
-  <ul>
-    <li>Reconeixement (Reconnaissance) : L’atacant recopila informació de la víctima: webs, correus, IPs, empleats, xarxes socials…</li>
-    <li>Armatge (Weaponization): Prepara l’atac: combina malware amb un exploit (per exemple, un document Word infectat).</li>
-    <li>Lliurament (Delivery): Envia l’atac a la víctima: phishing per correu, web maliciosa, USB, descàrrega falsa…</li>
-    <li>Explotació (Exploitation) : La víctima obre el fitxer o visita la web i s’explota una vulnerabilitat.</li>
-    <li>Instal·lació (Installation) : El malware s’instal·la al sistema de la víctima.</li>
-    <li>Comandament i control (C2) : El malware es connecta amb el servidor de l’atacant per rebre ordres.</li>
-    <li>Accions sobre l’objectiu (Actions on Objectives): Robatori de dades, xifrat (ransomware), espionatge, sabotatge, etc.</li>
-  </ul>
-
-    <p>👉 La idea clau: Si aconsegueixes trencar la cadena en qualsevol fase, l’atac falla. Per això és tan útil per a la defensa.</p>
-
+ 
      <h2>CERT i CSIRT</h2>
     <p>CERT (Computer Emergency Response Team)E quips de resposta a emergències informàtiques i CSIRT (Computer Security Incident Response Team).       </p>
 <ul>
@@ -1071,6 +1083,15 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
       <li>URL: <a href="https://hackmyvm.eu/">https://hackmyvm.eu/</a></li>
     </ul>
 
+    <h2> Dockerlabs</h2>
+    <ul>
+      <li>Plataforma en Castellà amb màquines docker explotables.</li>
+      <li>Màquines del <b>pingüino de Mario</b></li>
+      <li>Màquines per a diferents nivells.</li>
+      <li>URL: <a href="https://dockerlabs.es/">https://dockerlabs.es/</a></li>
+    </ul>
+
+
    <h2> TryHackMe</h2>
     <ul>
       <li>Aprenentatge guiat amb <strong>labs pràctics i exercicis pas a pas</strong>.</li>
@@ -1253,16 +1274,16 @@ un hacker necessita estar al dia d'estos avanços i descobriments.  </p>
 <hr>
 <p>Cal estar atents cada any per adquirir estrades amb anticipació, donat que se solen esgotar en aproparse l'event</p>
 <h3>Altres CON que se solen repetir...</h3>
-<li>RootedCON Valencia 2025 - 25‑26 de septiembre en Valencia (ADEIT, Universitat de València)</li>
+<li>RootedCON Valencia (pagant €€ ) en 2026 - 18 de septiembre en Valencia </li>
 <li>ENISE ( Octubre, lloc canviant) </li>
-<li>Xerrades ISACA Valencia (4-12-2025 Sala Nexus) </li>
-<li>MorterueloCon (20-21 febrer 2026, Cuenca) free !!!</li>
+<li>Xerrades ISACA Valencia ( xx -12-2026 Sala Nexus) </li>
+<li>MorterueloCon (sol ser febrer 2027, Cuenca) free !!!</li>
 <li>CyberCAMP, INCIBE ( lloc canviant )</li>
-<li>SID Incibe. (10 febrer 2026, UPV Sala Nexus)</li>
+<li>SID Incibe. (xx febrer 2027, UPV Sala Nexus)</li>
 <li>JNIC (maig-juny , lloc canviant)</li>
-<li>RootedCON (març, Madrid)</li>
+<li>RootedCON (març, Madrid, pagant $$)</li>
 <li>No cON Name (NcN) (juliol, Barcelona)</li>
-<p>Mapa de CONs de Securiters...  <a href="https://wiki.securiters.com/securiters-wiki/congresos-de-ciberseguridad"><strong>punxa ací</strong></a></p>
+<p>Mapa de CONs de <b>"Securiters"</b> ...  <a href="https://wiki.securiters.com/securiters-wiki/congresos-de-ciberseguridad"><strong>punxa ací</strong></a></p>
   </section>
 
   <section id="labs">
@@ -1385,6 +1406,30 @@ Un resum final amb consells estratègics (per exemple: "Millorar la política de
 
   </section>
 
+
+
+
+    <section id="altres-recursos">
+      <hr><h2 id="quizz_title">Comprueba tu progreso...</h2>
+    <div id="progress-container">
+    <div id="progress-bar"></div>  </div>
+    <!-- <div id="percentatge-text">0%</div>  -->
+
+    <div class="quiz-container">
+        <h4 id="pregunta-text"></h4>
+        <div id="options-container" class="options">
+        </div>
+
+        <p id="feedback"></p>
+        <button id="btn-pista"  onclick="mostrarPista()">🕵️‍♂️ Quieres una pista??</button>
+        <button id="btn-seguent" onclick="seguentPregunta()">      ➕ Siguiente pregunta </button>
+        <button id="btn-reiniciar"  onclick="carregarPreguntes('RA1__1')">🔁 Reiniciar</button>
+        <p id="pista"></p>
+         
+   </section>
+
+
+
     </main>
 
     <footer>
@@ -1397,4 +1442,10 @@ Un resum final amb consells estratègics (per exemple: "Millorar la política de
   
 </body>
     <script src="scriptsunitats.js"></script>
+    <script>
+          // Executar en carregar la pàgina
+          window.onload = carregarPreguntes('RA1__1');
+    </script>
+  
+
 </html>

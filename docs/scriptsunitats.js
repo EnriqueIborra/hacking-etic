@@ -85,3 +85,163 @@ document.querySelectorAll('.sidebar a').forEach(link => {
     icon.textContent = isOpen ? '✖' : '☰';
 
     }
+
+
+    
+//
+// test de preguntes
+//
+
+let bancDePreguntes = [];
+let preguntesBarrejades = [];
+let indexPreguntaActual = 0;
+let puntuacio = 0;
+
+// Estes variables faciliten canviar l'idioma dels texts. També s'ha de modificar els .html
+let titoltest=">> Abans d'avançar, un poc de repàs..."
+let missatgeError = "El test no està disponible";
+let missatgeAcabar = "S'han acabat les preguntes" 
+let missatgeEncert1 = "Has encertat ";
+let missatgeEncert2 = "preguntes ";
+let missatgeResultat3_1 = "🎉 Enhorabona! Ho tens dominat  !";
+let missatgeResultat3_2 = "💪 Continua practicant!";
+let textbotopista =" 🕵️‍♂️ Vols una pista??";
+let textbotoseg =" ➕ Següent pregunta";
+let textbotoreini =" 🔁 Reiniciar";
+
+function barrejar(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function actualitzarProgres() {
+    const percentatge =
+        (indexPreguntaActual / preguntesBarrejades.length) * 100;
+    document.getElementById('progress-bar').style.width =
+        percentatge + "%";
+}
+
+function actualitzarPercentatge() {
+    const percentatge = Math.round(
+        (puntuacio / preguntesBarrejades.length) * 100
+    );
+    document.getElementById('percentatge-text').innerText =""
+       // `Encerts: 🎯 ${percentatge}%`;
+}
+
+
+function carregarPreguntes(RA) {
+    document.getElementById('quizz_title').innerText = titoltest;
+    document.getElementById('btn-pista').innerText = textbotopista;
+    document.getElementById('btn-seguent').innerText = textbotoseg;
+    document.getElementById('btn-reiniciar').innerText = textbotoreini;
+    document.getElementById('feedback').innerHTML = "";
+    document.getElementById('btn-seguent').disabled = true;
+    
+    fetch('preguntes/preguntesHE_' + RA + '.json')
+        .then(res => res.json())
+        .then(data => {
+            bancDePreguntes = data;
+            preguntesBarrejades = [...bancDePreguntes];
+            barrejar(preguntesBarrejades);
+            puntuacio = 0;
+            indexPreguntaActual = 0;
+            mostrarPregunta();
+        })
+        .catch(err => {
+            console.error(err);
+            document.getElementById('pregunta-text').innerText = missatgeError;
+        });
+        //document.getElementById('percentatge-text').innerText = "0%";
+
+}
+
+function mostrarPregunta() {
+
+    // Si ja no queden preguntes
+    if (indexPreguntaActual >= preguntesBarrejades.length) {
+        let percentatge3 = (puntuacio / preguntesBarrejades.length) * 100;
+        let missatgeResultat3;
+        if (percentatge3 > 90) {
+            missatgeResultat3 = missatgeResultat3_1;
+        } else {
+            missatgeResultat3 = missatgeResultat3_2;
+        }      
+        document.getElementById('pregunta-text').innerText = missatgeAcabar;
+            
+        document.getElementById('options-container').innerHTML = "";
+        document.getElementById('feedback').innerHTML =
+        `${missatgeEncert1} <strong>${puntuacio}</strong> de 
+        <strong>${preguntesBarrejades.length}</strong> ${missatgeEncert2}.
+          <br><br>  <strong>${missatgeResultat3}</strong>`;
+        document.getElementById('btn-seguent').disabled = true;
+        document.getElementById('progress-bar').style.width = "100%";
+        actualitzarProgres();
+        return;
+    }
+
+    const pregunta = preguntesBarrejades[indexPreguntaActual];
+
+    //    document.getElementById('pregunta-text').innerHTML = pregunta.titol;   // si es vol posar codi amb <pre>
+    //    anar en compte, perque si algu extern pot posar codi html es pot fer un atac de seguretat
+    //   també s'ha de canviar el codi HTML de les preguntes de <h4> a <div>    <h4 id="pregunta-text"></h4>
+    document.getElementById('pregunta-text').innerText = pregunta.titol;
+
+    const container = document.getElementById('options-container');
+    container.innerHTML = "";
+
+    //pregunta.opcions.forEach(opcio => {    //  respeta l'ordre de les respostes
+    const opcionsBarrejades = [...pregunta.opcions];    // barreja les respostes
+    barrejar(opcionsBarrejades);
+
+    opcionsBarrejades.forEach(opcio => {  
+        const btn = document.createElement('button');
+        btn.innerText = opcio.text;
+        btn.onclick = () => comprovaResposta(opcio.correcte, btn, opcio.feedback);
+        container.appendChild(btn);
+    });
+
+    document.getElementById('feedback').textContent = "";
+    document.getElementById('pista').textContent = "";
+    document.getElementById('btn-seguent').disabled = true;
+    actualitzarProgres();
+
+}
+
+function mostrarPista(){
+      document.getElementById('pista').textContent =  '🕵️‍♂️Pista: '+ preguntesBarrejades[indexPreguntaActual].pista;
+    }
+
+
+
+function comprovaResposta(esCorrecte, element,feedback1) {
+    const feedback = document.getElementById('feedback');
+
+    document
+        .querySelectorAll('#options-container button')
+        .forEach(btn => btn.disabled = true);
+
+    if (esCorrecte) {
+        feedback.textContent = "✅ " + feedback1;
+        element.style.background = "#d4edda";
+        puntuacio++;
+    } else {
+        feedback.textContent = "❌ " + feedback1;
+        element.style.background = "#f8d7da";
+    }
+    //actualitzarPercentatge();
+    document.getElementById('btn-seguent').disabled = false;
+}
+
+function seguentPregunta() {
+    indexPreguntaActual++;
+    mostrarPregunta();
+}
+
+
+// Executar en carregar la pàgina
+//window.onload = carregarPreguntes;
+// Es crida des de cada html de cada RA / UD
+

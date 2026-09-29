@@ -54,6 +54,7 @@
         </ul>
   </section>
   <section>
+    <div class="ras">&lt;RA 4> Consolida i utilitza sistemes compromesos garantint accessos futurs.</div>    
     <h1>Tècniques persistència</h1>
     <p>Les tècniques de persistència fan referència als mètodes que un atacant utilitza per mantenir l’accés a un sistema
         durant el temps, fins i tot després de reinicis, canvis de credencials o intents de neteja. Tot açò, sense tindre que
@@ -424,8 +425,13 @@ wget http://LA_teua_IP:8080/pspy64     </pre>
       <li>i més....</li>
     </ul>
     <p>No s'ha de perdre de vista este tipus de vulnerabilitats de kernel, perquè molts sistemes no estan actualitzats i poden tindre forats de seguretat oberts</p>
+
     <p>CVE-2026-31431 (“Copy Fail”) - Abril 2026 !! <br>
-    ==> més informació en https://github.com/painoob/Copy-Fail-Exploit-CVE-2026-31431/tree/main </p>
+    ==> més informació en (PoC en) https://github.com/painoob/Copy-Fail-Exploit-CVE-2026-31431/tree/main </p>
+    <p>CVE-2026-46331 (“Pedit COW”) - Juny 2026 !! <br>
+    ==> més informació en https://thehackernews.com/2026/06/new-linux-pedit-cow-exploit-enables.html</p>
+    <p>Casualitat ??  <a href="https://www.youtube.com/watch?v=nEKxcqBdk3I">Mithos, la IA que escapó</a></p>
+
 
     <hr><h2>Escalada amb sudo</h2>
     <h3>Que és sudo</h3>
@@ -573,6 +579,10 @@ drwxrwxrwt 11 root root 4096 mar  6 15:25 /var/tmp
       <p>NFS confia en els UID i GID del sistema client. Això vol dir que: Si el client diu “sóc root”, 
         el servidor pot creure-s’ho si no s’apliquen restriccions adequades. Aquí és on apareix el risc.</p>
 
+    <hr><h2>Altres vies</h2>    
+    <h3>In Situ, amb grub</h3>
+    <h3>Utilitzant <code>docker</code></h3>
+    <hr><hr>    
     <h3>Què s’avalua en una auditoria o pentest ?</h3>
       <ol>
         <li>Quins directoris s’exporten</li>

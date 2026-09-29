@@ -25,6 +25,11 @@
   <div class="sidebar">
     <a href="#comwifi">Comunicacions en xarxes sense fil</a>
     <a href="#AtacsaWiFi">Atacs a xarxes WiFi</a>
+    <a href="#modes">Modes en targetes WiFi</a>
+    <a href="#aircrack">Suite aircrack-ng</a>
+    <a href="#altres">Altres xarxes sense fil</a>    
+    <a href="#informe">Informe de vulnerabilitats wifi</a>
+    <a href="#roigblau">Tècniques d'equip roig i blau </a>
     <a href="#labs">Laboratoris</a>
   </div>
 
@@ -51,6 +56,7 @@
     </section>    
   
    <section>
+    <div class="ras">&lt;RA 2> Ataca i defensa en entorns de prova, comunicacions sense fils aconseguint accés a xarxes per a demostrar les seues vulnerabilitats.</div>
     <h1>Tecnologia sense fil (Wireless)</h1>
     <p>La tecnologia sense fil permet la comunicació entre dispositius sense cables, usant ones 
         electromagnètiques (com a radiofreqüència) per a transmetre dades, oferint mobilitat,
@@ -172,7 +178,7 @@
     <ul> Millores de WPA3
         <li>Autenticació més segura. Substitueix el PSK de WPA2. Utilitza SAE (Simultaneous Authentication of Equals)</li>
         Evita atacs de diccionari offline. Cada intent d’autenticació és independent
-        <li>Xifrat individual per dispositiu. Evita que un usuari pugui espiar un altre</li>
+        <li>Xifrat individual per dispositiu. Evita que un usuari puga espiar un altre</li>
         <li>Forward Secrecy. Si es compromet la contrasenya: no es poden desxifrar comunicacions antigues</li>
         <li>Xifrat més fort obligatori. WPA3 obliga a: AES amb claus més llargues</li>
         <li>Millores per a xarxes obertes (OWE).Opportunistic Wireless Encryption</li>
@@ -206,93 +212,301 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>OWISAM-TR-001</td>                <td>Xarxa de comunicacions Wi-Fi oberta.</td>
-            </tr>
-            <tr>
-                <td>OWISAM-TR-002</td>                <td>Presència de xifrat WEP en xarxes de comunicacions.</td>
-            </tr>
-            <tr>
-                <td>OWISAM-TR-003</td>                <td>Algorisme de generació de claus del dispositiu insegur (contrasenyes i WPS).</td>
-            </tr>
-            <tr>
-                <td>OWISAM-TR-004</td>                <td>Clau WEP/WPA/WPA2 basada en diccionari.</td>
-            </tr>
-            <tr>
-                <td>OWISAM-TR-005</td>                <td>Mecanismes d’autenticació insegurs (LEAP, PEAP-MD5, etc.).</td>
-            </tr>
-            <tr>
-                <td>OWISAM-TR-006</td>                <td>Dispositiu amb suport de Wi-Fi Protected Setup (PIN) actiu (WPS).</td>
-            </tr>
-            <tr>
-                <td>OWISAM-TR-007</td>                <td>Xarxa Wi-Fi no autoritzada per l’organització.</td>
-            </tr>
-            <tr>
-                <td>OWISAM-TR-008</td>                <td>Portal hotspot insegur.</td>
-            </tr>
-            <tr>
-                <td>OWISAM-TR-009</td>                <td>Client intentant connectar-se a una xarxa insegura.</td>
-            </tr>
-            <tr>
-                <td>OWISAM-TR-010</td>                <td>Abast de cobertura de la xarxa excessivament ampli.</td>
-            </tr>
+            <tr>                 <td>OWISAM-TR-001</td>                <td>Xarxa de comunicacions Wi-Fi oberta.</td>             </tr>
+            <tr>                 <td>OWISAM-TR-002</td>                <td>Presència de xifrat WEP en xarxes de comunicacions.</td>             </tr>
+            <tr>                 <td>OWISAM-TR-003</td>                <td>Algorisme de generació de claus del dispositiu insegur (contrasenyes i WPS).</td>             </tr>
+            <tr>                  <td>OWISAM-TR-004</td>                <td>Clau WEP/WPA/WPA2 basada en diccionari.</td>            </tr>
+            <tr>                 <td>OWISAM-TR-005</td>                <td>Mecanismes d’autenticació insegurs (LEAP, PEAP-MD5, etc.).</td>             </tr>
+            <tr>                 <td>OWISAM-TR-006</td>                <td>Dispositiu amb suport de Wi-Fi Protected Setup (PIN) actiu (WPS).</td>             </tr>
+            <tr>                 <td>OWISAM-TR-007</td>                <td>Xarxa Wi-Fi no autoritzada per l’organització.</td>             </tr>
+            <tr>                 <td>OWISAM-TR-008</td>                <td>Portal hotspot insegur.</td>             </tr>
+            <tr>                 <td>OWISAM-TR-009</td>                <td>Client intentant connectar-se a una xarxa insegura.</td>             </tr>
+            <tr>                 <td>OWISAM-TR-010</td>                <td>Abast de cobertura de la xarxa excessivament ampli.</td>             </tr>
         </tbody>
     </table>
         <p>La metodologia estableix una serie de controls que es deuen de dur a terme per garantizar el risc de seguretat. Estos 
         controls es classifiquen en deu categories.     </p>
         <table border="1" cellpadding="6" cellspacing="0">
             <thead>
-                <tr>
-                    <th>#</th>                    <th>Codi</th>                    <th>Tipus de control</th>
-                    <th>Descripció dels controls</th>
-                </tr>
+                <tr>                     <th>#</th>                    <th>Codi</th>                    <th>Tipus de control</th>                     <th>Descripció dels controls</th>                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>                    <td>OWISAM-DI</td>                    <td>Descobriment de dispositius</td>
-                    <td>Recopilació d’informació sobre les xarxes sense fils.</td>
-                </tr>
-                <tr>
-                    <td>2</td>                    <td>OWISAM-FP</td>                    <td>Fingerprinting</td>
-                    <td>Anàlisi de les funcionalitats dels dispositius de comunicacions.</td>
-                </tr>
-                <tr>
-                    <td>3</td>                    <td>OWISAM-AU</td>                    <td>Proves sobre l’autenticació</td>
-                    <td>Anàlisi dels mecanismes d’autenticació.</td>
-                </tr>
-                <tr>
-                    <td>4</td>                    <td>OWISAM-CP</td>                    <td>Xifrat de les comunicacions</td>
-                    <td>Anàlisi dels mecanismes de xifrat de la informació.</td>
-                </tr>
-                <tr>
-                    <td>5</td>                    <td>OWISAM-CF</td>                    <td>Configuració de la plataforma</td>
-                    <td>Verificació de la configuració de les xarxes.</td>
-                </tr>
-                <tr>
-                    <td>6</td>                    <td>OWISAM-IF</td>                    <td>Proves d’infraestructura</td>
-                    <td>Controls de seguretat sobre la infraestructura wireless.</td>
-                </tr>
-                <tr>
-                    <td>7</td>                    <td>OWISAM-DS</td>                    <td>Proves de denegació de servei</td>
-                    <td>Controls orientats a verificar la disponibilitat de l’entorn.</td>
-                </tr>
-                <tr>
-                    <td>8</td>                    <td>OWISAM-GD</td>                    <td>Proves sobre directives i normativa</td>
-                    <td>Anàlisi dels aspectes normatius que s’apliquen a l’ús de les xarxes Wi-Fi.</td>
-                </tr>
-                <tr>
-                    <td>9</td>                    <td>OWISAM-CT</td>                    <td>Proves sobre els clients sense fils</td>
-                    <td>Avaluació de vulnerabilitats que afecten els clients sense fils.</td>
-                </tr>
-                <tr>
-                    <td>10</td>                    <td>OWISAM-HS</td>                    <td>Proves sobre hotspots i portals captius</td>
-                    <td>Debilitats que afecten l’ús de portals captius.</td>
+                <tr>                      <td>1</td>                    <td>OWISAM-DI</td>                    <td>Descobriment de dispositius</td>                     <td>Recopilació d’informació sobre les xarxes sense fils.</td>                 </tr>
+                <tr>                     <td>2</td>                    <td>OWISAM-FP</td>                    <td>Fingerprinting</td>                     <td>Anàlisi de les funcionalitats dels dispositius de comunicacions.</td>                 </tr>
+                <tr>                     <td>3</td>                    <td>OWISAM-AU</td>                    <td>Proves sobre l’autenticació</td>                     <td>Anàlisi dels mecanismes d’autenticació.</td>                 </tr>
+                <tr>                     <td>4</td>                    <td>OWISAM-CP</td>                    <td>Xifrat de les comunicacions</td>                     <td>Anàlisi dels mecanismes de xifrat de la informació.</td>                 </tr>
+                <tr>                     <td>5</td>                    <td>OWISAM-CF</td>                    <td>Configuració de la plataforma</td>                     <td>Verificació de la configuració de les xarxes.</td>                 </tr>
+                <tr>                     <td>6</td>                    <td>OWISAM-IF</td>                    <td>Proves d’infraestructura</td>                     <td>Controls de seguretat sobre la infraestructura wireless.</td>                 </tr>
+                <tr>                     <td>7</td>                    <td>OWISAM-DS</td>                    <td>Proves de denegació de servei</td>                     <td>Controls orientats a verificar la disponibilitat de l’entorn.</td>                 </tr>
+                <tr>                     <td>8</td>                    <td>OWISAM-GD</td>                    <td>Proves sobre directives i normativa</td>                     <td>Anàlisi dels aspectes normatius que s’apliquen a l’ús de les xarxes Wi-Fi.</td>                 </tr>
+                <tr>                     <td>9</td>                    <td>OWISAM-CT</td>                    <td>Proves sobre els clients sense fils</td>                     <td>Avaluació de vulnerabilitats que afecten els clients sense fils.</td>                 </tr>
+                <tr>                      <td>10</td>                    <td>OWISAM-HS</td>                    <td>Proves sobre hotspots i portals captius</td>                     <td>Debilitats que afecten l’ús de portals captius.</td>
                 </tr>
             </tbody>
         </table>
     <p>Per poder realitzar atacs (ètics) a xarxes sense fil és necessari que la tarjeta de xarxa puga pasar a <strong>mode monitor</strong>
     per llegir tot el trànsit i injectar paquets. No totes les tarjetes de xarxa permeten això, pel que s'ha de comprovar si 
     la tarjeta té estes capacitats. </p>
+</section>
+
+
+
+<section id="modes">
+<h1>Modes de funcionament de les targetes Wi-Fi</h1>
+
+<p>
+  Una targeta de xarxa Wi-Fi pot treballar en diferents <strong>modes de funcionament</strong>.
+  El mode determina com es comporta la interfície davant de les trames sense fils que rep
+  i com participa en la comunicació.
+</p>
+
+<p>
+  En el context del <strong>pentesting Wi-Fi</strong>, conéixer aquests modes és fonamental,
+  ja que algunes proves de seguretat requereixen que la targeta puga observar trànsit que
+  no està destinat directament al nostre equip.
+</p>
+
+<h3>1. Mode Managed o Managed Mode</h3>
+
+<p>
+  És el mode habitual d'una targeta Wi-Fi quan ens connectem a una xarxa sense fils.
+  La targeta actua com un <strong>client</strong> i es connecta a un punt d'accés
+  (Access Point, AP).
+</p>
+
+<ul>
+  <li>Permet connectar-se a una xarxa Wi-Fi.</li>
+  <li>La targeta s'associa amb un punt d'accés.</li>
+  <li>Normalment només processa el trànsit destinat al propi dispositiu.</li>
+  <li>És el mode que utilitzem habitualment per navegar per Internet.</li>
+</ul>
+
+<p>
+  Per exemple, quan un ordinador es connecta al SSID
+  <strong>IES-Segura</strong>, la targeta Wi-Fi està funcionant habitualment
+  en mode <strong>Managed</strong>.
+</p>
+
+<h3>2. Mode Monitor</h3>
+
+<p>
+  El <strong>mode monitor</strong> permet a la targeta capturar trames Wi-Fi
+  que circulen pel canal seleccionat, sense necessitat d'estar associada
+  a un punt d'accés.
+</p>
+
+<p>
+  Aquest mode és especialment important en <strong>auditories de seguretat Wi-Fi</strong>,
+  ja que permet observar les comunicacions i analitzar les trames 802.11.
+</p>
+
+<ul>
+  <li>No és necessari estar connectat a la xarxa Wi-Fi.</li>
+  <li>Permet capturar trames 802.11.</li>
+  <li>Permet analitzar informació de punts d'accés i clients.</li>
+  <li>Es pot utilitzar amb eines d'anàlisi de trànsit com <strong>Wireshark</strong>.</li>
+  <li>La informació capturada depén del canal, de la targeta i del controlador.</li>
+</ul>
+
+<p>
+  <strong>Important:</strong> el mode monitor no significa que es puga desxifrar
+  automàticament el trànsit. Capturar trames i poder interpretar-ne el contingut
+  són qüestions diferents.
+</p>
+
+<h3>3. Mode Master o Access Point</h3>
+
+<p>
+  En aquest mode, la targeta funciona com un <strong>punt d'accés Wi-Fi</strong>,
+  de manera que altres dispositius poden connectar-se a ella.
+</p>
+
+<ul>
+  <li>La targeta anuncia una xarxa Wi-Fi (SSID).</li>
+  <li>Accepta connexions de clients.</li>
+  <li>Pot proporcionar accés a una xarxa o a Internet.</li>
+  <li>És útil per crear laboratoris de proves i entorns controlats.</li>
+</ul>
+
+<p>
+  Per exemple, es pot crear un laboratori en què diversos dispositius es connecten
+  a un punt d'accés creat específicament per realitzar proves de seguretat.
+</p>
+
+<h3>4. Mode Ad-hoc</h3>
+
+<p>
+  En el mode <strong>Ad-hoc</strong>, els dispositius poden comunicar-se directament
+  entre ells sense necessitat d'un punt d'accés central.
+</p>
+
+<p>
+  Aquest tipus de xarxa està definit per l'estàndard 802.11 com a xarxa
+  <strong>IBSS (Independent Basic Service Set)</strong>.
+</p>
+
+<ul>
+  <li>No necessita un punt d'accés tradicional.</li>
+  <li>Els dispositius es comuniquen directament.</li>
+  <li>Actualment és molt menys habitual que el mode infraestructura.</li>
+</ul>
+
+<h3>5. Mode Mesh</h3>
+
+<p>
+  Les xarxes <strong>Wi-Fi Mesh</strong> utilitzen diversos nodes que cooperen
+  per proporcionar cobertura sense fils. Els nodes poden comunicar-se entre ells
+  i formar una xarxa distribuïda.
+</p>
+
+<p>
+  Des del punt de vista de la seguretat, cal analitzar tant els clients com
+  els diferents nodes i les comunicacions entre ells.
+</p>
+
+<h3>Comparació dels principals modes</h3>
+
+<table>
+  <thead>
+    <tr>       <th>Mode</th>       <th>Funció principal</th>       <th>Ús habitual</th>     </tr>
+  </thead>
+  <tbody>
+    <tr>        <td><strong>Managed</strong></td>       <td>Connectar-se a un AP</td>       <td>Connexió normal a una xarxa Wi-Fi</td>     </tr>
+    <tr>       <td><strong>Monitor</strong></td>       <td>Capturar i analitzar trames 802.11</td>       <td>Auditoria i anàlisi de xarxes Wi-Fi</td>     </tr>
+    <tr>       <td><strong>Master / AP</strong></td>       <td>Actuar com a punt d'accés</td>       <td>Crear una xarxa Wi-Fi</td>     </tr>
+    <tr>       <td><strong>Ad-hoc / IBSS</strong></td>       <td>Comunicació directa entre dispositius</td>       <td>Xarxes sense punt d'accés</td>     </tr>
+    <tr>       <td><strong>Mesh</strong></td>       <td>Connectar diversos nodes Wi-Fi</td>       <td>Cobertura distribuïda</td>     </tr>
+  </tbody>
+</table>
+
+<h3>Mode Managed vs. Mode Monitor</h3>
+
+<p>
+  Per a un <strong>pentester</strong>, una de les diferències més importants és
+  entre el mode <strong>Managed</strong> i el mode <strong>Monitor</strong>.
+</p>
+
+<table>
+  <thead>
+    <tr>       <th>Característica</th>       <th>Managed</th>       <th>Monitor</th>     </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Connexió a un AP</td>       <td>Normalment sí</td>       <td>No és necessària</td>     </tr>
+    <tr>      <td>Captura de trames 802.11</td>       <td>Limitada al trànsit que processa la interfície</td>       <td>Sí</td>     </tr>
+    <tr>       <td>Ús habitual</td>       <td>Connexió a xarxes</td>       <td>Anàlisi i auditoria</td>     </tr>
+    <tr>       <td>Associació amb un AP</td>       <td>Sí</td>       <td>No necessàriament</td>     </tr>
+  </tbody>
+</table>
+
+<h3>Compatibilitat amb el maquinari</h3>
+
+<p>
+  No totes les targetes Wi-Fi suporten tots els modes. La disponibilitat depén
+  del <strong>xipset, del controlador i del sistema operatiu</strong>.
+  En particular, per a un laboratori de pentesting és important comprovar que
+  l'adaptador és compatible amb <strong>mode monitor</strong> i, quan siga necessari,
+  amb altres funcionalitats requerides per les proves.
+</p>
+
+<hr>
+<h2>Chipsets adequats per al mode monitor</h2>
+
+<p>
+  Per a un laboratori de <strong>pentesting Wi-Fi amb Linux o Kali Linux</strong>,
+  és important utilitzar una targeta de xarxa que dispose d'un controlador amb
+  suport per al <strong>mode monitor</strong>.
+</p>
+
+<p>
+  No totes les targetes Wi-Fi ofereixen el mateix nivell de compatibilitat.
+  A més, el suport pot variar segons el <strong>chipset, el controlador i la
+  versió del nucli Linux</strong>.
+</p>
+
+<div class="caixa-info">
+  <p>
+    <strong>Important:</strong> el suport del mode monitor i el suport per a la
+    injecció de trames són funcionalitats diferents. Una targeta pot permetre
+    capturar trànsit en mode monitor i no suportar correctament la injecció.
+  </p>
+</div>
+
+<h3>Chipsets habituals</h3>
+
+<table>
+  <thead>
+    <tr>       <th>Fabricant / família</th>       <th>Chipset</th>       <th>Característiques</th>     </tr>
+  </thead>
+
+  <tbody>
+    <tr>       <td><strong>Qualcomm Atheros</strong></td>       <td>AR9271</td>
+      <td>          Chipset USB clàssic amb bon suport en Linux mitjançant el controlador         <code>ath9k_htc</code>. Treballa en la banda de 2,4 GHz.       </td>     </tr>
+
+    <tr>       <td><strong>Qualcomm Atheros</strong></td>       <td>AR9280 / AR9285 / AR9287</td>
+      <td>         Chipsets utilitzats en diverses targetes internes. Disposen de suport         mitjançant el controlador <code>ath9k</code>.       </td>     </tr>
+
+    <tr>       <td><strong>MediaTek</strong></td>       <td>MT7612U</td>
+      <td>         Chipset USB de doble banda amb suport en Linux mitjançant la família         de controladors <code>mt76</code>.       </td>     </tr>
+
+    <tr>       <td><strong>MediaTek</strong></td>       <td>MT7921AU</td>
+      <td>         Chipset més modern. El suport i les funcionalitats disponibles poden         dependre de la versió del nucli i del controlador.       </td>     </tr>
+
+    <tr>       <td><strong>Intel</strong></td>       <td>AX200 / AX210</td>
+      <td>         Adaptadors moderns amb suport Linux mitjançant <code>iwlwifi</code>.         Són interessants especialment per a captura i anàlisi passiva.       </td>     </tr>
+  </tbody>
+</table>
+
+<h3>Què hem de comprovar abans de comprar una targeta?</h3>
+
+<ul>
+  <li>     <strong>Chipset exacte:</strong> un mateix model comercial pot existir en     diferents revisions de maquinari.   </li>
+  <li>     <strong>Controlador Linux:</strong> comprovar que dispose de suport per a     la distribució i la versió del nucli que utilitzarem.   </li>
+  <li>     <strong>Mode monitor:</strong> verificar que el controlador permet activar     aquest mode.   </li>
+  <li>     <strong>Bandes Wi-Fi:</strong> comprovar si necessitem 2,4 GHz, 5 GHz o     també 6 GHz.   </li>
+  <li>     <strong>Injecció de trames:</strong> si el laboratori inclou proves que     requereixen aquesta funcionalitat, cal comprovar que el controlador i     el chipset la suporten.   </li>
+</ul>
+
+<h3>Identificar el maquinari en Linux</h3>
+
+<p>   Abans de comprovar les funcionalitats de la targeta, podem identificar el   dispositiu amb les eines del sistema. </p>
+
+<p><strong>Targetes USB:</strong></p>
+<pre><code>lsusb</code></pre>
+<p><strong>Targetes internes PCI / PCIe:</strong></p>
+<pre><code>lspci</code></pre>
+<h3>Comprovar els modes suportats</h3>
+
+<p>   L'ordre <code>iw</code> permet consultar les funcionalitats que declara   el controlador de la targeta. </p>
+
+<pre><code>iw list</code></pre>
+
+<p>   En la informació obtinguda hem de buscar l'apartat   <strong>Supported interface modes</strong>.
+  Si hi apareix <code>monitor</code>, el controlador declara suport per   al mode monitor. </p>
+
+<pre><code>Supported interface modes:
+         * managed
+         * monitor
+         * AP
+         * ...
+</code></pre>
+
+<div class="tips">
+  <p>     <strong>Atenció:</strong> que aparega <code>monitor</code> en     <code>iw list</code> confirma que el controlador declara suport per a
+    aquest mode, però no garanteix que totes les funcions de captura,     canvi de canal o injecció funcionen correctament.   </p>
+</div>
+
+
+<p>   En un laboratori de pentesting Wi-Fi, no hem de triar una targeta   únicament pel seu nom comercial. El més important és conéixer el
+  <strong>chipset</strong>, el <strong>controlador</strong> i les   <strong>funcionalitats que realment suporta</strong>.   </p>
+
+<p>   <strong>Chipset + controlador + nucli Linux = compatibilitat real.</strong> </p>
+
+</section>
+
+
+
+<section id="aircrack">
 
     <hr><h2>Suite aircrack-ng</h2>
     <p>La suite aircrack-ng consta d'un conjunt de ferramentes per realitzar les auditories de xarxes sense fil. Està disponible tant 
@@ -499,6 +713,239 @@ wash --interface wlan1     </pre>
 
     </section>         
 
+
+<section id="altres">
+    <h1>Altres tipus de xarxes sense fil</h1>
+<p>Wi-Fi és només un tipus de xarxa sense fils (basada en IEEE 802.11). 
+    En un pentest autoritzat també es poden analitzar altres tecnologies sense fils, 
+    però les tècniques i les vulnerabilitats són diferents.</p>
+    <h2>Alguns exemples:</h2>
+<table>
+  <thead>
+    <tr>       <th>Tecnologia</th>       <th>Exemple d’ús</th>       <th>Aspectes que es poden avaluar</th>     </tr>
+  </thead>
+  <tbody>
+    <tr>       <td><strong>Bluetooth / BLE</strong></td>       <td>Auriculars, sensors, dispositius IoT</td>       <td>Emparellament, autenticació, exposició de serveis</td>     </tr>
+    <tr>       <td><strong>Zigbee</strong></td>       <td>Domòtica, sensors</td>       <td>Autenticació, xifrat, gestió de claus</td>     </tr>
+    <tr>       <td><strong>Z-Wave</strong></td>       <td>Domòtica</td>       <td>Protocol, autenticació i configuració</td>     </tr>
+    <tr>       <td><strong>NFC</strong></td>       <td>Targetes, identificació, pagaments</td>       <td>Comunicació, autenticació i protecció de dades</td>     </tr>
+    <tr>       <td><strong>RFID</strong></td>       <td>Identificació i control d'accés</td>       <td>Clonació, autenticació i protecció de comunicacions</td>     </tr>
+    <tr>       <td><strong>LoRa / LoRaWAN</strong></td>       <td>IoT de llarg abast</td>       <td>Autenticació, claus i configuració</td>     </tr>
+    <tr>       <td><strong>GSM / 4G / 5G</strong></td>       <td>Telefonia mòbil</td>       <td>Seguretat de la infraestructura i protocols, habitualment en entorns especialitzats</td>     </tr>
+  </tbody>
+</table>    
+<p>   una xarxa sense fils no és segura simplement perquè utilitze
+  xifrat. La seguretat depén del conjunt de mecanismes: <strong>protocol, autenticació,
+  xifrat, configuració, gestió de claus, actualitzacions i segmentació</strong>.   </p>
+  
+<p>
+  Cada tecnologia utilitza protocols i mecanismes de seguretat diferents. Per això, les tècniques
+  d'anàlisi que s'utilitzen en una xarxa Wi-Fi no són necessàriament aplicables a Bluetooth,
+  Zigbee, RFID o LoRaWAN.
+</p>
+
+<h3>Què es pot analitzar?</h3>
+
+<p>De manera general, en una auditoria de comunicacions sense fils es poden revisar aspectes com:</p>
+
+<ul>
+  <li><strong>Autenticació:</strong> com s'identifiquen els dispositius abans d'establir una comunicació.</li>
+  <li><strong>Xifrat:</strong> si les comunicacions estan protegides davant d'intercepcions.</li>
+  <li><strong>Configuració:</strong> si els dispositius utilitzen una configuració segura.</li>
+  <li><strong>Exposició de serveis:</strong> quines funcions o serveis poden ser accessibles sense autorització.</li>
+  <li><strong>Gestió de claus i credencials:</strong> com es generen, distribueixen i protegeixen.</li>
+  <li><strong>Actualitzacions:</strong> si el dispositiu utilitza firmware i programari actualitzats.</li>
+  <li><strong>Privacitat:</strong> si la comunicació pot revelar informació sobre els dispositius o els seus usuaris.</li>
+</ul>
+
+<h2>Flipper Zero</h2>
+<p>És una eina portàtil que permet experimentar i analitzar diferents tecnologies sense fils, 
+    especialment Sub-GHz, NFC, RFID i Bluetooth/BLE. És especialment interessant en laboratoris de seguretat 
+    per estudiar protocols, identificació, autenticació, emulació i comunicacions sense fils.      </p>
+
+
+</section>    
+
+
+  <section id="informe">
+    <h1>Informe de pentesting a wifi</h1>
+    <p><strong>Recorda: </strong>Fer un informe de pentesting és, potser, la part més important de la teua feina. Pots ser el millor hacker del món,
+       però si no saps comunicar el risc al client, la teua feina no té valor. Un bon informe ha de ser entenedor 
+       tant per a un directiu (que vol saber el risc de negoci) com per a un administrador de sistemes 
+       (que ha de solucionar el problema).</p>
+
+    <img src="imgs/office-iconos.png" alt="office-iconos" width="45%" class="imatge-dreta">   
+    <p><strong>Redactar bé</strong> no és un extra en pentesting: és una part crítica del treball. No és només “important”: és imprescindible.   </p>
+    <p>Un pentester no només troba vulnerabilitats; ha de comunicar-les de manera clara, precisa i accionable. 
+      De fet, moltes empreses valoren tant o més l’informe que la tècnica utilitzada</p>
+    <p>Saber utilitzar bé una fulla de càlcul, és útil en pentesting, i molt valuós a nivell professional i organitzatiu. T'ajudarà a 
+    preparar informes, Fer anàlisi de dades, fer seguiment i reporting, i portar una gestió de vulnerabilitats   </p>
+
+
+    <h2>Estructura professional estàndard d'un informe de pentesting</h2>
+    <ol>
+      <li>Resum Executiu</li>
+      <li>Metodologia i Abast</li>
+      <li>Troballes tècniques</li>
+      <li>Conclusió i recomanacions generals</li>
+    </ol>
+<h2>1. Resum Executiu (Executive Summary)</h2>
+Aquesta secció és per als caps i directius. No facis servir llenguatge tècnic complex aquí. Pensat per a una persona NO tècnica<br>
+<ol>
+    <li>Objectiu: avaluar la seguretat de la xarxa Wi-Fi.</li>
+    <li>Abast: xarxes, punts d’accés i segments autoritzats.</li>
+    <li>Resultats: nombre i gravetat de les vulnerabilitats.</li>
+    <li>Conclusió: resum del nivell de risc i dels problemes més importants.</li>
+</ol>
+
+<h2>2. Metodologia i Abast (Scope)</h2>
+Explica què i com s’ha analitzat.
+<ol>
+    <li>Xarxes analitzades: SSID, punts d’accés i ubicacions.</li>
+    <li>Configuració de seguretat: WPA2/WPA3, autenticació, xifrat, etc.</li>
+    <li>Metodologia: tècniques i eines utilitzades durant la prova.</li>
+    <li>Limitacions: elements que no s’han pogut comprovar.</li>
+    <li>Autorització: deixar constància que les proves s’han realitzat dins de l’abast autoritzat.</li>
+</ol>
+
+
+
+<h2>3. Troballes Tècniques (Technical Findings)</h2>
+ Per a cada problema o vulnerabilitat detectada, s'ha d'incloure: <br>
+<ol>
+    <li>Títol: identificació clara de la vulnerabilitat.</li>
+    <li>Gravetat: crítica, alta, mitjana o baixa, amb una mètrica com CVSS quan siga aplicable.</li>
+    <li>Descripció: què s’ha detectat.</li>
+    <li>Evidència: captures, resultats de les eines i altres proves.</li>
+    <li>Impacte: què podria arribar a fer un atacant.</li>
+    <li>Remediació: com corregir o reduir el risc.</li>
+</ol>
+
+<ol>Exemples de troballes:
+    <li>Configuració de seguretat inadequada.</li>
+    <li>Ús de protocols o xifrats obsolets.</li>
+    <li>Contrasenya feble.</li>
+    <li>WPS habilitat quan no és necessari.</li>
+    <li>Xarxa de convidats sense una separació adequada.</li>
+    <li>Mala segmentació entre la xarxa Wi-Fi i els recursos interns.</li>
+    <li>Punt d’accés no autoritzat (rogue AP).</li>
+</ol>
+
+<h2>4. Conclusió i Recomanacions </h2>
+<ol>Un resum final amb consells estratègics.
+    <li>Utilitzar WPA3 quan siga compatible.</li>
+    <li>Desactivar protocols i funcionalitats insegures o innecessàries.</li>
+    <li>Millorar la gestió de credencials.</li>
+    <li>Separar la xarxa de convidats de la xarxa interna.</li>
+    <li>Revisar periòdicament els punts d’accés autoritzats.</li>
+    <li>Mantindre actualitzat el firmware dels dispositius.</li>
+</ol>
+
+  </section>
+
+
+
+
+    <section id="roigblau"> 
+<h1>Equips roig i blau en la seguretat de xarxes sense fils</h1>
+
+<p>   En una auditoria de seguretat d'una xarxa sense fils poden participar dos   equips amb funcions diferents: el <strong>Red Team (equip roig)</strong>,
+  que simula les accions d'un atacant, i el <strong>Blue Team (equip blau)</strong>,   que s'encarrega de detectar, analitzar i respondre davant d'aquestes accions. </p>
+
+<p>   La combinació dels dos equips permet comprovar no només si una xarxa Wi-Fi   presenta vulnerabilitats, sinó també si l'organització és capaç de
+  <strong>detectar i respondre</strong> davant d'un intent d'atac. </p>
+
+<h3>🔴 Red Team: simulació de l'atac</h3>
+
+<p>   L'<strong>equip roig</strong> assumeix el paper d'un atacant i realitza   proves de seguretat dins de l'abast i les regles establides prèviament.
+  L'objectiu és identificar vulnerabilitats i comprovar quin impacte podrien   tindre. </p>
+
+<p>En una xarxa Wi-Fi, el Red Team pot analitzar aspectes com:</p>
+
+<ul>
+  <li>Configuració dels punts d'accés.</li>
+  <li>Protocols de seguretat utilitzats, com WPA2 o WPA3.</li>
+  <li>Configuració de l'autenticació.</li>
+  <li>Exposició de xarxes i dispositius sense fils.</li>
+  <li>Seguretat de les xarxes de convidats.</li>
+  <li>Segmentació entre la xarxa Wi-Fi i la xarxa interna.</li>
+  <li>Presència de punts d'accés no autoritzats.</li>
+  <li>Configuracions insegures o protocols obsolets.</li>
+</ul>
+
+<p>   Les proves del Red Team han de ser <strong>controlades i autoritzades</strong>.   No es tracta d'atacar xarxes alienes, sinó de simular un atacant dins d'un
+  entorn de proves o d'una auditoria autoritzada. </p>
+
+<h3>🔵 Blue Team: detecció i defensa</h3>
+
+<p>   L'<strong>equip blau</strong> té com a funció protegir la infraestructura,   detectar activitats sospitoses i respondre davant dels incidents de   seguretat. </p>
+
+<p>En una xarxa sense fils, el Blue Team pot treballar en:</p>
+
+<ul>
+  <li>Monitorització dels punts d'accés i clients Wi-Fi.</li>
+  <li>Detecció de punts d'accés no autoritzats.</li>
+  <li>Identificació de comportaments anòmals.</li>
+  <li>Anàlisi de registres i esdeveniments de seguretat.</li>
+  <li>Revisió de la configuració dels punts d'accés.</li>
+  <li>Segmentació i control d'accés a la xarxa.</li>
+  <li>Actualització del firmware i dels sistemes.</li>
+  <li>Resposta davant d'incidents de seguretat.</li>
+</ul>
+
+<h3>⚔️ Exercici Red Team vs. Blue Team</h3>
+
+<p>   Una manera pràctica d'aplicar aquests conceptes és crear un   <strong>laboratori Wi-Fi controlat</strong> en què els dos equips treballen   simultàniament. </p>
+
+<table>
+  <thead>
+    <tr>       <th>Red Team 🔴</th>       <th>Blue Team 🔵</th>     </tr>
+  </thead>
+  <tbody>
+    <tr>       <td>Analitza la superfície d'exposició Wi-Fi.</td>       <td>Monitoritza la infraestructura sense fils.</td>     </tr>
+    <tr>       <td>Busca configuracions insegures.</td>      <td>Revisa i endureix la configuració.</td>     </tr>
+    <tr>      <td>Simula activitats d'un atacant.</td>       <td>Intenta detectar les activitats simulades.</td>     </tr>
+    <tr>      <td>Documenta les vulnerabilitats trobades.</td>       <td>Analitza les evidències i els esdeveniments.</td>    </tr>
+    <tr>      <td>Comunica l'impacte de les vulnerabilitats.</td>      <td>Proposa mesures de detecció i mitigació.</td>    </tr>
+  </tbody>
+</table>
+
+<h3>🟣 Purple Team: coordinació</h3>
+
+<p>   Quan el <strong>Red Team</strong> i el <strong>Blue Team</strong> treballen   de manera coordinada per millorar les capacitats de detecció i resposta,
+  parlem habitualment de <strong>Purple Team</strong>. </p>
+
+<p>   En aquest model, les troballes del Red Team serveixen per millorar les   mesures defensives del Blue Team. Per exemple, si una activitat simulada
+  no és detectada, es pot revisar la monitorització i crear o ajustar les   regles de detecció corresponents. </p>
+
+<h3>Exemple en una xarxa Wi-Fi</h3>
+
+<p>   Imaginem un laboratori amb un punt d'accés Wi-Fi i diversos equips clients.   El Red Team realitza una prova autoritzada que genera una activitat
+  sospitosa. El Blue Team ha d'intentar detectar-la mitjançant les eines   de monitorització disponibles. </p>
+
+<p>   Després de la prova, els dos equips comparen els resultats: </p>
+
+<ol>
+  <li>Quina activitat ha realitzat el Red Team?</li>
+  <li>Quines evidències ha generat?</li>
+  <li>Ha sigut detectada pel Blue Team?</li>
+  <li>Quines alertes o registres s'han generat?</li>
+  <li>Què es pot millorar per detectar-la en el futur?</li>
+</ol>
+
+<h3>🎯 Objectiu del treball conjunt</h3>
+
+<p>   L'objectiu d'un exercici Red Team / Blue Team no és determinar quin equip   "guanya", sinó <strong>millorar la seguretat de la infraestructura</strong>.
+  Les proves ofensives permeten descobrir debilitats i les proves defensives   permeten comprovar la capacitat de detecció i resposta. </p>
+
+<div class="tips">
+  <p> El Red Team simula l'atac,     el Blue Team detecta i respon, i el treball conjunt permet     identificar i corregir les debilitats de la xarxa sense fils.   </p>
+</div>
+
+    </section>
+
+
+
  
    <section id="labs">
     <h1>Laboratoris</h1>
@@ -546,7 +993,7 @@ airgeddon      </pre>
     ==> 802.11 frames, Beacon, probe, authentication, Wireshark per WiFi
 </ol>
 
-    </section>         
+    </section>             
 
     
 
