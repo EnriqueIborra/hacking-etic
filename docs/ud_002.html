@@ -521,6 +521,31 @@ $ theharvester -d exemple.com -b google</code></pre>
   </section>
 
 
+<section id="wirteup">
+<h1>Què és un writeup?</h1>
+<p>     Un <strong>writeup</strong> és un document en què s'explica com s'ha     resolt un problema, un repte o una pràctica tècnica, detallant els passos
+    seguits, les eines utilitzades i els resultats obtinguts. </p>
+<p>     En ciberseguretat, és molt habitual en <strong>CTF, pentesting i laboratoris</strong>. </p>
+<h3>1. Reconeixement</h3>
+<ul>     <li>Quins ports estan oberts.</li>     <li>Quins serveis s'han detectat.</li>     <li>Quines versions utilitzen.</li> </ul>
+<h3>2. Enumeració</h3>
+<ul>     <li>Directoris web trobats.</li>     <li>Usuaris identificats.</li>     <li>Informació obtinguda dels serveis.</li> </ul>
+<h3>3. Explotació</h3>
+<ul>     <li>Vulnerabilitat detectada.</li>     <li>Eina o tècnica utilitzada.</li>     <li>Com s'ha aconseguit l'accés.</li> </ul>
+<h3>4. Escalada de privilegis</h3>
+<ul>     <li>Permisos disponibles.</li>     <li>Vulnerabilitat aprofitada.</li>     <li>Com s'ha obtingut accés d'administrador/root.</li> </ul>
+<h3>5. Obtenció de la flag</h3>
+<ul>     <li>On estava la flag.</li>     <li>Com s'hi ha accedit.</li> </ul>
+<h3>6. Conclusions</h3>
+<ul>      <li>Quina vulnerabilitat ha permés l'atac.</li>     <li>Com es podria haver evitat o corregit.</li> </ul>
+<p>  El <strong>writeup</strong> sol tindre un caràcter més <strong>pràctic i didàctic</strong>:
+    permet que una altra persona puga entendre i, sovint, <strong>reproduir el procés seguit</strong>. </p>
+
+
+</section>
+
+
+
  <section id="labs">
   <h1>Laboratoris</h1>
   <h2>WEB Reconnaissance. Fuzzing Web</h2>
@@ -528,6 +553,27 @@ $ theharvester -d exemple.com -b google</code></pre>
   <h2>Analisi d'arxius. Metadades.</h2>
 
  </section> 
+
+
+  </section>
+    <section id="altres-recursos">
+      <hr><h2 id="quizz_title">Comprueba tu progreso...</h2>
+    <div id="progress-container">
+    <div id="progress-bar"></div>  </div>
+    <!-- <div id="percentatge-text">0%</div>  -->
+
+    <div class="quiz-container">
+        <h4 id="pregunta-text"></h4>
+        <div id="options-container" class="options">
+        </div>
+
+        <p id="feedback"></p>
+        <button id="btn-pista"  onclick="mostrarPista()">🕵️‍♂️ Quieres una pista??</button>
+        <button id="btn-seguent" onclick="seguentPregunta()">      ➕ Siguiente pregunta </button>
+        <button id="btn-reiniciar"  onclick="carregarPreguntes('UD2__1')">🔁 Reiniciar</button>
+        <p id="pista"></p>
+   </section>
+
 
 </main>
 
@@ -541,5 +587,10 @@ $ theharvester -d exemple.com -b google</code></pre>
 
   
     <script src="scriptsunitats.js"></script>
+    <script>
+          // Executar en carregar la pàgina
+          window.onload = carregarPreguntes('UD2__1');
+    </script>
+
 </body>
 </html>
