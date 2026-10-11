@@ -791,16 +791,41 @@ nmap -sC -p 139,445 -sV 10.0.1.26 10.0.1.30
      
       
 
-    </main>
+  </section>
+    <section id="altres-recursos">
+      <hr><h2 id="quizz_title">Comprueba tu progreso...</h2>
+    <div id="progress-container">
+    <div id="progress-bar"></div>  </div>
+    <!-- <div id="percentatge-text">0%</div>  -->
 
-    <footer>
+    <div class="quiz-container">
+        <h4 id="pregunta-text"></h4>
+        <div id="options-container" class="options">
+        </div>
+
+        <p id="feedback"></p>
+        <button id="btn-pista"  onclick="mostrarPista()">🕵️‍♂️ Quieres una pista??</button>
+        <button id="btn-seguent" onclick="seguentPregunta()">      ➕ Siguiente pregunta </button>
+        <button id="btn-reiniciar"  onclick="carregarPreguntes('UD3__1')">🔁 Reiniciar</button>
+        <p id="pista"></p>
+   </section>
+
+
+ </main>
+
+  <footer>
       <p style="font-family: 'CCSymbols', sans-serif; font-size:larger;" >
         Llicència: &#x1F16D; &#x1F16F; &#x1F10E; &#x1F10F; - U3 - Fingerprinting 
       </p>
-    </footer>
+   </footer>
   </div>
 
   
     <script src="scriptsunitats.js"></script>
+    <script>
+          // Executar en carregar la pàgina
+          window.onload = carregarPreguntes('UD3__1');
+    </script>
+
 </body>
 </html>

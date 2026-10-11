@@ -111,23 +111,48 @@
      aquests errors puntuals i desenvolupar una estratègia global robusta, lliure de faltes i punts febles.</p>
 
 
-  <hr><h2>Per què es produeixen ciberatacs?</h2>
+  <hr><h2>Hackers "Black Hat" ==> Ciberatacs </h2><h2>Per què es produeixen ciberatacs?</h2>
   <p><strong>Motivacions premeditades:</strong></p>
-  <ul>
-    <li>Danyar la imatge d'una organització.</li>
-    <li>Benefici econòmic.</li>
-    <li>Espionatge polític o industrial.</li>
-    <li>Empleats descontents.</li>
-    <li>Necessitat de poder de còmput.</li>
-  </ul>
+  <ol>
+    <li> Econòmica: Benefici econòmic.</li>
+    <li> Defensar o reivindicar una causa social, ideològica o mediambiental</li>
+    <li> Personal: Venjança, Danyar la imatge d'una organització. (Empleats descontents)</li>
+    <li> Estratègica: Espionatge polític o industrial (competidors).</li>
+    <li> Tecnològica: Necessitat de poder de còmput.</li>
+  </ol>
   <p><strong>Motivacions casuals:</strong></p>
   <ul>
-    <li>Emmascarament dels responsables reals.</li>
     <li>Repte personal.</li>
+    <li>Reconeixement i prestigi.</li>
     <li>Entreteniment.</li>
   </ul>
+  <strong>Tipus d'actors</strong>
+  <ul>
+    <li>Cibercriminals (Ross Ulbricht-Silk Road, Vladimir Levin-Citibank, ..)</li>
+    <li>Insiders (Edward Snowden, ..)</li>
+    <li>Hacktivistes (Anonymous, LulzSec, Killnet,..)</li>
+    <li>Mercenaris digitals (NSO group-Pegasus, Cytrox-Predator, ..)</li>
+    <li>Grups vinculats a estats (APT10, ..)</li>
+  </ul>
+  <!----
+  <p>Entre els Grups vinculats a estats,</p>
+  <ul>
+    <li>APT10 (Xina)</li>
+    <li>APT29 (Rússia)</li>
+    <li>APT28 (Rússia)</li>
+    <li>APT40 (Xina)</li>
+    <li>Lazarus (Corea del Nord)</li>
+    <li>Sandworm (Rússia)</li>
+    <li>Volt Typhoon (Xina)</li>
+    <li>Equation group, TAO i Stuxnet (part occidental)</li>
+  </ul>
+  <p>Algunes agències estatals: NSA, GCHQ, Unit8200, ANSSI, GRU, FSB, MSS, RGB, IRGC, CNI .. </p>  -->
+  <h3>I que és un APT</h3>
+  <p>APT és l'acrònim d'Advanced Persistent Threat, que podem traduir com a amenaça persistent avançada.</p>
+  <p>És un terme utilitzat per descriure actors o operacions que disposen de capacitats tècniques, 
+    busquen objectius concrets i poden mantindre l'accés a sistemes compromesos durant períodes prolongats.</p>
 
-  <h2>Seguretat</h2>
+  <hr><h2>Seguretat</h2>
   <p>La seguretat és allò exempt de perill, dany o risc. En l’àmbit digital, cal diferenciar:</p>
   <ul>
     <li><strong>Seguretat de la informació:</strong> Protecció de dades contra qualsevol amenaça.</li>
@@ -150,7 +175,7 @@
     <li>No causen danys.</li>
     <li>Resultats documentats per millorar la seguretat.</li>
   </ul>
-  <p><strong>Projectes:</strong> S'ha de respectar el contracte amb el client. Aquest defineix els límits d’actuació.</p>
+  <p><strong>** Sempre ** </strong> S'ha de respectar el contracte amb el client. Aquest defineix els límits d’actuació.</p>
 
   <h2>Llei del hacking del Codi Penal</h2>
   <ul>
@@ -161,18 +186,43 @@
     <li>Penes per accés no autoritzat: entre 6 mesos i 2 anys de presó.</li>
   </ul>
 
-  <h3>Article 197 del Codi Penal</h3>
-  <p>Revela dades que afecten la intimitat o la privacitat. També és delicte difondre informació obtinguda amb consentiment però divulgada contra la voluntat.</p>
+    <table>
+      <thead>      <tr>        <th>Article del Codi Penal</th>       <th>Descripció</th>     </tr>   </thead>
+      <tbody>
+        <tr>
+          <td>         Art. 197        </td>
+          <td>         <p>Revela dades que afecten la intimitat o la privacitat. També pot ser delicte difondre informació obtinguda amb consentiment quan es divulga sense autorització..</p>
+          </td>
+        </tr>
+        <tr>
+          <td>          197 bis       </td>
+          <td>         <p>Tipifica el ciberespionatge, cracking, black hacking. Penalitza l’accés no autoritzat i la intercepció de transmissions informàtiques privades.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>          197 ter       </td>
+          <td>         <p>Penalitza produir, adquirir, importar o facilitar determinats programes o codis d'accés amb la intenció de facilitar la comissió d'alguns dels delictes tipificats en els articles 197 i 197 bis.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>          264       </td>
+          <td>         <p>Penalitza esborrar, alterar, deteriorar o fer inaccessibles dades, programes o documents electrònics aliens, sense autorització..</p>
+          </td>
+        </tr>
+        <tr>
+          <td>        264 bis       </td>
+          <td>         <p>Penalitza obstaculitzar o interrompre greument el funcionament d'un sistema informàtic alié sense autorització, en els supòsits previstos legalment.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-  <h3>Article 197 bis</h3>
-  <p>Tipifica el ciberespionatge, cracking, black hacking. Penalitza l’accés no autoritzat i la intercepció de transmissions informàtiques privades.</p>
-
-  <h3>Article 197 ter</h3>
-  <p>Penalitza produir, adquirir, importar o facilitar eines per cometre delictes tipificats als articles 197 i 197 bis.</p>
-
-  <p><strong>Conclusió:</strong> Els professionals de la seguretat informàtica han de conèixer el marc legal. El Codi Penal pot equiparar un investigador de seguretat a un delinqüent si no actua segons la llei.</p>
+   <p><strong>Conclusió:</strong> Els professionals de la seguretat informàtica han de conèixer el marc legal. El Codi Penal pot equiparar un investigador de seguretat a un delinqüent si no actua segons la llei.</p>
 
 </section>
+
+
+
 
 <!--   *********************Elements del hacking  *********************************-->
 <section id="elements">
@@ -447,6 +497,7 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
       aquell atac, mapant les accions de l’atacant sobre la matriu ATT&CK. Permet veure tot el recorregut de l’atac dins la matriu.</p>
       <pre>Matriu Mitre Att&ck d'un atac</pre>
     <p>** Existeix una correspondència del menu de Kali amb la matriu Mitre</p>
+
     <hr><h2>Llistes de seguretat</h2>
     <p>Llistes d'informació sobre vulnerabilitats conegudes. Assignen un identificador únic a cada nova vulnerabilitat. CVE, CVSS, ..</p>
 
@@ -454,18 +505,18 @@ primers dígits corresponen a l'any en que es fa pública la vulnerabilitat, i e
     <p>La Cyber Kill Chain és un model de seguretat informàtica que descriu les fases que segueix un atac cibernètic, des del primer moment 
       fins que l’atacant aconsegueix el seu objectiu. Serveix sobretot per entendre, detectar i parar atacs abans que arriben al final.</p>
       <a href="https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html">punxa👆per accés a pàg oficial</a>
-    <p>El model original el va crear Lockheed Martin i té 7 fases: </p> 
     <p style="text-align:right">A la dreta es pot vore el menú principal de kali.🤔 😮 </p>
-    <img src="imgs/menu-kali.png" alt="menu-kali" width="25%" class="imatge-dreta">
-  <ul>
-    <li>Reconeixement (Reconnaissance) : L’atacant recopila informació de la víctima: webs, correus, IPs, empleats, xarxes socials…</li>
-    <li>Armatge (Weaponization): Prepara l’atac: combina malware amb un exploit (per exemple, un document Word infectat).</li>
-    <li>Lliurament (Delivery): Envia l’atac a la víctima: phishing per correu, web maliciosa, USB, descàrrega falsa…</li>
-    <li>Explotació (Exploitation) : La víctima obre el fitxer o visita la web i s’explota una vulnerabilitat.</li>
-    <li>Instal·lació (Installation) : El malware s’instal·la al sistema de la víctima.</li>
-    <li>Comandament i control (C2) : El malware es connecta amb el servidor de l’atacant per rebre ordres.</li>
-    <li>Accions sobre l’objectiu (Actions on Objectives): Robatori de dades, xifrat (ransomware), espionatge, sabotatge, etc.</li>
-  </ul>
+    <img src="imgs/menu-kali.png" alt="menu-kali" width="25%" class="imatge-dreta">    
+      <p>El model original el va crear Lockheed Martin i té 7 fases: </p> 
+    <ul>
+      <li>Reconeixement (Reconnaissance) : L’atacant recopila informació de la víctima: webs, correus, IPs, empleats, xarxes socials…</li>
+      <li>Armatge (Weaponization): Prepara l’atac: combina malware amb un exploit (per exemple, un document Word infectat).</li>
+      <li>Lliurament (Delivery): Envia l’atac a la víctima: phishing per correu, web maliciosa, USB, descàrrega falsa…</li>
+      <li>Explotació (Exploitation) : La víctima obre el fitxer o visita la web i s’explota una vulnerabilitat.</li>
+      <li>Instal·lació (Installation) : El malware s’instal·la al sistema de la víctima.</li>
+      <li>Comandament i control (C2) : El malware es connecta amb el servidor de l’atacant per rebre ordres.</li>
+      <li>Accions sobre l’objectiu (Actions on Objectives): Robatori de dades, xifrat (ransomware), espionatge, sabotatge, etc.</li>
+    </ul>
 
     <p>👉 La idea clau: Si aconsegueixes trencar la cadena en qualsevol fase, l’atac falla. Per això és tan útil per a la defensa.</p>
 
@@ -1389,37 +1440,43 @@ un hacker necessita estar al dia d'estos avanços i descobriments.  </p>
       <li>Conclusió i r ecomanacions generals</li>
     </ol>
 <h2>1. Resum Executiu (Executive Summary)</h2>
-Aquesta secció és per als caps i directius. No facis servir llenguatge tècnic complex aquí. <br>
+Aquesta secció és per als caps i directius. No gastes llenguatge tècnic complex ací. <br>
+<ul>
 <li>Objectiu: Què s'ha analitzat i per què.</li>
 <li>Estat General: Un gràfic circular o de barres amb el nombre de vulnerabilitats (Crítiques, Altes, Mitjanes, Baixes).</li>
 <li>Conclusió Principal: Una breu explicació del risc real. Exemple: "S'ha aconseguit accés a la base de dades de clients mitjançant una vulnerabilitat a la web principal".</li>
+</ul>
 
 <h2>2. Metodologia i Abast (Scope)</h2>
-Aquí defineixes les regles del joc que vas seguir. <br>
+Ací defineixes les regles del joc que vas seguir. <br>
 
-<li>
-  Abast: Llistat d'IPs, dominis o aplicacions analitzades.
-  Metodologia: Quins estàndards has usat (per exemple, OWASP Top 10 per a web o OSSTMM).
-  Limitacions: Si no vas poder analitzar alguna cosa (per exemple, per no tirar el servidor), s'ha de posar aquí.
-</li>
+<ul>
+  <li>  Abast: Llistat d'IPs, dominis o aplicacions analitzades.</li>
+  <li>Metodologia: Quins estàndards has usat (per exemple, OWASP Top 10 per a web o OSSTMM).</li>
+  <li>Limitacions: Si no vas poder analitzar alguna cosa (per exemple, per no tirar el servidor), s'ha de posar ací.</li>
+</ul>
 
 <h2>3. Troballes Tècniques (Technical Findings)Aquesta és la part on t'expliques amb detall.</h2>
  Per a cada vulnerabilitat detectada, has d'incloure: <br>
+<ul>
  <li>Títol:  Curt i clar (Ex: SQL Injection en formulari de login).</li>
- <li>Gravetat: Segons la mètrica CVSS (Common Vulnerability Scoring System).$ = [0.0 - 10.0]$$</li>
+ <li>Gravetat: Segons la mètrica CVSS (Common Vulnerability Scoring System).puntuació = [0.0 - 10.0]</li>
  <li>Descripció: Què és la vulnerabilitat i com afecta el sistema.Prova de Concepte (PoC): Pas a pas (amb captures de pantalla) de com vas explotar el sistema. Si no hi ha captures, no ha passat.</li>
  <li>Impacte: Què podria fer un atacant real (robar dades, esborrar el disc, etc.).</li>
  <li>Remediació: Com solucionar-ho (codi corregit, actualització de software, canvi de configuració).</li>
+</ul>
 
 <h2>4. Conclusió i Recomanacions Generals</h2>
 Un resum final amb consells estratègics (per exemple: "Millorar la política de contrasenyes" o "Implementar un WAF"). <br>
 <br><hr>
 
-<h2>Eines per ajuda a fer informes.</h2> <br>
-
-<li>Sysreptor: Una eina open-source fantàstica per crear informes professionals de forma modular.</li>
+<h2>Eines per ajuda a fer informes.</h2> 
+<ul>
+  <li>Sysreptor: Una eina open-source fantàstica per crear informes professionals de forma modular.</li>
 <li>Serpico: Un clàssic per generar informes basats en plantilles.</li>
 <li>Ghostwriter: Per a equips que treballen junts en un mateix informe.</li>
+</ul>
+
 
 
   </section>
@@ -1443,22 +1500,23 @@ Un resum final amb consells estratègics (per exemple: "Millorar la política de
 
 
 
-    </main>
+   </main>
 
-    <footer>
+   <footer>
       <p style="font-family: 'CCSymbols', sans-serif; font-size:larger;" >
         Llicència: &#x1F16D; &#x1F16F; &#x1F10E; &#x1F10F; - U1 - Introducció al Hacking Ètic 
       </p>
-    </footer>
+   </footer>
   </div>
   
   
 </body>
-    <script src="scriptsunitats.js"></script>
-    <script>
-          // Executar en carregar la pàgina
-          window.onload = carregarPreguntes('UD1__1');
-    </script>
+
+  <script src="scriptsunitats.js"></script>
+  <script>
+        // Executar en carregar la pàgina
+        window.onload = carregarPreguntes('UD1__1');
+  </script>
   
 
 </html>
