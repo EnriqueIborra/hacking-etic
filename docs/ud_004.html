@@ -306,6 +306,20 @@ https://exemple.com/pagina.php?lang=/etc/passwd</code> </pre>
         <p>Si el servidor és vulnerable, el codi intentaria incloure el contingut de l'arxiu /etc/passwd 
           (un arxiu de Linux que conté informació d'usuaris), i el contingut d'aquest arxiu es mostraria 
           a la pàgina web, exposant informació sensible</p>
+      <details> <summary>Reel Path transversal</summary>
+      <iframe
+          src="https://www.instagram.com/reel/DeMvj_kO0t-/embed/"
+          style="width: min(100vw, 56.25vh); height: min(100vh, 177.78vw);  border: none;"  allowfullscreen>
+      </iframe>          
+      </details>
+
+            <details> <summary>Reel LFI</summary>
+      <iframe
+          src="https://www.instagram.com/reel/DeUJAtaiAtu/embed/"
+          style="width: min(100vw, 56.25vh); height: min(100vh, 177.78vw);  border: none;"  allowfullscreen>
+      </iframe>          
+      </details>
+
 
         <p>==> En la màquina DVWA, es proposa la URL ..</p>
         <code>/dvwa/vulnerabilities/fi/?page=file1.php</code>
@@ -523,6 +537,7 @@ Treure el password caràcter a caràcter
              i, per tant, no està lligada a un sistema gestor de base de dades (SGBD) específic de la mateixa manera que altres eines més generals.</p>
           <p>Encara que no esta lligada a cap SGBD, ofereix plantilles preconfigurades per alguns SGBD comuns, com: 
             MySQL, PostgreSQL, Microsoft SQL Server (MSSQL), Oracle Database, SQLite</p>
+
 
             <br><hr>
         <h2>Cross-Site Scripting XSS</h2>
