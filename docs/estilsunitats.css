@@ -40,6 +40,10 @@
     transition: background 0.3s, color 0.3s;
   }
 
+.emoji-font {
+  font-family: 'Noto Color Emoji', Tahoma, sans-serif;
+}
+
   @media screen and (max-width: 768px) and (orientation: landscape) {
     body {
       font-size: 8px;
