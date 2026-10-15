@@ -1,0 +1,434 @@
+[
+  {
+    "CE": "ud11-1",
+    "titol": "Quina de les següents és considerada una motivació \"casual\" per a un ciberatac, en lloc d'una premeditada?",
+    "pista": "Busca una motivació relacionada amb la curiositat, l'experimentació o la satisfacció personal, més que amb un objectiu planificat.",
+    "opcions": [
+      {
+        "text": "Danyar la imatge d'una organització.",
+        "correcte": false,
+        "feedback": "Danyar la imatge d'una organització implica normalment un objectiu concret i una certa planificació, per exemple en accions de hacktivisme o venjança."
+      },
+      {
+        "text": "Obtenir un benefici econòmic.",
+        "correcte": false,
+        "feedback": "El benefici econòmic sol constituir una motivació orientada a un objectiu concret i pot implicar una planificació considerable, com ocorre en atacs de ransomware o robatori de dades."
+      },
+      {
+        "text": "Superar un repte personal.",
+        "correcte": true,
+        "feedback": "Correcte. El repte personal o la curiositat pot portar a experimentar amb sistemes sense que existisca necessàriament un objectiu maliciós concret."
+      },
+      {
+        "text": "Realitzar espionatge polític o industrial.",
+        "correcte": false,
+        "feedback": "L'espionatge polític o industrial sol respondre a objectius concrets i requereix una planificació i coordinació prèvies."
+      }
+    ]
+  },
+  {
+    "CE": "ud11-1",
+    "titol": "Quina acció específica penalitza l'Article 197 ter del Codi Penal?",
+    "pista": "L'article se centra en els mitjans o eines que poden facilitar la comissió de determinats delictes informàtics.",
+    "opcions": [
+      {
+        "text": "L'accés no autoritzat i la intercepció de transmissions informàtiques privades.",
+        "correcte": false,
+        "feedback": "Aquesta conducta està relacionada amb altres apartats de l'article 197, mentre que l'article 197 ter se centra en determinats instruments destinats a cometre delictes."
+      },
+      {
+        "text": "Produir, adquirir, importar o facilitar eines per cometre delictes tipificats als articles 197 i 197 bis.",
+        "correcte": true,
+        "feedback": "Correcte. L'article 197 ter contempla determinats actes preparatoris relacionats amb la producció, adquisició, importació o facilitació d'eines destinades a cometre els delictes indicats."
+      },
+      {
+        "text": "Revelar dades que afecten la intimitat o la privacitat obtingudes sense consentiment.",
+        "correcte": false,
+        "feedback": "Aquesta conducta es relaciona amb els delictes de descobriment i revelació de secrets regulats en l'article 197."
+      },
+      {
+        "text": "Regular específicament la responsabilitat penal de les empreses del sector públic en casos de ciberespionatge.",
+        "correcte": false,
+        "feedback": "L'article 197 ter no regula específicament aquesta qüestió, sinó determinats instruments o eines relacionats amb la comissió de delictes informàtics."
+      }
+    ]
+  },
+  {
+    "CE": "ud11-2",
+    "titol": "Quin és l'objectiu principal de les Proves d'explotació (Exploitation)?",
+    "pista": "L'objectiu és demostrar que una vulnerabilitat pot ser aprofitada, però en un hacking ètic s'ha d'evitar causar danys innecessaris.",
+    "opcions": [
+      {
+        "text": "Danyar el sistema per demostrar la vulnerabilitat.",
+        "correcte": false,
+        "feedback": "Incorrecte. En un hacking ètic l'objectiu és demostrar el risc de la vulnerabilitat evitant causar danys o interrupcions innecessàries."
+      },
+      {
+        "text": "Aplicar les mesures correctives recomanades al client.",
+        "correcte": false,
+        "feedback": "L'aplicació de les mesures correctives correspon habitualment a l'organització auditada o al seu equip tècnic, no a la fase d'explotació de l'auditoria."
+      },
+      {
+        "text": "Simular atacs per comprovar si les vulnerabilitats poden ser explotades, sense danyar el sistema.",
+        "correcte": true,
+        "feedback": "Correcte. La fase d'explotació busca confirmar que una vulnerabilitat és real i pot ser aprofitada, mantenint el control de les proves per evitar danys innecessaris."
+      },
+      {
+        "text": "Identificar el programari obsolet o els ports oberts del sistema.",
+        "correcte": false,
+        "feedback": "La identificació de ports oberts i altres característiques del sistema correspon principalment a fases de recollida d'informació i escaneig, prèvies a l'explotació."
+      }
+    ]
+  },
+  {
+    "CE": "ud11-2",
+    "titol": "Per a qui ha de ser entenedor l'informe de resultats del hacking ètic?",
+    "pista": "L'informe ha de servir tant per prendre decisions com per aplicar tècnicament les mesures de correcció.",
+    "opcions": [
+      {
+        "text": "Només per a l'equip de desenvolupament que s'encarregarà de les correccions.",
+        "correcte": false,
+        "feedback": "L'informe ha de ser útil per als equips tècnics, però també ha d'incloure informació comprensible per als responsables de direcció i presa de decisions."
+      },
+      {
+        "text": "Només per a l'empresa de seguretat contractada.",
+        "correcte": false,
+        "feedback": "L'empresa de seguretat redacta l'informe, però el document està destinat principalment al client i als responsables que han de prendre decisions i aplicar les correccions."
+      },
+      {
+        "text": "Exclusivament per als usuaris finals del sistema que ha estat provat.",
+        "correcte": false,
+        "feedback": "Els usuaris finals no necessiten habitualment conèixer tots els detalls tècnics d'una prova de penetració. L'informe es dirigeix principalment a responsables de gestió i equips tècnics."
+      },
+      {
+        "text": "Per a tècnics i directius.",
+        "correcte": true,
+        "feedback": "Correcte. L'informe sol combinar un resum executiu, orientat als responsables de direcció, amb una part tècnica detallada destinada als equips que han d'analitzar i corregir les vulnerabilitats."
+      }
+    ]
+  },
+  {
+    "CE": "ud11-3",
+    "titol": "En quin tipus de vulnerabilitat s'inclouen els errors o males pràctiques dels usuaris, com caure en atacs de phishing?",
+    "pista": "El phishing aprofita principalment el comportament, els coneixements o els errors de les persones.",
+    "opcions": [
+      {
+        "text": "Vulnerabilitats de configuració",
+        "correcte": false,
+        "feedback": "Les vulnerabilitats de configuració són errors en l'ajust dels sistemes, com contrasenyes predeterminades o serveis innecessaris habilitats."
+      },
+      {
+        "text": "Vulnerabilitats de programari",
+        "correcte": false,
+        "feedback": "Les vulnerabilitats de programari són errors o defectes en el codi de les aplicacions, com determinats desbordaments de memòria o injeccions."
+      },
+      {
+        "text": "Vulnerabilitats en la xarxa",
+        "correcte": false,
+        "feedback": "Les vulnerabilitats de xarxa afecten protocols, dispositius o mecanismes de comunicació i no descriuen directament els errors dels usuaris."
+      },
+      {
+        "text": "Vulnerabilitats humanes",
+        "correcte": true,
+        "feedback": "Correcte. Les vulnerabilitats humanes estan relacionades amb errors, descuits, manca de coneixement o manipulació dels usuaris. El phishing i l'enginyeria social exploten aquest factor."
+      }
+    ]
+  },
+  {
+    "CE": "ud11-3",
+    "titol": "Dins dels nivells de profunditat de seguretat, en quina categoria s'emmarquen la LOPDGDD i el RGPD?",
+    "pista": "Pensa en quin tipus de mesures estableixen les lleis i els reglaments relacionats amb la protecció de dades.",
+    "opcions": [
+      {
+        "text": "Físiques",
+        "correcte": false,
+        "feedback": "Les mesures físiques protegeixen els elements materials, com sales de servidors, equips, instal·lacions i controls d'accés físic."
+      },
+      {
+        "text": "Organitzatives",
+        "correcte": false,
+        "feedback": "Les mesures organitzatives inclouen polítiques, procediments, formació, assignació de responsabilitats i altres mecanismes de gestió."
+      },
+      {
+        "text": "Comunicacions",
+        "correcte": false,
+        "feedback": "Les mesures de comunicacions estan relacionades amb la protecció de la transmissió de dades i les xarxes."
+      },
+      {
+        "text": "Legals",
+        "correcte": true,
+        "feedback": "Correcte. La LOPDGDD i el RGPD són normes jurídiques que estableixen obligacions i requisits relacionats amb la protecció de les dades personals."
+      }
+    ]
+  },
+  {
+    "CE": "ud11-4",
+    "titol": "Què succeeix un cop s'informa d'una vulnerabilitat en un \"paper\"?",
+    "pista": "Una vegada documentada una vulnerabilitat, cal identificar-la, classificar-la i valorar-ne el risc per facilitar-ne la gestió.",
+    "opcions": [
+      {
+        "text": "La vulnerabilitat passa automàticament a ser una \"Zero-Day\".",
+        "correcte": false,
+        "feedback": "Una vulnerabilitat Zero-Day fa referència a una vulnerabilitat desconeguda pel fabricant o per a la qual encara no hi ha una correcció disponible. Informar-ne no la converteix en Zero-Day."
+      },
+      {
+        "text": "Es considera que la vulnerabilitat ha estat immediatament corregida.",
+        "correcte": false,
+        "feedback": "Documentar o informar d'una vulnerabilitat no implica que haja estat corregida. La correcció és un procés posterior."
+      },
+      {
+        "text": "Es valora i classifica, i s'inclou en bases de dades i calculadores de risc.",
+        "correcte": true,
+        "feedback": "Correcte. Una vulnerabilitat coneguda pot identificar-se i classificar-se, per exemple mitjançant CVE, i valorar-se segons el seu risc amb sistemes com CVSS."
+      },
+      {
+        "text": "Es converteix directament en un atac de denegació de servei (DoS).",
+        "correcte": false,
+        "feedback": "Una vulnerabilitat és una feblesa del sistema, mentre que un atac DoS és una acció que pot aprofitar determinades vulnerabilitats. No són el mateix concepte."
+      }
+    ]
+  },
+  {
+    "CE": "ud11-4",
+    "titol": "Segons el text, quina és una causa de les amenaces de procedència \"Interna\"?",
+    "pista": "Busca una causa relacionada amb les persones que formen part de la pròpia organització.",
+    "opcions": [
+      {
+        "text": "Campanyes de hackeig.",
+        "correcte": false,
+        "feedback": "Les campanyes de hackeig dirigides solen considerar-se amenaces externes, ja que l'origen de l'atac es troba fora de l'organització."
+      },
+      {
+        "text": "Atacs dirigits.",
+        "correcte": false,
+        "feedback": "Els atacs dirigits solen classificar-se com a amenaces externes quan l'atacant es troba fora de l'organització."
+      },
+      {
+        "text": "Desconeixement o manca de formació del personal (Insider).",
+        "correcte": true,
+        "feedback": "Correcte. Els errors, la negligència o la manca de formació del personal poden originar amenaces internes, ja que provenen de persones de la pròpia organització."
+      },
+      {
+        "text": "Interferències electromagnètiques.",
+        "correcte": false,
+        "feedback": "Les interferències electromagnètiques són amenaces de caràcter físic o ambiental relacionades amb l'entorn del sistema."
+      }
+    ]
+  },
+  {
+    "CE": "ud11-5",
+    "titol": "Quin és l'objectiu de la fase de \"Fingerprinting i enumeració\" dins del procés d'auditoria?",
+    "pista": "En aquesta fase es busca obtenir informació tècnica detallada sobre els serveis i sistemes que estan exposats.",
+    "opcions": [
+      {
+        "text": "Realitzar l'explotació pràctica de les vulnerabilitats ja identificades.",
+        "correcte": false,
+        "feedback": "L'explotació és una fase posterior. El Fingerprinting i l'enumeració busquen recopilar informació tècnica que pot ajudar a preparar les proves posteriors."
+      },
+      {
+        "text": "Recopilar informació pública sobre l'organització (Footprinting).",
+        "correcte": false,
+        "feedback": "El Footprinting se centra principalment en la recopilació d'informació pública i correspon a una fase diferent de la de Fingerprinting."
+      },
+      {
+        "text": "Presentar el treball final en format executiu i tècnic.",
+        "correcte": false,
+        "feedback": "La presentació dels resultats en informes executius i tècnics correspon a la fase final de documentació de l'auditoria."
+      },
+      {
+        "text": "Aconseguir informació detallada dels serveis que ofereix l'organització, com ports oberts i versions d'aplicacions.",
+        "correcte": true,
+        "feedback": "Correcte. El Fingerprinting i l'enumeració permeten obtenir informació tècnica detallada sobre serveis, ports, versions de programari, sistemes operatius i altres característiques de la infraestructura."
+      }
+    ]
+  },
+  {
+    "CE": "ud11-5",
+    "titol": "Quina és la diferència principal entre una \"Auditoria de Seguretat\" i un \"Test d'Intrusió\" (Pen Test)?",
+    "pista": "Compara l'abast de cada activitat: una busca una anàlisi més exhaustiva, mentre que l'altra se centra a comprovar si és possible aconseguir un objectiu d'intrusió.",
+    "opcions": [
+      {
+        "text": "Un Test d'Intrusió s'ha de documentar, mentre que l'Auditoria de Seguretat no ho necessita.",
+        "correcte": false,
+        "feedback": "Tant les auditories com els tests d'intrusió professionals requereixen documentació dels treballs realitzats i dels resultats obtinguts."
+      },
+      {
+        "text": "L'Auditoria de Seguretat només es fa de forma interna (caixa grisa), i el Test d'Intrusió sempre és extern (caixa negra).",
+        "correcte": false,
+        "feedback": "Tant les auditories com els tests d'intrusió poden realitzar-se amb diferents nivells d'informació i accés, com caixa negra, grisa o blanca."
+      },
+      {
+        "text": "El Test d'Intrusió busca aconseguir vulnerar el sistema, mentre que l'Auditoria analitza de manera més exhaustiva les vulnerabilitats i els controls de seguretat.",
+        "correcte": true,
+        "feedback": "Correcte. Un Pen Test està orientat a comprovar si es pot aconseguir un objectiu d'intrusió o explotació, mentre que una auditoria té habitualment un abast més ampli i analitza els controls i vulnerabilitats de manera més exhaustiva."
+      },
+      {
+        "text": "En el Test d'Intrusió, l'auditor soluciona els errors de seguretat, i en l'Auditoria només els recomana.",
+        "correcte": false,
+        "feedback": "En general, l'auditor identifica les vulnerabilitats i pot proposar mesures correctives, però la implementació d'aquestes mesures correspon a l'organització o als seus equips tècnics."
+      }
+    ]
+  },
+  {
+    "CE": "ud11-6",
+    "titol": "Segons el text, per a què serveixen els estàndards en el context de la seguretat?",
+    "pista": "Els estàndards proporcionen un marc comú que facilita que diferents organitzacions puguen aplicar i comparar processos de seguretat.",
+    "opcions": [
+      {
+        "text": "Per definir la penalització legal en cas de delicte informàtic.",
+        "correcte": false,
+        "feedback": "Les penalitzacions legals són establertes per les lleis i els reglaments, no pels estàndards tècnics de seguretat."
+      },
+      {
+        "text": "Per servir com a patró per homogeneïtzar processos, comparar amb mètriques i definir proves.",
+        "correcte": true,
+        "feedback": "Correcte. Els estàndards proporcionen criteris i patrons comuns que permeten homogeneïtzar processos, establir controls i facilitar la comparació i l'avaluació."
+      },
+      {
+        "text": "Per actuar com a representació ideal d'un sistema real.",
+        "correcte": false,
+        "feedback": "Aquesta definició s'aproxima més al concepte de model o framework. Un estàndard proporciona criteris, requisits o directrius comunes."
+      },
+      {
+        "text": "Per calcular la severitat, amb una puntuació de 0 a 10, d'una vulnerabilitat.",
+        "correcte": false,
+        "feedback": "La puntuació de severitat de les vulnerabilitats es calcula mitjançant sistemes específics com CVSS, no és la funció general dels estàndards."
+      }
+    ]
+  },
+  {
+    "CE": "ud11-6",
+    "titol": "Quina és la funció principal de la llista \"OWASP Top 10\"?",
+    "pista": "És una iniciativa especialment relacionada amb la seguretat de les aplicacions web i identifica els riscos que cal tindre especialment en compte.",
+    "opcions": [
+      {
+        "text": "És un estàndard complet per a auditories de seguretat (OSSTMM).",
+        "correcte": false,
+        "feedback": "OSSTMM és una metodologia de proves de seguretat. OWASP Top 10 és una classificació orientada als principals riscos de seguretat de les aplicacions web."
+      },
+      {
+        "text": "És una categoria d'errors en el software (CWE).",
+        "correcte": false,
+        "feedback": "CWE és una classificació de tipus de febleses de programari, mentre que OWASP Top 10 se centra en els principals riscos de seguretat de les aplicacions web."
+      },
+      {
+        "text": "És una llista dels riscos de seguretat més crítics en aplicacions web, actualitzada periòdicament.",
+        "correcte": true,
+        "feedback": "Correcte. OWASP Top 10 és un document de conscienciació que recull els principals riscos de seguretat de les aplicacions web i serveix com a guia per a desenvolupadors i professionals de la seguretat."
+      },
+      {
+        "text": "És un registre d'incidents de ciberseguretat (FIRST).",
+        "correcte": false,
+        "feedback": "FIRST és una organització relacionada amb la resposta a incidents i la col·laboració entre equips de seguretat, mentre que OWASP Top 10 tracta els riscos de les aplicacions web."
+      }
+    ]
+  },
+  {
+    "CE": "ud11-7",
+    "titol": "Quina eina és l'eina principal i més segura per accedir als llocs web de la Dark Web amb domini \".onion\"?",
+    "pista": "Fixa't en quina xarxa utilitzen específicament els serveis amb domini .onion.",
+    "opcions": [
+      {
+        "text": "El navegador Chrome o Firefox amb un complement de xifrat (PGP).",
+        "correcte": false,
+        "feedback": "Incorrecte. Chrome o Firefox no proporcionen per si sols accés als serveis .onion, i PGP és una tecnologia de xifratge que no substitueix l'accés a la xarxa Tor."
+      },
+      {
+        "text": "Un cercador especialitzat com Google Search for Tor.",
+        "correcte": false,
+        "feedback": "Incorrecte. Un cercador pot ajudar a localitzar informació, però no proporciona per si mateix l'accés a la xarxa Tor necessària per connectar amb serveis .onion."
+      },
+      {
+        "text": "El Navegador Tor (The Onion Router).",
+        "correcte": true,
+        "feedback": "Correcte. El Navegador Tor permet connectar-se a la xarxa Tor i accedir als serveis onion, que utilitzen dominis .onion."
+      },
+      {
+        "text": "Un sistema operatiu de màquines virtuals com Qubes OS sense cap altra eina.",
+        "correcte": false,
+        "feedback": "Incorrecte. Qubes OS proporciona compartimentalització i aïllament de sistemes, però no substitueix el programari necessari per connectar-se a la xarxa Tor."
+      }
+    ]
+  },
+  {
+    "CE": "ud11-7",
+    "titol": "Quin sistema operatiu es menciona al text com un entorn portàtil (s'engega des d'un USB) que passa automàticament tot el trànsit per Tor sense deixar rastres a l'ordinador?",
+    "pista": "Busca el sistema operatiu conegut per funcionar com a entorn live i estar orientat específicament a l'anonimat.",
+    "opcions": [
+      {
+        "text": "Whonix",
+        "correcte": false,
+        "feedback": "Incorrecte. Whonix està orientat a l'anonimat mitjançant l'ús de Tor i l'aïllament, però no es caracteritza principalment per ser un sistema live que s'engega des d'un USB."
+      },
+      {
+        "text": "Linux (qualsevol distribució)",
+        "correcte": false,
+        "feedback": "Incorrecte. Algunes distribucions Linux poden executar-se des d'un USB, però això no implica que tot el trànsit passe automàticament per Tor ni que el sistema estiga dissenyat per minimitzar els rastres."
+      },
+      {
+        "text": "Tails OS",
+        "correcte": true,
+        "feedback": "Correcte. Tails està dissenyat per a la privacitat i l'anonimat, pot executar-se com a sistema live des d'un USB i força les connexions a través de Tor."
+      },
+      {
+        "text": "Qubes OS",
+        "correcte": false,
+        "feedback": "Incorrecte. Qubes OS se centra principalment en la seguretat mitjançant l'aïllament i la compartimentalització dels entorns, no en funcionar com el sistema live descrit."
+      }
+    ]
+  },
+  {
+    "CE": "ud11-8",
+    "titol": "Quin d'aquests camps de coneixement NO és mencionat com a base sòlida requerida per al perfil d'un hacker?",
+    "pista": "Compara els àmbits tècnics directament relacionats amb sistemes informàtics amb el camp jurídic proposat.",
+    "opcions": [
+      {
+        "text": "Xarxes i protocols",
+        "correcte": false,
+        "feedback": "Incorrecte. El coneixement de xarxes i protocols és una base important per comprendre les comunicacions i el funcionament dels sistemes informàtics."
+      },
+      {
+        "text": "Dret civil internacional",
+        "correcte": true,
+        "feedback": "Correcte. En el context de la pregunta, el dret civil internacional no forma part dels coneixements tècnics bàsics indicats per al perfil d'un hacker."
+      },
+      {
+        "text": "Criptografia",
+        "correcte": false,
+        "feedback": "Incorrecte. La criptografia és un àmbit important per comprendre la protecció de dades, les comunicacions i els sistemes d'autenticació."
+      },
+      {
+        "text": "Administració de Bases de Dades",
+        "correcte": false,
+        "feedback": "Incorrecte. El coneixement de bases de dades i SQL és rellevant perquè moltes aplicacions depenen de bases de dades i poden presentar vulnerabilitats relacionades amb aquestes."
+      }
+    ]
+  },
+  {
+    "CE": "ud11-8",
+    "titol": "Quina d'aquestes és una certificació destacada de hacking ètic, esmentada com a acrònim de Certified Ethical Hacker?",
+    "pista": "Busca l'acrònim que correspon exactament a les paraules Certified Ethical Hacker.",
+    "opcions": [
+      {
+        "text": "OSCP",
+        "correcte": false,
+        "feedback": "Incorrecte. OSCP significa Offensive Security Certified Professional, una certificació diferent de CEH."
+      },
+      {
+        "text": "CRTP",
+        "correcte": false,
+        "feedback": "Incorrecte. CRTP correspon a Certified Red Team Professional i està relacionada amb les competències de Red Team."
+      },
+      {
+        "text": "CEH",
+        "correcte": true,
+        "feedback": "Correcte. CEH significa Certified Ethical Hacker i és una certificació orientada al coneixement i les pràctiques del hacking ètic."
+      },
+      {
+        "text": "eJPT",
+        "correcte": false,
+        "feedback": "Incorrecte. eJPT significa eLearnSecurity Junior Penetration Tester i està orientada a les competències bàsiques de penetration testing."
+      }
+    ]
+  }
+]
