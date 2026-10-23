@@ -61,32 +61,40 @@
     <h1>Footprinting</h1>
     <h3>Footprinting: Recollida d'informació pública o “information gathering” (menys important en un procés d'auditoria interna).</h3>
     <p>La fase de footprinting és la primera etapa en un procés d’auditoria de seguretat informàtica o hacking, 
-      i consisteix en recollir informació sobre un sistema, xarxa o organització abans d’intentar accedir-hi o atacar-lo</p>
-    <p>Aquest procés es centra en la recollida d'informació pública ( d'Internet o altres fonts públiques), pel que el seu ús no comporta la 
-      vulneració de cap llei, i per tant no és considerada delicte. El delicte és utilitzar aquesta informació per
-       a algun benefici.
-      <br>Aquesta fase no sol realitzar-se en un procés d'auditoria interna o auditoria de xarxa, o si es realitza, és de manera superficial, ja que no és habitual que es filtre informació interna de l'organisme que puga ser d'utilitat en aquest àmbit.
-      <br>Per fer un Footprint d'un organisme necessitarem conèixer un llistat d'eines d'auditoria de seguretat que veurem a continuació.</p>
-
-<ul>
-  <li>Footprinting utilitzant fonts obertes (OSINT)</li>
-  <li>Footprinting utilitzant "Leaks"</li>
-  <li>Footprinting utilitzant "DNS Reconnaissance"</li>
-  <li>Footprinting utilitzant "Phishing"</li>
-  <li>Footprinting utilitzant Enginyeria social</li>
-  <li>Footprinting utilitzant Vishing, SMiShing</li>
-  <li>Footprinting utilitzant Dumpster diving</li>
-  <li>Footprinting utilitzant Shoulder surfing</li>
-  <li>Footprinting utilitzant Tailgating</li>
-  <li>Footprinting utilitzant Altres ferramentes (noves)</li>
- 
-</ul>
-<h3>  !!  Sempre en consentiment de l'organisme o empresa a ser testada  !!</h3>
+      i consisteix en recollir informació sobre una organització, els seus sistemes, 
+      la seua infraestructura i les persones relacionades amb aquesta.</p>
+    <p>Quan s'utilitzen fonts públiques (OSINT), la recopilació d'informació pot ser legítima, però això no significa que qualsevol
+       tractament, ús o difusió de les dades obtingudes siga legal. Cal respectar la normativa de protecció de dades, la intimitat,
+        la confidencialitat i els drets de tercers.</p>
+    <p>El footprinting pot incloure tècniques passives, com la consulta de fonts obertes, i tècniques actives o d'interacció, 
+      com l'enumeració de serveis, les simulacions de phishing o les proves d'enginyeria social. Aquestes últimes requereixen 
+      una avaluació específica dels riscos i, quan corresponga, una autorització expressa.</p>
+    <p>En una auditoria de seguretat professional, l'abast, les tècniques permeses, els sistemes afectats i les condicions d'execució 
+      han d'estar definits prèviament. L'objectiu és identificar informació exposada i possibles riscos sense vulnerar drets ni 
+      accedir a recursos sense autorització.</p>
+    <ul> <strong> Tipus de Footprinting</strong>
+      <li>Footprinting utilitzant fonts obertes (OSINT)</li>
+      <li>Footprinting utilitzant "DNS Reconnaissance"</li>
+      <li>Footprinting utilitzant "WEB Reconnaissance"</li>
+      <li>Footprinting utilitzant "Leaks Reconnaissance"</li>
+      <li>Footprinting utilitzant "Identity Reconnaissance"</li>
+      <li>Footprinting utilitzant "Cerca inversa"</li>
+      <li>Footprinting utilitzant "Anàlisi d'arxius"</li>
+      <li>Footprinting utilitzant "Phishing"</li>
+      <li>Footprinting utilitzant Enginyeria social</li>
+      <li>Footprinting utilitzant Vishing, SMiShing</li>
+      <li>Footprinting utilitzant Dumpster diving</li>
+      <li>Footprinting utilitzant Shoulder surfing</li>
+      <li>Footprinting utilitzant Tailgating</li>
+      <li>Footprinting utilitzant Altres ferramentes (noves)</li>
+    </ul>
+    <p>Alguns d'estos tipus no son legals en un entorn obert, per això...</p>
+    <h3>  !!  Sempre en consentiment de l'organisme o empresa a ser testada  !!</h3>
 
  <h2>Metadades</h2>
- <p>Les metadades de documents tenen un paper molt important dins del footprinting, especialment en la seva variant passiva, ja que poden revelar molta informació sensible sense accedir directament a cap sistema</p>
  <p>Les metadades són dades que descriuen altres dades. En el cas de documents com PDF, Word, Excel, imatges, etc., les metadades poden contenir informació oculta (però fàcil d’extreure) 
   que pot ser molt valuosa per un analista / auditor o atacant en la fase de footprinting</p>
+ <p>Les metadades de documents tenen un paper molt important dins del footprinting, especialment en la seva variant passiva, ja que poden revelar molta informació sensible sense accedir directament a cap sistema</p>
 
 <h2>Per què això és útil en el footprinting?</h2>
 <ul>
@@ -96,29 +104,29 @@
   <li>Anàlisi de patrons temporals, per saber quan es generen fitxers o si l’empresa segueix hàbits regulars.</li>
 </ul>
 
-<h3>🛠️ Eines per extreure metadades (OSINT):</h3>
+<h3>🛠️ Eines per extreure metadades </h3>
 <ul>
   <li>exiftool</li>
   <li>FOCA</li>
-  <li>metagoofil (específic per descarregar i analitzar documents des d’un domini)</li>
-  <li>Visualització directa a Microsoft Word / Adobe Reader</li>
   <li>Online tools com https://www.metadata2go.com/</li>
+  <li>Visualització directa a Microsoft Word / Adobe Reader</li>
 </ul>
 <p>Les metadades són una font valuosa i sovint infravalorada en el footprinting passiu. A partir de documents 
-  aparentment inofensius, es pot obtenir informació crítica sobre persones, sistemes i estructures internes d’una organització, tot sense aixecar sospites</p>
+  aparentment inofensius, es pot obtenir informació crítica sobre persones, sistemes i estructures internes d’una organització, tot sense alçar sospites</p>
  
-
-  <h2>Motors de cerca que usen els hackers</h2>
+<!--   <h2>Motors de cerca que usen els hackers</h2>
   <a href="https://www.hackplayers.com/2025/06/motores-de-busqueda-hackers.html">https://www.hackplayers.com/2025/06/motores-de-busqueda-hackers.html</a>
+ -->
 
     <h2>Footprinting amb google</h2>
-    <p>Google (Hacking): El cercador Google es pot utilitzar per fer cerques avançades les quals poden proporcionar informació sensible i interessant d'una organització que no estigui ben configurada o fortificada.</p>
+    <p>Google (Hacking): El cercador Google es pot utilitzar per fer cerques avançades les quals poden proporcionar informació sensible i interessant d'una organització que no estiga ben configurada o fortificada.</p>
     <p>A més de revelar els errors en les aplicacions web, Google Hacking permet trobar les dades sensibles, útils per a l'etapa de reconeixement d'un atac.</p>
     <p>Els cercadors, com Google o Bing, tenen una sèrie de paràmetres que permeten fer cerques avançades. Aquests paràmetres són denominats com <strong>Dorks</strong>. 
        <br>Els Dorks són combinacions d'operadors especials que tenen els cercadors per “afinar” les cerques que fem, i si bé són molt útils per actuar de filtre de la informació que ens tornen, també són una eina molt útil per trobar informació sensible que la gent deixa en alguns servidors, o fins i tot dispositius o pàgines web vulnerables.</p>
      <p>Aquesta situació ocorre degut a que els robots de Google (aranyes) que indexen contingut (és el que fa que un lloc siga posicionat d’acord a les paraules clau que es troben) són capaços d’interpretar tot tipus de fitxers, no només pàgines web. Per tant, si una persona, que no té constància ni coneixements d’açò, deixa un fitxer amb informació sensible en un directori web que permet ser llistat, serà accedit i indexat pels robots de Google. 
        <br>La qüestió de fons és, per què algú voldria deixar un fitxer amb informació sensible dins d'un directori que és accessible públicament a través del protocol HTTP?</p>
      <p>Aleshores, què podem trobar realitzant aquests búsquedes? </p>
+     <ul>
      <li>Fitxers que contenen noms d'usuari.</li>
      <li>Directoris sensibles.</li>
      <li>Detecció de versió de servidor web.</li>
@@ -126,6 +134,8 @@
      <li>Arxius que contenen contrasenyes.</li>
      <li>Dades de reds i vulnerabilitats.</li>
     <li>Formularis d’accés (login).</li>
+     </ul>
+
      <p>Hi han més de 45 Dorks que ens permeten realitzar búsquedes indexades mitjançant el buscador Google.
        <br>A partir d’ací, anem a veure una sèrie de Google Dorks, que ens seran de gran utilitat a l’hora de realitzar búsquedes d’informació sensible.</p>
 
@@ -144,8 +154,8 @@
     <p>Shodan: És un cercador d'actius o dispositius online. És molt interessant per identificar càmeres web, impressores,
        scada, i altres recursos exposats a Internet.</p>
     <h2>Footprinting amb Anubis</h2>
-    <p>Anubis: Eina que conté un gran set d’utilitats per recol·lectar informació. Automatitzarem diverses recerques
-       amb aquesta eina.</p>
+    <p>Anubis: Eina que conté un gran set d’utilitats per recol·lectar informació. Es poden automatitzar diverses recerques
+       amb aquesta eina.  <a href="https://github.com/jonluca/Anubis">https://github.com/jonluca/Anubis</a></p> 
     
     <h2>Footprinting amb Maltego</h2>
     <p>Maltego és una eina molt potent per fer footprinting i OSINT, ja que permet visualitzar les connexions
@@ -176,41 +186,109 @@
     <li>Llistat d’endpoints i API (/api/v1/users).</li>
     <li>Identificació de tecnologies (frameworks, CMS, versions del servidor).</li>
     <li>Detecció de paràmetres i entrades (?id=123, ?search=abc).</li>
+    <li>Examinar certificats TLS, capçaleres HTTP, redireccions, versions identificables i possibles errors de configuració.</li>
     <li>Revisió de metadades en fitxers públics.</li>
   </ul>
 
     <p>Eines habituals</p>
     <ul>
       <li>dirb, dirbuster, gobuster → Per a cercar directoris i fitxers ocults.</li>
-      <li>whatweb, wappalyzer → Per a detectar tecnologies.</li>
+      <li>theHarvester, amass, subfinder, findomain → Per a descobrir subdominis i recopilar informació pública sobre dominis.</li>
+      <li>dnsrecon, dnsenum, dig, nslookup → Per a consultar registres DNS i recopilar informació sobre la infraestructura de dominis.</li>
+      <li>whatweb, wappalyzer → Per a detectar tecnologies, el CMS o el servidor.</li>
+      <li>Arjun, ParamSpider → Per a identificar o recopilar possibles paràmetres de les URL.</li>
+      <li>testssl.sh, SSLyze → Per a examinar la configuració TLS, els certificats i els protocols criptogràfics admesos.</li>
+      <li>ExifTool, FOCA → Per a extraure i analitzar metadades de documents i fitxers públics.</li>
+      <li>...</li>
     </ul>
+<!--
+  <ul>
+  <li>dirb, dirbuster, gobuster, feroxbuster, ffuf → Per a cercar directoris, fitxers i recursos web no enllaçats públicament.</li>
+  <li>whatweb, wappalyzer, webanalyze → Per a detectar tecnologies, CMS, frameworks i servidors web.</li>
+  <li>theHarvester, amass, subfinder, findomain → Per a descobrir subdominis i recopilar informació pública sobre dominis.</li>
+  <li>dnsrecon, dnsenum, dig, nslookup → Per a consultar registres DNS i recopilar informació sobre la infraestructura de dominis.</li>
+  <li>curl, httpie → Per a enviar peticions HTTP i analitzar respostes, capçaleres i redireccions.</li>
+  <li>Burp Suite, OWASP ZAP → Per a interceptar i analitzar peticions HTTP, paràmetres, formularis i endpoints d'aplicacions web.</li>
+  <li>katana, hakrawler → Per a rastrejar llocs web i descobrir enllaços, rutes i possibles endpoints.</li>
+  <li>gau, waybackurls → Per a recuperar URL conegudes a partir de fonts públiques i arxius web.</li>
+  <li>Arjun, ParamSpider → Per a identificar o recopilar possibles paràmetres de les URL.</li>
+  <li>testssl.sh, SSLyze → Per a examinar la configuració TLS, els certificats i els protocols criptogràfics admesos.</li>
+  <li>WhatWeb, Nmap → Per a identificar serveis i característiques de servidors web; Nmap també permet examinar ports i serveis de xarxa.</li>
+  <li>ExifTool, FOCA → Per a extraure i analitzar metadades de documents i fitxers públics.</li>
+  <li>Google, Bing → Per a localitzar pàgines, documents i recursos indexats mitjançant cerques avançades (Google Dorks).</li>
+  <li>Shodan, Censys → Per a consultar informació sobre dispositius, serveis i certificats observats a Internet.</li>
+  <li>Maltego, SpiderFoot → Per a correlacionar informació OSINT i automatitzar tasques de reconeixement.</li>
+  <li>EyeWitness → Per a generar captures de pantalla i informes visuals de serveis web identificats.</li>
+  <li>WPScan → Per a identificar components i possibles problemes de seguretat en llocs WordPress.</li>
+  <li>Nikto → Per a comprovar configuracions i possibles problemes coneguts en servidors web.</li>
+  <li>testssl.sh, Nuclei → Per a realitzar comprovacions tècniques de configuracions i detectar patrons de vulnerabilitats conegudes, segons els mòduls i les plantilles utilitzats.</li>
+</ul>  
+-->
 
-      <h2>Descarrega d'un lloc web</h2>
-      <p>és molt útil per descargar i inspeccionar contingut web de manera automatitzada, cosa que pot ajudar a descobrir recursos ocults o informació rellevant. <br>
+  <h3>Reconnaissance , Reconeixement o Enumeració</h3>
+    <p>Forma part de les fases inicials d'una auditoria de seguretat o d'un pentesting. Pot combinar tècniques  <strong>passives</strong> 
+      amb tècniques <strong>actives</strong> que interactuen directament amb el servidor.</p>
+
+    <h3> Reconeixement passiu </h3>
+    <p><strong>Sense contacte directe necessari amb el servidor objectiu</strong></p>
+     <p>Utilitza informació ja disponible en fonts públiques: cercadors, registres, arxius web, bases de dades de certificats i documents publicats.</p>
+    <pre>Exemples: Google, Wayback Machine, Shodan i Censys.</pre>
+
+     <h3>Reconeixement actiu</h3>
+     <p><strong>Genera peticions als sistemes analitzats</strong></p>
+     <p>Interactua directament amb el lloc web o els seus serveis per a obtindre informació addicional.</p>
+     <pre>Exemples: curl, WhatWeb i eines de descobriment de directoris com Gobuster.</pre>
+
+    <hr> <h2>Descarrega d'un lloc web</h2>
+     <p>És molt útil per descargar i inspeccionar contingut web de manera automatitzada, cosa que pot ajudar a descobrir recursos ocults o informació rellevant. <br>
         Encara que wget no és específicament una eina d’enumeració com gobuster o dirb, sí que pot complementar aquesta fase.</p>
-      <h3>wget</h3>
-      <h4>Descàrrega de pàgines o llocs sencers</h4>
-        <p>Pots baixar tot un lloc web per a analitzar-lo localment.</p>
+     <h3>wget</h3>
+     <h4>Descàrrega de pàgines o llocs sencers</h4>
+     <p>Pots baixar tot un lloc web per a analitzar-lo localment.</p>
 
-        <p>Exemple</p>
-        <pre><code>wget -r -np -k http://exemple.com</code></pre>
-        <p >   Açò descarrega tot el contingut navegable de <code>exemple.com</code> sense eixir del domini
-          (<code>-np</code>) i converteix els enllaços per a usar-los localment (<code>-k</code>).    </p>
+      <p>Exemple</p>
+      <pre><code>wget -r -np -k http://exemple.com</code></pre>
+      <p >   Açò descarrega tot el contingut navegable de <code>exemple.com</code> sense eixir del domini
+        (<code>-np</code>) i converteix els enllaços per a usar-los localment (<code>-k</code>).    </p>
 
-        <h4>Descàrrega de fitxers específics</h4>
-        <p>Si durant l’enumeració detectes un fitxer interessant (<code>.zip</code>, <code>.pdf</code>, <code>.xml</code>), <code>wget</code> permet baixar-lo ràpidament per analitzar-lo:</p>
-        <pre><code>wget http://exemple.com/backup.zip</code></pre>
+      <h4>Descàrrega de fitxers específics</h4>
+      <p>Si durant l’enumeració detectes un fitxer interessant (<code>.zip</code>, <code>.pdf</code>, <code>.xml</code>), <code>wget</code> permet baixar-lo ràpidament per analitzar-lo:</p>
+      <pre><code>wget http://exemple.com/backup.zip</code></pre>
 
-        <h4>Exploració de <code>robots.txt</code></h4>
+
+
+
+
+     <hr> <h4>Exploració de <code>robots.txt</code></h4>
+      <p>El fitxer "robots.txt" és un fitxer de text que s'utilitza per a indicar als robots i rastrejadors web (spiders o crawlers) quines parts d'un lloc web 
+        poden rastrejar i quines parts es demana que no rastregen. Normalment es troba en l'arrel del domini. Per exemple:</p>
+      <pre>https://www.exemple.com/robots.txt</pre>
+       <pre> -- Exemple de contingut d'un fitxer
+User-agent: *
+Disallow: /administracio/
+Disallow: /privat/
+Allow: /privat/public/
+Sitemap: https://www.exemple.com/sitemap.xml          </pre>
+<p>En una investigació OSINT, consultar robots.txt pot proporcionar pistes sobre l'estructura d'un lloc web. Per exemple,
+   pot revelar noms de directoris, rutes d'administració o zones que el responsable del lloc no vol que els cercadors rastregen.</p>
+
         <p><code>wget</code> pot recuperar el fitxer <code>robots.txt</code>, que sovint conté directoris que l’administrador no vol indexar però que poden ser interessants:</p>
         <pre><code>wget http://exemple.com/robots.txt</code></pre>
 
         <h4>Automatització amb llistes de rutes</h4>
         <p>Amb un fitxer de rutes, pots fer peticions massives:</p>
         <pre><code>wget -i llistat_urls.txt</code></pre>
+        <p>També es pot baixar amb <code>curl</code></p>
+        <pre><code>curl https://www.exemple.com/robots.txt</code></pre>
 
+        <h3>Consultar les capçaleres HTTP</h3>
+        <pre>curl -I https://exemple.com/</pre>
+        <p>Permet observar dades de la resposta HTTP, com ara el codi d'estat i algunes capçaleres. No sempre revela quin servidor o quines tecnologies s'utilitzen.</p>
 
-      <h2>Versions anteriors d'un lloc web</h2>
+        <p>  <code>robots.txt</code> Dona instruccions als rastrejadors.	És públic i consultable.	No impedeix l'accés directe a una URL.	
+           No s'ha d'utilitzar per a protegir secrets.	        </p>
+
+    <hr>  <h2>Versions anteriors d'un lloc web</h2>
       <p>Es pot accedir a versions antigues d’un lloc web mitjançant Internet Archive - Wayback Machine, que guarda captures periòdiques de pàgines web.</p>
       <a href="https://web.archive.org/">INTERNET ARCHIVE</a>
       <p>Pot ser útil per:</p>
@@ -222,13 +300,11 @@
         <li>Obtenir pistes per a enginyeria social</li>
       </ul>
 
-
-      <h2>Testimoni online d'un lloc web</h2>
+     <hr> <h2>Testimoni online d'un lloc web</h2>
       <p>Ens referim a alguna forma d’evidència digital que permet demostrar l’estat o el contingut d’una pàgina web en un
          moment concret. És molt útil per a temes legals, auditoria o per garantir la integritat d’informació en hacking ètic</p>
             
       <p>Què és un testimoni online</p>
-
       <ol>
         <li>Captura de pantalla amb marca de temps: una imatge que mostra la pàgina tal com era en un moment concret.</li>
         <li>Captura completa del lloc: una còpia local amb tots els fitxers per a reproduir l’estat del lloc.</li>
@@ -379,7 +455,7 @@ Provar múltiples noms per trobar subdominis com admin.example.com, mail.example
       <li>Pista: sol estar al principi de l'arxiu i serveix com una mena de "signatura" o "identificador"</p></li>
          <h4>Estem parlant de la capçalera o header de l'arxiu.</h4>
          <h2>Magic Number</h2>
-     <p>Pensa en la capçalera com la portada d'un llibre 📖. Abans d'obrir-lo i llegir-lo, la portada ja ens diu si és una novel·la, un llibre de ciència o un manual  </p>
+     <p>Pensa en la capçalera com la portada d'un llibre. Abans d'obrir-lo i llegir-lo, la portada ja ens diu si és una novel·la, un llibre de ciència o un manual  </p>
      <p>De la mateixa manera, la capçalera és una petita porció de dades, normalment al principi del fitxer, que conté informació clau sobre el seu format. Aquesta informació pot incloure un nombre màgic, que és una seqüència de bytes específica que identifica el tipus d'arxiu.  </p>
      <p>Per exemple, si obres un arxiu amb un editor hexadecimal, veuràs els bytes en brut. La majoria dels arxius ZIP comencen amb la seqüència de bytes 50 4B 03 04, que en ASCII seria "PK" (en honor a Phil Katz, el creador del format ZIP).  </p>
      <p>Això ens porta al cor de l'anàlisi d'arxius en l'hacking ètic: no podem confiar només en l'extensió. Un atacant podria simplement canviar l'extensió de virus.exe a imatge.jpg per enganyar-te. Però si un hacker ètic analitza la capçalera, descobrirà la veritat.  </p>
@@ -417,7 +493,7 @@ Provar múltiples noms per trobar subdominis com admin.example.com, mail.example
   </ul>
 
     <h2>Informació textual</h2>
-    <p>l’anàlisi d’informació textual és una tècnica clau per extreure dades rellevants de grans quantitats de text, com logs, resultats d’escaneig o arxius obtinguts durant una auditoria. Eines com grep i altres utilitats de la línia de comandes són bàsiques per fer-ho ràpidament i de forma eficient.</p>
+    <p>l’anàlisi d’informació textual és una tècnica clau per extreure dades rellevants de grans quantitats de text, com logs, resultats d’escaneig o arxius obtinguts durant una auditoria. Eines com <code>grep</code> i altres utilitats de la línia de comandes són bàsiques per fer-ho ràpidament i de forma eficient.</p>
     <h3>Grep: la base de la cerca</h3>
      <p>(Global Regular Expression Print) serveix per buscar patrons de text dins de fitxers o fluxos de dades</p>
      <p>Sintaxi bàsica</p>
@@ -449,6 +525,9 @@ Provar múltiples noms per trobar subdominis com admin.example.com, mail.example
     <p>De vegades interesa pre-processar un arxiu per extraure el text i després cercar dins..</p>
     <pre><code>$ pdftotext  -layout secret.pdf  secret.txt
 $ grep "contrasenya" secret.txt    </code></pre>
+
+<pre><code>$ docx2txt secret.docx secret.txt
+$ grep -i "contrasenya" secret.txt </code> </pre>
 
       <h3>Fitxers d'imatge amb text</h3>
       <p>En este cas, es pot passar primer un OCR</p>
@@ -496,8 +575,9 @@ $ grep "contrasenya" secret.txt    </code></pre>
    <h2>OSR Framework</h2>
    <p>OSR Framework (Open Source Reconnaissance Framework) és una eina i conjunt de scripts pensats per facilitar la 
     reconstrucció i recopilació d’informació (recon) en activitats de hacking ètic i OSINT (Open Source Intelligence)</p>
+    <p>És un marc de treball open source escrit en Python que s'encarrega d'examinar <strong>perfils d'usuari</strong>. És un framework que conté diferents mòduls</p>
    <a href="https://www.osintux.org/documentacion/osrframework">https://www.osintux.org/documentacion/osrframework</a>
-   <h2>theHarvester</h2>
+   <hr><h2>theHarvester</h2>
    <p>TheHarvester és una eina d’OSINT (Open Source Intelligence) molt popular utilitzada en hacking ètic i proves de
      seguretat per a recollir informació pública sobre dominis, adreces de correu electrònic, noms de persones, subdominis
       i altres dades relacionades amb un objectiu</p>
@@ -505,20 +585,46 @@ $ grep "contrasenya" secret.txt    </code></pre>
    <p>I en kali: </p> <a href="https://www.kali.org/tools/theharvester/">https://www.kali.org/tools/theharvester/</a>
    <pre>Exemple d’ús bàsic  <code>
 $ theharvester -d exemple.com -b google</code></pre>
-   <h2>recon-ng</h2>
+  <hr> <h2>recon-ng</h2>
    <p>És un framework en Python que proporciona un entorn similar a una consola per executar diferents mòduls de recollida d’informació. <br>
     Permet integrar múltiples fonts i API per obtenir dades sobre dominis, persones, IPs, correus electrònics, etc.</p>
    <a href="https://www.osintux.org/documentacion/recon-ng">https://www.osintux.org/documentacion/recon-ng</a>
    <p> De vegades, els llocs "oficials", tanquen, o canvien de lloc, o es fan forks, etc....</p>
-   <h2>FOCA</h2>
-   <p>Eina gratuita de pentesting per a windows. Automatitza l'extracció i analisi de metadades ubicades en servidors o llocs web.</p>
+  <hr> <h2>FOCA</h2>
+   <p>Eina gratuita de pentesting per a windows. Automatitza l'extracció i analisi de <strong>metadades</strong> ubicades en servidors o llocs web.</p>
    <a href="https://es.wikipedia.org/wiki/FOCA_Tool">https://es.wikipedia.org/wiki/FOCA_Tool</a>
-   <h2>Maltego</h2>
+  <hr> <h2>Maltego</h2>
    <p>Maltego és una plataforma per a recollir, correlacionar i representar dades d’origen públic (OSINT) i fonts privades. <br>
       Permet connectar informació d’entitats diverses (persones, dominis, adreces IP, correus electrònics, xarxes socials...) i visualitzar aquestes relacions en gràfics interactius.</p>
     <p>Automatitza tasques repetitives de recopilació de dades sobre dominis, IPs, persones, correus electrònics, etc</p>
     <a href="https://www.maltego.com/">https://www.maltego.com/</a>
+  <hr><h2>Shodan</h2>
+    <p>   Shodan és un motor de cerca especialitzat en dispositius connectats a Internet. 
+  Permet localitzar servidors, encaminadors, càmeres IP, dispositius IoT, serveis    de xarxa i sistemes de control industrial que són accessibles des d'Internet. </p>
+<p>   Recopila informació pública dels serveis exposats, com ara les adreces IP,    els ports oberts, el programari i les seues versions, les capçaleres dels 
+  serveis i, en alguns casos, informació sobre possibles vulnerabilitats.   Una part important d'aquestes dades prové dels <strong>banners</strong>, 
+  és a dir, de les respostes que els serveis ofereixen quan Shodan els consulta. </p>
+<p>   Shodan facilita tasques de reconeixement i auditoria de seguretat, ja que   permet identificar serveis exposats, detectar configuracions potencialment 
+  insegures i comprovar quins actius d'una organització són accessibles des   d'Internet. També disposa d'API i eines de monitoratge per automatitzar 
+  consultes i supervisar l'exposició de determinats sistemes.  </p>
+<p>   A diferència dels cercadors tradicionals, que se centren principalment en    el contingut de les pàgines web, Shodan està orientat a descobrir i analitzar 
+  els dispositius i serveis que formen part de la infraestructura connectada   a Internet. </p>
+<a href="https://www.shodan.io/">https://www.shodan.io/</a>
+<hr><h2>osintframework.com</h2>
+<p>
+  OSINT Framework és un <strong>directori interactiu</strong> d'eines i recursos   de fonts obertes (OSINT). Organitza les eines en un arbre de categories que 
+  permet trobar recursos adequats segons el tipus d'informació que es vol   investigar: persones, noms d'usuari, correus electrònics, dominis, adreces IP, 
+  xarxes socials, telèfons, documents i altres fonts d'informació pública. </p>
+<p>   A diferència de plataformes com Maltego o Shodan, OSINT Framework no recopila ni   correlaciona les dades directament. Funciona com un catàleg de recursos que 
+  enllaça amb eines i serveis externs. Per tant, cal accedir a cada eina per   separat i analitzar els resultats obtinguts. Alguns recursos poden requerir 
+  registre, instal·lació o pagament. </p>
+<p>   És especialment útil en les primeres fases d'una investigació OSINT, quan   encara no sabem quina eina utilitzar, ja que ajuda a descobrir recursos 
+  especialitzats i a organitzar el procés de recopilació d'informació.</p>
+<a href="https://osintframework.com/">https://osintframework.com/</a>
   </section>
+
+
+
 
 
 <section id="wirteup">
