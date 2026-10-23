@@ -122,9 +122,12 @@
     <p>Google (Hacking): El cercador Google es pot utilitzar per fer cerques avançades les quals poden proporcionar informació sensible i interessant d'una organització que no estiga ben configurada o fortificada.</p>
     <p>A més de revelar els errors en les aplicacions web, Google Hacking permet trobar les dades sensibles, útils per a l'etapa de reconeixement d'un atac.</p>
     <p>Els cercadors, com Google o Bing, tenen una sèrie de paràmetres que permeten fer cerques avançades. Aquests paràmetres són denominats com <strong>Dorks</strong>. 
+    <h2>Dorks</h2>      
        <br>Els Dorks són combinacions d'operadors especials que tenen els cercadors per “afinar” les cerques que fem, i si bé són molt útils per actuar de filtre de la informació que ens tornen, també són una eina molt útil per trobar informació sensible que la gent deixa en alguns servidors, o fins i tot dispositius o pàgines web vulnerables.</p>
-     <p>Aquesta situació ocorre degut a que els robots de Google (aranyes) que indexen contingut (és el que fa que un lloc siga posicionat d’acord a les paraules clau que es troben) són capaços d’interpretar tot tipus de fitxers, no només pàgines web. Per tant, si una persona, que no té constància ni coneixements d’açò, deixa un fitxer amb informació sensible en un directori web que permet ser llistat, serà accedit i indexat pels robots de Google. 
-       <br>La qüestió de fons és, per què algú voldria deixar un fitxer amb informació sensible dins d'un directori que és accessible públicament a través del protocol HTTP?</p>
+       <pre>site:example.com filetype:pdf</pre>
+        <pre>site:example.com (filetype:xlsx OR filetype:docx OR filetype:csv)</pre>
+     <p>Aquesta situació ocorre degut a que els robots de Google (aranyes) que indexen contingut (és el que fa que un lloc siga posicionat d’acord a les paraules clau que es troben) són capaços d’interpretar tot tipus de fitxers, no només pàgines web. Per tant, si una persona, que no té constància ni coneixements d’açò,
+       deixa un fitxer amb informació sensible en un directori web que permet ser llistat, serà accedit i indexat pels robots de Google. </p>
      <p>Aleshores, què podem trobar realitzant aquests búsquedes? </p>
      <ul>
      <li>Fitxers que contenen noms d'usuari.</li>
@@ -147,9 +150,53 @@
       <li>Interessant buscar frases tipus "index of" per trobar llistats d'arxius de FTPs, "mysql server has gone away" per buscar llocs web vulnerables a injeccions SQL en Mysql, etc.</li>
     </ul>
 
-    <h2>Footprinting amb bing</h2>
-    <p>Bing (Hacking): De la mateixa manera que amb Google hacking, es pot utilitzar el cercador de Microsoft per treure
-       informació sensible i interessant.</p>
+  <!--    <h3>exemples concrets</h3>
+    <ol>
+      <li>
+        <h4>Trobar arxius PDF en un lloc web específic</h4>
+        <p><code>site:gob.es filetype:pdf presupuesto</code></p>
+        <ul>
+          <li><strong>Per a què servix:</strong> Busca documents PDF que continguen la paraula "presupuesto" dins del domini del govern d'Espanya.</li>
+        </ul>
+      </li>
+
+      <li>
+        <h4>Buscar arxius de registre o configuració exposats</h4>
+        <p><code>site:example.com filetype:log</code></p>
+        <ul>
+          <li><strong>Per a què servix:</strong> Localitza arxius de registre (<em>log</em>) que un administrador haja deixat públics per error.</li>
+        </ul>
+      </li>
+
+      <li>
+        <h4>Trobar pàgines d'inici de sessió o panell de control</h4>
+        <p><code>intitle:"index of" "admin"</code></p>
+        <ul>
+          <li><strong>Per a què servix:</strong> Busca directoris oberts en servidors que mostren la paraula "admin" en el títol.</li>
+        </ul>
+      </li>
+
+      <li>
+        <h4>Buscar llocs allotjats en una IP concreta</h4>
+        <p><code>ip:192.0.2.1</code></p>
+        <ul>
+          <li><strong>Per a què servix:</strong> Llista els llocs web que compartixen una mateixa adreça IP en l'índex de Bing (útil en fases de reconeixement OSINT).</li>
+        </ul>
+      </li>
+
+      <li>
+        <h4>Buscar bases de dades o arxius de còpia de seguretat</h4>
+        <p><code>filetype:sql "password" OR "pass"</code></p>
+        <ul>
+          <li><strong>Per a què servix:</strong> Intenta localitzar arxius de còpia de seguretat de bases de dades que puguen contindre text relacionat con credencials.</li>
+        </ul>
+      </li>
+    </ol>  -->
+
+    <hr>    <h2>Footprinting amb bing</h2>
+    <p>Bing (Hacking): De la mateixa manera que amb Google hacking, es pot utilitzar el cercador de Microsoft per treure informació sensible i interessant.</p>
+    <p>Bing comparteix la majoria de dorks de google. Alguns són:</p>
+    <pre> • site: —  • filetype: —  • intitle: —  • inurl: —  • intext: — • ip: —    </pre>
     <h2>Footprinting amb Shodan</h2>
     <p>Shodan: És un cercador d'actius o dispositius online. És molt interessant per identificar càmeres web, impressores,
        scada, i altres recursos exposats a Internet.</p>
@@ -225,7 +272,7 @@
 </ul>  
 -->
 
-  <h3>Reconnaissance , Reconeixement o Enumeració</h3>
+  <h2>Reconnaissance , Reconeixement o Enumeració</h2>
     <p>Forma part de les fases inicials d'una auditoria de seguretat o d'un pentesting. Pot combinar tècniques  <strong>passives</strong> 
       amb tècniques <strong>actives</strong> que interactuen directament amb el servidor.</p>
 
@@ -326,8 +373,12 @@ Sitemap: https://www.exemple.com/sitemap.xml          </pre>
     <h1>DNS Reconnaissance</h1>
     <p>L'enumeració DNS (Domain Name System) és un procés d'obtenció d'informació sobre un domini mitjançant la 
       consulta del sistema de noms de domini. Aquesta informació pot ser molt útil tant per a administradors de sistemes
-       (per identificar configuracions i problemes) com per a atacants (durant la fase de reconeixement d’un test
-        d’intrusió o ciberatac).</p>
+       (per identificar configuracions i problemes) com per a atacants (durant la fase de reconeixement d’un test d’intrusió o ciberatac).</p>
+      <p>Una enumeració DNS activa no és necessàriament il·legal, però pot arribar a ser-ho segons les tècniques emprades i les circumstàncies.(dig, nslookup, dnsenum, dnsreccon,..)</p>
+      <p>Consultar registres DNS públics amb <code>dig</code>, generalment és una activitat lícita. 
+        Fer moltes consultes (consultes massives) per descobrir subdominis no és automàticament il·legal, però cal valorar-ne les circumstàncies.
+         (Fer consultes massives que provoquen una degradació del servei) o (Utilitzar els resultats per accedir a sistemes protegits sense autorització) </p>
+
     <p>L'enumeració DNS consisteix a recopilar <strong>dades públiques</strong> que el sistema DNS proporciona sobre un domini. Aquestes dades poden incloure:</p>
 <ul>
   <li>Adreces IP associades a noms de domini (A, AAAA)</li>
@@ -340,37 +391,35 @@ Sitemap: https://www.exemple.com/sitemap.xml          </pre>
 </ul>
 
 <p>🛠️ Tècniques comunes d'enumeració DNS</p>
+<ul>
 <li>Consulta directa (lookup)</li>
-Buscar un registre DNS concret, com per exemple:
-nslookup example.com
-dig example.com
+Buscar un registre DNS concret, com per exemple: nslookup example.com dig example.com
 <li>Enumeració inversa (Reverse DNS)</li>
-Determinar el nom de domini associat a una IP:
-dig -x 192.0.2.1
+Determinar el nom de domini associat a una IP: dig -x 192.0.2.1
 <li>Transferència de zona (Zone Transfer)</li>
-Si el servidor DNS està mal configurat, es pot obtenir tota la zona:
-dig @ns1.example.com example.com AXFR
+Si el servidor DNS està mal configurat, es pot obtenir tota la zona: <code>dig @ns1.example.com example.com AXFR</code>
 <li>Bruteforce o diccionari de subdominis</li>
-Provar múltiples noms per trobar subdominis com admin.example.com, mail.example.com, etc.
-<li>Recerca passiva</li>
+Provar múltiples noms per trobar subdominis com admin.example.com, mail.example.com, etc. 
+<li>Recerca passiva</li> 
 Ús de serveis públics com VirusTotal o censys.io
+</ul>
 
 <h4> Per a què serveix? (en Red Team )</h4>
 <p>Descobrir hosts actius, serveis, o possibles punts d'entrada.</p>
 
 <h4>Ferramentes de Red Team específiques per fer enumeració DNS</h4>
 <ul>
-  <li>dig  (Activa)</li>
-  <li>nslookup  (Activa)</li>
+  <li>dig  (Activa) consulta registres DNS concrets</li>
+  <li>nslookup  (Activa) consulta registres DNS concrets </li>
   <li>dnsenum  (Activa)</li>
   <li>fierce  (Activa)</li>
+  <li>nmap (Activa) . **Alguns scripts específics</li>
   <li>massdns  (Activa)</li>
-  <li>nmap  (Activa)</li>
-  <li>dnsrecon  (Mixta) </li> Una de les més potents
+  <li>dnsrecon  (Mixta) </li> 
   <li>amass  (Mixta)</li>
-  <li>sublist3r  (passiva)</li>
-  <li>theHarvester  (passiva)</li>
-  Ús: Recull d’informació sobre dominis (DNS, correus, subdominis, etc.).
+  <li>sublist3r  (passiva) *  Recopila subdominis a partir de cercadors i fonts públiques.</li>
+  <li>theHarvester  (passiva) * Recull d’informació sobre dominis (DNS, correus, subdominis, etc.).</li>
+  
 </ul>
 <P>🛠️ Encara que una ferramenta siga Activa, les consultes són sobre fonts obertes (servidors DNS)</P>
 
@@ -386,8 +435,11 @@ Provar múltiples noms per trobar subdominis com admin.example.com, mail.example
     organització o un individu</p>
     <p>Eines</p>
     <ul>
-      <li>Hunter ( de pagament )</li>
+      <li>Hunter.io ( de pagament )</li>
+      Permet buscar adreces professionals associades a un domini i consultar les fonts públiques en què s'han trobat. 
+      També disposa de funcions de verificació i ofereix un pla gratuït amb limitacions.
       <li>Infoga ( linia de comandes, de github)</li>
+      Projecte de línia de comandes orientat a recopilar informació associada a adreces electròniques mitjançant fonts i serveis disponibles.
     </ul>
 
     <h3>I tota esta informació, combinada en "Have I Been Pwned" ..</h3>
@@ -433,14 +485,12 @@ Provar múltiples noms per trobar subdominis com admin.example.com, mail.example
   <li>Descobrir si una foto teua circula per internet sense permís.</li>
 </ol>
 <p>Els principals cercados generalistes disposen d'esta eina</p>
-<ul>
-  <li>Google</li>
+<ul>   <li>Google</li>
   <li>Bing</li>
-  <li>Yandex</li>
-</ul>
+  <li>Yandex</li> </ul>
 
 <p>I d'altres més especialitzats</p>
-<li>TinEye</li>
+<ul><li>TinEye</li></ul>
 
   </section>
 
@@ -549,29 +599,44 @@ $ grep -i "contrasenya" secret.txt </code> </pre>
     <p>On es poden trobar leaks?     </p>
      <p>En llocs web especialitzats, Com Wikileaks</p>
      <h3>Serveis per comprovar filtracions</h3>
-     <li>Have I benn powned?</li>
+     <ul>    <li>Have I benn powned?</li>
      <li>Dehashed</li>
-     <li>GhostProject</li>
+     <li>GhostProject</li>       </ul>
+
      <h3>Llocs anonims</h3>
-     <li>Pastebin</li>
+     <ul>      <li>Pastebin</li>
      <li>Anonpaste</li>
-     <li>pasteHTML</li>
-     <p>Ferramenta:  pastenum</p>
+     <li>pasteHTML</li>       </ul>
+
+     <p>Pastebin és una plataforma en línia que permet publicar i compartir fragments de text, codi font, configuracions i altres continguts mitjançant un enllaç.
+      Pastebin pot ser rellevant perquè algunes persones hi publiquen accidentalment o intencionadament informació sensible.   </p>
+     <p>Ferramenta:  pastenum : és una eina de línia de comandes que permet buscar contingut en serveis com Pastebin</p>
 
      <h3>En repositoris de codi</h3>
      <p>GitHub o GitLab, poden contridre claus en hardcode en versions anteriors</p>
-     <p>Ferramenta: Gitleaks, TruffleHog,  GitDump</p>
+    <ul>
+       <li>Gitleaks: Analitza repositoris Git, fitxers i altres entrades per detectar possibles secrets inclosos accidentalment en el codi.</li>
+       <li>TruffleHog: Busca secrets en repositoris Git i altres fonts compatibles.</li>
+       <li>GitDump : Eina per recuperar fitxers d'un repositori Git exposat accidentalment a través d'un servidor web</li>
+    </ul>
 
-     <h3>Des de linea de comandos</h3>
-     <li>H8Mail</li>
-     <li>WhatBreach</li>
-
-
+     <h3>Des de línia de comandes</h3>
+     <ul>
+      <li>H8Mail : Eina de línia de comandes que permet consultar fonts de filtracions 
+      mitjançant serveis compatibles i cercar coincidències en conjunts de dades locals</li>
+     <li>WhatBreach : Eina orientada a cercar adreces electròniques en fonts relacionades amb filtracions de dades,
+       incloent bases de dades de filtracions i fonts públiques </li>
+     </ul>
+     
   </section>
+
+
 
 
   <section id="osint">
   <h1>Frameworks per a OSINT</h1>
+  <p>OSINT no és necessàriament hacking. És la recopilació i anàlisi d'informació obtinguda de fonts accessibles. 
+    Pot formar part d'un pentesting, però també s'utilitza en investigacions de seguretat, anàlisi de riscos i protecció de la privacitat.</p>
    <h2>OSR Framework</h2>
    <p>OSR Framework (Open Source Reconnaissance Framework) és una eina i conjunt de scripts pensats per facilitar la 
     reconstrucció i recopilació d’informació (recon) en activitats de hacking ètic i OSINT (Open Source Intelligence)</p>
