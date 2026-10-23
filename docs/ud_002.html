@@ -24,8 +24,8 @@
   
   <div class="sidebar">
     <a href="#foot">Footprinting</a>
-    <a href="#web">WEB Reconnaissance</a>  
     <a href="#dns">DNS Reconnaissance</a>
+    <a href="#web">WEB Reconnaissance</a>  
     <a href="#identitats">Enumeració d'Identitats</a>
     <a href="#inv">Cerca inversa</a>
     <a href="#analisi">Analisi d'arxius</a>
@@ -221,6 +221,68 @@
 
    </section>
 
+
+
+  <section id="dns">
+    <h1>DNS Reconnaissance</h1>
+    <p>L'enumeració DNS (Domain Name System) és un procés d'obtenció d'informació sobre un domini mitjançant la 
+      consulta del sistema de noms de domini. Aquesta informació pot ser molt útil tant per a administradors de sistemes
+       (per identificar configuracions i problemes) com per a atacants (durant la fase de reconeixement d’un test d’intrusió o ciberatac).</p>
+      <p>Una enumeració DNS activa no és necessàriament il·legal, però pot arribar a ser-ho segons les tècniques emprades i les circumstàncies.(dig, nslookup, dnsenum, dnsreccon,..)</p>
+      <p>Consultar registres DNS públics amb <code>dig</code>, generalment és una activitat lícita. 
+        Fer moltes consultes (consultes massives) per descobrir subdominis no és automàticament il·legal, però cal valorar-ne les circumstàncies.
+         (Fer consultes massives que provoquen una degradació del servei) o (Utilitzar els resultats per accedir a sistemes protegits sense autorització) </p>
+
+    <p>L'enumeració DNS consisteix a recopilar <strong>dades públiques</strong> que el sistema DNS proporciona sobre un domini. Aquestes dades poden incloure:</p>
+<ul>
+  <li>Adreces IP associades a noms de domini (A, AAAA)</li>
+  <li>Servidors de noms (NS records)</li>
+  <li>Servidors de correu electrònic (MX records)</li>
+  <li>Aliases (CNAME records)</li>
+  <li>Registres de text (TXT), com ara SPF o DKIM</li>
+  <li>Registres de localització de serveis (SRV)</li>
+  <li>Zones DNS senceres (si es pot fer una transferència de zona)</li>
+  <li>Descobriment de subdominis (blog.exemple.com, admin.exemple.com)</li>
+</ul>
+
+<p>🛠️ Tècniques comunes d'enumeració DNS</p>
+<ul>
+<li>Consulta directa (lookup)</li>
+Buscar un registre DNS concret, com per exemple: nslookup example.com dig example.com
+<li>Enumeració inversa (Reverse DNS)</li>
+Determinar el nom de domini associat a una IP: dig -x 192.0.2.1
+<li>Transferència de zona (Zone Transfer)</li>
+Si el servidor DNS està mal configurat, es pot obtenir tota la zona: <code>dig @ns1.example.com example.com AXFR</code>
+<li>Bruteforce o diccionari de subdominis</li>
+Provar múltiples noms per trobar subdominis com admin.example.com, mail.example.com, etc. 
+<li>Recerca passiva</li> 
+Ús de serveis públics com VirusTotal o censys.io
+</ul>
+
+<h4> Per a què serveix? (en Red Team )</h4>
+<p>Descobrir hosts actius, serveis, o possibles punts d'entrada.</p>
+
+<h4>Ferramentes de Red Team específiques per fer enumeració DNS</h4>
+<ul>
+  <li>dig  (Activa) consulta registres DNS concrets</li>
+  <li>nslookup  (Activa) consulta registres DNS concrets </li>
+  <li>dnsenum  (Activa)</li>
+  <li>fierce  (Activa)</li>
+  <li>nmap (Activa) . **Alguns scripts específics</li>
+  <li>massdns  (Activa)</li>
+  <li>dnsrecon  (Mixta) </li> 
+  <li>amass  (Mixta)</li>
+  <li>sublist3r  (passiva) *  Recopila subdominis a partir de cercadors i fonts públiques.</li>
+  <li>theHarvester  (passiva) * Recull d’informació sobre dominis (DNS, correus, subdominis, etc.).</li>
+  
+</ul>
+<P>🛠️ Encara que una ferramenta siga Activa, les consultes són sobre fonts obertes (servidors DNS)</P>
+
+  </section>   
+  
+
+
+
    <section id="web">
       <h1>WEB Reconnaissance (Enumeració WEB)</h1>
       <p>La enumeració web és una fase de recollida d’informació en seguretat informàtica en què s’exploren i es cataloguen els recursos, directoris, fitxers, subdominis i funcionalitats disponibles en un lloc o aplicació web. </p>
@@ -365,63 +427,6 @@ Sitemap: https://www.exemple.com/sitemap.xml          </pre>
    </section>
 
 
-
-   <section id="dns">
-    <h1>DNS Reconnaissance</h1>
-    <p>L'enumeració DNS (Domain Name System) és un procés d'obtenció d'informació sobre un domini mitjançant la 
-      consulta del sistema de noms de domini. Aquesta informació pot ser molt útil tant per a administradors de sistemes
-       (per identificar configuracions i problemes) com per a atacants (durant la fase de reconeixement d’un test d’intrusió o ciberatac).</p>
-      <p>Una enumeració DNS activa no és necessàriament il·legal, però pot arribar a ser-ho segons les tècniques emprades i les circumstàncies.(dig, nslookup, dnsenum, dnsreccon,..)</p>
-      <p>Consultar registres DNS públics amb <code>dig</code>, generalment és una activitat lícita. 
-        Fer moltes consultes (consultes massives) per descobrir subdominis no és automàticament il·legal, però cal valorar-ne les circumstàncies.
-         (Fer consultes massives que provoquen una degradació del servei) o (Utilitzar els resultats per accedir a sistemes protegits sense autorització) </p>
-
-    <p>L'enumeració DNS consisteix a recopilar <strong>dades públiques</strong> que el sistema DNS proporciona sobre un domini. Aquestes dades poden incloure:</p>
-<ul>
-  <li>Adreces IP associades a noms de domini (A, AAAA)</li>
-  <li>Servidors de noms (NS records)</li>
-  <li>Servidors de correu electrònic (MX records)</li>
-  <li>Aliases (CNAME records)</li>
-  <li>Registres de text (TXT), com ara SPF o DKIM</li>
-  <li>Registres de localització de serveis (SRV)</li>
-  <li>Zones DNS senceres (si es pot fer una transferència de zona)</li>
-  <li>Descobriment de subdominis (blog.exemple.com, admin.exemple.com)</li>
-</ul>
-
-<p>🛠️ Tècniques comunes d'enumeració DNS</p>
-<ul>
-<li>Consulta directa (lookup)</li>
-Buscar un registre DNS concret, com per exemple: nslookup example.com dig example.com
-<li>Enumeració inversa (Reverse DNS)</li>
-Determinar el nom de domini associat a una IP: dig -x 192.0.2.1
-<li>Transferència de zona (Zone Transfer)</li>
-Si el servidor DNS està mal configurat, es pot obtenir tota la zona: <code>dig @ns1.example.com example.com AXFR</code>
-<li>Bruteforce o diccionari de subdominis</li>
-Provar múltiples noms per trobar subdominis com admin.example.com, mail.example.com, etc. 
-<li>Recerca passiva</li> 
-Ús de serveis públics com VirusTotal o censys.io
-</ul>
-
-<h4> Per a què serveix? (en Red Team )</h4>
-<p>Descobrir hosts actius, serveis, o possibles punts d'entrada.</p>
-
-<h4>Ferramentes de Red Team específiques per fer enumeració DNS</h4>
-<ul>
-  <li>dig  (Activa) consulta registres DNS concrets</li>
-  <li>nslookup  (Activa) consulta registres DNS concrets </li>
-  <li>dnsenum  (Activa)</li>
-  <li>fierce  (Activa)</li>
-  <li>nmap (Activa) . **Alguns scripts específics</li>
-  <li>massdns  (Activa)</li>
-  <li>dnsrecon  (Mixta) </li> 
-  <li>amass  (Mixta)</li>
-  <li>sublist3r  (passiva) *  Recopila subdominis a partir de cercadors i fonts públiques.</li>
-  <li>theHarvester  (passiva) * Recull d’informació sobre dominis (DNS, correus, subdominis, etc.).</li>
-  
-</ul>
-<P>🛠️ Encara que una ferramenta siga Activa, les consultes són sobre fonts obertes (servidors DNS)</P>
-
-  </section>   
 
 
   <section id="identitats">
