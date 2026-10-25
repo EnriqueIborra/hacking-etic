@@ -343,6 +343,15 @@ Ja tenim la ferramenta en el notre sistema. </pre>
   </section>         
 
     <section id="escalada">
+     <h1>Escalada de privilegis</h1> 
+      <p>Una escalada de privilegis (privilege escalation) consisteix a obtindre permisos superiors als que es tenien inicialment.
+        MITRE ATT&CK la classifica com la tàctica TA0004.</p>
+    <h3>Hi ha dos tipus principals</h3>
+    <ul>
+      <li> <strong>Escalada vertical</strong> :Un usuari normal aconsegueix permisos d'administrador o de root.</li>
+      <li> <strong>Escalada horitzontal</strong> : Un usuari aconsegueix accedir a les dades o al compte d'un altre usuari amb privilegis semblants.</li>
+    </ul>
+
     <h1>Escalada privilegis en Linux</h1>
     <p>Existeixen molts mecanismes per a escalar privilegis en sistemes Linux. Alguns d'estos, els més bàsics, es voran en este apartat, com per exemple,
       l'escalada de privilegis a través de vulnerabilitats en el kernel de linux, a través de tasques programades, usant binaris amb privilegis de <strong>sudo</strong>
@@ -582,6 +591,10 @@ drwxrwxrwt 11 root root 4096 mar  6 15:25 /var/tmp
     <hr><h2>Altres vies</h2>    
     <h3>In Situ, amb grub</h3>
     <h3>Utilitzant <code>docker</code></h3>
+    <h3>docker breakout</h3>
+    <p>Un Docker breakout (container escape) és una tècnica que permet eixir de l'aïllament d'un contenidor Docker i accedir al sistema amfitrió (host) on s'executa.</p>
+
+
     <hr><hr>    
     <h3>Què s’avalua en una auditoria o pentest ?</h3>
       <ol>
@@ -602,8 +615,11 @@ drwxrwxrwt 11 root root 4096 mar  6 15:25 /var/tmp
         <li>Monitorar l’ús del servei</li>
         <li>Considerar alternatives més segures si cal</li>
       </ol>
-
+  
     </section>         
+
+
+
 
    <section id="escaladaw">
     <h1>Escalada de privilegis en Windows</h1>
@@ -664,15 +680,16 @@ drwxrwxrwt 11 root root 4096 mar  6 15:25 /var/tmp
     <p>Comando: <code>schtasks</code>, obte llista de les tasques programades</p>
     <p>En Power Shell està <code>Get-ScheduledTask</code></p>
 
+
    </section>
 
    
     <section id="pivot">
     <h1>Tècniques de pivotatge</h1>
-    <p>El pivotatge (pivoting) és una tècnica utilitzada quan: Ja tens accés a un sistema dins d’una xarxa, però vols arribar a altres sistemes que no són accessibles directament.</p>
+    <p>El pivotatge (pivoting o moviment lateral) és una tècnica utilitzada quan: Ja tens accés a un sistema dins d’una xarxa, però vols arribar a altres sistemes que no són accessibles directament.</p>
     <p>Aquest primer sistema compromès actua com a: pont o salt intermedi  o  pivot</p>
     <p>📌 El pivotatge no és l’atac inicial, és post-explotació.</p>
-
+     <h2>Algunes tècniques son: tunels SSH, eina chisel</h2>
       <h2>amb tunels SSH</h2>
       <p>Es crea un canal de comunicació encapsulat a través del sistema pivot.</p>
       <p>El trànsit “viatja dins” d’un altre protocol, Permet evitar restriccions de xarxa, Molt comú en xarxes corporatives</p>
