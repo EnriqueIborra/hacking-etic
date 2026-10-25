@@ -25,6 +25,7 @@
   <div class="sidebar">
     <a href="#foot">Footprinting</a>
     <a href="#dns">DNS Reconnaissance</a>
+    <a href="#host">Network Reconnaissance</a>
     <a href="#web">WEB Reconnaissance</a>  
     <a href="#identitats">Enumeració d'Identitats</a>
     <a href="#inv">Cerca inversa</a>
@@ -225,7 +226,21 @@
 
   <section id="dns">
     <h1>DNS Reconnaissance</h1>
-    <p>L'enumeració DNS (Domain Name System) és un procés d'obtenció d'informació sobre un domini mitjançant la 
+    <h2>Resolució DNS</h2>
+    <img src="imgs/Funcionament-DNS.png" alt="dns" width="30%" class="imatge-dreta">
+    <p>Quan escrivim una URL en la barra del navegador, com ara https://www.exemple.com/index.html, el navegador necessita conéixer 
+      l'adreça IP del servidor per a poder establir una connexió. El procés es diu resolució DNS.</p>
+      <p>1. El navegador interpreta la URL  →   En https://www.exemple.com/index.html:  <br>
+ - https és el protocol. <br>
+ - www.exemple.com és el nom de domini que cal resoldre. <br>
+ - /index.html és el recurs que es vol obtindre.</p> 
+        <p>2. Comprova si ja té la IP. Pot aprofitar informació guardada en memòria cau. El sistema operatiu també pot tindre una entrada local al fitxer hosts.</p>
+      <p>3. Pregunta a un DNS recursiu. Per exemple, el router, el DNS de l'operador o 1.1.1.1</p>
+      <p>4. Si este DNS recursiu no té la resposta, busca la delegació: Servidors arrel → servidors de .com → DNS autoritatiu .</p>
+      <p>5. Obté la IP:  Exemple fictici: 203.0.113.10</p>
+      <p>6. Es connecta al servidor web: Estableix la connexió i sol·licita la pàgina "/index.html" per HTTPS</p>
+     <h2>Enumeració DNS</h2>
+    <p>L'enumeració DNS (Domain Name System), o DNS Reconnaissance, és un procés d'obtenció d'informació sobre un domini mitjançant la 
       consulta del sistema de noms de domini. Aquesta informació pot ser molt útil tant per a administradors de sistemes
        (per identificar configuracions i problemes) com per a atacants (durant la fase de reconeixement d’un test d’intrusió o ciberatac).</p>
       <p>Una enumeració DNS activa no és necessàriament il·legal, però pot arribar a ser-ho segons les tècniques emprades i les circumstàncies.(dig, nslookup, dnsenum, dnsreccon,..)</p>
@@ -253,7 +268,7 @@ Buscar un registre DNS concret, com per exemple: nslookup example.com dig exampl
 Determinar el nom de domini associat a una IP: dig -x 192.0.2.1
 <li>Transferència de zona (Zone Transfer)</li>
 Si el servidor DNS està mal configurat, es pot obtenir tota la zona: <code>dig @ns1.example.com example.com AXFR</code>
-<li>Bruteforce o diccionari de subdominis</li>
+<li>Enumeració de <strong>subdominis</strong> per Bruteforce o diccionari  </li>
 Provar múltiples noms per trobar subdominis com admin.example.com, mail.example.com, etc. 
 <li>Recerca passiva</li> 
 Ús de serveis públics com VirusTotal o censys.io
@@ -266,28 +281,18 @@ Provar múltiples noms per trobar subdominis com admin.example.com, mail.example
 <ul>
   <li>dig  (Activa) consulta registres DNS concrets</li>
   <li>nslookup  (Activa) consulta registres DNS concrets </li>
-  <li>dnsenum  (Activa)</li>
-  <li>fierce  (Activa)</li>
+  <li>dnsenum  (Activa) https://www.kali.org/tools/dnsenum/</li>
+  <li>fierce  (Activa)  https://www.kali.org/tools/fierce/</li>
   <li>nmap (Activa) . **Alguns scripts específics per a DNS</li>
-  <li>massdns  (Activa)</li>
-  <li>dnsrecon  (Mixta) </li> 
-  <li>amass  (Mixta)</li>
-  <li>sublist3r  (passiva) *  Recopila subdominis a partir de cercadors i fonts públiques.</li>
+  <li>massdns  (Activa) https://www.kali.org/tools/dnsrecon/</li>
+  <li>dnsrecon  (Mixta) https://www.kali.org/tools/dnsrecon/ </li> 
+  <li>amass  (Mixta) https://www.kali.org/tools/amass/</li>
+  <li>subfinder  (passiva) *  Recopila subdominis a partir de cercadors i fonts públiques.</li>
+  https://www.kali.org/tools/subfinder/
+  <li>sublist3r (passiva) * un poc desactualitzada</li>
   <li>theHarvester  (passiva) * Recull d’informació sobre dominis (DNS, correus, subdominis, etc.).</li>
 </ul>
 <P>🛠️ Encara que una ferramenta siga Activa, les consultes són sobre fonts obertes (servidors DNS)</P>
-
-<ul> Enumeració de màquines en una xarxa (local)
-  <li>ip addr</li>
-  <li>ip route</li>
-  <li>sudo arp-scan 10.0.2.0/24</li>
-  <li>sudo netdiscover -r 10.0.2.0/24</li>
-  <li>sudo nmap -sn 192.168.56.0/24 </li>
-  <li>nmap -sn 192.168.56.0/24 </li>
-  <li>fping -a -g 192.168.18.0/24 2>/dev/null </li>
-  <li>nbtscan 192.168.56.0/24   (netbios : windows)</li>
-  <!--  <li>arping</li>    <li>arpwatch</li>    <li>scapy</li>-->
-</ul>
 
 <hr><h3><code>dig</code></h3>
 <p>dig (Domain Information Groper) és una eina de línia d'ordres que permet consultar servidors DNS per obtindre 
@@ -299,6 +304,39 @@ dig @192.168.56.10 www.lab.test A
 </pre>
 
   </section>   
+
+  
+
+
+  <section id="host">
+  <h1>Network Reconnaissance o Host Discovery</h1>
+  <p>El Host Discovery és el procés d’identificar els dispositius actius d’una xarxa informàtica, determinar les seues adreces IP i,
+     quan siga possible, obtenir informació bàsica sobre aquests dispositius.</p>
+
+<ul> El network reconnaissance es pot dividir en:
+  <li>Adreçament i rangs IP: xarxes, màscares, CIDR i adreça de difusió (broadcast).</li>
+  <li>Descobriment d'hosts: identificar equips actius dins d'un rang d'IPs.</li>
+  <li>Resolució ARP: relacionar adreces IPv4 amb adreces MAC en la xarxa local.</li>
+  <li>Descobriment amb ICMP: entendre el funcionament de ping i les seues limitacions.</li>
+  <li>Enumeració amb Nmap: descobrir hosts i, com a introducció, identificar ports i serveis.</li>
+  <li>Limitacions del reconeixement: tallafocs, equips que no responen a ICMP, xarxes segmentades i falsos negatius.</li>
+</ul>
+<p>Podem fer servir les següents eines per fer una enumeració de màquines en una xarxa (local) :</p>
+  <ul> 
+  <li>ip addr</li>
+  <li>ip route</li>
+  <li>ip neigh</li>
+  <li>ping</li>
+  <li>sudo arp-scan 10.0.2.0/24</li>
+  <li>sudo netdiscover -r 10.0.2.0/24</li>
+  <li>sudo nmap -sn 192.168.56.0/24 </li>
+  <li>nmap -sn 192.168.56.0/24 </li>
+  <li>fping -a -g 192.168.18.0/24 2>/dev/null </li>
+  <li>nbtscan 192.168.56.0/24   (netbios : windows)</li>
+  <!--  <li>arping</li>    <li>arpwatch</li>    <li>scapy</li>-->
+</ul>
+
+  </section>
   
 
 
@@ -320,7 +358,7 @@ dig @192.168.56.10 www.lab.test A
 
     <p>Eines habituals</p>
     <ul>
-      <li>dirb, dirbuster, gobuster → Per a cercar directoris i fitxers ocults.</li>
+      <li>dirb, dirbuster, gobuster, feroxbuster, ffuf → Per a cercar directoris i fitxers ocults.</li>
       <li>whatweb, wappalyzer → Per a detectar tecnologies, el CMS o el servidor.</li>
       <li>Arjun, ParamSpider → Per a identificar o recopilar possibles paràmetres de les URL.</li>
       <li>testssl.sh, SSLyze → Per a examinar la configuració TLS, els certificats i els protocols criptogràfics admesos.</li>
@@ -451,7 +489,23 @@ Sitemap: https://www.exemple.com/sitemap.xml          </pre>
 
   <section id="identitats">
     <h1>Enumeració d'entitats</h1>
-  <h2>Email (Reconnaissance) </h2>
+  <h2>Organizational Reconnaissance (Reconeixement organitzatiu)</h2>
+<p>El reconeixement organitzatiu és el procés de recopilar i analitzar informació pública sobre una empresa o organització per comprendre'n l'estructura,
+   l'activitat, la presència digital i la possible superfície d'exposició davant de riscos de seguretat.</p>
+<p>Aquesta informació pot incloure les seus i ubicacions, les persones responsables, els departaments, els empleats, els proveïdors tecnològics, 
+  els dominis corporatius, les xarxes socials i les tecnologies utilitzades. Les fonts poden ser llocs web corporatius, perfils professionals,
+   ofertes de treball, registres públics, notes de premsa i altres recursos accessibles públicament.</p>
+  <p>Cada dada pot aportar context per identificar riscos, comprendre l'entorn de l'organització i orientar les comprovacions posteriors.</p>
+  <p>Per exemple, El nom de l'empresa, de la seu o d'un departament pot formar part de les contrasenyes que utilitzen alguns empleats.</p>
+  <pre>Suposem que l'empresa fictícia es diu TecnoAlzira i té una seu a Algemesí.
+Informació pública    Possible relació amb les contrasenyes
+Nom de l'empresa      TecnoAlzira2026!
+Nom de la seu         Algemesi2026!
+Nom d'un departament  Informatica2026!
+Marca o producte utilitzat	Una contrasenya basada en el nom d'una tecnologia coneguda
+Any o esdeveniment corporatiu	Una combinació amb un any significatiu per a l'organització        </pre>
+
+  <h2>Email Reconnaissance </h2>
   <p>L’anàlisi d’informació personal i correus electrònics en hacking ètic és una pràctica habitual dins de les auditories 
     de seguretat i proves de penetració (pentesting), sempre amb autorització prèvia i dins d’un marc legal. L’objectiu és 
     detectar vulnerabilitats, exposicions de dades i punts febles en la gestió de la informació per tal de protegir una 
