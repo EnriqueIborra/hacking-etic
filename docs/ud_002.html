@@ -268,15 +268,26 @@ Provar múltiples noms per trobar subdominis com admin.example.com, mail.example
   <li>nslookup  (Activa) consulta registres DNS concrets </li>
   <li>dnsenum  (Activa)</li>
   <li>fierce  (Activa)</li>
-  <li>nmap (Activa) . **Alguns scripts específics</li>
+  <li>nmap (Activa) . **Alguns scripts específics per a DNS</li>
   <li>massdns  (Activa)</li>
   <li>dnsrecon  (Mixta) </li> 
   <li>amass  (Mixta)</li>
   <li>sublist3r  (passiva) *  Recopila subdominis a partir de cercadors i fonts públiques.</li>
   <li>theHarvester  (passiva) * Recull d’informació sobre dominis (DNS, correus, subdominis, etc.).</li>
-  
 </ul>
 <P>🛠️ Encara que una ferramenta siga Activa, les consultes són sobre fonts obertes (servidors DNS)</P>
+
+<ul> Enumeració de màquines en una xarxa (local)
+  <li>ip addr</li>
+  <li>ip route</li>
+  <li>sudo arp-scan 10.0.2.0/24</li>
+  <li>sudo netdiscover -r 10.0.2.0/24</li>
+  <li>sudo nmap -sn 192.168.56.0/24 </li>
+  <li>nmap -sn 192.168.56.0/24 </li>
+  <li>fping -a -g 192.168.18.0/24 2>/dev/null </li>
+  <li>nbtscan 192.168.56.0/24   (netbios : windows)</li>
+  <!--  <li>arping</li>    <li>arpwatch</li>    <li>scapy</li>-->
+</ul>
 
   </section>   
   
