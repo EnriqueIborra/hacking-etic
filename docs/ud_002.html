@@ -343,8 +343,35 @@ dig @192.168.56.10 www.lab.test A
 
    <section id="web">
       <h1>WEB Reconnaissance (Enumeració WEB)</h1>
-      <p>La enumeració web és una fase de recollida d’informació en seguretat informàtica en què s’exploren i es cataloguen els recursos, directoris, fitxers, subdominis i funcionalitats disponibles en un lloc o aplicació web. </p>
+<img src="imgs/404.png" alt="dns" width="15%" class="imatge-dreta">
+      <h3>Enumeració web: descobrir recursos i analitzar les respostes HTTP</h3>
+      <p>L'enumeració web és una fase del reconeixement en ciberseguretat en què investiguem un servidor web per descobrir quins recursos exposa: 
+        directoris, fitxers, panells d'administració, funcionalitats disponibles, API, aplicacions i altres rutes que no sempre apareixen en la pàgina principal.</p>
       <p>  L’objectiu principal és descobrir la superfície d’atac per tal d’identificar possibles punts febles abans d’un atac o d’una prova de penetració.</p>
+      <p>Una part important del procés és observar els codis d'estat HTTP, com ara 200, 301, 403 i 404, per a interpretar 
+        què respon el servidor quan intentem accedir a una ruta.</p>
+        <img src="imgs/status-codes.png" alt="dns" width="20%" class="imatge-dreta">
+      <h3>Com funciona l'enumeració web?</h3>
+      <ol>
+        <li>Identificar el servidor web :  IP, ports 80/443, servei HTTP/HTTPS</li>
+        <li>Sol·licitar rutes conegudes i candidates : /, /admin, /login, /robots.txt, /api...</li>
+        <li>Analitzar les respostes HTTP : Codi d'estat, mida, redireccions, capçaleres i contingut</li>
+        <li>Verificar els resultats : Distingir recursos reals, errors, falsos positius i rutes protegides</li>
+      </ol>
+      <p>Les eines automatitzen moltes peticions HTTP i proven noms de directoris i fitxers a partir de diccionaris. 
+        L'investigador interpreta els resultats i comprova manualment els que són interessants.</p>
+      <h3>Importància dels codis d'error</h3>
+<pre>
+URL provada   Resposta          Interpretació inicial
+/	       200 OK	        La pàgina principal respon correctament.
+/login	      200 OK	        Podria existir una pàgina d'inici de sessió.
+/admin	      403 Forbidden	  L'accés està prohibit, però no demostra per si sol que existisca un panell d'administració.
+/backup.zip   404 Not Found	  El servidor indica que no troba el recurs.
+/old-panel    301 Moved Permanently	El servidor redirigeix cap a una altra URL.  
+</pre>      
+<p>Els codis són indicis, no proves absolutes. Un servidor pot retornar 404 per ocultar un recurs, o 200 encara que la pàgina sol·licitada no existisca.</p>
+<p>Quan una eina prova aquestes URL automàticament, l'eina analitza les respostes i intenta identificar quines rutes mereixen una comprovació manual.
+   Aquest procediment es coneix com a directory busting, content discovery o enumeració de contingut web.</p>
 
      <h3>Què inclou habitualment l’enumeració web</h3>
   <ul>
