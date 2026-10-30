@@ -378,7 +378,7 @@ URL provada   Resposta          Interpretació inicial
     <li>Enumeració de directoris i fitxers ocults (/admin/, /backup.zip).</li>
     <li>Llistat d’endpoints i API (/api/v1/users).</li>
     <li>Identificació de tecnologies (frameworks, CMS, versions del servidor).</li>
-    <li>Detecció de paràmetres i entrades (?id=123, ?search=abc).</li>
+    <li>Detecció de formularis, paràmetres i entrades (?id=123, ?search=abc).</li>
     <li>Examinar certificats TLS, capçaleres HTTP, redireccions, versions identificables i possibles errors de configuració.</li>
     <li>Revisió de metadades en fitxers públics.</li>
   </ul>
@@ -415,6 +415,64 @@ URL provada   Resposta          Interpretació inicial
   <li>testssl.sh, Nuclei → Per a realitzar comprovacions tècniques de configuracions i detectar patrons de vulnerabilitats conegudes, segons els mòduls i les plantilles utilitzats.</li>
 </ul>  
 -->
+    <h2>Fuzzing</h2>
+     <p>El fuzzing és una tècnica de proves que consisteix a enviar automàticament una gran quantitat de dades, valors o peticions a 
+      una aplicació per observar les respostes i descobrir recursos, comportaments inesperats o vulnerabilitats.</p>
+      <p>En el context web, consisteix habitualment a provar diferents valors en URL, paràmetres, capçaleres HTTP, camps de formularis, etc.</p>
+      <pre>Per exemple, es pot provar automàticament diferents directoris:
+https://empresa.test/admin
+https://empresa.test/login
+https://empresa.test/backup
+https://empresa.test/config
+https://empresa.test/uploads
+On admin, login, backup, config, uploads, ..  
+estaran en un fitxer de <strong>diccionari</strong></pre>
+        <p>Si algun d'aquests recursos existeix, el servidor pot respondre amb un codi HTTP 200, 301, 403, etc.</p>
+
+        <h3>Tipus de fuzzing</h3>
+        <table>          <thead>            <tr>              <th>Tipus</th>              <th>Què busca?</th>              <th>Exemple</th>            </tr>          </thead>
+          <tbody>
+            <tr>              <td>Directory fuzzing</td>               <td>Directoris ocults</td>               <td><code>/admin</code>, <code>/private</code></td>            </tr>            
+            <tr>               <td>File fuzzing</td>               <td>Fitxers existents</td>               <td><code>backup.zip</code>, <code>config.php</code></td>            </tr>
+            <tr>               <td>Subdomain fuzzing</td>               <td>Subdominis</td>              <td><code>dev.empresa.test</code></td>            </tr>
+            <tr>               <td>Parameter fuzzing</td>              <td>Paràmetres HTTP</td>              <td><code>?id=1</code>, <code>?debug=true</code></td>            </tr>
+            <tr>              <td>Input fuzzing</td>              <td>Comportaments inesperats</td>              <td>Valors incorrectes en formularis</td>             </tr>
+            <tr>              <td>API fuzzing</td>              <td>Endpoints i respostes d'API</td>              <td><code>/api/v1/users</code></td>             </tr>
+          </tbody>
+        </table>        
+
+<p>El directory fuzzing i el file fuzzing també es coneixen com a <strong>content discovery</strong>  o <strong>content enumeration</strong> . 
+  En canvi, el fuzzing clàssic sol posar més èmfasi a provar entrades inesperades, malformades o aleatòries per detectar errors i vulnerabilitats.</p>
+
+  <h3>*** Importància del diccionaris ***</h3>
+<p>La qualitat del diccionari és un factor molt important en el fuzzing web, especialment quan fem directory fuzzing i file fuzzing. 
+  De fet, un bon diccionari pot marcar la diferència entre descobrir recursos interessants o no trobar pràcticament res.</p>
+  <p>Quan utilitzem ferramentes com ffuf, Gobuster o dirsearch, aquestes necessiten una llista de paraules que provaran automàticament contra el servidor web.</p>
+<p>Hi ha projectes que recopilen diccionaris especialitzats en seguretat web:</p>
+<ul>
+  <li>SecLists :	Gran col·lecció de diccionaris per a directoris, fitxers, usuaris, contrasenyes i altres proves.</li>
+  <li>FuzzDB :	Inclou patrons, noms de recursos i càrregues útils per provar aplicacions web.</li>
+  <li>Assetnote Wordlists :	Diccionaris orientats al descobriment de contingut web i actius.</li>
+</ul>
+<p>El fuzzing no és simplement provar moltes paraules. És provar les paraules adequades.</p>
+<pre>-- Instalar en kali "SecLists"
+sudo apt update
+sudo apt install seclists -y  
+-- Consultar en
+ls /usr/share/seclists/Discovery/Web-Content/ </pre>
+
+<pre>-- Instalar en kali "FuzzDB"
+git --version
+sudo apt install git -y
+cd ~
+git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb.git
+-- i la ubicació serà
+/home/kali/fuzzdb/
+</pre>
+<pre>Instalar en kali  "Assetnote Wordlists"
+mkdir -p ~/wordlists/assetnote
+cd ~/wordlists/assetnote
+wget -r --no-parent -R "index.html*" https://wordlists-cdn.assetnote.io/data/  -nH -e robots=off   </pre>
 
   <h2>Reconnaissance , Reconeixement o Enumeració</h2>
     <p>Forma part de les fases inicials d'una auditoria de seguretat o d'un pentesting. Pot combinar tècniques  <strong>passives</strong> 
@@ -430,6 +488,7 @@ URL provada   Resposta          Interpretació inicial
      <p>Interactua directament amb el lloc web o els seus serveis per a obtindre informació addicional.</p>
      <pre>Exemples: curl, WhatWeb i eines de descobriment de directoris com Gobuster.</pre>
 
+ 
     <hr> <h2>Descarrega d'un lloc web</h2>
      <p>És molt útil per descargar i inspeccionar contingut web de manera automatitzada, cosa que pot ajudar a descobrir recursos ocults o informació rellevant. <br>
         Encara que wget no és específicament una eina d’enumeració com gobuster o dirb, sí que pot complementar aquesta fase.</p>
@@ -445,8 +504,6 @@ URL provada   Resposta          Interpretació inicial
       <h4>Descàrrega de fitxers específics</h4>
       <p>Si durant l’enumeració detectes un fitxer interessant (<code>.zip</code>, <code>.pdf</code>, <code>.xml</code>), <code>wget</code> permet baixar-lo ràpidament per analitzar-lo:</p>
       <pre><code>wget http://exemple.com/backup.zip</code></pre>
-
-
 
 
 
@@ -606,7 +663,8 @@ Any o esdeveniment corporatiu	Una combinació amb un any significatiu per a l'or
     <p>Molta gent pensa que un arxiu és el que diu la seva extensió (.txt, .jpg, .exe), però en realitat, això és només una etiqueta que el sistema operatiu utilitza per a la seva comoditat. </p>
     <p> El veritable secret del format d'un arxiu està en les seves dades internes. </p>
      <p>Saps quina part d'un fitxer conté informació que el defineix, i com es diu aquesta part? </p>
-      <li>Pista: sol estar al principi de l'arxiu i serveix com una mena de "signatura" o "identificador"</p></li>
+     <ul><li>Pista: sol estar al principi de l'arxiu i serveix com una mena de "signatura" o "identificador"</p></li></ul>
+
          <h4>Estem parlant de la capçalera o header de l'arxiu.</h4>
          <h2>Magic Number</h2>
      <p>Pensa en la capçalera com la portada d'un llibre. Abans d'obrir-lo i llegir-lo, la portada ja ens diu si és una novel·la, un llibre de ciència o un manual  </p>
@@ -621,13 +679,15 @@ Any o esdeveniment corporatiu	Una combinació amb un any significatiu per a l'or
   <p>Amb un d'aquests editors, podríem obrir, per exemple, un fitxer que s'anomena vacances.jpg i veurem la seva capçalera. Si realment és una imatge JPEG, trobarem al principi els bytes FF D8 FF E0. Si en canvi, trobem la seqüència 50 4B 03 04, sabríem que, malgrat l'extensió .jpg, en realitat és un fitxer ZIP disfressat.</p>
    
   <p>Però el mes pràctic i ràpid és utilitzar una eina.</p>
-  <li>En Linux =>  <code># <strong>file </strong> nom_del_fitxer</code></li>
-  <li>En Windows => Altres eines. <code>certutil -dump fitxer</code> ./  <code>Get-Content fitxer -Encoding Byte -TotalCount 16</code> ./ 
+  <ul>
+    <li>En Linux =>  <code># <strong>file </strong> nom_del_fitxer</code></li>
+    <li>En Windows => Altres eines. <code>certutil -dump fitxer</code> ./  <code>Get-Content fitxer -Encoding Byte -TotalCount 16</code> ./ 
   <code>trid fitxer</code> ./ <code>exiftool fitxer</code> ./ usar <code>WSL + file</code></li>
+  </ul>
 
   <h2>Metadades</h2>
   <p>l’anàlisi de metadades és una tècnica per obtenir informació oculta o complementària continguda en fitxers, imatges, documents o altres recursos digitals, amb l’objectiu de detectar possibles riscos de seguretat o fuites d’informació</p>
-  <li>En Linux =>  <code># <strong>exiftool </strong> nom_del_fitxer</code></li>
+  <ul><li>En Linux =>  <code># <strong>exiftool </strong> nom_del_fitxer</code></li></ul>
   <p>Altres eines</p>
     <ul>
       <li>metagoofil  ( des de github , actualment obsolet, funciona mal) </li>
@@ -823,6 +883,7 @@ $ theharvester -d exemple.com -b google</code></pre>
 
  <section id="labs">
   <h1>Laboratoris</h1>
+  <h2>host discovery</h2>
   <h2>WEB Reconnaissance. Fuzzing Web</h2>
   <h2>DNS Reconnaissance</h2>
   <h2>Analisi d'arxius. Metadades.</h2>
