@@ -1,0 +1,284 @@
+[
+  {
+    "CE": "ud2-1",
+    "titol": "Quina és la qüestió de fons que explica per què els Dorks funcionen per trobar informació sensible?",
+    "titol-curt": "Indexació pública i Google Dorks",
+    "pista": "Pensa en què passa quan un fitxer queda accessible públicament dins d'un servidor web i els robots d'un cercador el poden indexar.",
+    "opcions": [
+      {
+        "text": "Perquè Google Hacking és un delicte si s'utilitza amb Dorks.",
+        "correcte": false,
+        "feedback": "Incorrecte. Els Dorks són una tècnica de cerca. La legalitat depèn de l'ús que es faça de la informació i de les accions posteriors."
+      },
+      {
+        "text": "Perquè els robots de Google indexen tot tipus de fitxers (no només pàgines web) si estan accessibles públicament a través del protocol HTTP.",
+        "correcte": true,
+        "feedback": "Correcte. Si un fitxer queda accessible públicament i és rastrejable pel cercador, pot acabar indexat i ser localitzat mitjançant operadors de cerca avançada."
+      },
+      {
+        "text": "Perquè Shodan és més potent que Google per trobar càmeres web i impressores.",
+        "correcte": false,
+        "feedback": "Incorrecte. Shodan està especialitzat en actius connectats a Internet, però això no explica el funcionament dels Google Dorks."
+      },
+      {
+        "text": "Perquè les metadades tenen un paper molt important en la variant passiva.",
+        "correcte": false,
+        "feedback": "Incorrecte. Les metadades poden ser una font d'OSINT, però no expliquen directament per què els Dorks permeten trobar contingut indexat."
+      }
+    ]
+  },
+  {
+    "CE": "ud2-1",
+    "titol": "Què són els \"Dorks\" en el context de Google Hacking?",
+    "titol-curt": "Google Dorks i cerques avançades",
+    "pista": "Pensa en els operadors que permeten restringir i afinar una cerca en un motor com Google.",
+    "opcions": [
+      {
+        "text": "Un tipus de programari maliciós (malware) utilitzat per al Footprinting.",
+        "correcte": false,
+        "feedback": "Incorrecte. Un Google Dork és una tècnica de cerca avançada i no un tipus de programari maliciós."
+      },
+      {
+        "text": "El nom amb què es coneix el cercador Shodan.",
+        "correcte": false,
+        "feedback": "Incorrecte. Shodan és un cercador especialitzat en actius i dispositius exposats a Internet, mentre que els Dorks utilitzen operadors de cerca en motors com Google."
+      },
+      {
+        "text": "Arxius i servidors vulnerables que es detecten en la fase de Fingerprinting.",
+        "correcte": false,
+        "feedback": "Incorrecte. Els Dorks són les expressions o combinacions d'operadors que permeten localitzar determinada informació; no són els fitxers o servidors trobats."
+      },
+      {
+        "text": "Combinacions d'operadors especials (com \"site:\", \"filetype:\", \"intitle:\") que permeten fer cerques avançades de contingut sensible.",
+        "correcte": true,
+        "feedback": "Correcte. Els Dorks utilitzen operadors especials per afinar les cerques i localitzar informació que ha estat indexada públicament."
+      }
+    ]
+  },
+  {
+    "CE": "ud2-2",
+    "titol": "Quina utilitat té l'ús d'Internet Archive - Wayback Machine durant el procés de reconeixement web?",
+    "titol-curt": "Historial web amb Wayback Machine",
+    "pista": "Pensa en què pot aportar consultar versions antigues d'un lloc web que ja no són visibles en la versió actual.",
+    "opcions": [
+      {
+        "text": "S'utilitza exclusivament per generar un testimoni online legal de l'estat actual del lloc web.",
+        "correcte": false,
+        "feedback": "Incorrecte. Wayback Machine està orientada principalment a conservar i consultar versions històriques de pàgines web."
+      },
+      {
+        "text": "Permet trobar contingut eliminat o analitzar codi font antic per a detectar versions obsoletes de programari.",
+        "correcte": true,
+        "feedback": "Correcte. Les captures històriques poden revelar contingut, fitxers, tecnologies o configuracions que ja no apareixen en la versió actual del lloc."
+      },
+      {
+        "text": "És un cercador d'actius com Shodan per identificar càmeres web i dispositius IoT.",
+        "correcte": false,
+        "feedback": "Incorrecte. Shodan està especialitzat en la descoberta d'actius connectats a Internet, mentre que Wayback Machine conserva versions històriques de contingut web."
+      },
+      {
+        "text": "Proporciona un accés anònim xifrat a la Dark Web a través de dominis .onion.",
+        "correcte": false,
+        "feedback": "Incorrecte. L'accés als serveis .onion es realitza mitjançant la xarxa Tor, no mitjançant Internet Archive."
+      }
+    ]
+  },
+  {
+    "comentari": "enumeracio web i dns",
+    "CE": "ud2-2",
+    "titol": "Quin és l'objectiu principal de l'Enumeració Web (Web Reconnaissance)?",
+    "titol-curt": "Objectiu de l'enumeració web",
+    "pista": "Pensa en quina informació sobre l'aplicació web és útil abans d'intentar comprovar les seues vulnerabilitats.",
+    "opcions": [
+      {
+        "text": "Accedir directament als servidors de correu utilitzant registres MX.",
+        "correcte": false,
+        "feedback": "Incorrecte. Els registres MX permeten identificar servidors de correu, però això correspon a l'àmbit de l'enumeració DNS."
+      },
+      {
+        "text": "Generar un hash SHA256 per garantir la integritat legal del lloc web.",
+        "correcte": false,
+        "feedback": "Incorrecte. L'obtenció d'un hash pot formar part d'un mecanisme de preservació o verificació d'evidències, però no és l'objectiu de l'enumeració web."
+      },
+      {
+        "text": "Descobrir la superfície d'atac per tal d’identificar possibles punts febles abans d’una prova de penetració.",
+        "correcte": true,
+        "feedback": "Correcte. L'enumeració web busca identificar recursos, directoris, fitxers, subdominis, endpoints i tecnologies exposades per conèixer la superfície d'atac."
+      },
+      {
+        "text": "Determinar el nom de domini associat a una adreça IP mitjançant l'enumeració inversa.",
+        "correcte": false,
+        "feedback": "Incorrecte. Determinar el nom associat a una IP mitjançant Reverse DNS és una tècnica pròpia de l'enumeració DNS."
+      }
+    ]
+  },
+  {
+    "CE": "ud2-3",
+    "titol": "Quins són dos cercadors especialitzats o generalistes que s'esmenten específicament amb funcionalitat de cerca inversa d'imatges?",
+    "titol-curt": "Cercadors inversos d'imatges",
+    "pista": "Busca els dos noms de la llista que estan relacionats amb la cerca i identificació d'imatges.",
+    "opcions": [
+      {
+        "text": "Shodan i Maltego.",
+        "correcte": false,
+        "feedback": "Incorrecte. Shodan se centra en actius connectats a Internet i Maltego en la recopilació i visualització de relacions entre dades."
+      },
+      {
+        "text": "Hunter i Infoga.",
+        "correcte": false,
+        "feedback": "Incorrecte. Hunter i Infoga estan relacionades amb la recopilació d'informació sobre adreces de correu i altres dades d'OSINT."
+      },
+      {
+        "text": "dirb i gobuster.",
+        "correcte": false,
+        "feedback": "Incorrecte. dirb i gobuster són eines utilitzades principalment per a la descoberta i enumeració de directoris i recursos web."
+      },
+      {
+        "text": "Google Imatges i TinEye.",
+        "correcte": true,
+        "feedback": "Correcte. Google Imatges i TinEye ofereixen funcionalitats de cerca inversa que permeten localitzar imatges iguals o relacionades."
+      }
+    ]
+  },
+  {
+    "CE": "ud2-3",
+    "titol": "Quina de les següents eines és citada com a eina de Reconnaissance centrada específicament en Xarxes Socials?",
+    "titol-curt": "OSINT en xarxes socials",
+    "pista": "Busca l'eina de la llista orientada específicament a recopilar informació d'una xarxa social.",
+    "opcions": [
+      {
+        "text": "FOCA (Final Version)",
+        "correcte": false,
+        "feedback": "Incorrecte. FOCA està orientada principalment a l'anàlisi de metadades i documents."
+      },
+      {
+        "text": "Osintgram",
+        "correcte": true,
+        "feedback": "Correcte. Osintgram és una eina d'OSINT orientada a recopilar informació pública relacionada amb comptes d'Instagram."
+      },
+      {
+        "text": "Phoneinfoga",
+        "correcte": false,
+        "feedback": "Incorrecte. PhoneInfoga està orientada a la recopilació d'informació relacionada amb números de telèfon."
+      },
+      {
+        "text": "TinEye",
+        "correcte": false,
+        "feedback": "Incorrecte. TinEye és un servei especialitzat en la cerca inversa d'imatges."
+      }
+    ]
+  },
+  {
+    "CE": "ud2-4",
+    "titol": "Quin és l'objectiu principal d'utilitzar eines com grep i awk en l'anàlisi d'informació textual durant una auditoria?",
+    "titol-curt": "Extracció de dades amb grep i awk",
+    "pista": "Pensa en què necessitem fer quan tenim grans quantitats de logs o resultats d'escaneig i volem trobar ràpidament informació concreta.",
+    "opcions": [
+      {
+        "text": "Fer cerques recursives d'arxius binaris que continguin metadades.",
+        "correcte": false,
+        "feedback": "Incorrecte. grep està especialment orientat al tractament de text; per analitzar metadades són més adequades eines específiques com ExifTool."
+      },
+      {
+        "text": "Realitzar un atac de força bruta a servidors protegits per contrasenya.",
+        "correcte": false,
+        "feedback": "Incorrecte. grep i awk són eines de cerca i processament de text, no eines destinades a realitzar atacs de força bruta."
+      },
+      {
+        "text": "Extreure ràpidament dades rellevants (patrons) de grans quantitats de text, com logs o resultats d'escaneig.",
+        "correcte": true,
+        "feedback": "Correcte. grep permet filtrar informació segons patrons i awk permet processar i extreure camps, cosa que resulta molt útil en l'anàlisi de logs i informes."
+      },
+      {
+        "text": "Convertir qualsevol arxiu binari al format d'imatge PNG.",
+        "correcte": false,
+        "feedback": "Incorrecte. La conversió entre formats és una tasca diferent i no és la finalitat de grep ni d'awk."
+      }
+    ]
+  },
+  {
+    "CE": "ud2-4",
+    "titol": "Quina eina permet visualitzar el contingut d'un fitxer com una seqüència de nombres hexadecimals per identificar manualment el Magic Number?",
+    "titol-curt": "Inspecció hexadecimal de fitxers",
+    "pista": "Busca una eina que permeta inspeccionar directament els bytes del fitxer en lloc d'interpretar-los com a text.",
+    "opcions": [
+      {
+        "text": "La utilitat file de Linux.",
+        "correcte": false,
+        "feedback": "Incorrecte. file pot identificar el tipus de fitxer a partir de la seua signatura, però no està pensada per mostrar tot el contingut hexadecimal."
+      },
+      {
+        "text": "Un editor hexadecimal (Hex Editor).",
+        "correcte": true,
+        "feedback": "Correcte. Un editor hexadecimal permet inspeccionar els bytes del fitxer i consultar directament la seua capçalera i el Magic Number."
+      },
+      {
+        "text": "La utilitat grep amb l'opció -o.",
+        "correcte": false,
+        "feedback": "Incorrecte. grep serveix principalment per cercar patrons de text i no per inspeccionar visualment els bytes d'un fitxer binari."
+      },
+      {
+        "text": "El servei web metapicz.com.",
+        "correcte": false,
+        "feedback": "Incorrecte. Aquest tipus de serveis està orientat a l'anàlisi de metadades, no a l'edició o inspecció hexadecimal dels fitxers."
+      }
+    ]
+  },
+  {
+    "comentari": "leaks",
+    "CE": "ud2-5",
+    "titol": "Quins són els dos motius principals esmentats en el text pels quals es poden produir filtracions de dades (Leaks)?",
+    "titol-curt": "Causes de les filtracions de dades",
+    "pista": "Pensa en dos escenaris: una persona de dins de l'organització que actua intencionadament i una altra situació provocada per una mala gestió o descuit.",
+    "opcions": [
+      {
+        "text": "Atacs de denegació de servei (DDoS) i errors de programari.",
+        "correcte": false,
+        "feedback": "Incorrecte. Els atacs DDoS tenen principalment com a objectiu afectar la disponibilitat d'un servei, mentre que un error de programari no és, per si mateix, una de les dues causes indicades."
+      },
+      {
+        "text": "Insider (malintencionat) i error humà en el tractament de la informació.",
+        "correcte": true,
+        "feedback": "Correcte. Una filtració pot produir-se per una acció intencionada d'una persona amb accés intern o per un error o descuit en la gestió de la informació."
+      },
+      {
+        "text": "Desbordament de memòria i injecció SQL.",
+        "correcte": false,
+        "feedback": "Incorrecte. Són exemples de vulnerabilitats o tècniques d'atac, però no corresponen als dos factors principals indicats en la pregunta."
+      },
+      {
+        "text": "Transferència de zona DNS i enginyeria social.",
+        "correcte": false,
+        "feedback": "Incorrecte. Una transferència de zona DNS és un mecanisme relacionat amb DNS i l'enginyeria social és una tècnica d'obtenció d'informació o manipulació, no els dos motius indicats."
+      }
+    ]
+  },
+  {
+    "CE": "ud2-5",
+    "titol": "Quin és l'ús principal de l'eina theHarvester, segons l'exemple d'ús proporcionat al text (theharvester -d exemple.com -b google)?",
+    "titol-curt": "Recopilació OSINT amb theHarvester",
+    "pista": "L'opció -d indica el domini objectiu. Pensa en quina informació pública pot recopilar una eina d'OSINT sobre aquest domini.",
+    "opcions": [
+      {
+        "text": "Analitzar metadades de documents d'un servidor.",
+        "correcte": false,
+        "feedback": "Incorrecte. L'anàlisi de metadades està més relacionada amb eines com FOCA o ExifTool."
+      },
+      {
+        "text": "Recollir adreces de correu electrònic, subdominis i noms de persones relacionades amb un domini a partir de fonts públiques.",
+        "correcte": true,
+        "feedback": "Correcte. theHarvester automatitza la recopilació d'informació pública relacionada amb un domini, com adreces de correu, subdominis, hosts i altres dades."
+      },
+      {
+        "text": "Buscar Magic Numbers en fitxers binaris.",
+        "correcte": false,
+        "feedback": "Incorrecte. Els Magic Numbers es poden analitzar inspeccionant les capçaleres dels fitxers amb eines com editors hexadecimals o file."
+      },
+      {
+        "text": "Configurar l'entorn de llançament de mòduls d'atac.",
+        "correcte": false,
+        "feedback": "Incorrecte. theHarvester és principalment una eina de reconeixement i recopilació d'informació, no una eina destinada a executar mòduls d'atac."
+      }
+    ]
+  }
+]
