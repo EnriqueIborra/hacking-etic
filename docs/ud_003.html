@@ -247,6 +247,18 @@ En el SYN Scan (half-connect):
   <li>NULL</li>
 </ul>
 
+<hr>  <img src="imgs/flags-tcp.png" alt="flags" width="50%" class="imatge-dreta">
+<h3>Com s'envien estes senyals ?</h3>
+<p>En TCP, els flags (o bits de control) s'envien dins de la capçalera dels segments TCP. No s'envien com a missatges independents, 
+  sinó que formen part dels segments que intercanvien els dos dispositius.</p>
+  <p><strong>Segment TCP</strong></p>
+
+<p>Cada segment TCP pot tindre un o diversos flags activats simultàniament.</p>
+
+<h3>Com podem veure els flags?</h3>
+<p>Podem utilitzar Wireshark per capturar els paquets TCP i observar els flags activats en cada segment.</p>
+<img src="imgs/flags-wireshark.png" alt="flags" width="25%" >
+
 <hr> <img src="imgs/navajasuiza2.png" alt="netcat" class="imatge-esquerra" width="4%">
 <h2> nc (netcat) - La navalla suïssa</h2>
 <img src="imgs/netcat1.png" alt="netcat" class="imatge-dreta" width="30%">
@@ -295,14 +307,14 @@ En el SYN Scan (half-connect):
 connexió completa: nmap -sT <adreça_ip>
 half connect:      nmap -sS <adreça_ip>
 ack:               nmap -sA -p 22,80,443 -n -Pn <adreça_ip>
-    -p per especificar ports (ex: -p 22,80,443)
-    -n per evitar resolució DNS (més ràpid)
+    -p  per especificar ports (ex: -p 22,80,443)
+    -n  per evitar resolució DNS (més ràpid)
     -Pn per ometre el ping previ 
+    -sn elimina l'escaneig de ports i només descobreix equips.
 UDP:      nmap -sU 192.168.1.10    
 Xmas:     nmap -sX 192.168.1.10
 FIN:      nmap -sF 192.168.1.10
-NULL:     nmap -sN 192.168.1.10
-   </code></pre>
+NULL:     nmap -sN 192.168.1.10     </code></pre>
  <p>Es pot trovar més informació en la pàgina oficial de nmap</p>  
 <a href="https://nmap.org/book/scan-methods-connect-scan.html">TCP Connect</a> --
 <a href="https://nmap.org/book/synscan.html">SYN scan</a>  --
@@ -310,17 +322,34 @@ NULL:     nmap -sN 192.168.1.10
 <br>
   <h4>1. Escaneig de ports bàsic</h4>
   <pre><code>nmap &lt;IP&gt;</code></pre>
-  <p>Detecta els ports oberts (per defecte els 1000 més comuns).</p>
+  <p>Descobreix si l'equip està actiu. (ICMP o ARP) <br>
+    Detecta els ports oberts (per defecte els 1000 més comuns) <br>   
+    Utilitza SYN Scan si té privilegis suficients; d'altra forma, TCP Connect Scan. <br>
+    Utilitza el perfil de velocitat T3 (Normal). <br>
+    Mostra els ports oberts, tancats o filtrats segons les respostes obtingudes.  </p>
+    <p>Un simple <code>nmap IP</code> pot generar més de mil sondes de xarxa. Per tant, no és correcte
+       considerar-lo una operació de reconeixement especialment silenciosa.</p>
+    <p style="font-size: 0.8em;">==> I no activa per defecte la detecció de versions (-sV), la detecció del sistema operatiu (-O),
+       l'escaneig UDP (-sU) ni els scripts NSE de la categoria default (-sC).</p>
+  <pre><code>nmap &lt;IP&gt;   o  sudo nmap &lt;IP&gt;</code></pre>
+  <p><code>sudo</code> proporciona a Nmap privilegis d'administrador (root). Això li permet utilitzar tècniques d'escaneig que necessiten 
+    accés directe a la xarxa i a la construcció de paquets. Quan s'executa Nmap sense privilegis, habitualment utilitza 
+    TCP Connect (-sT). Quan s'executa amb sudo, habitualment utilitza SYN Scan (-sS). La diferència no és que un siga 
+    més ràpid o més silenciós necessàriament, sinó la manera com es realitza l'escaneig TCP.</p>
 
   <h4>2. Detectar hosts</h4>  
    <pre><code>nmap -Pn &lt;IP_de_xarxa/24&gt;</code></pre>
+   <p>** -Pn per ometre el ping previ, però, Intentarà escanejar els 1.000 ports TCP més habituals de cada adreça. En una /24 => 256*1000 = 256.000 sondes/paquets</p>
+   <p>Si l'objectiu és simplement descobrir quins equips estan actius en una xarxa, millor fer:</p>
+   <pre><code>sudo nmap -sn 192.168.1.0/24</code></pre>
+   <p>Aquesta ordre: - No escaneja ports. - Intenta identificar els equips actius.  - En una xarxa local, utilitza habitualment ARP.
+- Genera molt menys trànsit que -Pn.</p>
 
   <h4>3. Detectar serveis i versions</h4>
   <pre><code>nmap -sV &lt;IP&gt;</code></pre>
   <ul>
     <li><code>-sV</code>: Intenta identificar els serveis i les seves versions en els ports oberts.</li>
   </ul>
-  <pre><code>nmap -sV 192.168.1.10</code></pre>
 
   <h4>4. Detectar sistema operatiu (OS Fingerprinting)</h4>
   <pre><code>nmap -O &lt;IP&gt;</code></pre>
@@ -332,7 +361,7 @@ NULL:     nmap -sN 192.168.1.10
   <h4>5. Fingerprinting complet i detallat</h4>
   <pre><code>nmap -A &lt;IP&gt;</code></pre>
   <ul>
-    <li><code>-A</code>: Activa detecció d’OS (<code>-O</code>), detecció de versions (<code>-sV</code>), escaneig amb scripts (<code>-sC</code>), i traceroute.</li>
+    <li><code>-A</code> = Activa detecció d’OS (<code>-O</code>), detecció de versions (<code>-sV</code>), escaneig amb scripts (<code>-sC</code>), i traceroute.</li>
     <li>És una exploració agressiva.</li>
   </ul>
   <pre><code>sudo nmap -A 192.168.1.10</code></pre>
@@ -364,6 +393,31 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
     <li><strong>Privilegis:</strong> Algunes opcions com <code>-O</code> i <code>-A</code> necessiten permisos de root.</li>
     <li><strong>Legalitat:</strong> Sempre assegura’t que tens permís per escanejar la IP o xarxa. Escanejar sistemes sense autorització pot ser il·legal.</li>
   </ul>
+
+  <hr> <h3>Soroll en la xarxa</h3>
+  <p>Nmap pot produir molt de «soroll» (noise) perquè, quan analitza una xarxa, genera trànsit que pot ser detectat per tallafocs,
+     IDS/IPS, sistemes de monitoratge i registres dels servidors.</p>
+  <p>En ciberseguretat, quan diem que un escaneig produeix soroll, ens referim a la quantitat de traces que deixa en els sistemes analitzats.
+     És important distingir dues coses: el soroll que genera en la xarxa (paquets, connexions i peticions) i les alertes que provoca en els sistemes de detecció.</p>
+   
+     <h3>Com reduir el soroll de Nmap?</h3>
+    <h4>Reduir la velocitat de l'escaneig</h4>
+    <pre>-T0	Paranoid	Extremadament lent
+-T1	Sneaky	Molt lent
+-T2	Polite	Redueix la càrrega de xarxa
+-T3	Normal	Velocitat predeterminada
+-T4	Aggressive	Ràpid
+-T5	Insane	Molt ràpid       </pre>
+    <h4>Escanejar menys ports</h4>
+    <pre>sudo nmap -p 22,80,443 192.168.1.100
+sudo nmap --top-ports 100 192.168.1.100      </pre>
+    <h4>Evitar la detecció de serveis i versions</h4>
+    <pre>sudo nmap -sS -p 22,80,443 192.168.1.100</pre>
+    <h4>Evitar la detecció del sistema operatiu</h4>
+    <p>No utilitzar <code>-O</code> si no necessitem identificar el sistema operatiu.</p>
+ <p class="tips">la millor manera de reduir el soroll no és necessàriament fer Nmap més lent, sinó enviar únicament 
+  les sondes que necessitem per aconseguir l'objectiu de l'auditoria.</p>
+
   <hr><h2>Zenmap</h2>
   <h3>Zenmap és una manera d'utilizar nmap amb gui</h3>
    <a href="https://nmap.org/zenmap/">https://nmap.org/zenmap/</a>
@@ -419,7 +473,7 @@ nmap -sV --script=banner 192.168.1.10</code></pre>
   <pre><code>hping3 -F -P -U -p 80 &lt;IP&gt;</code></pre>
   <p>Aquest tipus de paquet (amb flags FIN, PSH, URG) pot ser ignorat per sistemes Unix (res no és retornat), però sistemes Windows poden respondre amb RST.</p>
 
-  <h3>5. Flood per veure comportament sota càrrega</h3>
+  <h3>5. Flood per veure comportament amb càrrega</h3>
   <pre><code>hping3 -S --flood -p 80 &lt;IP&gt;</code></pre>
   <p>Aquest ataca per inundació envia paquets ràpidament (només per a proves autoritzades!).</p>
 
@@ -730,6 +784,25 @@ wget -r --no-parent -R "index.html*" https://wordlists-cdn.assetnote.io/data/  -
 <p>El directory fuzzing i el file fuzzing també es coneixen com a <strong>content discovery</strong>  o <strong>content enumeration</strong> . 
   En canvi, el fuzzing clàssic sol posar més èmfasi a provar entrades inesperades, malformades o aleatòries per detectar errors i vulnerabilitats.</p>
 
+      <h3>Què inclou habitualment l’enumeració web</h3>
+  <ul>
+    <li>Enumeració de directoris i fitxers ocults (/admin/, /backup.zip).</li>
+    <li>Llistat d’endpoints i API (/api/v1/users).</li>
+    <li>Identificació de tecnologies (frameworks, CMS, versions del servidor).</li>
+    <li>Detecció de formularis, paràmetres i entrades (?id=123, ?search=abc).</li>
+    <li>Examinar certificats TLS, capçaleres HTTP, redireccions, versions identificables i possibles errors de configuració.</li>
+    <li>Revisió de metadades en fitxers públics.</li>
+  </ul>
+
+    <p>Eines habituals</p>
+    <ul>
+      <li>dirb, dirbuster, gobuster, feroxbuster, ffuf → Per a cercar directoris i fitxers ocults.</li>
+      <li>whatweb, wappalyzer → Per a detectar tecnologies, el CMS o el servidor.</li>
+      <li>Arjun, ParamSpider → Per a identificar o recopilar possibles paràmetres de les URL.</li>
+      <li>testssl.sh, SSLyze → Per a examinar la configuració TLS, els certificats i els protocols criptogràfics admesos.</li>
+      <li>ExifTool, FOCA → Per a extraure i analitzar metadades de documents i fitxers públics.</li>
+      <li>...</li>
+    </ul>
 
     <hr><h2>Enumeració SMB</h2>
     <p>SMB fa referència a Server Message Block, que és un protocol de xarxa que permet compartir fitxers, carpetes, impressores 

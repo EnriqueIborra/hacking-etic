@@ -96,7 +96,7 @@ let bancDePreguntes = [];
 let preguntesBarrejades = [];
 let indexPreguntaActual = 0;
 let puntuacio = 0;
-
+let mostranumpreg = null;
 // Estes variables faciliten canviar l'idioma dels texts. També s'ha de modificar els .html
 let titoltest=">> Abans d'avançar, un poc de repàs..."
 let missatgeError = "El test no està disponible";
@@ -108,6 +108,7 @@ let missatgeResultat3_2 = "💪 Continua practicant!";
 let textbotopista =" 🕵️‍♂️ Vols una pista??";
 let textbotoseg =" ➕ Següent pregunta";
 let textbotoreini =" 🔁 Reiniciar";
+let nohaytest = "Encara no hi ha test habilitat 😢";
 
 function barrejar(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -119,8 +120,8 @@ function barrejar(array) {
 function actualitzarProgres() {
     const percentatge =
         (indexPreguntaActual / preguntesBarrejades.length) * 100;
-    document.getElementById('progress-bar').style.width =
-        percentatge + "%";
+    document.getElementById('progress-bar').style.width =  percentatge + "%";
+    document.getElementById('progress-bar').textContent = Math.round(percentatge) + "%";        
 }
 
 function actualitzarPercentatge() {
@@ -132,18 +133,27 @@ function actualitzarPercentatge() {
 }
 
 
-function carregarPreguntes(RA) {
+function carregarPreguntes(RA, ca=null, mostra=null) {
     document.getElementById('quizz_title').innerText = titoltest;
     document.getElementById('btn-pista').innerText = textbotopista;
     document.getElementById('btn-seguent').innerText = textbotoseg;
     document.getElementById('btn-reiniciar').innerText = textbotoreini;
     document.getElementById('feedback').innerHTML = "";
     document.getElementById('btn-seguent').disabled = true;
-    
+
+
     fetch('preguntes/preguntesHE_' + RA + '.json')
         .then(res => res.json())
         .then(data => {
             bancDePreguntes = data;
+
+            // Filtrar per CE si s'ha indicat
+            if (ca !== null) {
+                bancDePreguntes = bancDePreguntes.filter(p => p.CE === ca);
+            }
+            if (mostra !== null) {
+            mostranumpreg = 1;
+            }
             preguntesBarrejades = [...bancDePreguntes];
             barrejar(preguntesBarrejades);
             puntuacio = 0;
@@ -152,9 +162,9 @@ function carregarPreguntes(RA) {
         })
         .catch(err => {
             console.error(err);
-            document.getElementById('pregunta-text').innerText = missatgeError;
+            document.getElementById('pregunta-text').innerText = nohaytest;
+            document.getElementById('btn-seguent').disabled = true;    
         });
-        //document.getElementById('percentatge-text').innerText = "0%";
 
 }
 
@@ -207,6 +217,10 @@ function mostrarPregunta() {
     document.getElementById('pista').textContent = "";
     document.getElementById('btn-seguent').disabled = true;
     actualitzarProgres();
+    if (mostranumpreg !== null) {
+        document.getElementById('percentatge-text').innerText = (indexPreguntaActual+1) +"/"+ 
+            preguntesBarrejades.length + "::" + pregunta.CE + "::" + pregunta["titol-curt"]  ;
+    }      
 
 }
 

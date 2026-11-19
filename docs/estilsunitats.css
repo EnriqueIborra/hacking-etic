@@ -412,6 +412,17 @@ button:hover {
     background: #007bff;   /*#007bff;*/
     transition: width 0.3s ease;
 }
+#progress-bar {
+    height: 100%;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    font-size: 12px;
+    white-space: nowrap;
+    transition: width 0.3s ease;
+}
 
 body.dark-mode #progress-container { background: #17283b;}
 
