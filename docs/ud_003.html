@@ -26,6 +26,8 @@
     <a href="#finger">Fingerprinting</a>
     <a href="#tecni">Tècniques</a>
     <a href="#nmap">Fingerprinting amb nmap</a>
+    <a href="#hping">Fingerprinting amb hping</a>
+    <a href="#wiresh">Fingerprinting amb wireshark</a>
     <a href="#enum">Enumeració de serveis</a>    
     <a href="#descvuln">Descobriment automatitzat de vulnerabilitats</a>    
     <a href="#labs">Laboratoris</a>
@@ -348,7 +350,7 @@ NULL:     nmap -sN 192.168.1.10     </code></pre>
   <h4>3. Detectar serveis i versions</h4>
   <pre><code>nmap -sV &lt;IP&gt;</code></pre>
   <ul>
-    <li><code>-sV</code>: Intenta identificar els serveis i les seves versions en els ports oberts.</li>
+    <li><code>-sV</code>: Intenta identificar els serveis i les seues versions en els ports oberts.</li>
   </ul>
 
   <h4>4. Detectar sistema operatiu (OS Fingerprinting)</h4>
@@ -423,6 +425,12 @@ sudo nmap --top-ports 100 192.168.1.100      </pre>
    <a href="https://nmap.org/zenmap/">https://nmap.org/zenmap/</a>
 
 
+</section>
+
+
+
+
+<section id="hping">
    <hr>
     <h2>Fingerprinting amb hping3</h2>
     <img src="imgs/hping3-logo.svg" alt="netcat" class="imatge-dreta" width="14%">
@@ -491,7 +499,14 @@ sudo nmap --top-ports 100 192.168.1.100      </pre>
 
   <p>🐾🐾🐾</p>
 
-  <hr>  <h2>Fingerprinting anb Wireshark</h2>
+
+  </section>
+
+
+
+<section id="wiresh">
+   <img src="imgs/wireshark-logo-1.png" alt="netcat" class="imatge-dreta" width="14%">
+  <h2>Fingerprinting anb Wireshark</h2>
 <p><strong>Fingerprinting amb Wireshark</strong> significa identificar dispositius, sistemes operatius, aplicacions o serveis en una xarxa mitjançant l’anàlisi de dades capturades amb Wireshark. Es tracta d’una forma de <strong>reconeixement passiu</strong>, útil en ciberseguretat, monitoratge de xarxa o proves d’intrusió.</p>
 
   <h3> 1. Captura de trànsit</h3>
@@ -560,6 +575,7 @@ sudo nmap --top-ports 100 192.168.1.100      </pre>
     </li>
   </ul>
 
+  <img src="imgs/wireshark_filter.png" alt="netcat" class="imatge-dreta" width="34%">
   <h3> 5. Filtres de visualització útils</h3>
   <table border="1" cellpadding="5">
     <thead>
@@ -650,7 +666,7 @@ Bash
     <pre><code>$ wget -r ftp://usu:pass@servidor_ftp/carpeta/</code></pre>
 
     <hr><h2>Enumeració HTTP</h2>
-    <p>L'enumeració HTTP és un procés de recopilació d'informació sobre un servidor web i les seves aplicacions. Aquesta informació es pot 
+    <p>L'enumeració HTTP és un procés de recopilació d'informació sobre un servidor web i les seues aplicacions. Aquesta informació es pot 
       utilitzar per identificar vulnerabilitats potencials que un hacker podria explotar. Essencialment, és com un explorador que fa un mapa 
       detallat d'una ciutat (el servidor web) per trobar punts febles.</p>
     <h3>Inspecció visual</h3>
@@ -933,7 +949,7 @@ nmap -sC -p 139,445 -sV 10.0.1.26 10.0.1.30
       <hr><h2 id="quizz_title">Comprueba tu progreso...</h2>
     <div id="progress-container">
     <div id="progress-bar"></div>  </div>
-    <!-- <div id="percentatge-text">0%</div>  -->
+    <div id="percentatge-text"></div>
 
     <div class="quiz-container">
         <h4 id="pregunta-text"></h4>
