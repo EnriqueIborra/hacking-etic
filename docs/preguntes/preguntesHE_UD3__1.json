@@ -1,0 +1,453 @@
+[
+  {
+    "CE": "ud3-1",
+    "titol": "Segons el text, quin és l'objectiu principal de l'Enumeració dins de la fase de Fingerprinting?",
+    "titol-curt": "Objectiu de l'enumeració de sistemes",
+    "pista": "L'enumeració va més enllà de saber que existeix un sistema: busca obtenir informació concreta sobre els serveis i recursos que ofereix.",
+    "opcions": [
+      {
+        "text": "Recopilar informació general sobre l'objectiu, com ara dominis, adreces IP i dades de registre.",
+        "correcte": false,
+        "feedback": "Incorrecte. Aquestes activitats corresponen principalment a la recopilació inicial d'informació, que permet conéixer l'objectiu abans d'aprofundir en els seus serveis i recursos."
+      },
+      {
+        "text": "Identificar les relacions entre usuaris, organitzacions i plataformes de comunicació pública.",
+        "correcte": false,
+        "feedback": "Incorrecte. Aquesta informació s'obté habitualment mitjançant tècniques OSINT, que permeten investigar dades públiques sobre persones i organitzacions."
+      },
+      {
+        "text": "Obtenir informació tècnica detallada sobre sistemes i serveis, com ara versions, usuaris i recursos compartits.",
+        "correcte": true,
+        "feedback": "Correcte. L'enumeració busca extraure informació concreta dels sistemes accessibles, com ara serveis actius, versions, comptes d'usuari i recursos compartits."
+      },
+      {
+        "text": "Reconéixer les tecnologies d'aplicacions web, com ara els gestors de continguts i els frameworks utilitzats.",
+        "correcte": false,
+        "feedback": "Incorrecte. Aquesta activitat correspon més específicament al Fingerprinting d'aplicacions web, que identifica les tecnologies emprades en un lloc web."
+      }
+    ]
+  },
+  {
+    "comentari": "fingerprinting",
+    "CE": "ud3-1",
+    "titol": "Quina de les següents afirmacions descriu millor la naturalesa del Fingerprinting en comparació amb el Footprinting, segons el text?",
+    "titol-curt": "Diferències entre Fingerprinting i Footprinting",
+    "pista": "Pensa en l'ordre de les fases de reconeixement i en la diferència entre obtenir informació general i obtenir detalls tècnics del sistema.",
+    "opcions": [
+      {
+        "text": "El Fingerprinting és una etapa posterior al Footprinting, amb un enfocament més tècnic i orientat a identificar sistemes i serveis.",
+        "correcte": true,
+        "feedback": "Correcte. El Fingerprinting busca identificar característiques tècniques dels sistemes, serveis i tecnologies, habitualment mitjançant tècniques més actives."
+      },
+      {
+        "text": "El Fingerprinting és la primera fase del reconeixement i se centra principalment a recopilar informació pública de manera passiva.",
+        "correcte": false,
+        "feedback": "Incorrecte. Aquesta descripció correspon principalment al Footprinting, que recopila informació general abans d'aprofundir en les característiques tècniques dels sistemes."
+      },
+      {
+        "text": "El Fingerprinting i el Footprinting són tècniques equivalents que recopilen el mateix tipus d'informació i s'apliquen en qualsevol ordre.",
+        "correcte": false,
+        "feedback": "Incorrecte. Són conceptes relacionats, però tenen enfocaments diferents: el Footprinting obté informació general i el Fingerprinting aprofundeix en els detalls tècnics."
+      },
+      {
+        "text": "El Fingerprinting és una tècnica reservada als organismes oficials i requereix sempre una autorització específica de l'Estat.",
+        "correcte": false,
+        "feedback": "Incorrecte. El Fingerprinting també s'utilitza en auditories de seguretat i proves de penetració. El requisit fonamental és disposar de l'autorització del propietari o responsable dels sistemes."
+      }
+    ]
+  },
+  {
+    "CE": "ud3-2",
+    "titol": "Quin és l'objectiu principal de l'Anàlisi TCP ACK (ACK Scan)?",
+    "titol-curt": "Objectiu del TCP ACK Scan",
+    "pista": "A diferència del SYN Scan, l'ACK Scan no està pensat principalment per determinar si un servei està escoltant, sinó per estudiar el comportament del filtratge.",
+    "opcions": [
+      {
+        "text": "Establir una connexió TCP completa per comprovar si el servei accepta connexions en el port analitzat.",
+        "correcte": false,
+        "feedback": "Incorrecte. Aquesta funció correspon al TCP Connect Scan, que completa el 3-way handshake per comprovar si el port accepta connexions."
+      },
+      {
+        "text": "Identificar els comptes d'usuari i els grups disponibles mitjançant l'anàlisi de les respostes del servidor.",
+        "correcte": false,
+        "feedback": "Incorrecte. L'obtenció d'informació sobre usuaris i grups forma part de les tècniques d'enumeració, no de l'objectiu principal de l'ACK Scan."
+      },
+      {
+        "text": "Detectar els serveis UDP disponibles i determinar quins ports accepten paquets del protocol sense connexió.",
+        "correcte": false,
+        "feedback": "Incorrecte. L'ACK Scan treballa amb paquets TCP. Per analitzar ports i serveis UDP s'utilitzen tècniques específiques, com l'UDP Scan."
+      },
+      {
+        "text": "Determinar si els paquets TCP són bloquejats pels mecanismes de filtratge i identificar els ports filtrats o no filtrats.",
+        "correcte": true,
+        "feedback": "Correcte. L'ACK Scan permet estudiar el comportament dels tallafocs i altres mecanismes de filtratge. No determina directament si un port està obert o tancat, sinó si el trànsit està filtrat."
+      }
+    ]
+  },
+  {
+    "comentari": "tecniques",
+    "CE": "ud3-2",
+    "titol": "Segons el text, quan es considera que un port està \"filtrat\" des de la perspectiva d'un host extern?",
+    "titol-curt": "Identificació de ports filtrats",
+    "pista": "Pensa en què ocorre quan l'escàner no rep una resposta que li permeta determinar l'estat del port.",
+    "opcions": [
+      {
+        "text": "L'host respon amb un paquet RST, indicant que no hi ha cap servei escoltant.",
+        "correcte": false,
+        "feedback": "Incorrecte. En un escaneig TCP, una resposta RST sol indicar que el port està tancat i que la petició ha arribat a l'host."
+      },
+      {
+        "text": "L'host respon amb un paquet SYN-ACK, indicant que el port accepta connexions.",
+        "correcte": false,
+        "feedback": "Incorrecte. Una resposta SYN-ACK davant d'una petició SYN indica habitualment que el port està obert i que hi ha un servei escoltant."
+      },
+      {
+        "text": "L'escàner no rep resposta o rep determinats missatges ICMP que indiquen un possible bloqueig.",
+        "correcte": true,
+        "feedback": "Correcte. La manca de resposta o determinats missatges ICMP poden indicar que el trànsit està filtrat. En aquest cas, l'escàner no pot determinar si el port està obert o tancat."
+      },
+      {
+        "text": "L'escàner completa el procés d'establiment de connexió TCP amb l'host de destinació.",
+        "correcte": false,
+        "feedback": "Incorrecte. Completar el 3-way handshake indica que el port accepta la connexió i, per tant, es considera obert."
+      }
+    ]
+  },
+  {
+    "CE": "ud3-3",
+    "titol": "Quina és la funció de la bandera -A en una exploració d'Nmap?",
+    "titol-curt": "Funcions avançades de Nmap",
+    "pista": "És una opció que combina diverses capacitats avançades d'Nmap en una mateixa exploració.",
+    "opcions": [
+      {
+        "text": "Activar només la detecció de ports oberts amb el mètode de connexió completa.",
+        "correcte": false,
+        "feedback": "Incorrecte. El TCP Connect Scan s'activa amb -sT i no equival a l'opció -A."
+      },
+      {
+        "text": "Ometre el ping previ i evitar la resolució DNS per fer l'escaneig més ràpid.",
+        "correcte": false,
+        "feedback": "Incorrecte. -Pn serveix per ometre el descobriment d'host mitjançant ping i -n evita la resolució DNS."
+      },
+      {
+        "text": "Activar la detecció d'OS (-O), la detecció de versions (-sV), l'escaneig amb scripts per defecte (-sC) i el traceroute.",
+        "correcte": true,
+        "feedback": "Correcte. -A activa diverses funcions avançades d'Nmap, incloent detecció del sistema operatiu, versions de serveis, scripts per defecte i traceroute."
+      },
+      {
+        "text": "Realitzar un escaneig furtí utilitzant els flags FIN, XMAS i NULL de manera simultània.",
+        "correcte": false,
+        "feedback": "Incorrecte. FIN, XMAS i NULL són diferents tècniques d'escaneig TCP i s'activen amb opcions específiques."
+      }
+    ]
+  },
+  {
+    "CE": "ud3-3",
+    "titol": "Quin és l'objectiu d'utilitzar l'Nmap Scripting Engine (NSE) amb scripts com --script=banner?",
+    "titol-curt": "Detecció de banners amb NSE",
+    "pista": "Els scripts NSE permeten ampliar la informació que Nmap pot obtenir més enllà de l'escaneig bàsic de ports.",
+    "opcions": [
+      {
+        "text": "Establir una connexió TCP completa per comprovar si el port accepta connexions.",
+        "correcte": false,
+        "feedback": "Incorrecte. Aquesta funció correspon al TCP Connect Scan, que s'activa amb l'opció -sT. Els scripts NSE permeten executar comprovacions addicionals sobre els serveis."
+      },
+      {
+        "text": "Ometre el descobriment previ de l'host per tractar-lo com si estiguera actiu.",
+        "correcte": false,
+        "feedback": "Incorrecte. Aquesta funció correspon a l'opció -Pn, que evita el descobriment previ de l'host abans de continuar l'escaneig."
+      },
+      {
+        "text": "Obtindre missatges d'identificació dels serveis per ampliar la informació del seu fingerprinting.",
+        "correcte": true,
+        "feedback": "Correcte. El script banner intenta recuperar informació d'identificació que proporcionen els serveis, com ara el seu nom o versió, i facilita el reconeixement dels sistemes."
+      },
+      {
+        "text": "Limitar l'escaneig als ports més habituals per reduir el temps d'execució.",
+        "correcte": false,
+        "feedback": "Incorrecte. Per seleccionar ports concrets s'utilitza l'opció -p, mentre que -F permet fer un escaneig ràpid dels ports més habituals."
+      }
+    ]
+  },
+  {
+    "CE": "ud3-4",
+    "titol": "Quina opció de la comanda hping3 s'utilitzaria per enviar exclusivament un paquet amb el flag SYN al port 80?",
+    "titol-curt": "Enviament de paquets SYN amb hping3",
+    "pista": "Busca l'opció d'hping3 que activa específicament el flag SYN i combina-la amb l'opció que indica el port de destinació.",
+    "opcions": [
+      {
+        "text": "-A -p 80",
+        "correcte": false,
+        "feedback": "Incorrecte. La bandera -A envia el flag ACK."
+      },
+      {
+        "text": "-S -p 80",
+        "correcte": true,
+        "feedback": "Correcte. La bandera -S activa el flag SYN, i -p 80 especifica el port de destinació."
+      },
+      {
+        "text": "--flood -p 80",
+        "correcte": false,
+        "feedback": "Incorrecte. La bandera --flood s'utilitza per enviar paquets tan ràpidament com sigui possible, no per seleccionar exclusivament el flag SYN."
+      },
+      {
+        "text": "-F -P -U",
+        "correcte": false,
+        "feedback": "Incorrecte. Aquesta combinació s'utilitza per al XMAS Scan, que no és exclusivament SYN."
+      }
+    ]
+  },
+  {
+    "CE": "ud3-4",
+    "titol": "Quina de les següents característiques de la resposta d'un host s'utilitza per a inferir el sistema operatiu (OS fingerprinting) amb hping3?",
+    "titol-curt": "Fingerprinting d'OS amb hping3",
+    "pista": "Observa els paràmetres de la resposta que formen part de la manera característica en què cada sistema operatiu gestiona els paquets IP i TCP.",
+    "opcions": [
+      {
+        "text": "L'existència d'un missatge ICMP \"port unreachable\".",
+        "correcte": false,
+        "feedback": "Incorrecte. Un missatge ICMP indica normalment un port filtrat o tancat (en el cas d'UDP), però no és la característica clau per a l'OS fingerprinting."
+      },
+      {
+        "text": "La mida del MTU (Maximum Transmission Unit) de la xarxa.",
+        "correcte": false,
+        "feedback": "Incorrecte. El MTU no és una de les característiques TCP/IP clau esmentades per al fingerprinting."
+      },
+      {
+        "text": "El valor de TTL (Time To Live), la mida del paquet i els flags de la capçalera TCP/IP.",
+        "correcte": true,
+        "feedback": "Correcte. El TTL (128 per Windows, 64 per Linux) i altres paràmetres com la mida de la finestra són part de la \"fingerprint TCP/IP\" característica de cada sistema operatiu."
+      },
+      {
+        "text": "El temps de connexió (latency) entre l'atacant i l'objectiu.",
+        "correcte": false,
+        "feedback": "Incorrecte. La latència és una mesura de rendiment, no un indicador fiable per al tipus de sistema operatiu."
+      }
+    ]
+  },
+  {
+    "CE": "ud3-5",
+    "titol": "Quin mètode o camp s'utilitza per deduir el fabricant d'un dispositiu a partir de la seva Adreça MAC en Wireshark?",
+    "titol-curt": "Identificació de fabricants mitjançant OUI",
+    "pista": "Una adreça MAC conté una part assignada als fabricants. Busca el mecanisme que relaciona aquesta part de l'adreça amb una organització.",
+    "opcions": [
+      {
+        "text": "El camp Window size value de l'encapçalament TCP.",
+        "correcte": false,
+        "feedback": "Incorrecte. El Window size value pot aportar informació per al fingerprinting del sistema operatiu, però no identifica directament el fabricant del hardware."
+      },
+      {
+        "text": "L'Identificador de classe de venedor (Vendor Class ID) al trànsit HTTP.",
+        "correcte": false,
+        "feedback": "Incorrecte. El Vendor Class ID apareix en el trànsit DHCP, no en HTTP, i s'utilitza per identificar característiques del client DHCP."
+      },
+      {
+        "text": "La resolució del hostname mitjançant les consultes DNS.",
+        "correcte": false,
+        "feedback": "Incorrecte. El hostname proporciona el nom del dispositiu o equip, però no permet deduir directament el fabricant del hardware."
+      },
+      {
+        "text": "La deducció del fabricant mitjançant l'OUI (Organizationally Unique Identifier) de l'Adreça MAC.",
+        "correcte": true,
+        "feedback": "Correcte. L'OUI identifica l'organització a la qual està assignat el fabricant i correspon als primers sis dígits de l'adreça MAC en la representació habitual."
+      }
+    ]
+  },
+  {
+    "comentari": "fingerprint amb wireshark ",
+    "CE": "ud3-5",
+    "titol": "En el Fingerprinting de Sistema Operatiu amb Wireshark, quin valor del camp Time to Live (TTL) s'utilitza generalment per deduir la presència d'un sistema operatiu Windows?",
+    "titol-curt": "Fingerprinting de Windows amb TTL",
+    "pista": "Recorda que diferents sistemes operatius solen utilitzar valors inicials de TTL diferents. Windows utilitza habitualment un valor superior al típic de Linux.",
+    "opcions": [
+      {
+        "text": "TTL = 64",
+        "correcte": false,
+        "feedback": "Incorrecte. El valor TTL = 64 és típicament associat als sistemes operatius Linux."
+      },
+      {
+        "text": "TTL = 128",
+        "correcte": true,
+        "feedback": "Correcte. El TTL inicial de 128 és un indicador que pot ajudar a deduir que el sistema operatiu és Windows."
+      },
+      {
+        "text": "TTL = 255",
+        "correcte": false,
+        "feedback": "Incorrecte. El TTL = 255 sovint s'associa amb dispositius de xarxa, com ara alguns dispositius Cisco."
+      },
+      {
+        "text": "TTL = 32",
+        "correcte": false,
+        "feedback": "Incorrecte. Un TTL de 32 no és un valor estàndard i definitiu per a la identificació dels sistemes operatius comuns en aquest context."
+      }
+    ]
+  },
+  {
+    "CE": "ud3-6-1",
+    "titol": "En una prova de directory fuzzing, què determina principalment els noms de les rutes que es comprovaran?",
+    "titol-curt": "Funció del diccionari",
+    "pista": "Pensa d'on obté la ferramenta els noms que utilitza per construir les diferents rutes.",
+    "opcions": [
+      {
+        "text": "La llista de paraules proporcionada a la ferramenta.",
+        "correcte": true,
+        "feedback": "Correcte. El diccionari conté els noms que la ferramenta utilitza per construir les diferents rutes que provarà."
+      },
+      {
+        "text": "Els enllaços que apareixen en la pàgina principal.",
+        "correcte": false,
+        "feedback": "Incorrecte. Els enllaços visibles poden ajudar a descobrir recursos, però no determinen les paraules del diccionari."
+      },
+      {
+        "text": "Els codis HTTP obtinguts en les primeres peticions.",
+        "correcte": false,
+        "feedback": "Incorrecte. Els codis HTTP són les respostes del servidor i no proporcionen els noms de les rutes que es provaran."
+      },
+      {
+        "text": "Les capçaleres que envia el navegador al servidor.",
+        "correcte": false,
+        "feedback": "Incorrecte. Les capçaleres formen part de les peticions HTTP, però no determinen els noms de les rutes del diccionari."
+      }
+    ]
+  },
+  {
+    "CE": "ud3-6-1",
+    "titol": "Una ferramenta prova automàticament /admin, /login i /backup en un servidor web. Quina afirmació descriu millor aquesta prova?",
+    "titol-curt": "Identificació del fuzzing",
+    "pista": "Diferencia què s'intenta descobrir: rutes, fitxers, paràmetres o serveis.",
+    "opcions": [
+      {
+        "text": "És parameter fuzzing perquè cada ruta pot acceptar dades d'entrada.",
+        "correcte": false,
+        "feedback": "Incorrecte. El parameter fuzzing prova diferents valors de paràmetres HTTP, no noms de rutes."
+      },
+      {
+        "text": "És file fuzzing perquè les rutes poden correspondre a recursos del servidor.",
+        "correcte": false,
+        "feedback": "Incorrecte. El file fuzzing busca fitxers existents, com ara backup.zip o config.php. En aquest cas es proven noms de rutes."
+      },
+      {
+        "text": "És directory fuzzing perquè es comproven possibles rutes de directoris.",
+        "correcte": true,
+        "feedback": "Correcte. Es proven noms de possibles directoris o rutes del servidor per descobrir recursos accessibles."
+      },
+      {
+        "text": "És endpoint fuzzing perquè totes les peticions arriben a un servei web.",
+        "correcte": false,
+        "feedback": "Incorrecte. Encara que les peticions arriben a un servei web, la prova descrita busca concretament possibles directoris."
+      }
+    ]
+  },
+  {
+    "CE": "ud3-6",
+    "titol": "Segons el text, on es troben diversos diccionaris (wordlists) a Kali Linux que són importants per a eines de Fuzzing Web?",
+    "titol-curt": "Ubicació de wordlists a Kali Linux",
+    "pista": "Pensa en els directoris de Kali Linux on s'emmagatzemen recursos compartits per les eines de seguretat.",
+    "opcions": [
+      {
+        "text": "/etc/wordlists/",
+        "correcte": false,
+        "feedback": "Incorrecte. Els fitxers de configuració solen trobar-se a /etc/, però les wordlists es localitzen habitualment dins de /usr/share/."
+      },
+      {
+        "text": "/opt/diccionaris/",
+        "correcte": false,
+        "feedback": "Incorrecte. /opt/ s'utilitza habitualment per a programari addicional, però no és la ruta estàndard indicada per a les wordlists de Kali Linux."
+      },
+      {
+        "text": "/usr/share/wordlists",
+        "correcte": true,
+        "feedback": "Correcte. Aquest directori conté diferents llistes de paraules que poden utilitzar-se en proves de penetració i eines de seguretat."
+      },
+      {
+        "text": "/home/kali/documents/",
+        "correcte": false,
+        "feedback": "Incorrecte. Aquesta és una ruta associada a l'espai personal de l'usuari i no és la ubicació estàndard del sistema per a les wordlists de les eines de seguretat."
+      }
+    ]
+  },
+  {
+    "CE": "ud3-6",
+    "titol": "Quina de les següents eines està llistada al text com una eina específica per a l'Enumeració SMB (Server Message Block)?",
+    "titol-curt": "Eina d'enumeració SMB",
+    "pista": "Busca l'eina especialitzada en obtenir informació de sistemes que exposen serveis mitjançant el protocol SMB.",
+    "opcions": [
+      {
+        "text": "ffuf",
+        "correcte": false,
+        "feedback": "Incorrecte. ffuf és una eina de Fuzzing Web, utilitzada principalment per a l'enumeració HTTP."
+      },
+      {
+        "text": "Wappalyzer",
+        "correcte": false,
+        "feedback": "Incorrecte. Wappalyzer permet detectar tecnologies darrere d'aplicacions web, però no és una eina específica per a l'enumeració SMB."
+      },
+      {
+        "text": "enum4Linux",
+        "correcte": true,
+        "feedback": "Correcte. enum4Linux és una eina dissenyada per extreure informació de sistemes que utilitzen el protocol SMB."
+      },
+      {
+        "text": "Nikto",
+        "correcte": false,
+        "feedback": "Incorrecte. Nikto s'utilitza principalment per a l'escaneig de vulnerabilitats en serveis web HTTP."
+      }
+    ]
+  },
+  {
+    "CE": "ud3-7",
+    "titol": "Quin és l'avantatge clau de l'eina Nuclei respecte a altres escàners, segons el text?",
+    "titol-curt": "Escaneig massiu amb plantilles Nuclei",
+    "pista": "Nuclei destaca per la velocitat i per la possibilitat de definir què es vol buscar mitjançant plantilles.",
+    "opcions": [
+      {
+        "text": "Permet analitzar xarxes en profunditat identificant sistemes a partir del valor del TTL.",
+        "correcte": false,
+        "feedback": "Incorrecte. El TTL pot aportar informació sobre el sistema operatiu, però no és la característica principal de Nuclei, que basa les comprovacions en plantilles."
+      },
+      {
+        "text": "Permet escanejar ràpidament molts objectius i buscar vulnerabilitats concretes mitjançant plantilles YAML.",
+        "correcte": true,
+        "feedback": "Correcte. Nuclei destaca per la rapidesa i la flexibilitat de les seues plantilles YAML, que permeten definir comprovacions específiques i executar-les sobre molts objectius."
+      },
+      {
+        "text": "Permet centralitzar diferents eines de seguretat i executar-les des d'una interfície gràfica comuna.",
+        "correcte": false,
+        "feedback": "Incorrecte. Aquesta és una característica pròpia de frameworks com Legion, que faciliten l'execució i la gestió d'altres eines de seguretat."
+      },
+      {
+        "text": "Permet detectar vulnerabilitats comparant versions de programari amb bases de dades de CVE sense enviar peticions.",
+        "correcte": false,
+        "feedback": "Incorrecte. Nuclei no es limita a una anàlisi passiva de versions: executa comprovacions definides en plantilles, que poden requerir enviar peticions als objectius."
+      }
+    ]
+  },
+  {
+    "CE": "ud3-7",
+    "titol": "Quina metodologia utilitzen habitualment els escàners de propòsit general, com Nessus o OpenVAS, per identificar vulnerabilitats conegudes?",
+    "titol-curt": "Detecció de vulnerabilitats mitjançant CVE",
+    "pista": "Aquests escàners poden relacionar la informació obtinguda sobre el programari amb registres públics de vulnerabilitats.",
+    "opcions": [
+      {
+        "text": "Identificar les versions del programari i contrastar-les amb bases de dades de vulnerabilitats conegudes.",
+        "correcte": true,
+        "feedback": "Correcte. Aquests escàners identifiquen programari i versions instal·lades i contrasten la informació amb bases de dades de vulnerabilitats conegudes, com les associades als identificadors CVE."
+      },
+      {
+        "text": "Detectar els serveis disponibles i comparar els ports oberts amb patrons habituals d'atac.",
+        "correcte": false,
+        "feedback": "Incorrecte. La detecció de serveis i ports oberts és una fase de reconeixement, però no és suficient per identificar vulnerabilitats associades a versions concretes de programari."
+      },
+      {
+        "text": "Executar plantilles específiques sobre molts objectius per buscar vulnerabilitats concretes.",
+        "correcte": false,
+        "feedback": "Incorrecte. Aquest enfocament és característic de Nuclei, que utilitza plantilles per executar comprovacions dirigides sobre un conjunt ampli d'objectius."
+      },
+      {
+        "text": "Analitzar les capçaleres HTTP i els missatges de resposta per detectar configuracions insegures.",
+        "correcte": false,
+        "feedback": "Incorrecte. L'anàlisi de capçaleres HTTP pot revelar informació i configuracions insegures, però és una tècnica concreta i no la metodologia general descrita en la pregunta."
+      }
+    ]
+  }
+]
